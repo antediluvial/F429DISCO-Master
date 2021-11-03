@@ -56,7 +56,7 @@ static void AppTaskStart(void *p_arg)
     GPIO_Init();
     USART_Init();
     LCD_Init();
-
+    //test
 
     OSTaskCreate(
         (OS_TCB *)&UpdateLCDTaskTCB,
