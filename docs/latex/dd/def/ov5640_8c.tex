@@ -1,0 +1,76 @@
+\hypertarget{ov5640_8c}{}\doxysection{lib/\+Components/ov5640/ov5640.c File Reference}
+\label{ov5640_8c}\index{lib/Components/ov5640/ov5640.c@{lib/Components/ov5640/ov5640.c}}
+
+
+This file provides the OV5640 camera driver.  
+
+
+{\ttfamily \#include \char`\"{}ov5640.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___o_v5640_ga636269583dbddaa607bfc6971db10325}{ov5640\+\_\+\+Init}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t resolution)
+\begin{DoxyCompactList}\small\item\em Initializes the OV5640 CAMERA component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga786b1de90982880c64eb842cb85aadcb}{OV5640\+\_\+\+Set\+Light\+Mode}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Light\+Mode)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Light Mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_gaed1c125986b5fcd8d0f3daa950015191}{OV5640\+\_\+\+Set\+Effect}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t Effect)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Special Effect. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga98e6a8b7920cdbefddafb0c7ad9f941c}{OV5640\+\_\+\+Set\+Brightness}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Brightness Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga93ba8424b5b9fa686ebd60c4659527d0}{OV5640\+\_\+\+Set\+Saturation}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Saturation Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga161e0be2af568b9a4b5b33fad0feb62a}{OV5640\+\_\+\+Set\+Contrast}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Contrast Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga1069a28511c638f5b2cd37b9450565f4}{OV5640\+\_\+\+Set\+Hue\+Degree}} (uint16\+\_\+t Device\+Addr, uint16\+\_\+t Degree)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Hue degree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga2f2d7cff86c0e46b52330c8d9f717699}{OV5640\+\_\+\+Mirror\+Flip\+Config}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Config)
+\begin{DoxyCompactList}\small\item\em Control OV5640 camera mirror/vflip. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga8d86da1d14b9820374d33965e3508b41}{OV5640\+\_\+\+Zoom\+Config}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Zoom)
+\begin{DoxyCompactList}\small\item\em Control OV5640 camera mirror/vflip. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group___o_v5640_gab0f623916b30ea36387be37323bf4eac}{OV5640\+\_\+\+Get\+Resolution}} (uint16\+\_\+t Device\+Addr)
+\begin{DoxyCompactList}\small\item\em Get OV5640 camera resolution. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_gad4e274b0793270efce1aa43eeb7adde6}{ov5640\+\_\+\+Config}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t feature, uint32\+\_\+t value, uint32\+\_\+t brightness\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Configures the OV5640 camera feature. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group___o_v5640_gae80a927198af9b4e8465f310b1ba4055}{ov5640\+\_\+\+Read\+ID}} (uint16\+\_\+t Device\+Addr)
+\begin{DoxyCompactList}\small\item\em Read the OV5640 Camera identity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_c_a_m_e_r_a___drv_type_def}{CAMERA\+\_\+\+Drv\+Type\+Def}} \mbox{\hyperlink{group___o_v5640___private___variables_gaeee5b96a940d1bcfa24830df0851cc61}{ov5640\+\_\+drv}}
+\item 
+const uint16\+\_\+t {\bfseries OV5640\+\_\+\+Init} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga1d924d28cc1b9c38028ad93fbec3d852}{OV5640\+\_\+\+WVGA}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga07937fbf266e199ab75fc559176e5ed2}{OV5640\+\_\+\+VGA}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga66ece797ab2134f15d875d6f40dd519e}{OV5640\+\_\+480x272}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga6f0032f4df7fafce0d065b5cd6011eae}{OV5640\+\_\+\+QVGA}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga1490c84faaefd1a1f30d4d8051e16ed9}{OV5640\+\_\+\+QQVGA}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga5661d10f9d3f9b3bad72f8808aab6c2f}{OV5640\+\_\+\+Light\+Mode\+Auto}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga19acb7fd7e3383f50a85bc0f9c23ce5e}{OV5640\+\_\+\+Light\+Mode\+Cloudy}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga623364d24d904d17b2774889d4ac4654}{OV5640\+\_\+\+Light\+Mode\+Office}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga4a1029adc3fa7a10f66f04e208a832ac}{OV5640\+\_\+\+Light\+Mode\+Home}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___private___variables_ga52bc4a4e57ec6a35e0adae6127ce5cf4}{OV5640\+\_\+\+Light\+Mode\+Sunny}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides the OV5640 camera driver. 
+
+\begin{DoxyAuthor}{Author}
+MCD Application Team
+\end{DoxyAuthor}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2019 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 

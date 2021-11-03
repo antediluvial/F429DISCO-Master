@@ -1,0 +1,1037 @@
+\hypertarget{cpu__core_8h_source}{}\doxysection{cpu\+\_\+core.\+h}
+\label{cpu__core_8h_source}\index{lib/uCOS\_CPU/cpu\_core.h@{lib/uCOS\_CPU/cpu\_core.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                               uC/CPU}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                    CPU CONFIGURATION \& PORT LAYER}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2004-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{*}}
+\DoxyCodeLine{20 \textcolor{comment}{*                                           CORE CPU MODULE}}
+\DoxyCodeLine{21 \textcolor{comment}{*}}
+\DoxyCodeLine{22 \textcolor{comment}{* Filename : cpu\_core.h}}
+\DoxyCodeLine{23 \textcolor{comment}{* Version  : V1.32.00}}
+\DoxyCodeLine{24 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{25 \textcolor{comment}{* Note(s)  : (1) Assumes the following versions (or more recent) of software modules are included in}}
+\DoxyCodeLine{26 \textcolor{comment}{*                the project build :}}
+\DoxyCodeLine{27 \textcolor{comment}{*}}
+\DoxyCodeLine{28 \textcolor{comment}{*                (a) uC/LIB V1.38.02}}
+\DoxyCodeLine{29 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{30 \textcolor{comment}{*/}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{/*}}
+\DoxyCodeLine{34 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{35 \textcolor{comment}{*                                               MODULE}}
+\DoxyCodeLine{36 \textcolor{comment}{*}}
+\DoxyCodeLine{37 \textcolor{comment}{* Note(s) : (1) This core CPU header file is protected from multiple pre-\/processor inclusion through use of}}
+\DoxyCodeLine{38 \textcolor{comment}{*               the  core CPU module present pre-\/processor macro definition.}}
+\DoxyCodeLine{39 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{40 \textcolor{comment}{*/}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#ifndef  CPU\_CORE\_MODULE\_PRESENT                                }\textcolor{comment}{/* See Note \#1.                                         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define  CPU\_CORE\_MODULE\_PRESENT}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{/*}}
+\DoxyCodeLine{47 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{48 \textcolor{comment}{*                                               EXTERNS}}
+\DoxyCodeLine{49 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{50 \textcolor{comment}{*/}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifdef   CPU\_CORE\_MODULE}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define  CPU\_CORE\_EXT}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define  CPU\_CORE\_EXT  extern}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{comment}{/*}}
+\DoxyCodeLine{60 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{61 \textcolor{comment}{*                                            INCLUDE FILES}}
+\DoxyCodeLine{62 \textcolor{comment}{*}}
+\DoxyCodeLine{63 \textcolor{comment}{* Note(s) : (1) CPU-\/configuration software files are located in the following directories :}}
+\DoxyCodeLine{64 \textcolor{comment}{*}}
+\DoxyCodeLine{65 \textcolor{comment}{*               (a) \(\backslash\)<Your Product Application>\(\backslash\)cpu\_cfg.h}}
+\DoxyCodeLine{66 \textcolor{comment}{*}}
+\DoxyCodeLine{67 \textcolor{comment}{*               (b) (1) \(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)cpu\_*.*}}
+\DoxyCodeLine{68 \textcolor{comment}{*                   (2) \(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)cpu*.*}}
+\DoxyCodeLine{69 \textcolor{comment}{*}}
+\DoxyCodeLine{70 \textcolor{comment}{*                       where}}
+\DoxyCodeLine{71 \textcolor{comment}{*                               <Your Product Application>      directory path for Your Product's Application}}
+\DoxyCodeLine{72 \textcolor{comment}{*                               <CPU-\/Compiler Directory>        directory path for common CPU-\/compiler software}}
+\DoxyCodeLine{73 \textcolor{comment}{*                               <cpu>                           directory name for specific processor (CPU)}}
+\DoxyCodeLine{74 \textcolor{comment}{*                               <compiler>                      directory name for specific compiler}}
+\DoxyCodeLine{75 \textcolor{comment}{*}}
+\DoxyCodeLine{76 \textcolor{comment}{*           (2) NO compiler-\/supplied standard library functions SHOULD be used.}}
+\DoxyCodeLine{77 \textcolor{comment}{*}}
+\DoxyCodeLine{78 \textcolor{comment}{*               (a) Standard library functions are implemented in the custom library module(s) :}}
+\DoxyCodeLine{79 \textcolor{comment}{*}}
+\DoxyCodeLine{80 \textcolor{comment}{*                       \(\backslash\)<Custom Library Directory>\(\backslash\)lib\_*.*}}
+\DoxyCodeLine{81 \textcolor{comment}{*}}
+\DoxyCodeLine{82 \textcolor{comment}{*                           where}}
+\DoxyCodeLine{83 \textcolor{comment}{*                                   <Custom Library Directory>      directory path for custom library software}}
+\DoxyCodeLine{84 \textcolor{comment}{*}}
+\DoxyCodeLine{85 \textcolor{comment}{*           (3) Compiler MUST be configured to include as additional include path directories :}}
+\DoxyCodeLine{86 \textcolor{comment}{*}}
+\DoxyCodeLine{87 \textcolor{comment}{*               (a) '\(\backslash\)<Your Product Application>\(\backslash\)' directory                            See Note \#1a}}
+\DoxyCodeLine{88 \textcolor{comment}{*}}
+\DoxyCodeLine{89 \textcolor{comment}{*               (b) (1) '\(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)'                  directory         See Note \#1b1}}
+\DoxyCodeLine{90 \textcolor{comment}{*                   (2) '\(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)' directory         See Note \#1b2}}
+\DoxyCodeLine{91 \textcolor{comment}{*}}
+\DoxyCodeLine{92 \textcolor{comment}{*               (c) '\(\backslash\)<Custom Library Directory>\(\backslash\)' directory                            See Note \#2a}}
+\DoxyCodeLine{93 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{94 \textcolor{comment}{*/}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#include  <cpu.h>}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#include  <lib\_def.h>}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#include  <cpu\_cfg.h>}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#if (CPU\_CFG\_NAME\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#include  <lib\_mem.h>}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#include  <lib\_str.h>}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{107 \textcolor{keyword}{extern}  \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{comment}{/*}}
+\DoxyCodeLine{111 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{112 \textcolor{comment}{*                                          CPU CONFIGURATION}}
+\DoxyCodeLine{113 \textcolor{comment}{*}}
+\DoxyCodeLine{114 \textcolor{comment}{* Note(s) : (1) The following pre-\/processor directives correctly configure CPU parameters.  DO NOT MODIFY.}}
+\DoxyCodeLine{115 \textcolor{comment}{*}}
+\DoxyCodeLine{116 \textcolor{comment}{*           (2) CPU timestamp timer feature is required for :}}
+\DoxyCodeLine{117 \textcolor{comment}{*}}
+\DoxyCodeLine{118 \textcolor{comment}{*               (a) CPU timestamps}}
+\DoxyCodeLine{119 \textcolor{comment}{*               (b) CPU interrupts disabled time measurement}}
+\DoxyCodeLine{120 \textcolor{comment}{*}}
+\DoxyCodeLine{121 \textcolor{comment}{*               See also 'cpu\_cfg.h  CPU TIMESTAMP CONFIGURATION  Note \#1'}}
+\DoxyCodeLine{122 \textcolor{comment}{*                      \& 'cpu\_cfg.h  CPU INTERRUPTS DISABLED TIME MEASUREMENT CONFIGURATION  Note \#1'.}}
+\DoxyCodeLine{123 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{124 \textcolor{comment}{*/}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#ifdef   CPU\_CFG\_TS\_EN}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#undef   CPU\_CFG\_TS\_EN}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#if    ((CPU\_CFG\_TS\_32\_EN == DEF\_ENABLED) || \(\backslash\)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{        (CPU\_CFG\_TS\_64\_EN == DEF\_ENABLED))}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#define  CPU\_CFG\_TS\_EN                          DEF\_ENABLED}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define  CPU\_CFG\_TS\_EN                          DEF\_DISABLED}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#if    ((CPU\_CFG\_TS\_EN == DEF\_ENABLED) || \(\backslash\)}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{(defined(CPU\_CFG\_INT\_DIS\_MEAS\_EN)))}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define  CPU\_CFG\_TS\_TMR\_EN                      DEF\_ENABLED}}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define  CPU\_CFG\_TS\_TMR\_EN                      DEF\_DISABLED}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#if    ((CPU\_CFG\_TS\_EN == DEF\_ENABLED) || \(\backslash\)}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{(defined(CPU\_CFG\_INT\_DIS\_MEAS\_EN)))}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#define  CPU\_CFG\_PERF\_MON\_EN                    DEF\_ENABLED}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#define  CPU\_CFG\_PERF\_MON\_EN                    DEF\_DISABLED}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{comment}{/*}}
+\DoxyCodeLine{154 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{155 \textcolor{comment}{*                                          CACHE CONFIGURATION}}
+\DoxyCodeLine{156 \textcolor{comment}{*}}
+\DoxyCodeLine{157 \textcolor{comment}{* Note(s) : (1) The following pre-\/processor directives correctly configure CACHE parameters.  DO NOT MODIFY.}}
+\DoxyCodeLine{158 \textcolor{comment}{*}}
+\DoxyCodeLine{159 \textcolor{comment}{**********************************************************************************************************}}
+\DoxyCodeLine{160 \textcolor{comment}{*/}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#ifndef CPU\_CFG\_CACHE\_MGMT\_EN}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define CPU\_CFG\_CACHE\_MGMT\_EN DEF\_DISABLED}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{comment}{/*}}
+\DoxyCodeLine{168 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{169 \textcolor{comment}{*                                               DEFINES}}
+\DoxyCodeLine{170 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{171 \textcolor{comment}{*/}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define  CPU\_TIME\_MEAS\_NBR\_MIN                             1u}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#define  CPU\_TIME\_MEAS\_NBR\_MAX                           128u}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 \textcolor{comment}{/*}}
+\DoxyCodeLine{178 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{179 \textcolor{comment}{*                                             DATA TYPES}}
+\DoxyCodeLine{180 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{181 \textcolor{comment}{*/}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{/*}}
+\DoxyCodeLine{185 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{186 \textcolor{comment}{*                                           CPU ERROR CODES}}
+\DoxyCodeLine{187 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{188 \textcolor{comment}{*/}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} cpu\_err \{}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     CPU\_ERR\_NONE                            =         0u,}
+\DoxyCodeLine{193     CPU\_ERR\_NULL\_PTR                        =        10u,}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     CPU\_ERR\_NAME\_SIZE                       =      1000u,}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197     CPU\_ERR\_TS\_FREQ\_INVALID                 =      2000u}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 \} CPU\_ERR;}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{comment}{/*}}
+\DoxyCodeLine{203 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{204 \textcolor{comment}{*                                      CPU TIMESTAMP DATA TYPES}}
+\DoxyCodeLine{205 \textcolor{comment}{*}}
+\DoxyCodeLine{206 \textcolor{comment}{* Note(s) : (1) CPU timestamp timer data type defined to the binary-\/multiple of 8-\/bit octets as configured}}
+\DoxyCodeLine{207 \textcolor{comment}{*               by 'CPU\_CFG\_TS\_TMR\_SIZE' (see 'cpu\_cfg.h  CPU TIMESTAMP CONFIGURATION  Note \#2').}}
+\DoxyCodeLine{208 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{209 \textcolor{comment}{*/}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211 \textcolor{keyword}{typedef}  CPU\_INT32U  CPU\_TS32;}
+\DoxyCodeLine{212 \textcolor{keyword}{typedef}  CPU\_INT64U  CPU\_TS64;}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214 \textcolor{keyword}{typedef}  CPU\_TS32    CPU\_TS;                                    \textcolor{comment}{/* Req'd for backwards-\/compatibility.                   */}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#if     (CPU\_CFG\_TS\_TMR\_EN   == DEF\_ENABLED)                    }\textcolor{comment}{/* CPU ts tmr defined to cfg'd word size (see Note \#1). */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#if     (CPU\_CFG\_TS\_TMR\_SIZE == CPU\_WORD\_SIZE\_08)}}
+\DoxyCodeLine{219 \textcolor{keyword}{typedef}  CPU\_INT08U  CPU\_TS\_TMR;}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_TS\_TMR\_SIZE == CPU\_WORD\_SIZE\_16)}}
+\DoxyCodeLine{221 \textcolor{keyword}{typedef}  CPU\_INT16U  CPU\_TS\_TMR;}
+\DoxyCodeLine{222 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_TS\_TMR\_SIZE == CPU\_WORD\_SIZE\_64)}}
+\DoxyCodeLine{223 \textcolor{keyword}{typedef}  CPU\_INT64U  CPU\_TS\_TMR;}
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#else                                                           }\textcolor{comment}{/* CPU ts tmr dflt size = 32-\/bits.                      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{225 \textcolor{keyword}{typedef}  CPU\_INT32U  CPU\_TS\_TMR;}
+\DoxyCodeLine{226 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{comment}{/*}}
+\DoxyCodeLine{231 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{232 \textcolor{comment}{*                               CPU TIMESTAMP TIMER FREQUENCY DATA TYPE}}
+\DoxyCodeLine{233 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{234 \textcolor{comment}{*/}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 \textcolor{keyword}{typedef}  CPU\_INT32U  CPU\_TS\_TMR\_FREQ;}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 \textcolor{comment}{/*}}
+\DoxyCodeLine{240 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{241 \textcolor{comment}{*                                          GLOBAL VARIABLES}}
+\DoxyCodeLine{242 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{243 \textcolor{comment}{*/}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245 \textcolor{preprocessor}{\#if    (CPU\_CFG\_NAME\_EN   == DEF\_ENABLED)}}
+\DoxyCodeLine{246 CPU\_CORE\_EXT  CPU\_CHAR         CPU\_Name[CPU\_CFG\_NAME\_SIZE];     \textcolor{comment}{/* CPU host name.                                       */}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250 \textcolor{preprocessor}{\#if ((CPU\_CFG\_TS\_32\_EN    == DEF\_ENABLED)  \&\& \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{     (CPU\_CFG\_TS\_TMR\_SIZE <  CPU\_WORD\_SIZE\_32))}}
+\DoxyCodeLine{252 CPU\_CORE\_EXT  CPU\_TS32         CPU\_TS\_32\_Accum;                 \textcolor{comment}{/* 32-\/bit accum'd ts  (in ts tmr cnts).                 */}}
+\DoxyCodeLine{253 CPU\_CORE\_EXT  CPU\_TS\_TMR       CPU\_TS\_32\_TmrPrev;               \textcolor{comment}{/* 32-\/bit ts prev tmr (in ts tmr cnts).                 */}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#if ((CPU\_CFG\_TS\_64\_EN    == DEF\_ENABLED)  \&\& \(\backslash\)}}
+\DoxyCodeLine{257 \textcolor{preprocessor}{     (CPU\_CFG\_TS\_TMR\_SIZE <  CPU\_WORD\_SIZE\_64))}}
+\DoxyCodeLine{258 CPU\_CORE\_EXT  CPU\_TS64         CPU\_TS\_64\_Accum;                 \textcolor{comment}{/* 64-\/bit accum'd ts  (in ts tmr cnts).                 */}}
+\DoxyCodeLine{259 CPU\_CORE\_EXT  CPU\_TS\_TMR       CPU\_TS\_64\_TmrPrev;               \textcolor{comment}{/* 64-\/bit ts prev tmr (in ts tmr cnts).                 */}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#if  (CPU\_CFG\_TS\_TMR\_EN   == DEF\_ENABLED)}}
+\DoxyCodeLine{263 CPU\_CORE\_EXT  CPU\_TS\_TMR\_FREQ  CPU\_TS\_TmrFreq\_Hz;               \textcolor{comment}{/* CPU ts tmr freq (in Hz).                             */}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#ifdef  CPU\_CFG\_INT\_DIS\_MEAS\_EN}}
+\DoxyCodeLine{268 CPU\_CORE\_EXT  CPU\_INT16U       CPU\_IntDisMeasCtr;               \textcolor{comment}{/* Nbr tot    ints dis'd ctr.                           */}}
+\DoxyCodeLine{269 CPU\_CORE\_EXT  CPU\_INT16U       CPU\_IntDisNestCtr;               \textcolor{comment}{/* Nbr nested ints dis'd ctr.                           */}}
+\DoxyCodeLine{270                                                                 \textcolor{comment}{/* Ints dis'd time (in ts tmr cnts) : ...               */}}
+\DoxyCodeLine{271 CPU\_CORE\_EXT  CPU\_TS\_TMR       CPU\_IntDisMeasStart\_cnts;        \textcolor{comment}{/* ...  start time.                                     */}}
+\DoxyCodeLine{272 CPU\_CORE\_EXT  CPU\_TS\_TMR       CPU\_IntDisMeasStop\_cnts;         \textcolor{comment}{/* ...  stop  time.                                     */}}
+\DoxyCodeLine{273 CPU\_CORE\_EXT  CPU\_TS\_TMR       CPU\_IntDisMeasOvrhd\_cnts;        \textcolor{comment}{/* ...        time meas ovrhd.                          */}}
+\DoxyCodeLine{274 CPU\_CORE\_EXT  CPU\_TS\_TMR       CPU\_IntDisMeasMaxCur\_cnts;       \textcolor{comment}{/* ...     resetable max time dis'd.                    */}}
+\DoxyCodeLine{275 CPU\_CORE\_EXT  CPU\_TS\_TMR       CPU\_IntDisMeasMax\_cnts;          \textcolor{comment}{/* ... non-\/resetable max time dis'd.                    */}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{comment}{/*}}
+\DoxyCodeLine{280 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{281 \textcolor{comment}{*                                               MACRO'S}}
+\DoxyCodeLine{282 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{283 \textcolor{comment}{*/}}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 \textcolor{comment}{/*}}
+\DoxyCodeLine{286 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{287 \textcolor{comment}{*                                         CPU\_SW\_EXCEPTION()}}
+\DoxyCodeLine{288 \textcolor{comment}{*}}
+\DoxyCodeLine{289 \textcolor{comment}{* Description : Trap unrecoverable software exception.}}
+\DoxyCodeLine{290 \textcolor{comment}{*}}
+\DoxyCodeLine{291 \textcolor{comment}{* Argument(s) : err\_rtn\_val     Error type \&/or value of the calling function to return (see Note \#2b).}}
+\DoxyCodeLine{292 \textcolor{comment}{*}}
+\DoxyCodeLine{293 \textcolor{comment}{* Return(s)   : none.}}
+\DoxyCodeLine{294 \textcolor{comment}{*}}
+\DoxyCodeLine{295 \textcolor{comment}{* Note(s)     : (1) CPU\_SW\_EXCEPTION() deadlocks the current code execution -\/-\/ whether multi-\/tasked/}}
+\DoxyCodeLine{296 \textcolor{comment}{*                   -\/processed/-\/threaded or single-\/threaded -\/-\/ when the current code execution cannot}}
+\DoxyCodeLine{297 \textcolor{comment}{*                   gracefully recover or report a fault or exception condition.}}
+\DoxyCodeLine{298 \textcolor{comment}{*}}
+\DoxyCodeLine{299 \textcolor{comment}{*                   Example CPU\_SW\_EXCEPTION() call :}}
+\DoxyCodeLine{300 \textcolor{comment}{*}}
+\DoxyCodeLine{301 \textcolor{comment}{*                       void  Fnct (CPU\_ERR  *p\_err)}}
+\DoxyCodeLine{302 \textcolor{comment}{*                       \{}}
+\DoxyCodeLine{303 \textcolor{comment}{*                           :}}
+\DoxyCodeLine{304 \textcolor{comment}{*}}
+\DoxyCodeLine{305 \textcolor{comment}{*                           if (p\_err == (CPU\_ERR *)0) \{        If 'p\_err' NULL, cannot return error ...}}
+\DoxyCodeLine{306 \textcolor{comment}{*                               CPU\_SW\_EXCEPTION(;);            ... so trap invalid argument exception.}}
+\DoxyCodeLine{307 \textcolor{comment}{*                           \}}}
+\DoxyCodeLine{308 \textcolor{comment}{*}}
+\DoxyCodeLine{309 \textcolor{comment}{*                           :}}
+\DoxyCodeLine{310 \textcolor{comment}{*                       \}}}
+\DoxyCodeLine{311 \textcolor{comment}{*}}
+\DoxyCodeLine{312 \textcolor{comment}{*                   See also 'cpu\_core.c  CPU\_SW\_Exception()  Note \#1'.}}
+\DoxyCodeLine{313 \textcolor{comment}{*}}
+\DoxyCodeLine{314 \textcolor{comment}{*               (2) (a) CPU\_SW\_EXCEPTION()  MAY be developer-\/implemented to output \&/or handle any error or}}
+\DoxyCodeLine{315 \textcolor{comment}{*                       exception conditions; but since CPU\_SW\_EXCEPTION() is intended to trap unrecoverable}}
+\DoxyCodeLine{316 \textcolor{comment}{*                       software  conditions, it is recommended that developer-\/implemented versions prevent}}
+\DoxyCodeLine{317 \textcolor{comment}{*                       execution of any code following calls to CPU\_SW\_EXCEPTION() by deadlocking the code}}
+\DoxyCodeLine{318 \textcolor{comment}{*                       (see Note \#1).}}
+\DoxyCodeLine{319 \textcolor{comment}{*}}
+\DoxyCodeLine{320 \textcolor{comment}{*                           Example CPU\_SW\_EXCEPTION() :}}
+\DoxyCodeLine{321 \textcolor{comment}{*}}
+\DoxyCodeLine{322 \textcolor{comment}{*                               \#define  CPU\_SW\_EXCEPTION(err\_rtn\_val)      do \{                         \(\backslash\)}}
+\DoxyCodeLine{323 \textcolor{comment}{*                                                                               Log(\_\_FILE\_\_, \_\_LINE\_\_); \(\backslash\)}}
+\DoxyCodeLine{324 \textcolor{comment}{*                                                                               CPU\_SW\_Exception();      \(\backslash\)}}
+\DoxyCodeLine{325 \textcolor{comment}{*                                                                           \} while (0)}}
+\DoxyCodeLine{326 \textcolor{comment}{*}}
+\DoxyCodeLine{327 \textcolor{comment}{*                   (b) (1) However, if execution of code following calls to CPU\_SW\_EXCEPTION() is required}}
+\DoxyCodeLine{328 \textcolor{comment}{*                           (e.g. for automated testing); it is recommended that the last statement in}}
+\DoxyCodeLine{329 \textcolor{comment}{*                           developer-\/implemented versions be to return from the current function to prevent}}
+\DoxyCodeLine{330 \textcolor{comment}{*                           possible software exception(s) in the current function from triggering CPU \&/or}}
+\DoxyCodeLine{331 \textcolor{comment}{*                           hardware exception(s).}}
+\DoxyCodeLine{332 \textcolor{comment}{*}}
+\DoxyCodeLine{333 \textcolor{comment}{*                           Example CPU\_SW\_EXCEPTION() :}}
+\DoxyCodeLine{334 \textcolor{comment}{*}}
+\DoxyCodeLine{335 \textcolor{comment}{*                               \#define  CPU\_SW\_EXCEPTION(err\_rtn\_val)      do \{                         \(\backslash\)}}
+\DoxyCodeLine{336 \textcolor{comment}{*                                                                               Log(\_\_FILE\_\_, \_\_LINE\_\_); \(\backslash\)}}
+\DoxyCodeLine{337 \textcolor{comment}{*                                                                               return  err\_rtn\_val;     \(\backslash\)}}
+\DoxyCodeLine{338 \textcolor{comment}{*                                                                           \} while (0)}}
+\DoxyCodeLine{339 \textcolor{comment}{*}}
+\DoxyCodeLine{340 \textcolor{comment}{*                           (A) Note that 'err\_rtn\_val' in the return statement MUST NOT be enclosed in}}
+\DoxyCodeLine{341 \textcolor{comment}{*                               parentheses.  This allows CPU\_SW\_EXCEPTION() to return from functions that}}
+\DoxyCodeLine{342 \textcolor{comment}{*                               return 'void', i.e. NO return type or value (see also Note \#2b2A).}}
+\DoxyCodeLine{343 \textcolor{comment}{*}}
+\DoxyCodeLine{344 \textcolor{comment}{*                       (2) In order for CPU\_SW\_EXCEPTION() to return from functions with various return}}
+\DoxyCodeLine{345 \textcolor{comment}{*                           types/values, each caller function MUST pass an appropriate error return type}}
+\DoxyCodeLine{346 \textcolor{comment}{*                           \& value to CPU\_SW\_EXCEPTION().}}
+\DoxyCodeLine{347 \textcolor{comment}{*}}
+\DoxyCodeLine{348 \textcolor{comment}{*                           (A) Note that CPU\_SW\_EXCEPTION()  MUST NOT be passed any return type or value}}
+\DoxyCodeLine{349 \textcolor{comment}{*                               for functions that return 'void', i.e. NO return type or value; but SHOULD}}
+\DoxyCodeLine{350 \textcolor{comment}{*                               instead be passed a single semicolon.  This prevents possible compiler}}
+\DoxyCodeLine{351 \textcolor{comment}{*                               warnings that CPU\_SW\_EXCEPTION() is passed too few arguments.  However,}}
+\DoxyCodeLine{352 \textcolor{comment}{*                               the compiler may warn that CPU\_SW\_EXCEPTION() does NOT prevent creating}}
+\DoxyCodeLine{353 \textcolor{comment}{*                               null statements on lines with NO other code statements.}}
+\DoxyCodeLine{354 \textcolor{comment}{*}}
+\DoxyCodeLine{355 \textcolor{comment}{*                           Example CPU\_SW\_EXCEPTION() calls :}}
+\DoxyCodeLine{356 \textcolor{comment}{*}}
+\DoxyCodeLine{357 \textcolor{comment}{*                               void  Fnct (CPU\_ERR  *p\_err)}}
+\DoxyCodeLine{358 \textcolor{comment}{*                               \{}}
+\DoxyCodeLine{359 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{360 \textcolor{comment}{*}}
+\DoxyCodeLine{361 \textcolor{comment}{*                                   if (p\_err == (CPU\_ERR *)0) \{}}
+\DoxyCodeLine{362 \textcolor{comment}{*                                       CPU\_SW\_EXCEPTION(;);            Exception macro returns NO value}}
+\DoxyCodeLine{363 \textcolor{comment}{*                                   \}                                       (see Note \#2b2A)}}
+\DoxyCodeLine{364 \textcolor{comment}{*}}
+\DoxyCodeLine{365 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{366 \textcolor{comment}{*                               \}}}
+\DoxyCodeLine{367 \textcolor{comment}{*}}
+\DoxyCodeLine{368 \textcolor{comment}{*                               CPU\_BOOLEAN  Fnct (CPU\_ERR  *p\_err)}}
+\DoxyCodeLine{369 \textcolor{comment}{*                               \{}}
+\DoxyCodeLine{370 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{371 \textcolor{comment}{*}}
+\DoxyCodeLine{372 \textcolor{comment}{*                                   if (p\_err == (CPU\_ERR *)0) \{}}
+\DoxyCodeLine{373 \textcolor{comment}{*                                       CPU\_SW\_EXCEPTION(DEF\_FAIL);     Exception macro returns 'DEF\_FAIL'}}
+\DoxyCodeLine{374 \textcolor{comment}{*                                   \}}}
+\DoxyCodeLine{375 \textcolor{comment}{*}}
+\DoxyCodeLine{376 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{377 \textcolor{comment}{*                               \}}}
+\DoxyCodeLine{378 \textcolor{comment}{*}}
+\DoxyCodeLine{379 \textcolor{comment}{*                               OBJ  *Fnct (CPU\_ERR  *p\_err)}}
+\DoxyCodeLine{380 \textcolor{comment}{*                               \{}}
+\DoxyCodeLine{381 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{382 \textcolor{comment}{*}}
+\DoxyCodeLine{383 \textcolor{comment}{*                                   if (p\_err == (CPU\_ERR *)0) \{}}
+\DoxyCodeLine{384 \textcolor{comment}{*                                       CPU\_SW\_EXCEPTION((OBJ *)0);     Exception macro returns NULL 'OBJ *'}}
+\DoxyCodeLine{385 \textcolor{comment}{*                                   \}}}
+\DoxyCodeLine{386 \textcolor{comment}{*}}
+\DoxyCodeLine{387 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{388 \textcolor{comment}{*                               \}}}
+\DoxyCodeLine{389 \textcolor{comment}{*}}
+\DoxyCodeLine{390 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{391 \textcolor{comment}{*/}}
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393 \textcolor{preprocessor}{\#ifndef  CPU\_SW\_EXCEPTION                                                       }\textcolor{comment}{/* See Note \#2.                         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#define  CPU\_SW\_EXCEPTION(err\_rtn\_val)              do \{                    \(\backslash\)}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{                                                        CPU\_SW\_Exception(); \(\backslash\)}}
+\DoxyCodeLine{396 \textcolor{preprocessor}{                                                    \} while (0)}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400 \textcolor{comment}{/*}}
+\DoxyCodeLine{401 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{402 \textcolor{comment}{*                                           CPU\_VAL\_UNUSED()}}
+\DoxyCodeLine{403 \textcolor{comment}{*}}
+\DoxyCodeLine{404 \textcolor{comment}{* Description : Suppresses unused variable warnings.}}
+\DoxyCodeLine{405 \textcolor{comment}{*}}
+\DoxyCodeLine{406 \textcolor{comment}{* Argument(s) : none.}}
+\DoxyCodeLine{407 \textcolor{comment}{*}}
+\DoxyCodeLine{408 \textcolor{comment}{* Return(s)   : none.}}
+\DoxyCodeLine{409 \textcolor{comment}{*}}
+\DoxyCodeLine{410 \textcolor{comment}{ Note(s)     : none.}}
+\DoxyCodeLine{411 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{412 \textcolor{comment}{*/}}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415 \textcolor{preprocessor}{\#define  CPU\_VAL\_UNUSED(val)        ((void)(val));}}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#define  CPU\_VAL\_IGNORED(val)       CPU\_VAL\_UNUSED(val)}}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421 \textcolor{comment}{/*}}
+\DoxyCodeLine{422 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{423 \textcolor{comment}{*                                          CPU\_TYPE\_CREATE()}}
+\DoxyCodeLine{424 \textcolor{comment}{*}}
+\DoxyCodeLine{425 \textcolor{comment}{* Description : Creates a generic type value.}}
+\DoxyCodeLine{426 \textcolor{comment}{*}}
+\DoxyCodeLine{427 \textcolor{comment}{* Argument(s) : char\_1      1st ASCII character to create generic type value.}}
+\DoxyCodeLine{428 \textcolor{comment}{*}}
+\DoxyCodeLine{429 \textcolor{comment}{*               char\_2      2nd ASCII character to create generic type value.}}
+\DoxyCodeLine{430 \textcolor{comment}{*}}
+\DoxyCodeLine{431 \textcolor{comment}{*               char\_3      3rd ASCII character to create generic type value.}}
+\DoxyCodeLine{432 \textcolor{comment}{*}}
+\DoxyCodeLine{433 \textcolor{comment}{*               char\_4      4th ASCII character to create generic type value.}}
+\DoxyCodeLine{434 \textcolor{comment}{*}}
+\DoxyCodeLine{435 \textcolor{comment}{* Return(s)   : 32-\/bit generic type value.}}
+\DoxyCodeLine{436 \textcolor{comment}{*}}
+\DoxyCodeLine{437 \textcolor{comment}{* Note(s)     : (1) (a) Generic type values should be \#define'd with large, non-\/trivial values to trap}}
+\DoxyCodeLine{438 \textcolor{comment}{*                       \& discard invalid/corrupted objects based on type value.}}
+\DoxyCodeLine{439 \textcolor{comment}{*}}
+\DoxyCodeLine{440 \textcolor{comment}{*                       In other words, by assigning large, non-\/trivial values to valid objects' type}}
+\DoxyCodeLine{441 \textcolor{comment}{*                       fields; the likelihood that an object with an unassigned \&/or corrupted type}}
+\DoxyCodeLine{442 \textcolor{comment}{*                       field will contain a value is highly improbable \& therefore the object itself}}
+\DoxyCodeLine{443 \textcolor{comment}{*                       will be trapped as invalid.}}
+\DoxyCodeLine{444 \textcolor{comment}{*}}
+\DoxyCodeLine{445 \textcolor{comment}{*                   (b) (1) CPU\_TYPE\_CREATE()  creates a 32-\/bit type value from four values.}}
+\DoxyCodeLine{446 \textcolor{comment}{*}}
+\DoxyCodeLine{447 \textcolor{comment}{*                       (2) Ideally, generic type values SHOULD be created from 'CPU\_CHAR' characters to}}
+\DoxyCodeLine{448 \textcolor{comment}{*                           represent ASCII string abbreviations of the specific object types.  Memory}}
+\DoxyCodeLine{449 \textcolor{comment}{*                           displays of object type values will display the specific object types with}}
+\DoxyCodeLine{450 \textcolor{comment}{*                           their chosen ASCII names.}}
+\DoxyCodeLine{451 \textcolor{comment}{*}}
+\DoxyCodeLine{452 \textcolor{comment}{*                           Examples :}}
+\DoxyCodeLine{453 \textcolor{comment}{*}}
+\DoxyCodeLine{454 \textcolor{comment}{*                               \#define  FILE\_TYPE  CPU\_TYPE\_CREATE('F', 'I', 'L', 'E')}}
+\DoxyCodeLine{455 \textcolor{comment}{*                               \#define  BUF\_TYPE   CPU\_TYPE\_CREATE('B', 'U', 'F', ' ')}}
+\DoxyCodeLine{456 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{457 \textcolor{comment}{*/}}
+\DoxyCodeLine{458 }
+\DoxyCodeLine{459 \textcolor{preprocessor}{\#if     (CPU\_CFG\_ENDIAN\_TYPE == CPU\_ENDIAN\_TYPE\_BIG)}}
+\DoxyCodeLine{460 \textcolor{preprocessor}{\#define  CPU\_TYPE\_CREATE(char\_1, char\_2, char\_3, char\_4)        (((CPU\_INT32U)((CPU\_INT08U)(char\_1)) << (3u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{461 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_2)) << (2u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{462 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_3)) << (1u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{463 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_4))))}}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{466 }
+\DoxyCodeLine{467 \textcolor{preprocessor}{\#if    ((CPU\_CFG\_DATA\_SIZE   == CPU\_WORD\_SIZE\_64) || \(\backslash\)}}
+\DoxyCodeLine{468 \textcolor{preprocessor}{        (CPU\_CFG\_DATA\_SIZE   == CPU\_WORD\_SIZE\_32))}}
+\DoxyCodeLine{469 \textcolor{preprocessor}{\#define  CPU\_TYPE\_CREATE(char\_1, char\_2, char\_3, char\_4)        (((CPU\_INT32U)((CPU\_INT08U)(char\_1))) | \(\backslash\)}}
+\DoxyCodeLine{470 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_2)) << (1u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{471 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_3)) << (2u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{472 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_4)) << (3u * DEF\_OCTET\_NBR\_BITS)))}}
+\DoxyCodeLine{473 }
+\DoxyCodeLine{474 }
+\DoxyCodeLine{475 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_DATA\_SIZE   == CPU\_WORD\_SIZE\_16)}}
+\DoxyCodeLine{476 \textcolor{preprocessor}{\#define  CPU\_TYPE\_CREATE(char\_1, char\_2, char\_3, char\_4)        (((CPU\_INT32U)((CPU\_INT08U)(char\_1)) << (2u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{477 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_2)) << (3u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{478 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_3))) | \(\backslash\)}}
+\DoxyCodeLine{479 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_4)) << (1u * DEF\_OCTET\_NBR\_BITS)))}}
+\DoxyCodeLine{480 }
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#else                                                           }\textcolor{comment}{/* Dflt CPU\_WORD\_SIZE\_08.                               */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{\#define  CPU\_TYPE\_CREATE(char\_1, char\_2, char\_3, char\_4)        (((CPU\_INT32U)((CPU\_INT08U)(char\_1)) << (3u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{483 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_2)) << (2u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{484 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_3)) << (1u * DEF\_OCTET\_NBR\_BITS)) | \(\backslash\)}}
+\DoxyCodeLine{485 \textcolor{preprocessor}{                                                                 ((CPU\_INT32U)((CPU\_INT08U)(char\_4))))}}
+\DoxyCodeLine{486 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{487 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490 \textcolor{comment}{/*}}
+\DoxyCodeLine{491 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{492 \textcolor{comment}{*                                         FUNCTION PROTOTYPES}}
+\DoxyCodeLine{493 \textcolor{comment}{*}}
+\DoxyCodeLine{494 \textcolor{comment}{* Note(s) : (1) CPU interrupts disabled time measurement functions prototyped/defined only if}}
+\DoxyCodeLine{495 \textcolor{comment}{*               CPU\_CFG\_INT\_DIS\_MEAS\_EN  \#define'd in 'cpu\_cfg.h'.}}
+\DoxyCodeLine{496 \textcolor{comment}{*}}
+\DoxyCodeLine{497 \textcolor{comment}{*           (2) (a) CPU\_CntLeadZeros()  defined in :}}
+\DoxyCodeLine{498 \textcolor{comment}{*}}
+\DoxyCodeLine{499 \textcolor{comment}{*                   (1) 'cpu\_a.asm',  if CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT       \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{500 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable assembly-\/optimized function(s)}}
+\DoxyCodeLine{501 \textcolor{comment}{*}}
+\DoxyCodeLine{502 \textcolor{comment}{*                   (2) 'cpu\_core.c', if CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT   NOT \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{503 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable C-\/source-\/optimized function(s)}}
+\DoxyCodeLine{504 \textcolor{comment}{*}}
+\DoxyCodeLine{505 \textcolor{comment}{*               (b) CPU\_CntTrailZeros() defined in :}}
+\DoxyCodeLine{506 \textcolor{comment}{*}}
+\DoxyCodeLine{507 \textcolor{comment}{*                   (1) 'cpu\_a.asm',  if CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT      \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{508 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable assembly-\/optimized function(s)}}
+\DoxyCodeLine{509 \textcolor{comment}{*}}
+\DoxyCodeLine{510 \textcolor{comment}{*                   (2) 'cpu\_core.c', if CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT  NOT \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{511 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable C-\/source-\/optimized function(s)}}
+\DoxyCodeLine{512 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{513 \textcolor{comment}{*/}}
+\DoxyCodeLine{514 }
+\DoxyCodeLine{515 \textcolor{keywordtype}{void}             CPU\_Init                 (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{516 }
+\DoxyCodeLine{517 \textcolor{keywordtype}{void}             CPU\_SW\_Exception         (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{518 }
+\DoxyCodeLine{519 }
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521 \textcolor{preprocessor}{\#if (CPU\_CFG\_NAME\_EN == DEF\_ENABLED)                                    }\textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU NAME FNCTS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{522 \textcolor{keywordtype}{void}             CPU\_NameClr              (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{523 }
+\DoxyCodeLine{524 \textcolor{keywordtype}{void}             CPU\_NameGet              (       CPU\_CHAR  *p\_name,}
+\DoxyCodeLine{525                                                   CPU\_ERR   *p\_err);}
+\DoxyCodeLine{526 }
+\DoxyCodeLine{527 \textcolor{keywordtype}{void}             CPU\_NameSet              (\textcolor{keyword}{const}  CPU\_CHAR  *p\_name,}
+\DoxyCodeLine{528                                                   CPU\_ERR   *p\_err);}
+\DoxyCodeLine{529 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{530 }
+\DoxyCodeLine{531 }
+\DoxyCodeLine{532 }
+\DoxyCodeLine{533                                                                         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU TS FNCTS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{534 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_32\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{535 CPU\_TS32         CPU\_TS\_Get32             (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{536 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_64\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{539 CPU\_TS64         CPU\_TS\_Get64             (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{540 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{541 }
+\DoxyCodeLine{542 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_EN    == DEF\_ENABLED)}}
+\DoxyCodeLine{543 \textcolor{keywordtype}{void}             CPU\_TS\_Update            (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{544 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{545 }
+\DoxyCodeLine{546 }
+\DoxyCodeLine{547 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_TMR\_EN == DEF\_ENABLED)                                  }\textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU TS TMR FNCTS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{548 CPU\_TS\_TMR\_FREQ  CPU\_TS\_TmrFreqGet        (CPU\_ERR          *p\_err);}
+\DoxyCodeLine{549 }
+\DoxyCodeLine{550 \textcolor{keywordtype}{void}             CPU\_TS\_TmrFreqSet        (CPU\_TS\_TMR\_FREQ   freq\_hz);}
+\DoxyCodeLine{551 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{552 }
+\DoxyCodeLine{553 }
+\DoxyCodeLine{554 }
+\DoxyCodeLine{555 \textcolor{preprocessor}{\#ifdef  CPU\_CFG\_INT\_DIS\_MEAS\_EN                                         }\textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/ CPU INT DIS TIME MEAS FNCTS -\/-\/-\/-\/-\/-\/-\/ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{556                                                                         \textcolor{comment}{/* See Note \#1.                                 */}}
+\DoxyCodeLine{557 CPU\_TS\_TMR       CPU\_IntDisMeasMaxCurReset(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{558 }
+\DoxyCodeLine{559 CPU\_TS\_TMR       CPU\_IntDisMeasMaxCurGet  (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{560 }
+\DoxyCodeLine{561 CPU\_TS\_TMR       CPU\_IntDisMeasMaxGet     (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{563 }
+\DoxyCodeLine{564 \textcolor{keywordtype}{void}             CPU\_IntDisMeasStart      (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566 \textcolor{keywordtype}{void}             CPU\_IntDisMeasStop       (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{567 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571                                                                         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU CNT ZEROS FNCTS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{572 \textcolor{preprocessor}{\#ifdef  CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT}}
+\DoxyCodeLine{573 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{574 \textcolor{keyword}{extern}  \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{575 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{576 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{577 }
+\DoxyCodeLine{578 CPU\_DATA         CPU\_CntLeadZeros         (CPU\_DATA    val);}
+\DoxyCodeLine{579 }
+\DoxyCodeLine{580 \textcolor{preprocessor}{\#ifdef  CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT}}
+\DoxyCodeLine{581 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{582 \}}
+\DoxyCodeLine{583 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{584 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{585 }
+\DoxyCodeLine{586 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX >= CPU\_WORD\_SIZE\_08)}}
+\DoxyCodeLine{587 CPU\_DATA         CPU\_CntLeadZeros08       (CPU\_INT08U  val);}
+\DoxyCodeLine{588 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{589 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX >= CPU\_WORD\_SIZE\_16)}}
+\DoxyCodeLine{590 CPU\_DATA         CPU\_CntLeadZeros16       (CPU\_INT16U  val);}
+\DoxyCodeLine{591 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{592 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX >= CPU\_WORD\_SIZE\_32)}}
+\DoxyCodeLine{593 CPU\_DATA         CPU\_CntLeadZeros32       (CPU\_INT32U  val);}
+\DoxyCodeLine{594 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{595 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX >= CPU\_WORD\_SIZE\_64)}}
+\DoxyCodeLine{596 CPU\_DATA         CPU\_CntLeadZeros64       (CPU\_INT64U  val);}
+\DoxyCodeLine{597 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{598 }
+\DoxyCodeLine{599 }
+\DoxyCodeLine{600 \textcolor{preprocessor}{\#ifdef  CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT}}
+\DoxyCodeLine{601 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{602 \textcolor{keyword}{extern}  \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{603 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{604 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{605 }
+\DoxyCodeLine{606 CPU\_DATA         CPU\_CntTrailZeros        (CPU\_DATA    val);}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{608 \textcolor{preprocessor}{\#ifdef  CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT}}
+\DoxyCodeLine{609 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{610 \}}
+\DoxyCodeLine{611 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{612 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{613 }
+\DoxyCodeLine{614 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX >= CPU\_WORD\_SIZE\_08)}}
+\DoxyCodeLine{615 CPU\_DATA         CPU\_CntTrailZeros08      (CPU\_INT08U  val);}
+\DoxyCodeLine{616 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{617 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX >= CPU\_WORD\_SIZE\_16)}}
+\DoxyCodeLine{618 CPU\_DATA         CPU\_CntTrailZeros16      (CPU\_INT16U  val);}
+\DoxyCodeLine{619 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{620 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX >= CPU\_WORD\_SIZE\_32)}}
+\DoxyCodeLine{621 CPU\_DATA         CPU\_CntTrailZeros32      (CPU\_INT32U  val);}
+\DoxyCodeLine{622 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{623 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX >= CPU\_WORD\_SIZE\_64)}}
+\DoxyCodeLine{624 CPU\_DATA         CPU\_CntTrailZeros64      (CPU\_INT64U  val);}
+\DoxyCodeLine{625 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{626 }
+\DoxyCodeLine{627 CPU\_INT08U       CPU\_PopCnt32             (CPU\_INT32U  value);}
+\DoxyCodeLine{628 }
+\DoxyCodeLine{629                                                                         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU PERF MON RESET -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{630 \textcolor{preprocessor}{\#if (CPU\_CFG\_PERF\_MON\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{631 \textcolor{keywordtype}{void}             CPU\_StatReset            (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{632 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{633 }
+\DoxyCodeLine{634 }
+\DoxyCodeLine{635 \textcolor{comment}{/*}}
+\DoxyCodeLine{636 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{637 \textcolor{comment}{*                                         FUNCTION PROTOTYPES}}
+\DoxyCodeLine{638 \textcolor{comment}{*                                      DEFINED IN PRODUCT'S BSP}}
+\DoxyCodeLine{639 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{640 \textcolor{comment}{*/}}
+\DoxyCodeLine{641 }
+\DoxyCodeLine{642 \textcolor{comment}{/*}}
+\DoxyCodeLine{643 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{644 \textcolor{comment}{*                                          CPU\_TS\_TmrInit()}}
+\DoxyCodeLine{645 \textcolor{comment}{*}}
+\DoxyCodeLine{646 \textcolor{comment}{* Description : Initialize \& start CPU timestamp timer.}}
+\DoxyCodeLine{647 \textcolor{comment}{*}}
+\DoxyCodeLine{648 \textcolor{comment}{* Argument(s) : none.}}
+\DoxyCodeLine{649 \textcolor{comment}{*}}
+\DoxyCodeLine{650 \textcolor{comment}{* Return(s)   : none.}}
+\DoxyCodeLine{651 \textcolor{comment}{*}}
+\DoxyCodeLine{652 \textcolor{comment}{* Note(s)     : (1) CPU\_TS\_TmrInit() is an application/BSP function that MUST be defined by the developer}}
+\DoxyCodeLine{653 \textcolor{comment}{*                   if either of the following CPU features is enabled :}}
+\DoxyCodeLine{654 \textcolor{comment}{*}}
+\DoxyCodeLine{655 \textcolor{comment}{*                   (a) CPU timestamps}}
+\DoxyCodeLine{656 \textcolor{comment}{*                   (b) CPU interrupts disabled time measurements}}
+\DoxyCodeLine{657 \textcolor{comment}{*}}
+\DoxyCodeLine{658 \textcolor{comment}{*                   See 'cpu\_cfg.h  CPU TIMESTAMP CONFIGURATION  Note \#1'}}
+\DoxyCodeLine{659 \textcolor{comment}{*                     \& 'cpu\_cfg.h  CPU INTERRUPTS DISABLED TIME MEASUREMENT CONFIGURATION  Note \#1a'.}}
+\DoxyCodeLine{660 \textcolor{comment}{*}}
+\DoxyCodeLine{661 \textcolor{comment}{*               (2) (a) Timer count values MUST be returned via word-\/size-\/configurable 'CPU\_TS\_TMR'}}
+\DoxyCodeLine{662 \textcolor{comment}{*                       data type.}}
+\DoxyCodeLine{663 \textcolor{comment}{*}}
+\DoxyCodeLine{664 \textcolor{comment}{*                       (1) If timer has more bits, truncate timer values' higher-\/order bits greater}}
+\DoxyCodeLine{665 \textcolor{comment}{*                           than the configured 'CPU\_TS\_TMR' timestamp timer data type word size.}}
+\DoxyCodeLine{666 \textcolor{comment}{*}}
+\DoxyCodeLine{667 \textcolor{comment}{*                       (2) Since the timer MUST NOT have less bits than the configured 'CPU\_TS\_TMR'}}
+\DoxyCodeLine{668 \textcolor{comment}{*                           timestamp timer data type word size; 'CPU\_CFG\_TS\_TMR\_SIZE' MUST be}}
+\DoxyCodeLine{669 \textcolor{comment}{*                           configured so that ALL bits in 'CPU\_TS\_TMR' data type are significant.}}
+\DoxyCodeLine{670 \textcolor{comment}{*}}
+\DoxyCodeLine{671 \textcolor{comment}{*                           In other words, if timer size is not a binary-\/multiple of 8-\/bit octets}}
+\DoxyCodeLine{672 \textcolor{comment}{*                           (e.g. 20-\/bits or even 24-\/bits), then the next lower, binary-\/multiple}}
+\DoxyCodeLine{673 \textcolor{comment}{*                           octet word size SHOULD be configured (e.g. to 16-\/bits).  However, the}}
+\DoxyCodeLine{674 \textcolor{comment}{*                           minimum supported word size for CPU timestamp timers is 8-\/bits.}}
+\DoxyCodeLine{675 \textcolor{comment}{*}}
+\DoxyCodeLine{676 \textcolor{comment}{*                       See also 'cpu\_cfg.h   CPU TIMESTAMP CONFIGURATION  Note \#2'}}
+\DoxyCodeLine{677 \textcolor{comment}{*                              \& 'cpu\_core.h  CPU TIMESTAMP DATA TYPES     Note \#1'.}}
+\DoxyCodeLine{678 \textcolor{comment}{*}}
+\DoxyCodeLine{679 \textcolor{comment}{*                   (b) Timer SHOULD be an 'up'  counter whose values increase with each time count.}}
+\DoxyCodeLine{680 \textcolor{comment}{*}}
+\DoxyCodeLine{681 \textcolor{comment}{*                   (c) When applicable, timer period SHOULD be less than the typical measured time}}
+\DoxyCodeLine{682 \textcolor{comment}{*                       but MUST be less than the maximum measured time; otherwise, timer resolution}}
+\DoxyCodeLine{683 \textcolor{comment}{*                       inadequate to measure desired times.}}
+\DoxyCodeLine{684 \textcolor{comment}{*}}
+\DoxyCodeLine{685 \textcolor{comment}{*                   See also 'CPU\_TS\_TmrRd()  Note \#2'.}}
+\DoxyCodeLine{686 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{687 \textcolor{comment}{*/}}
+\DoxyCodeLine{688 }
+\DoxyCodeLine{689 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_TMR\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{690 \textcolor{keywordtype}{void}  CPU\_TS\_TmrInit(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{691 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{692 }
+\DoxyCodeLine{693 }
+\DoxyCodeLine{694 \textcolor{comment}{/*}}
+\DoxyCodeLine{695 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{696 \textcolor{comment}{*                                           CPU\_TS\_TmrRd()}}
+\DoxyCodeLine{697 \textcolor{comment}{*}}
+\DoxyCodeLine{698 \textcolor{comment}{* Description : Get current CPU timestamp timer count value.}}
+\DoxyCodeLine{699 \textcolor{comment}{*}}
+\DoxyCodeLine{700 \textcolor{comment}{* Argument(s) : none.}}
+\DoxyCodeLine{701 \textcolor{comment}{*}}
+\DoxyCodeLine{702 \textcolor{comment}{* Return(s)   : Timestamp timer count (see Notes \#2a \& \#2b).}}
+\DoxyCodeLine{703 \textcolor{comment}{*}}
+\DoxyCodeLine{704 \textcolor{comment}{* Note(s)     : (1) CPU\_TS\_TmrRd() is an application/BSP function that MUST be defined by the developer}}
+\DoxyCodeLine{705 \textcolor{comment}{*                   if either of the following CPU features is enabled :}}
+\DoxyCodeLine{706 \textcolor{comment}{*}}
+\DoxyCodeLine{707 \textcolor{comment}{*                   (a) CPU timestamps}}
+\DoxyCodeLine{708 \textcolor{comment}{*                   (b) CPU interrupts disabled time measurements}}
+\DoxyCodeLine{709 \textcolor{comment}{*}}
+\DoxyCodeLine{710 \textcolor{comment}{*                   See 'cpu\_cfg.h  CPU TIMESTAMP CONFIGURATION  Note \#1'}}
+\DoxyCodeLine{711 \textcolor{comment}{*                     \& 'cpu\_cfg.h  CPU INTERRUPTS DISABLED TIME MEASUREMENT CONFIGURATION  Note \#1a'.}}
+\DoxyCodeLine{712 \textcolor{comment}{*}}
+\DoxyCodeLine{713 \textcolor{comment}{*               (2) (a) Timer count values MUST be returned via word-\/size-\/configurable 'CPU\_TS\_TMR'}}
+\DoxyCodeLine{714 \textcolor{comment}{*                       data type.}}
+\DoxyCodeLine{715 \textcolor{comment}{*}}
+\DoxyCodeLine{716 \textcolor{comment}{*                       (1) If timer has more bits, truncate timer values' higher-\/order bits greater}}
+\DoxyCodeLine{717 \textcolor{comment}{*                           than the configured 'CPU\_TS\_TMR' timestamp timer data type word size.}}
+\DoxyCodeLine{718 \textcolor{comment}{*}}
+\DoxyCodeLine{719 \textcolor{comment}{*                       (2) Since the timer MUST NOT have less bits than the configured 'CPU\_TS\_TMR'}}
+\DoxyCodeLine{720 \textcolor{comment}{*                           timestamp timer data type word size; 'CPU\_CFG\_TS\_TMR\_SIZE' MUST be}}
+\DoxyCodeLine{721 \textcolor{comment}{*                           configured so that ALL bits in 'CPU\_TS\_TMR' data type are significant.}}
+\DoxyCodeLine{722 \textcolor{comment}{*}}
+\DoxyCodeLine{723 \textcolor{comment}{*                           In other words, if timer size is not a binary-\/multiple of 8-\/bit octets}}
+\DoxyCodeLine{724 \textcolor{comment}{*                           (e.g. 20-\/bits or even 24-\/bits), then the next lower, binary-\/multiple}}
+\DoxyCodeLine{725 \textcolor{comment}{*                           octet word size SHOULD be configured (e.g. to 16-\/bits).  However, the}}
+\DoxyCodeLine{726 \textcolor{comment}{*                           minimum supported word size for CPU timestamp timers is 8-\/bits.}}
+\DoxyCodeLine{727 \textcolor{comment}{*}}
+\DoxyCodeLine{728 \textcolor{comment}{*                       See also 'cpu\_cfg.h   CPU TIMESTAMP CONFIGURATION  Note \#2'}}
+\DoxyCodeLine{729 \textcolor{comment}{*                              \& 'cpu\_core.h  CPU TIMESTAMP DATA TYPES     Note \#1'.}}
+\DoxyCodeLine{730 \textcolor{comment}{*}}
+\DoxyCodeLine{731 \textcolor{comment}{*                   (b) Timer SHOULD be an 'up'  counter whose values increase with each time count.}}
+\DoxyCodeLine{732 \textcolor{comment}{*}}
+\DoxyCodeLine{733 \textcolor{comment}{*                       (1) If timer is a 'down' counter whose values decrease with each time count,}}
+\DoxyCodeLine{734 \textcolor{comment}{*                           then the returned timer value MUST be ones-\/complemented.}}
+\DoxyCodeLine{735 \textcolor{comment}{*}}
+\DoxyCodeLine{736 \textcolor{comment}{*                   (c) (1) When applicable, the amount of time measured by CPU timestamps is}}
+\DoxyCodeLine{737 \textcolor{comment}{*                           calculated by either of the following equations :}}
+\DoxyCodeLine{738 \textcolor{comment}{*}}
+\DoxyCodeLine{739 \textcolor{comment}{*                           (A) Time measured  =  Number timer counts  *  Timer period}}
+\DoxyCodeLine{740 \textcolor{comment}{*}}
+\DoxyCodeLine{741 \textcolor{comment}{*                                   where}}
+\DoxyCodeLine{742 \textcolor{comment}{*}}
+\DoxyCodeLine{743 \textcolor{comment}{*                                       Number timer counts     Number of timer counts measured}}
+\DoxyCodeLine{744 \textcolor{comment}{*                                       Timer period            Timer's period in some units of}}
+\DoxyCodeLine{745 \textcolor{comment}{*                                                                   (fractional) seconds}}
+\DoxyCodeLine{746 \textcolor{comment}{*                                       Time measured           Amount of time measured, in same}}
+\DoxyCodeLine{747 \textcolor{comment}{*                                                                   units of (fractional) seconds}}
+\DoxyCodeLine{748 \textcolor{comment}{*                                                                   as the Timer period}}
+\DoxyCodeLine{749 \textcolor{comment}{*}}
+\DoxyCodeLine{750 \textcolor{comment}{*                                                  Number timer counts}}
+\DoxyCodeLine{751 \textcolor{comment}{*                           (B) Time measured  =  -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{752 \textcolor{comment}{*                                                    Timer frequency}}
+\DoxyCodeLine{753 \textcolor{comment}{*}}
+\DoxyCodeLine{754 \textcolor{comment}{*                                   where}}
+\DoxyCodeLine{755 \textcolor{comment}{*}}
+\DoxyCodeLine{756 \textcolor{comment}{*                                       Number timer counts     Number of timer counts measured}}
+\DoxyCodeLine{757 \textcolor{comment}{*                                       Timer frequency         Timer's frequency in some units}}
+\DoxyCodeLine{758 \textcolor{comment}{*                                                                   of counts per second}}
+\DoxyCodeLine{759 \textcolor{comment}{*                                       Time measured           Amount of time measured, in seconds}}
+\DoxyCodeLine{760 \textcolor{comment}{*}}
+\DoxyCodeLine{761 \textcolor{comment}{*                       (2) Timer period SHOULD be less than the typical measured time but MUST be less}}
+\DoxyCodeLine{762 \textcolor{comment}{*                           than the maximum measured time; otherwise, timer resolution inadequate to}}
+\DoxyCodeLine{763 \textcolor{comment}{*                           measure desired times.}}
+\DoxyCodeLine{764 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{765 \textcolor{comment}{*/}}
+\DoxyCodeLine{766 }
+\DoxyCodeLine{767 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_TMR\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{768 CPU\_TS\_TMR  CPU\_TS\_TmrRd(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{769 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{770 }
+\DoxyCodeLine{771 }
+\DoxyCodeLine{772 \textcolor{comment}{/*}}
+\DoxyCodeLine{773 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{774 \textcolor{comment}{*                                         CPU\_TSxx\_to\_uSec()}}
+\DoxyCodeLine{775 \textcolor{comment}{*}}
+\DoxyCodeLine{776 \textcolor{comment}{* Description : Convert a 32-\//64-\/bit CPU timestamp from timer counts to microseconds.}}
+\DoxyCodeLine{777 \textcolor{comment}{*}}
+\DoxyCodeLine{778 \textcolor{comment}{* Argument(s) : ts\_cnts   CPU timestamp (in timestamp timer counts [see Note \#2aA]).}}
+\DoxyCodeLine{779 \textcolor{comment}{*}}
+\DoxyCodeLine{780 \textcolor{comment}{* Return(s)   : Converted CPU timestamp (in microseconds           [see Note \#2aD]).}}
+\DoxyCodeLine{781 \textcolor{comment}{*}}
+\DoxyCodeLine{782 \textcolor{comment}{* Note(s)     : (1) CPU\_TS32\_to\_uSec()/CPU\_TS64\_to\_uSec() are application/BSP functions that MAY be}}
+\DoxyCodeLine{783 \textcolor{comment}{*                   optionally defined by the developer when either of the following CPU features is}}
+\DoxyCodeLine{784 \textcolor{comment}{*                   enabled :}}
+\DoxyCodeLine{785 \textcolor{comment}{*}}
+\DoxyCodeLine{786 \textcolor{comment}{*                   (a) CPU timestamps}}
+\DoxyCodeLine{787 \textcolor{comment}{*                   (b) CPU interrupts disabled time measurements}}
+\DoxyCodeLine{788 \textcolor{comment}{*}}
+\DoxyCodeLine{789 \textcolor{comment}{*                   See 'cpu\_cfg.h  CPU TIMESTAMP CONFIGURATION  Note \#1'}}
+\DoxyCodeLine{790 \textcolor{comment}{*                     \& 'cpu\_cfg.h  CPU INTERRUPTS DISABLED TIME MEASUREMENT CONFIGURATION  Note \#1a'.}}
+\DoxyCodeLine{791 \textcolor{comment}{*}}
+\DoxyCodeLine{792 \textcolor{comment}{*               (2) (a) The amount of time measured by CPU timestamps is calculated by either of}}
+\DoxyCodeLine{793 \textcolor{comment}{*                       the following equations :}}
+\DoxyCodeLine{794 \textcolor{comment}{*}}
+\DoxyCodeLine{795 \textcolor{comment}{*                                                                        10\string^6 microseconds}}
+\DoxyCodeLine{796 \textcolor{comment}{*                       (1) Time measured  =   Number timer counts   *  -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/  *  Timer period}}
+\DoxyCodeLine{797 \textcolor{comment}{*                                                                            1 second}}
+\DoxyCodeLine{798 \textcolor{comment}{*}}
+\DoxyCodeLine{799 \textcolor{comment}{*                                              Number timer counts       10\string^6 microseconds}}
+\DoxyCodeLine{800 \textcolor{comment}{*                       (2) Time measured  =  -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/  *  -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{801 \textcolor{comment}{*                                                Timer frequency             1 second}}
+\DoxyCodeLine{802 \textcolor{comment}{*}}
+\DoxyCodeLine{803 \textcolor{comment}{*                               where}}
+\DoxyCodeLine{804 \textcolor{comment}{*}}
+\DoxyCodeLine{805 \textcolor{comment}{*                                   (A) Number timer counts     Number of timer counts measured}}
+\DoxyCodeLine{806 \textcolor{comment}{*                                   (B) Timer frequency         Timer's frequency in some units}}
+\DoxyCodeLine{807 \textcolor{comment}{*                                                                   of counts per second}}
+\DoxyCodeLine{808 \textcolor{comment}{*                                   (C) Timer period            Timer's period in some units of}}
+\DoxyCodeLine{809 \textcolor{comment}{*                                                                   (fractional)  seconds}}
+\DoxyCodeLine{810 \textcolor{comment}{*                                   (D) Time measured           Amount of time measured,}}
+\DoxyCodeLine{811 \textcolor{comment}{*                                                                   in microseconds}}
+\DoxyCodeLine{812 \textcolor{comment}{*}}
+\DoxyCodeLine{813 \textcolor{comment}{*                   (b) Timer period SHOULD be less than the typical measured time but MUST be less}}
+\DoxyCodeLine{814 \textcolor{comment}{*                       than the maximum measured time; otherwise, timer resolution inadequate to}}
+\DoxyCodeLine{815 \textcolor{comment}{*                       measure desired times.}}
+\DoxyCodeLine{816 \textcolor{comment}{*}}
+\DoxyCodeLine{817 \textcolor{comment}{*                   (c) Specific implementations may convert any number of CPU\_TS32 or CPU\_TS64 bits}}
+\DoxyCodeLine{818 \textcolor{comment}{*                       -\/-\/ up to 32 or 64, respectively -\/-\/ into microseconds.}}
+\DoxyCodeLine{819 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{820 \textcolor{comment}{*/}}
+\DoxyCodeLine{821 }
+\DoxyCodeLine{822 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_32\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{823 CPU\_INT64U  CPU\_TS32\_to\_uSec(CPU\_TS32  ts\_cnts);}
+\DoxyCodeLine{824 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{825 }
+\DoxyCodeLine{826 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_64\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{827 CPU\_INT64U  CPU\_TS64\_to\_uSec(CPU\_TS64  ts\_cnts);}
+\DoxyCodeLine{828 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{829 }
+\DoxyCodeLine{830 }
+\DoxyCodeLine{831 \textcolor{comment}{/*}}
+\DoxyCodeLine{832 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{833 \textcolor{comment}{*                                        CONFIGURATION ERRORS}}
+\DoxyCodeLine{834 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{835 \textcolor{comment}{*/}}
+\DoxyCodeLine{836 }
+\DoxyCodeLine{837 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_NAME\_EN}}
+\DoxyCodeLine{838 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_NAME\_EN                       not \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{839 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_ENABLED ]           "{}}}
+\DoxyCodeLine{840 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_DISABLED]           "{}}}
+\DoxyCodeLine{841 }
+\DoxyCodeLine{842 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_NAME\_EN != DEF\_ENABLED ) \&\& \(\backslash\)}}
+\DoxyCodeLine{843 \textcolor{preprocessor}{        (CPU\_CFG\_NAME\_EN != DEF\_DISABLED))}}
+\DoxyCodeLine{844 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_NAME\_EN                 illegally \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{845 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_ENABLED ]           "{}}}
+\DoxyCodeLine{846 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_DISABLED]           "{}}}
+\DoxyCodeLine{847 }
+\DoxyCodeLine{848 }
+\DoxyCodeLine{849 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_NAME\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{850 }
+\DoxyCodeLine{851 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_NAME\_SIZE}}
+\DoxyCodeLine{852 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_NAME\_SIZE                     not \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{853 \textcolor{preprocessor}{\#error  "{}                                [MUST be  >=   1]                 "{}}}
+\DoxyCodeLine{854 \textcolor{preprocessor}{\#error  "{}                                [     \&\&  <= 255]                 "{}}}
+\DoxyCodeLine{855 }
+\DoxyCodeLine{856 \textcolor{preprocessor}{\#elif   (DEF\_CHK\_VAL(CPU\_CFG\_NAME\_SIZE,            \(\backslash\)}}
+\DoxyCodeLine{857 \textcolor{preprocessor}{                     1,                            \(\backslash\)}}
+\DoxyCodeLine{858 \textcolor{preprocessor}{                     DEF\_INT\_08U\_MAX\_VAL) != DEF\_OK)}}
+\DoxyCodeLine{859 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_NAME\_SIZE               illegally \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{860 \textcolor{preprocessor}{\#error  "{}                                [MUST be  >=   1]                 "{}}}
+\DoxyCodeLine{861 \textcolor{preprocessor}{\#error  "{}                                [     \&\&  <= 255]                 "{}}}
+\DoxyCodeLine{862 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{863 }
+\DoxyCodeLine{864 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{865 }
+\DoxyCodeLine{866 }
+\DoxyCodeLine{867 }
+\DoxyCodeLine{868 }
+\DoxyCodeLine{869 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_TS\_32\_EN}}
+\DoxyCodeLine{870 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_32\_EN                      not \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{871 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_DISABLED]           "{}}}
+\DoxyCodeLine{872 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_ENABLED ]           "{}}}
+\DoxyCodeLine{873 }
+\DoxyCodeLine{874 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_TS\_32\_EN != DEF\_DISABLED) \&\& \(\backslash\)}}
+\DoxyCodeLine{875 \textcolor{preprocessor}{        (CPU\_CFG\_TS\_32\_EN != DEF\_ENABLED ))}}
+\DoxyCodeLine{876 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_32\_EN                illegally \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{877 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_DISABLED]           "{}}}
+\DoxyCodeLine{878 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_ENABLED ]           "{}}}
+\DoxyCodeLine{879 }
+\DoxyCodeLine{880 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{881 }
+\DoxyCodeLine{882 }
+\DoxyCodeLine{883 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_TS\_64\_EN}}
+\DoxyCodeLine{884 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_64\_EN                      not \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{885 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_DISABLED]           "{}}}
+\DoxyCodeLine{886 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_ENABLED ]           "{}}}
+\DoxyCodeLine{887 }
+\DoxyCodeLine{888 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_TS\_64\_EN != DEF\_DISABLED) \&\& \(\backslash\)}}
+\DoxyCodeLine{889 \textcolor{preprocessor}{        (CPU\_CFG\_TS\_64\_EN != DEF\_ENABLED ))}}
+\DoxyCodeLine{890 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_64\_EN                illegally \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{891 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_DISABLED]           "{}}}
+\DoxyCodeLine{892 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_ENABLED ]           "{}}}
+\DoxyCodeLine{893 }
+\DoxyCodeLine{894 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{895 }
+\DoxyCodeLine{896                                                                 \textcolor{comment}{/* Correctly configured in 'cpu\_core.h'; DO NOT MODIFY. */}}
+\DoxyCodeLine{897 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_TS\_EN}}
+\DoxyCodeLine{898 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_EN                         not \#define'd in 'cpu\_core.h'"{}}}
+\DoxyCodeLine{899 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_DISABLED]            "{}}}
+\DoxyCodeLine{900 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_ENABLED ]            "{}}}
+\DoxyCodeLine{901 }
+\DoxyCodeLine{902 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_TS\_EN != DEF\_DISABLED) \&\& \(\backslash\)}}
+\DoxyCodeLine{903 \textcolor{preprocessor}{        (CPU\_CFG\_TS\_EN != DEF\_ENABLED ))}}
+\DoxyCodeLine{904 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_EN                   illegally \#define'd in 'cpu\_core.h'"{}}}
+\DoxyCodeLine{905 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_DISABLED]            "{}}}
+\DoxyCodeLine{906 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_ENABLED ]            "{}}}
+\DoxyCodeLine{907 }
+\DoxyCodeLine{908 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{909 }
+\DoxyCodeLine{910 }
+\DoxyCodeLine{911                                                                 \textcolor{comment}{/* Correctly configured in 'cpu\_core.h'; DO NOT MODIFY. */}}
+\DoxyCodeLine{912 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_TS\_TMR\_EN}}
+\DoxyCodeLine{913 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_TMR\_EN                     not \#define'd in 'cpu\_core.h'"{}}}
+\DoxyCodeLine{914 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_DISABLED]            "{}}}
+\DoxyCodeLine{915 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_ENABLED ]            "{}}}
+\DoxyCodeLine{916 }
+\DoxyCodeLine{917 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_TS\_TMR\_EN != DEF\_DISABLED) \&\& \(\backslash\)}}
+\DoxyCodeLine{918 \textcolor{preprocessor}{        (CPU\_CFG\_TS\_TMR\_EN != DEF\_ENABLED ))}}
+\DoxyCodeLine{919 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_TMR\_EN               illegally \#define'd in 'cpu\_core.h'"{}}}
+\DoxyCodeLine{920 \textcolor{preprocessor}{\#error  "{}                                [MUST be  DEF\_DISABLED]            "{}}}
+\DoxyCodeLine{921 \textcolor{preprocessor}{\#error  "{}                                [     ||  DEF\_ENABLED ]            "{}}}
+\DoxyCodeLine{922 }
+\DoxyCodeLine{923 }
+\DoxyCodeLine{924 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_TS\_TMR\_EN == DEF\_ENABLED)}}
+\DoxyCodeLine{925 }
+\DoxyCodeLine{926 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_TS\_TMR\_SIZE}}
+\DoxyCodeLine{927 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_TMR\_SIZE                   not \#define'd in 'cpu\_cfg.h'       "{}}}
+\DoxyCodeLine{928 \textcolor{preprocessor}{\#error  "{}                                [MUST be  CPU\_WORD\_SIZE\_08   8-\/bit timer]"{}}}
+\DoxyCodeLine{929 \textcolor{preprocessor}{\#error  "{}                                [     ||  CPU\_WORD\_SIZE\_16  16-\/bit timer]"{}}}
+\DoxyCodeLine{930 \textcolor{preprocessor}{\#error  "{}                                [     ||  CPU\_WORD\_SIZE\_32  32-\/bit timer]"{}}}
+\DoxyCodeLine{931 \textcolor{preprocessor}{\#error  "{}                                [     ||  CPU\_WORD\_SIZE\_64  64-\/bit timer]"{}}}
+\DoxyCodeLine{932 }
+\DoxyCodeLine{933 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_TS\_TMR\_SIZE != CPU\_WORD\_SIZE\_08) \&\& \(\backslash\)}}
+\DoxyCodeLine{934 \textcolor{preprocessor}{        (CPU\_CFG\_TS\_TMR\_SIZE != CPU\_WORD\_SIZE\_16) \&\& \(\backslash\)}}
+\DoxyCodeLine{935 \textcolor{preprocessor}{        (CPU\_CFG\_TS\_TMR\_SIZE != CPU\_WORD\_SIZE\_32) \&\& \(\backslash\)}}
+\DoxyCodeLine{936 \textcolor{preprocessor}{        (CPU\_CFG\_TS\_TMR\_SIZE != CPU\_WORD\_SIZE\_64))}}
+\DoxyCodeLine{937 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TS\_TMR\_SIZE             illegally \#define'd in 'cpu\_cfg.h'       "{}}}
+\DoxyCodeLine{938 \textcolor{preprocessor}{\#error  "{}                                [MUST be  CPU\_WORD\_SIZE\_08   8-\/bit timer]"{}}}
+\DoxyCodeLine{939 \textcolor{preprocessor}{\#error  "{}                                [     ||  CPU\_WORD\_SIZE\_16  16-\/bit timer]"{}}}
+\DoxyCodeLine{940 \textcolor{preprocessor}{\#error  "{}                                [     ||  CPU\_WORD\_SIZE\_32  32-\/bit timer]"{}}}
+\DoxyCodeLine{941 \textcolor{preprocessor}{\#error  "{}                                [     ||  CPU\_WORD\_SIZE\_64  64-\/bit timer]"{}}}
+\DoxyCodeLine{942 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{943 }
+\DoxyCodeLine{944 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{945 }
+\DoxyCodeLine{946 }
+\DoxyCodeLine{947 }
+\DoxyCodeLine{948 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_INT\_DIS\_MEAS\_EN}}
+\DoxyCodeLine{949 \textcolor{preprocessor}{\#if 0                                                           }\textcolor{comment}{/* Optionally configured in 'cpu\_cfg.h'; DO NOT MODIFY. */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{950 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_INT\_DIS\_MEAS\_EN               not \#define'd in 'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{951 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{952 }
+\DoxyCodeLine{953 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{954 }
+\DoxyCodeLine{955 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_INT\_DIS\_MEAS\_OVRHD\_NBR}}
+\DoxyCodeLine{956 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_INT\_DIS\_MEAS\_OVRHD\_NBR        not \#define'd in 'cpu\_cfg.h' "{}}}
+\DoxyCodeLine{957 \textcolor{preprocessor}{\#error  "{}                                [MUST be  >= CPU\_TIME\_MEAS\_NBR\_MIN]"{}}}
+\DoxyCodeLine{958 \textcolor{preprocessor}{\#error  "{}                                [     ||  <= CPU\_TIME\_MEAS\_NBR\_MAX]"{}}}
+\DoxyCodeLine{959 }
+\DoxyCodeLine{960 \textcolor{preprocessor}{\#elif   (DEF\_CHK\_VAL(CPU\_CFG\_INT\_DIS\_MEAS\_OVRHD\_NBR, \(\backslash\)}}
+\DoxyCodeLine{961 \textcolor{preprocessor}{                     CPU\_TIME\_MEAS\_NBR\_MIN,          \(\backslash\)}}
+\DoxyCodeLine{962 \textcolor{preprocessor}{                     CPU\_TIME\_MEAS\_NBR\_MAX) != DEF\_OK)}}
+\DoxyCodeLine{963 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_INT\_DIS\_MEAS\_OVRHD\_NBR  illegally \#define'd in 'cpu\_cfg.h' "{}}}
+\DoxyCodeLine{964 \textcolor{preprocessor}{\#error  "{}                                [MUST be  >= CPU\_TIME\_MEAS\_NBR\_MIN]"{}}}
+\DoxyCodeLine{965 \textcolor{preprocessor}{\#error  "{}                                [     ||  <= CPU\_TIME\_MEAS\_NBR\_MAX]"{}}}
+\DoxyCodeLine{966 }
+\DoxyCodeLine{967 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{968 }
+\DoxyCodeLine{969 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{970 }
+\DoxyCodeLine{971 }
+\DoxyCodeLine{972 }
+\DoxyCodeLine{973 }
+\DoxyCodeLine{974 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT}}
+\DoxyCodeLine{975 \textcolor{preprocessor}{\#if 0                                                           }\textcolor{comment}{/* Optionally configured in 'cpu\_cfg.h'; DO NOT MODIFY. */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{976 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT        not \#define'd in 'cpu.h'/'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{977 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{978 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{979 }
+\DoxyCodeLine{980 }
+\DoxyCodeLine{981 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT}}
+\DoxyCodeLine{982 \textcolor{preprocessor}{\#if 0                                                           }\textcolor{comment}{/* Optionally configured in 'cpu\_cfg.h'; DO NOT MODIFY. */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{983 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT       not \#define'd in 'cpu.h'/'cpu\_cfg.h'"{}}}
+\DoxyCodeLine{984 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{985 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{986 }
+\DoxyCodeLine{987 }
+\DoxyCodeLine{988 \textcolor{comment}{/*}}
+\DoxyCodeLine{989 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{990 \textcolor{comment}{*                                    CPU PORT CONFIGURATION ERRORS}}
+\DoxyCodeLine{991 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{992 \textcolor{comment}{*/}}
+\DoxyCodeLine{993 }
+\DoxyCodeLine{994 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_ADDR\_SIZE}}
+\DoxyCodeLine{995 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_ADDR\_SIZE      not \#define'd in 'cpu.h'"{}}}
+\DoxyCodeLine{996 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{997 }
+\DoxyCodeLine{998 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_DATA\_SIZE}}
+\DoxyCodeLine{999 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE      not \#define'd in 'cpu.h'"{}}}
+\DoxyCodeLine{1000 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1001 }
+\DoxyCodeLine{1002 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_DATA\_SIZE\_MAX}}
+\DoxyCodeLine{1003 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE\_MAX  not \#define'd in 'cpu.h'"{}}}
+\DoxyCodeLine{1004 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1005 }
+\DoxyCodeLine{1006 }
+\DoxyCodeLine{1007 \textcolor{comment}{/*}}
+\DoxyCodeLine{1008 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1009 \textcolor{comment}{*                                    LIBRARY CONFIGURATION ERRORS}}
+\DoxyCodeLine{1010 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1011 \textcolor{comment}{*/}}
+\DoxyCodeLine{1012 }
+\DoxyCodeLine{1013                                                                 \textcolor{comment}{/* See 'cpu\_core.h  Note \#1a'.                          */}}
+\DoxyCodeLine{1014 \textcolor{preprocessor}{\#if     (LIB\_VERSION < 13802u)}}
+\DoxyCodeLine{1015 \textcolor{preprocessor}{\#error  "{}LIB\_VERSION  [SHOULD be >= V1.38.02]"{}}}
+\DoxyCodeLine{1016 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1017 }
+\DoxyCodeLine{1018 }
+\DoxyCodeLine{1019 \textcolor{comment}{/*}}
+\DoxyCodeLine{1020 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1021 \textcolor{comment}{*                                             MODULE END}}
+\DoxyCodeLine{1022 \textcolor{comment}{*}}
+\DoxyCodeLine{1023 \textcolor{comment}{* Note(s) : (1) See 'cpu\_core.h  MODULE'.}}
+\DoxyCodeLine{1024 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1025 \textcolor{comment}{*/}}
+\DoxyCodeLine{1026 }
+\DoxyCodeLine{1027 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{1028 \}}
+\DoxyCodeLine{1029 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1030 \textcolor{preprocessor}{\#endif                                                          }\textcolor{comment}{/* End of CPU core module include.                      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1031 }
+
+\end{DoxyCode}

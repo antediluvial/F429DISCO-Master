@@ -1,0 +1,246 @@
+\hypertarget{nt35510_8h}{}\doxysection{lib/\+Components/nt35510/nt35510.h File Reference}
+\label{nt35510_8h}\index{lib/Components/nt35510/nt35510.h@{lib/Components/nt35510/nt35510.h}}
+
+
+This file contains all the constants parameters for the NT35510 which is the LCD Driver for Frida Techshine 3K138 (WVGA) DSI LCD Display.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries NT35510\+\_\+\+ORIENTATION\+\_\+\+PORTRAIT}~((uint32\+\_\+t)0x00) /$\ast$ Portrait orientation choice of LCD screen  $\ast$/
+\begin{DoxyCompactList}\small\item\em LCD\+\_\+\+Orientation\+Type\+Def Possible values of Display Orientation. \end{DoxyCompactList}\item 
+\#define {\bfseries NT35510\+\_\+\+ORIENTATION\+\_\+\+LANDSCAPE}~((uint32\+\_\+t)0x01) /$\ast$ Landscape orientation choice of LCD screen $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+FORMAT\+\_\+\+RGB888}~((uint32\+\_\+t)0x00) /$\ast$ Pixel format chosen is RGB888 \+: 24 bpp $\ast$/
+\begin{DoxyCompactList}\small\item\em Possible values of pixel data format (ie color coding) transmitted on DSI Data lane in DSI packets. \end{DoxyCompactList}\item 
+\#define {\bfseries NT35510\+\_\+\+FORMAT\+\_\+\+RBG565}~((uint32\+\_\+t)0x02) /$\ast$ Pixel format chosen is RGB565 \+: 16 bpp $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+WIDTH}~((uint16\+\_\+t)480)     /$\ast$ LCD PIXEL WIDTH   $\ast$/
+\begin{DoxyCompactList}\small\item\em nt35510\+\_\+480x800 Size \end{DoxyCompactList}\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+HEIGHT}~((uint16\+\_\+t)800)     /$\ast$ LCD PIXEL HEIGHT  $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+800\+X480\+\_\+\+WIDTH}~((uint16\+\_\+t)800)     /$\ast$ LCD PIXEL WIDTH   $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+800\+X480\+\_\+\+HEIGHT}~((uint16\+\_\+t)480)     /$\ast$ LCD PIXEL HEIGHT  $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+HSYNC}~((uint16\+\_\+t)2)      /$\ast$ Horizontal synchronization $\ast$/
+\begin{DoxyCompactList}\small\item\em NT35510\+\_\+480\+X800 Timing parameters for Portrait orientation mode. \end{DoxyCompactList}\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+HBP}~((uint16\+\_\+t)34)     /$\ast$ Horizontal back porch      $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+HFP}~((uint16\+\_\+t)34)     /$\ast$ Horizontal front porch     $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+VSYNC}~((uint16\+\_\+t)120)      /$\ast$ Vertical synchronization   $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+VBP}~((uint16\+\_\+t)150)     /$\ast$ Vertical back porch        $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+VFP}~((uint16\+\_\+t)150)     /$\ast$ Vertical front porch       $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+800\+X480\+\_\+\+HSYNC}~NT35510\+\_\+480\+X800\+\_\+\+VSYNC  /$\ast$ Horizontal synchronization $\ast$/
+\begin{DoxyCompactList}\small\item\em NT35510\+\_\+800\+X480 Timing parameters for Landscape orientation mode Same values as for Portrait mode in fact. \end{DoxyCompactList}\item 
+\#define {\bfseries NT35510\+\_\+800\+X480\+\_\+\+HBP}~NT35510\+\_\+480\+X800\+\_\+\+VBP    /$\ast$ Horizontal back porch      $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+800\+X480\+\_\+\+HFP}~NT35510\+\_\+480\+X800\+\_\+\+VFP    /$\ast$ Horizontal front porch     $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+800\+X480\+\_\+\+VSYNC}~\mbox{\hyperlink{group___n_t35510___exported___variables_gaa1a50024d2782d1e1d3257335b9e354a}{NT35510\+\_\+480\+X800\+\_\+\+HSYNC}}  /$\ast$ Vertical synchronization   $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+800\+X480\+\_\+\+VBP}~NT35510\+\_\+480\+X800\+\_\+\+HBP    /$\ast$ Vertical back porch        $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+800\+X480\+\_\+\+VFP}~NT35510\+\_\+480\+X800\+\_\+\+HFP    /$\ast$ Vertical front porch       $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+NOP}~0x00  /$\ast$ NOP $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+SWRESET}~0x01  /$\ast$ SW reset $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDID}~0x04  /$\ast$ Read display ID $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDNUMED}~0x05  /$\ast$ Read number of errors on DSI $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDPM}~0x0A  /$\ast$ Read display power mode $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDMADCTL}~0x0B  /$\ast$ Read display MADCTL $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDCOLMOD}~0x0C  /$\ast$ Read display pixel format $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDIM}~0x0D  /$\ast$ Read display image mode $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDSM}~0x0E  /$\ast$ Read display signal mode $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDSDR}~0x0F  /$\ast$ Read display self-\/diagnostics result $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+SLPIN}~0x10  /$\ast$ Sleep in $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+SLPOUT}~0x11  /$\ast$ Sleep out $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+PTLON}~0x12  /$\ast$ Partial mode on  $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+NORON}~0x13  /$\ast$ Normal display mode on $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+INVOFF}~0x20  /$\ast$ Display inversion off $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+INVON}~0x21  /$\ast$ Display inversion on $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+ALLPOFF}~0x22  /$\ast$ All pixel off $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+ALLPON}~0x23  /$\ast$ All pixel on $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+GAMSET}~0x26  /$\ast$ Gamma set $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+DISPOFF}~0x28  /$\ast$ Display off $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+DISPON}~0x29  /$\ast$ Display on $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+CASET}~0x2A  /$\ast$ Column address set $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RASET}~0x2B  /$\ast$ Row address set $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RAMWR}~0x2C  /$\ast$ Memory write $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RAMRD}~0x2E  /$\ast$ Memory read  $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+PLTAR}~0x30  /$\ast$ Partial area $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+TOPC}~0x32  /$\ast$ Turn On Peripheral Command $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+TEOFF}~0x34  /$\ast$ Tearing effect line off $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+TEEON}~0x35  /$\ast$ Tearing effect line on $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+MADCTL}~0x36  /$\ast$ Memory data access control $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+IDMOFF}~0x38  /$\ast$ Idle mode off $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+IDMON}~0x39  /$\ast$ Idle mode on $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+COLMOD}~0x3A  /$\ast$ Interface pixel format $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RAMWRC}~0x3C  /$\ast$ Memory write continue $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RAMRDC}~0x3E  /$\ast$ Memory read continue $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+STESL}~0x44  /$\ast$ Set tearing effect scan line $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+GSL}~0x45  /$\ast$ Get scan line $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+DSTBON}~0x4F  /$\ast$ Deep standby mode on $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+WRPFD}~0x50  /$\ast$ Write profile value for display $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+WRDISBV}~0x51  /$\ast$ Write display brightness $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDISBV}~0x52  /$\ast$ Read display brightness $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+WRCTRLD}~0x53  /$\ast$ Write CTRL display $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDCTRLD}~0x54  /$\ast$ Read CTRL display value $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+WRCABC}~0x55  /$\ast$ Write content adaptative brightness control $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDCABC}~0x56  /$\ast$ Read content adaptive brightness control $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+WRHYSTE}~0x57  /$\ast$ Write hysteresis $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+WRGAMMSET}~0x58  /$\ast$ Write gamme setting $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDFSVM}~0x5A  /$\ast$ Read FS value MSBs $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDFSVL}~0x5B  /$\ast$ Read FS value LSBs $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDMFFSVM}~0x5C  /$\ast$ Read median filter FS value MSBs $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDMFFSVL}~0x5D  /$\ast$ Read median filter FS value LSBs $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+WRCABCMB}~0x5E  /$\ast$ Write CABC minimum brightness $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDCABCMB}~0x5F  /$\ast$ Read CABC minimum brightness $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+WRLSCC}~0x65  /$\ast$ Write light sensor compensation coefficient value $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDLSCCM}~0x66  /$\ast$ Read light sensor compensation coefficient value MSBs $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDLSCCL}~0x67  /$\ast$ Read light sensor compensation coefficient value LSBs $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDBWLB}~0x70  /$\ast$ Read black/white low bits $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDBKX}~0x71  /$\ast$ Read Bkx $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDBKY}~0x72  /$\ast$ Read Bky $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDWX}~0x73  /$\ast$ Read Wx $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDWY}~0x74  /$\ast$ Read Wy $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDRGLB}~0x75  /$\ast$ Read red/green low bits $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDRX}~0x76  /$\ast$ Read Rx $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDRY}~0x77  /$\ast$ Read Ry $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDGX}~0x78  /$\ast$ Read Gx $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDGY}~0x79  /$\ast$ Read Gy $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDBALB}~0x7A  /$\ast$ Read blue/acolor low bits $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDBX}~0x7B  /$\ast$ Read Bx $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDBY}~0x7C  /$\ast$ Read By $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDAX}~0x7D  /$\ast$ Read Ax $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDAY}~0x7E  /$\ast$ Read Ay $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDDBS}~0x\+A1  /$\ast$ Read DDB start $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDDBC}~0x\+A8  /$\ast$ Read DDB continue $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDDCS}~0x\+AA  /$\ast$ Read first checksum $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDCCS}~0x\+AF  /$\ast$ Read continue checksum $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDID1}~0x\+DA  /$\ast$ Read ID1 value $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDID2}~0x\+DB  /$\ast$ Read ID2 value $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+CMD\+\_\+\+RDID3}~0x\+DC  /$\ast$ Read ID3 value $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+TEEON\+\_\+\+TELOM\+\_\+\+VBLANKING\+\_\+\+INFO\+\_\+\+ONLY}~0x00
+\item 
+\#define {\bfseries NT35510\+\_\+\+TEEON\+\_\+\+TELOM\+\_\+\+VBLANKING\+\_\+\+AND\+\_\+\+HBLANKING\+\_\+\+INFO}~0x01
+\item 
+\#define {\bfseries NT35510\+\_\+\+MADCTR\+\_\+\+MODE\+\_\+\+PORTRAIT}~0x00
+\item 
+\#define {\bfseries NT35510\+\_\+\+MADCTR\+\_\+\+MODE\+\_\+\+LANDSCAPE}~0x60  /$\ast$ MY = 0, MX = 1, MV = 1, ML = 0, RGB = 0 $\ast$/
+\item 
+\#define {\bfseries NT35510\+\_\+\+COLMOD\+\_\+\+RGB565}~0x55
+\item 
+\#define {\bfseries NT35510\+\_\+\+COLMOD\+\_\+\+RGB888}~0x77
+\item 
+\#define {\bfseries NT35510\+\_\+480\+X800\+\_\+\+FREQUENCY\+\_\+\+DIVIDER}~2   /$\ast$ LCD Frequency divider      $\ast$/
+\begin{DoxyCompactList}\small\item\em NT35510\+\_\+480\+X800 frequency divider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___n_t35510___exported___functions_gae663d792047526399ce1e4a8362f471e}{DSI\+\_\+\+IO\+\_\+\+Write\+Cmd}} (uint32\+\_\+t Nbr\+Params, uint8\+\_\+t $\ast$p\+Params)
+\begin{DoxyCompactList}\small\item\em DSI IO write short/long command. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___n_t35510___exported___functions_gaed54ae6690c96e906e15d6ff38347287}{NT35510\+\_\+\+Init}} (uint32\+\_\+t Color\+Coding, uint32\+\_\+t orientation)
+\begin{DoxyCompactList}\small\item\em Initializes the LCD Frida display part by communication in DSI mode in Video Mode with IC Display Driver NT35510 (see IC Driver specification for more information). \end{DoxyCompactList}\item 
+uint8\+\_\+t {\bfseries NT35510\+\_\+\+De\+Init} (void)
+\item 
+void {\bfseries NT35510\+\_\+\+IO\+\_\+\+Delay} (uint32\+\_\+t Delay)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains all the constants parameters for the NT35510 which is the LCD Driver for Frida Techshine 3K138 (WVGA) DSI LCD Display. 
+
+\begin{DoxyAuthor}{Author}
+MCD Application Team
+\end{DoxyAuthor}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2020 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 

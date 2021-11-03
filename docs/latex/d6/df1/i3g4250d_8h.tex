@@ -1,0 +1,223 @@
+\hypertarget{i3g4250d_8h}{}\doxysection{lib/\+Components/i3g4250d/i3g4250d.h File Reference}
+\label{i3g4250d_8h}\index{lib/Components/i3g4250d/i3g4250d.h@{lib/Components/i3g4250d/i3g4250d.h}}
+
+
+This file contains all the functions prototypes for the \mbox{\hyperlink{i3g4250d_8c}{i3g4250d.\+c}} driver.  
+
+
+{\ttfamily \#include \char`\"{}../\+Common/gyro.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+WHO\+\_\+\+AM\+\_\+\+I\+\_\+\+ADDR}~0x0F  /$\ast$ device identification register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+CTRL\+\_\+\+REG1\+\_\+\+ADDR}~0x20  /$\ast$ Control register 1 $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+CTRL\+\_\+\+REG2\+\_\+\+ADDR}~0x21  /$\ast$ Control register 2 $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+CTRL\+\_\+\+REG3\+\_\+\+ADDR}~0x22  /$\ast$ Control register 3 $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+CTRL\+\_\+\+REG4\+\_\+\+ADDR}~0x23  /$\ast$ Control register 4 $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+CTRL\+\_\+\+REG5\+\_\+\+ADDR}~0x24  /$\ast$ Control register 5 $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+REFERENCE\+\_\+\+REG\+\_\+\+ADDR}~0x25  /$\ast$ Reference register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUT\+\_\+\+TEMP\+\_\+\+ADDR}~0x26  /$\ast$ Out temp register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+STATUS\+\_\+\+REG\+\_\+\+ADDR}~0x27  /$\ast$ Status register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUT\+\_\+\+X\+\_\+\+L\+\_\+\+ADDR}~0x28  /$\ast$ Output Register X $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUT\+\_\+\+X\+\_\+\+H\+\_\+\+ADDR}~0x29  /$\ast$ Output Register X $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUT\+\_\+\+Y\+\_\+\+L\+\_\+\+ADDR}~0x2A  /$\ast$ Output Register Y $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUT\+\_\+\+Y\+\_\+\+H\+\_\+\+ADDR}~0x2B  /$\ast$ Output Register Y $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUT\+\_\+\+Z\+\_\+\+L\+\_\+\+ADDR}~0x2C  /$\ast$ Output Register Z $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUT\+\_\+\+Z\+\_\+\+H\+\_\+\+ADDR}~0x2D  /$\ast$ Output Register Z $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+FIFO\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+ADDR}~0x2E  /$\ast$ Fifo control Register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+FIFO\+\_\+\+SRC\+\_\+\+REG\+\_\+\+ADDR}~0x2F  /$\ast$ Fifo src Register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+CFG\+\_\+\+ADDR}~0x30  /$\ast$ Interrupt 1 configuration Register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+SRC\+\_\+\+ADDR}~0x31  /$\ast$ Interrupt 1 source Register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+TSH\+\_\+\+XH\+\_\+\+ADDR}~0x32  /$\ast$ Interrupt 1 Threshold X register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+TSH\+\_\+\+XL\+\_\+\+ADDR}~0x33  /$\ast$ Interrupt 1 Threshold X register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+TSH\+\_\+\+YH\+\_\+\+ADDR}~0x34  /$\ast$ Interrupt 1 Threshold Y register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+TSH\+\_\+\+YL\+\_\+\+ADDR}~0x35  /$\ast$ Interrupt 1 Threshold Y register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+TSH\+\_\+\+ZH\+\_\+\+ADDR}~0x36  /$\ast$ Interrupt 1 Threshold Z register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+TSH\+\_\+\+ZL\+\_\+\+ADDR}~0x37  /$\ast$ Interrupt 1 Threshold Z register $\ast$/
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+\_\+\+DURATION\+\_\+\+ADDR}~0x38  /$\ast$ Interrupt 1 DURATION register $\ast$/
+\item 
+\#define {\bfseries I\+\_\+\+AM\+\_\+\+I3\+G4250D}~((uint8\+\_\+t)0x\+D3)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+MODE\+\_\+\+POWERDOWN}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+MODE\+\_\+\+ACTIVE}~((uint8\+\_\+t)0x08)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUTPUT\+\_\+\+DATARATE\+\_\+1}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUTPUT\+\_\+\+DATARATE\+\_\+2}~((uint8\+\_\+t)0x40)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUTPUT\+\_\+\+DATARATE\+\_\+3}~((uint8\+\_\+t)0x80)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+OUTPUT\+\_\+\+DATARATE\+\_\+4}~((uint8\+\_\+t)0x\+C0)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+X\+\_\+\+ENABLE}~((uint8\+\_\+t)0x02)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+Y\+\_\+\+ENABLE}~((uint8\+\_\+t)0x01)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+Z\+\_\+\+ENABLE}~((uint8\+\_\+t)0x04)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+AXES\+\_\+\+ENABLE}~((uint8\+\_\+t)0x07)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+AXES\+\_\+\+DISABLE}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+BANDWIDTH\+\_\+1}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+BANDWIDTH\+\_\+2}~((uint8\+\_\+t)0x10)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+BANDWIDTH\+\_\+3}~((uint8\+\_\+t)0x20)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+BANDWIDTH\+\_\+4}~((uint8\+\_\+t)0x30)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+FULLSCALE\+\_\+245}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+FULLSCALE\+\_\+500}~((uint8\+\_\+t)0x10)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+FULLSCALE\+\_\+2000}~((uint8\+\_\+t)0x20)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+FULLSCALE\+\_\+\+SELECTION}~((uint8\+\_\+t)0x30)
+\item 
+\#define \mbox{\hyperlink{group___full___scale___sensitivity_gaf51cc7261418952367e04360c453fc4b}{I3\+G4250\+D\+\_\+\+SENSITIVITY\+\_\+245\+DPS}}~((float)8.\+75f)
+\item 
+\#define \mbox{\hyperlink{group___full___scale___sensitivity_ga3391ba3b85a110d8ad37c7f26415259d}{I3\+G4250\+D\+\_\+\+SENSITIVITY\+\_\+500\+DPS}}~((float)17.\+50f)
+\item 
+\#define \mbox{\hyperlink{group___full___scale___sensitivity_ga765f6a23bd4d0e9aca2d118ae8150f4e}{I3\+G4250\+D\+\_\+\+SENSITIVITY\+\_\+2000\+DPS}}~((float)70.\+00f)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+Block\+Data\+Update\+\_\+\+Continous}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+Block\+Data\+Update\+\_\+\+Single}~((uint8\+\_\+t)0x80)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+BLE\+\_\+\+LSB}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+BLE\+\_\+\+MSB}~((uint8\+\_\+t)0x40)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HIGHPASSFILTER\+\_\+\+DISABLE}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HIGHPASSFILTER\+\_\+\+ENABLE}~((uint8\+\_\+t)0x10)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT2}~((uint8\+\_\+t)0x01)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+INTERRUPT\+\_\+\+DISABLE}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+INTERRUPT\+\_\+\+ENABLE}~((uint8\+\_\+t)0x80)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT2\+INTERRUPT\+\_\+\+DISABLE}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT2\+INTERRUPT\+\_\+\+ENABLE}~((uint8\+\_\+t)0x08)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+INTERRUPT\+\_\+\+LOW\+\_\+\+EDGE}~((uint8\+\_\+t)0x20)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+INT1\+INTERRUPT\+\_\+\+HIGH\+\_\+\+EDGE}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+BOOT\+\_\+\+NORMALMODE}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+BOOT\+\_\+\+REBOOTMEMORY}~((uint8\+\_\+t)0x80)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPM\+\_\+\+NORMAL\+\_\+\+MODE\+\_\+\+RES}~((uint8\+\_\+t)0x00)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPM\+\_\+\+REF\+\_\+\+SIGNAL}~((uint8\+\_\+t)0x10)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPM\+\_\+\+NORMAL\+\_\+\+MODE}~((uint8\+\_\+t)0x20)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPM\+\_\+\+AUTORESET\+\_\+\+INT}~((uint8\+\_\+t)0x30)
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+0}~0x00
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+1}~0x01
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+2}~0x02
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+3}~0x03
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+4}~0x04
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+5}~0x05
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+6}~0x06
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+7}~0x07
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+8}~0x08
+\item 
+\#define {\bfseries I3\+G4250\+D\+\_\+\+HPFCF\+\_\+9}~0x09
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_gaa369c86dbbf837021bdea573288e9bbe}{I3\+G4250\+D\+\_\+\+Init}} (uint16\+\_\+t Init\+Struct)
+\begin{DoxyCompactList}\small\item\em Set I3\+G4250D Initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga229869cd9dfdca5a876b31728b468a64}{I3\+G4250\+D\+\_\+\+De\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em I3\+G4250D De-\/initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga02284c8819e85f0a50d1293bc9a05209}{I3\+G4250\+D\+\_\+\+Low\+Power}} (uint16\+\_\+t Init\+Struct)
+\begin{DoxyCompactList}\small\item\em Set I3\+G4250D in low-\/power mode. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga28c44df383a91226b29a22bb4b042f3c}{I3\+G4250\+D\+\_\+\+Read\+ID}} (void)
+\begin{DoxyCompactList}\small\item\em Read ID address of I3\+G4250D. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga2943b25fe1b615f5c91fffd69c790bee}{I3\+G4250\+D\+\_\+\+Reboot\+Cmd}} (void)
+\begin{DoxyCompactList}\small\item\em Reboot memory content of I3\+G4250D. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga1fc45fa47e7b39e0f09172cd3cf5bf8b}{I3\+G4250\+D\+\_\+\+INT1\+Interrupt\+Config}} (uint16\+\_\+t Int1\+Config)
+\begin{DoxyCompactList}\small\item\em Set I3\+G4250D Interrupt INT1 configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_gaa97ed8e0dba44b5a30365b468f66fbe3}{I3\+G4250\+D\+\_\+\+Enable\+IT}} (uint8\+\_\+t Int\+Sel)
+\begin{DoxyCompactList}\small\item\em Enable INT1 or INT2 interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga6d02bae036ae775bdb944d052c961a45}{I3\+G4250\+D\+\_\+\+Disable\+IT}} (uint8\+\_\+t Int\+Sel)
+\begin{DoxyCompactList}\small\item\em Disable INT1 or INT2 interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga7b26d26630fd27475e863b1c09f1a364}{I3\+G4250\+D\+\_\+\+Filter\+Config}} (uint8\+\_\+t Filter\+Struct)
+\begin{DoxyCompactList}\small\item\em Set High Pass Filter Modality. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_gaaa595428040ab4ecfcdb4eeefef006f9}{I3\+G4250\+D\+\_\+\+Filter\+Cmd}} (uint8\+\_\+t High\+Pass\+Filter\+State)
+\begin{DoxyCompactList}\small\item\em Enable or Disable High Pass Filter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga72674bcb0c98c7b1cc37f24938d97c16}{I3\+G4250\+D\+\_\+\+Read\+XYZAng\+Rate}} (float $\ast$pf\+Data)
+\begin{DoxyCompactList}\small\item\em Calculate the I3\+G4250D angular data. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga9658a78258a7f123f4f883e3193dac0a}{I3\+G4250\+D\+\_\+\+Get\+Data\+Status}} (void)
+\begin{DoxyCompactList}\small\item\em Get status for I3\+G4250D data. \end{DoxyCompactList}\item 
+void {\bfseries GYRO\+\_\+\+IO\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em Configures the Gyroscope SPI interface. \end{DoxyCompactList}\item 
+void {\bfseries GYRO\+\_\+\+IO\+\_\+\+De\+Init} (void)
+\item 
+void \mbox{\hyperlink{group___s_t_m32_f429_i___d_i_s_c_o_v_e_r_y___l_o_w___l_e_v_e_l___private___functions_ga91f7211b833b9428166a7b4389fdba2e}{GYRO\+\_\+\+IO\+\_\+\+Write}} (uint8\+\_\+t $\ast$p\+Buffer, uint8\+\_\+t Write\+Addr, uint16\+\_\+t Num\+Byte\+To\+Write)
+\begin{DoxyCompactList}\small\item\em Writes one byte to the Gyroscope. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___s_t_m32_f429_i___d_i_s_c_o_v_e_r_y___l_o_w___l_e_v_e_l___private___functions_gae80f89593d6107eaf24fd82e38d75f85}{GYRO\+\_\+\+IO\+\_\+\+Read}} (uint8\+\_\+t $\ast$p\+Buffer, uint8\+\_\+t Read\+Addr, uint16\+\_\+t Num\+Byte\+To\+Read)
+\begin{DoxyCompactList}\small\item\em Reads a block of data from the Gyroscope. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_g_y_r_o___drv_type_def}{GYRO\+\_\+\+Drv\+Type\+Def}} {\bfseries I3g4250\+Drv}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains all the functions prototypes for the \mbox{\hyperlink{i3g4250d_8c}{i3g4250d.\+c}} driver. 
+
+\begin{DoxyAuthor}{Author}
+MCD Application Team
+\end{DoxyAuthor}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2020 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 

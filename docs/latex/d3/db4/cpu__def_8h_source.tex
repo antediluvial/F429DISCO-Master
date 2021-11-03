@@ -1,0 +1,218 @@
+\hypertarget{cpu__def_8h_source}{}\doxysection{cpu\+\_\+def.\+h}
+\label{cpu__def_8h_source}\index{lib/uCOS\_CPU/cpu\_def.h@{lib/uCOS\_CPU/cpu\_def.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                               uC/CPU}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                    CPU CONFIGURATION \& PORT LAYER}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2004-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{*}}
+\DoxyCodeLine{20 \textcolor{comment}{*                                      CPU CONFIGURATION DEFINES}}
+\DoxyCodeLine{21 \textcolor{comment}{*}}
+\DoxyCodeLine{22 \textcolor{comment}{* Filename : cpu\_def.h}}
+\DoxyCodeLine{23 \textcolor{comment}{* Version  : v1.32.00}}
+\DoxyCodeLine{24 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{25 \textcolor{comment}{*/}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{/*}}
+\DoxyCodeLine{29 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{30 \textcolor{comment}{*                                               MODULE}}
+\DoxyCodeLine{31 \textcolor{comment}{*}}
+\DoxyCodeLine{32 \textcolor{comment}{* Note(s) : (1) This CPU definition header file is protected from multiple pre-\/processor inclusion}}
+\DoxyCodeLine{33 \textcolor{comment}{*               through use of the CPU definition module present pre-\/processor macro definition.}}
+\DoxyCodeLine{34 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{35 \textcolor{comment}{*/}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#ifndef  CPU\_DEF\_MODULE\_PRESENT}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define  CPU\_DEF\_MODULE\_PRESENT}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{comment}{/*}}
+\DoxyCodeLine{42 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{43 \textcolor{comment}{*                                   CORE CPU MODULE VERSION NUMBER}}
+\DoxyCodeLine{44 \textcolor{comment}{*}}
+\DoxyCodeLine{45 \textcolor{comment}{* Note(s) : (1) (a) The core CPU module software version is denoted as follows :}}
+\DoxyCodeLine{46 \textcolor{comment}{*}}
+\DoxyCodeLine{47 \textcolor{comment}{*                       Vx.yy.zz}}
+\DoxyCodeLine{48 \textcolor{comment}{*}}
+\DoxyCodeLine{49 \textcolor{comment}{*                           where}}
+\DoxyCodeLine{50 \textcolor{comment}{*                                   V               denotes 'Version' label}}
+\DoxyCodeLine{51 \textcolor{comment}{*                                   x               denotes     major software version revision number}}
+\DoxyCodeLine{52 \textcolor{comment}{*                                   yy              denotes     minor software version revision number}}
+\DoxyCodeLine{53 \textcolor{comment}{*                                   zz              denotes sub-\/minor software version revision number}}
+\DoxyCodeLine{54 \textcolor{comment}{*}}
+\DoxyCodeLine{55 \textcolor{comment}{*               (b) The software version label \#define is formatted as follows :}}
+\DoxyCodeLine{56 \textcolor{comment}{*}}
+\DoxyCodeLine{57 \textcolor{comment}{*                       ver = x.yyzz * 100 * 100}}
+\DoxyCodeLine{58 \textcolor{comment}{*}}
+\DoxyCodeLine{59 \textcolor{comment}{*                           where}}
+\DoxyCodeLine{60 \textcolor{comment}{*                                   ver             denotes software version number scaled as an integer value}}
+\DoxyCodeLine{61 \textcolor{comment}{*                                   x.yyzz          denotes software version number, where the unscaled integer}}
+\DoxyCodeLine{62 \textcolor{comment}{*                                                       portion denotes the major version number \& the unscaled}}
+\DoxyCodeLine{63 \textcolor{comment}{*                                                       fractional portion denotes the (concatenated) minor}}
+\DoxyCodeLine{64 \textcolor{comment}{*                                                       version numbers}}
+\DoxyCodeLine{65 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{66 \textcolor{comment}{*/}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define  CPU\_CORE\_VERSION                              13200u   }\textcolor{comment}{/* See Note \#1.                                         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{comment}{/*}}
+\DoxyCodeLine{72 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{73 \textcolor{comment}{*                                       CPU WORD CONFIGURATION}}
+\DoxyCodeLine{74 \textcolor{comment}{*}}
+\DoxyCodeLine{75 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_ADDR\_SIZE \& CPU\_CFG\_DATA\_SIZE in 'cpu.h' with CPU's word sizes :}}
+\DoxyCodeLine{76 \textcolor{comment}{*}}
+\DoxyCodeLine{77 \textcolor{comment}{*                   CPU\_WORD\_SIZE\_08             8-\/bit word size}}
+\DoxyCodeLine{78 \textcolor{comment}{*                   CPU\_WORD\_SIZE\_16            16-\/bit word size}}
+\DoxyCodeLine{79 \textcolor{comment}{*                   CPU\_WORD\_SIZE\_32            32-\/bit word size}}
+\DoxyCodeLine{80 \textcolor{comment}{*                   CPU\_WORD\_SIZE\_64            64-\/bit word size}}
+\DoxyCodeLine{81 \textcolor{comment}{*}}
+\DoxyCodeLine{82 \textcolor{comment}{*           (2) Configure CPU\_CFG\_ENDIAN\_TYPE in 'cpu.h' with CPU's data-\/word-\/memory order :}}
+\DoxyCodeLine{83 \textcolor{comment}{*}}
+\DoxyCodeLine{84 \textcolor{comment}{*               (a) CPU\_ENDIAN\_TYPE\_BIG         Big-\/   endian word order (CPU words' most  significant}}
+\DoxyCodeLine{85 \textcolor{comment}{*                                                                         octet @ lowest memory address)}}
+\DoxyCodeLine{86 \textcolor{comment}{*               (b) CPU\_ENDIAN\_TYPE\_LITTLE      Little-\/endian word order (CPU words' least significant}}
+\DoxyCodeLine{87 \textcolor{comment}{*                                                                         octet @ lowest memory address)}}
+\DoxyCodeLine{88 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{89 \textcolor{comment}{*/}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91                                                         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU WORD SIZE -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define  CPU\_WORD\_SIZE\_08                          1u   }\textcolor{comment}{/*  8-\/bit word size (in octets).                                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define  CPU\_WORD\_SIZE\_16                          2u   }\textcolor{comment}{/* 16-\/bit word size (in octets).                                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define  CPU\_WORD\_SIZE\_32                          4u   }\textcolor{comment}{/* 32-\/bit word size (in octets).                                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define  CPU\_WORD\_SIZE\_64                          8u   }\textcolor{comment}{/* 64-\/bit word size (in octets).                                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98                                                         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU WORD-\/ENDIAN ORDER -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define  CPU\_ENDIAN\_TYPE\_NONE                      0u}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define  CPU\_ENDIAN\_TYPE\_BIG                       1u   }\textcolor{comment}{/* Big-\/   endian word order (see Note \#1a).                     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define  CPU\_ENDIAN\_TYPE\_LITTLE                    2u   }\textcolor{comment}{/* Little-\/endian word order (see Note \#1b).                     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{comment}{/*}}
+\DoxyCodeLine{105 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{106 \textcolor{comment}{*                                       CPU STACK CONFIGURATION}}
+\DoxyCodeLine{107 \textcolor{comment}{*}}
+\DoxyCodeLine{108 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_STK\_GROWTH in 'cpu.h' with CPU's stack growth order :}}
+\DoxyCodeLine{109 \textcolor{comment}{*}}
+\DoxyCodeLine{110 \textcolor{comment}{*               (a) CPU\_STK\_GROWTH\_LO\_TO\_HI     CPU stack pointer increments to the next higher  stack}}
+\DoxyCodeLine{111 \textcolor{comment}{*                                                   memory address after data is pushed onto the stack}}
+\DoxyCodeLine{112 \textcolor{comment}{*               (b) CPU\_STK\_GROWTH\_HI\_TO\_LO     CPU stack pointer decrements to the next lower   stack}}
+\DoxyCodeLine{113 \textcolor{comment}{*                                                   memory address after data is pushed onto the stack}}
+\DoxyCodeLine{114 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{115 \textcolor{comment}{*/}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117                                                         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU STACK GROWTH ORDER -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define  CPU\_STK\_GROWTH\_NONE                       0u}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define  CPU\_STK\_GROWTH\_LO\_TO\_HI                   1u   }\textcolor{comment}{/* CPU stk incs towards higher mem addrs (see Note \#1a).        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#define  CPU\_STK\_GROWTH\_HI\_TO\_LO                   2u   }\textcolor{comment}{/* CPU stk decs towards lower  mem addrs (see Note \#1b).        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \textcolor{comment}{/*}}
+\DoxyCodeLine{124 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{125 \textcolor{comment}{*                                   CRITICAL SECTION CONFIGURATION}}
+\DoxyCodeLine{126 \textcolor{comment}{*}}
+\DoxyCodeLine{127 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_CRITICAL\_METHOD with CPU's/compiler's critical section method :}}
+\DoxyCodeLine{128 \textcolor{comment}{*}}
+\DoxyCodeLine{129 \textcolor{comment}{*                                                       Enter/Exit critical sections by ...}}
+\DoxyCodeLine{130 \textcolor{comment}{*}}
+\DoxyCodeLine{131 \textcolor{comment}{*                   CPU\_CRITICAL\_METHOD\_INT\_DIS\_EN      Disable/Enable interrupts}}
+\DoxyCodeLine{132 \textcolor{comment}{*                   CPU\_CRITICAL\_METHOD\_STATUS\_STK      Push/Pop       interrupt status onto stack}}
+\DoxyCodeLine{133 \textcolor{comment}{*                   CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL    Save/Restore   interrupt status to local variable}}
+\DoxyCodeLine{134 \textcolor{comment}{*}}
+\DoxyCodeLine{135 \textcolor{comment}{*               (a) CPU\_CRITICAL\_METHOD\_INT\_DIS\_EN  is NOT a preferred method since it does NOT support}}
+\DoxyCodeLine{136 \textcolor{comment}{*                   multiple levels of interrupts.  However, with some CPUs/compilers, this is the only}}
+\DoxyCodeLine{137 \textcolor{comment}{*                   available method.}}
+\DoxyCodeLine{138 \textcolor{comment}{*}}
+\DoxyCodeLine{139 \textcolor{comment}{*               (b) CPU\_CRITICAL\_METHOD\_STATUS\_STK    is one preferred method since it supports multiple}}
+\DoxyCodeLine{140 \textcolor{comment}{*                   levels of interrupts.  However, this method assumes that the compiler provides C-\/level}}
+\DoxyCodeLine{141 \textcolor{comment}{*                   \&/or assembly-\/level functionality for the following :}}
+\DoxyCodeLine{142 \textcolor{comment}{*}}
+\DoxyCodeLine{143 \textcolor{comment}{*                     ENTER CRITICAL SECTION :}}
+\DoxyCodeLine{144 \textcolor{comment}{*                       (1) Push/save   interrupt status onto a local stack}}
+\DoxyCodeLine{145 \textcolor{comment}{*                       (2) Disable     interrupts}}
+\DoxyCodeLine{146 \textcolor{comment}{*}}
+\DoxyCodeLine{147 \textcolor{comment}{*                     EXIT  CRITICAL SECTION :}}
+\DoxyCodeLine{148 \textcolor{comment}{*                       (3) Pop/restore interrupt status from a local stack}}
+\DoxyCodeLine{149 \textcolor{comment}{*}}
+\DoxyCodeLine{150 \textcolor{comment}{*               (c) CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL  is one preferred method since it supports multiple}}
+\DoxyCodeLine{151 \textcolor{comment}{*                   levels of interrupts.  However, this method assumes that the compiler provides C-\/level}}
+\DoxyCodeLine{152 \textcolor{comment}{*                   \&/or assembly-\/level functionality for the following :}}
+\DoxyCodeLine{153 \textcolor{comment}{*}}
+\DoxyCodeLine{154 \textcolor{comment}{*                     ENTER CRITICAL SECTION :}}
+\DoxyCodeLine{155 \textcolor{comment}{*                       (1) Save    interrupt status into a local variable}}
+\DoxyCodeLine{156 \textcolor{comment}{*                       (2) Disable interrupts}}
+\DoxyCodeLine{157 \textcolor{comment}{*}}
+\DoxyCodeLine{158 \textcolor{comment}{*                     EXIT  CRITICAL SECTION :}}
+\DoxyCodeLine{159 \textcolor{comment}{*                       (3) Restore interrupt status from a local variable}}
+\DoxyCodeLine{160 \textcolor{comment}{*}}
+\DoxyCodeLine{161 \textcolor{comment}{*           (2) Critical section macro's most likely require inline assembly.  If the compiler does NOT}}
+\DoxyCodeLine{162 \textcolor{comment}{*               allow inline assembly in C source files, critical section macro's MUST call an assembly}}
+\DoxyCodeLine{163 \textcolor{comment}{*               subroutine defined in a 'cpu\_a.asm' file located in the following software directory :}}
+\DoxyCodeLine{164 \textcolor{comment}{*}}
+\DoxyCodeLine{165 \textcolor{comment}{*                   \(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)}}
+\DoxyCodeLine{166 \textcolor{comment}{*}}
+\DoxyCodeLine{167 \textcolor{comment}{*                       where}}
+\DoxyCodeLine{168 \textcolor{comment}{*                               <CPU-\/Compiler Directory>    directory path for common   CPU-\/compiler software}}
+\DoxyCodeLine{169 \textcolor{comment}{*                               <cpu>                       directory name for specific CPU}}
+\DoxyCodeLine{170 \textcolor{comment}{*                               <compiler>                  directory name for specific compiler}}
+\DoxyCodeLine{171 \textcolor{comment}{*}}
+\DoxyCodeLine{172 \textcolor{comment}{*           (3) (a) To save/restore interrupt status, a local variable 'cpu\_sr' of type 'CPU\_SR' MAY need}}
+\DoxyCodeLine{173 \textcolor{comment}{*                   to be declared (e.g. if 'CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL' method is configured).}}
+\DoxyCodeLine{174 \textcolor{comment}{*}}
+\DoxyCodeLine{175 \textcolor{comment}{*                   (1) 'cpu\_sr' local variable SHOULD be declared via the CPU\_SR\_ALLOC() macro which,}}
+\DoxyCodeLine{176 \textcolor{comment}{*                        if used, MUST be declared following ALL other local variables (see any 'cpu.h}}
+\DoxyCodeLine{177 \textcolor{comment}{*                        CRITICAL SECTION CONFIGURATION  Note \#3a1').}}
+\DoxyCodeLine{178 \textcolor{comment}{*}}
+\DoxyCodeLine{179 \textcolor{comment}{*                        Example :}}
+\DoxyCodeLine{180 \textcolor{comment}{*}}
+\DoxyCodeLine{181 \textcolor{comment}{*                           void  Fnct (void)}}
+\DoxyCodeLine{182 \textcolor{comment}{*                           \{}}
+\DoxyCodeLine{183 \textcolor{comment}{*                               CPU\_INT08U  val\_08;}}
+\DoxyCodeLine{184 \textcolor{comment}{*                               CPU\_INT16U  val\_16;}}
+\DoxyCodeLine{185 \textcolor{comment}{*                               CPU\_INT32U  val\_32;}}
+\DoxyCodeLine{186 \textcolor{comment}{*                               CPU\_SR\_ALLOC();         MUST be declared after ALL other local variables}}
+\DoxyCodeLine{187 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{188 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{189 \textcolor{comment}{*                           \}}}
+\DoxyCodeLine{190 \textcolor{comment}{*}}
+\DoxyCodeLine{191 \textcolor{comment}{*               (b) Configure 'CPU\_SR' data type with the appropriate-\/sized CPU data type large enough to}}
+\DoxyCodeLine{192 \textcolor{comment}{*                   completely store the CPU's/compiler's status word.}}
+\DoxyCodeLine{193 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{194 \textcolor{comment}{*/}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196                                                         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU CRITICAL SECTION METHODS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#define  CPU\_CRITICAL\_METHOD\_NONE                  0u   }\textcolor{comment}{/*                                                              */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define  CPU\_CRITICAL\_METHOD\_INT\_DIS\_EN            1u   }\textcolor{comment}{/* DIS/EN       ints                    (see Note \#1a).         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define  CPU\_CRITICAL\_METHOD\_STATUS\_STK            2u   }\textcolor{comment}{/* Push/Pop     int status onto stk     (see Note \#1b).         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#define  CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL          3u   }\textcolor{comment}{/* Save/Restore int status to local var (see Note \#1c).         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{comment}{/*}}
+\DoxyCodeLine{204 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{205 \textcolor{comment}{*                                             MODULE END}}
+\DoxyCodeLine{206 \textcolor{comment}{*}}
+\DoxyCodeLine{207 \textcolor{comment}{* Note(s) : (1) See 'cpu\_def.h  MODULE'.}}
+\DoxyCodeLine{208 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{209 \textcolor{comment}{*/}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#endif                                                  }\textcolor{comment}{/* End of CPU def module include.                               */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{212 }
+
+\end{DoxyCode}

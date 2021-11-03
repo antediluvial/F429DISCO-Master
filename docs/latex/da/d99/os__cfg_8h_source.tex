@@ -1,0 +1,124 @@
+\hypertarget{os__cfg_8h_source}{}\doxysection{os\+\_\+cfg.\+h}
+\label{os__cfg_8h_source}\index{lib/uCOS\_Src/os\_cfg.h@{lib/uCOS\_Src/os\_cfg.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                              uC/OS-\/III}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                        The Real-\/Time Kernel}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2009-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{*}}
+\DoxyCodeLine{20 \textcolor{comment}{*                                          CONFIGURATION FILE}}
+\DoxyCodeLine{21 \textcolor{comment}{*}}
+\DoxyCodeLine{22 \textcolor{comment}{* Filename : os\_cfg.h}}
+\DoxyCodeLine{23 \textcolor{comment}{* Version  : V3.08.00}}
+\DoxyCodeLine{24 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{25 \textcolor{comment}{*/}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifndef OS\_CFG\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define OS\_CFG\_H}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MISCELLANEOUS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define OS\_CFG\_APP\_HOOKS\_EN                        1u           }\textcolor{comment}{/* Enable (1) or Disable (0) application specific hooks                  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define OS\_CFG\_ARG\_CHK\_EN                          1u           }\textcolor{comment}{/* Enable (1) or Disable (0) argument checking                           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define OS\_CFG\_CALLED\_FROM\_ISR\_CHK\_EN              1u           }\textcolor{comment}{/* Enable (1) or Disable (0) check for called from ISR                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define OS\_CFG\_DBG\_EN                              0u           }\textcolor{comment}{/* Enable (1) or Disable (0) debug code/variables                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define OS\_CFG\_TICK\_EN                             1u           }\textcolor{comment}{/* Enable (1) or Disable (0) the kernel tick                             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define OS\_CFG\_DYN\_TICK\_EN                         0u           }\textcolor{comment}{/* Enable (1) or Disable (0) the Dynamic Tick                            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define OS\_CFG\_INVALID\_OS\_CALLS\_CHK\_EN             1u           }\textcolor{comment}{/* Enable (1) or Disable (0) checks for invalid kernel calls             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define OS\_CFG\_OBJ\_TYPE\_CHK\_EN                     1u           }\textcolor{comment}{/* Enable (1) or Disable (0) object type checking                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define OS\_CFG\_TS\_EN                               0u           }\textcolor{comment}{/* Enable (1) or Disable (0) time stamping                               */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define OS\_CFG\_PRIO\_MAX                           64u           }\textcolor{comment}{/* Defines the maximum number of task priorities (see OS\_PRIO data type) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define OS\_CFG\_SCHED\_LOCK\_TIME\_MEAS\_EN             0u           }\textcolor{comment}{/* Include code to measure scheduler lock time                           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define OS\_CFG\_SCHED\_ROUND\_ROBIN\_EN                1u           }\textcolor{comment}{/* Include code for Round-\/Robin scheduling                               */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define OS\_CFG\_STK\_SIZE\_MIN                       64u           }\textcolor{comment}{/* Minimum allowable task stack size                                     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ EVENT FLAGS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define OS\_CFG\_FLAG\_EN                             1u           }\textcolor{comment}{/* Enable (1) or Disable (0) code generation for EVENT FLAGS             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define OS\_CFG\_FLAG\_DEL\_EN                         1u           }\textcolor{comment}{/*     Include code for OSFlagDel()                                      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define OS\_CFG\_FLAG\_MODE\_CLR\_EN                    1u           }\textcolor{comment}{/*     Include code for Wait on Clear EVENT FLAGS                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define OS\_CFG\_FLAG\_PEND\_ABORT\_EN                  1u           }\textcolor{comment}{/*     Include code for OSFlagPendAbort()                                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MEMORY MANAGEMENT -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/  */}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define OS\_CFG\_MEM\_EN                              1u           }\textcolor{comment}{/* Enable (1) or Disable (0) code generation for the MEMORY MANAGER      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MUTUAL EXCLUSION SEMAPHORES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/  */}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define OS\_CFG\_MUTEX\_EN                            1u           }\textcolor{comment}{/* Enable (1) or Disable (0) code generation for MUTEX                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define OS\_CFG\_MUTEX\_DEL\_EN                        1u           }\textcolor{comment}{/*     Include code for OSMutexDel()                                     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define OS\_CFG\_MUTEX\_PEND\_ABORT\_EN                 1u           }\textcolor{comment}{/*     Include code for OSMutexPendAbort()                               */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MESSAGE QUEUES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/  */}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define OS\_CFG\_Q\_EN                                1u           }\textcolor{comment}{/* Enable (1) or Disable (0) code generation for QUEUES                  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define OS\_CFG\_Q\_DEL\_EN                            1u           }\textcolor{comment}{/*     Include code for OSQDel()                                         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define OS\_CFG\_Q\_FLUSH\_EN                          1u           }\textcolor{comment}{/*     Include code for OSQFlush()                                       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define OS\_CFG\_Q\_PEND\_ABORT\_EN                     1u           }\textcolor{comment}{/*     Include code for OSQPendAbort()                                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ SEMAPHORES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define OS\_CFG\_SEM\_EN                              1u           }\textcolor{comment}{/* Enable (1) or Disable (0) code generation for SEMAPHORES              */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define OS\_CFG\_SEM\_DEL\_EN                          1u           }\textcolor{comment}{/*     Include code for OSSemDel()                                       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define OS\_CFG\_SEM\_PEND\_ABORT\_EN                   1u           }\textcolor{comment}{/*     Include code for OSSemPendAbort()                                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define OS\_CFG\_SEM\_SET\_EN                          1u           }\textcolor{comment}{/*     Include code for OSSemSet()                                       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ TASK MANAGEMENT -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define OS\_CFG\_STAT\_TASK\_EN                        1u           }\textcolor{comment}{/* Enable (1) or Disable (0) the statistics task                         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define OS\_CFG\_STAT\_TASK\_STK\_CHK\_EN                1u           }\textcolor{comment}{/*     Check task stacks from the statistic task                         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_CHANGE\_PRIO\_EN                 1u           }\textcolor{comment}{/* Include code for OSTaskChangePrio()                                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_DEL\_EN                         1u           }\textcolor{comment}{/* Include code for OSTaskDel()                                          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_IDLE\_EN                        1u           }\textcolor{comment}{/* Include the idle task                                                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_PROFILE\_EN                     1u           }\textcolor{comment}{/* Include variables in OS\_TCB for profiling                             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_Q\_EN                           1u           }\textcolor{comment}{/* Include code for OSTaskQXXXX()                                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_Q\_PEND\_ABORT\_EN                1u           }\textcolor{comment}{/* Include code for OSTaskQPendAbort()                                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_REG\_TBL\_SIZE                   1u           }\textcolor{comment}{/* Number of task specific registers                                     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_STK\_REDZONE\_EN                 0u           }\textcolor{comment}{/* Enable (1) or Disable (0) stack redzone                               */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_STK\_REDZONE\_DEPTH              8u           }\textcolor{comment}{/* Depth of the stack redzone                                            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_SEM\_PEND\_ABORT\_EN              1u           }\textcolor{comment}{/* Include code for OSTaskSemPendAbort()                                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define OS\_CFG\_TASK\_SUSPEND\_EN                     1u           }\textcolor{comment}{/* Include code for OSTaskSuspend() and OSTaskResume()                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ TASK LOCAL STORAGE MANAGEMENT -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/  */}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define OS\_CFG\_TLS\_TBL\_SIZE                        0u           }\textcolor{comment}{/* Include code for Task Local Storage (TLS) registers                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ TIME MANAGEMENT -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/  */}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#define OS\_CFG\_TIME\_DLY\_HMSM\_EN                    1u           }\textcolor{comment}{/* Include code for OSTimeDlyHMSM()                                      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#define OS\_CFG\_TIME\_DLY\_RESUME\_EN                  1u           }\textcolor{comment}{/* Include code for OSTimeDlyResume()                                    */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ TIMER MANAGEMENT -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define OS\_CFG\_TMR\_EN                              1u           }\textcolor{comment}{/* Enable (1) or Disable (0) code generation for TIMERS                  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define OS\_CFG\_TMR\_DEL\_EN                          1u           }\textcolor{comment}{/* Enable (1) or Disable (0) code generation for OSTmrDel()              */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ TRACE RECORDER -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define OS\_CFG\_TRACE\_EN                            0u           }\textcolor{comment}{/* Enable (1) or Disable (0) uC/OS-\/III Trace instrumentation             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define OS\_CFG\_TRACE\_API\_ENTER\_EN                  0u           }\textcolor{comment}{/* Enable (1) or Disable (0) uC/OS-\/III Trace API enter instrumentation   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#define OS\_CFG\_TRACE\_API\_EXIT\_EN                   0u           }\textcolor{comment}{/* Enable (1) or Disable (0) uC/OS-\/III Trace API exit  instrumentation   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

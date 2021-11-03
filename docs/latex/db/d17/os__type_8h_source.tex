@@ -1,0 +1,93 @@
+\hypertarget{os__type_8h_source}{}\doxysection{os\+\_\+type.\+h}
+\label{os__type_8h_source}\index{lib/uCOS\_Src/os\_type.h@{lib/uCOS\_Src/os\_type.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                              uC/OS-\/III}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                        The Real-\/Time Kernel}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2009-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{* File    : os\_type.h}}
+\DoxyCodeLine{20 \textcolor{comment}{* Version : V3.08.00}}
+\DoxyCodeLine{21 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{22 \textcolor{comment}{*/}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef   OS\_TYPE\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define   OS\_TYPE\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef    VSC\_INCLUDE\_H\_FILE\_NAMES}}
+\DoxyCodeLine{28 \textcolor{keyword}{const}     CPU\_CHAR  *os\_type\_\_h = \textcolor{stringliteral}{"{}\$Id: \$"{}};}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{/*}}
+\DoxyCodeLine{32 \textcolor{comment}{************************************************************************************************************************}}
+\DoxyCodeLine{33 \textcolor{comment}{*                                                 INCLUDE HEADER FILES}}
+\DoxyCodeLine{34 \textcolor{comment}{************************************************************************************************************************}}
+\DoxyCodeLine{35 \textcolor{comment}{*/}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37                                                        \textcolor{comment}{/*       Description                                    \# Bits */}}
+\DoxyCodeLine{38                                                        \textcolor{comment}{/*                                               <recommended> */}}
+\DoxyCodeLine{39                                                        \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{typedef}   CPU\_INT16U      OS\_CPU\_USAGE;                \textcolor{comment}{/* CPU Usage 0..10000                                  <16>/32 */}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_CTR;                      \textcolor{comment}{/* Counter,                                                 32 */}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_CTX\_SW\_CTR;               \textcolor{comment}{/* Counter of context switches,                             32 */}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_CYCLES;                   \textcolor{comment}{/* CPU clock cycles,                                   <32>/64 */}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_FLAGS;                    \textcolor{comment}{/* Event flags,                                      8/16/<32> */}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_IDLE\_CTR;                 \textcolor{comment}{/* Holds the number of times the idle task runs,       <32>/64 */}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{keyword}{typedef}   CPU\_INT16U      OS\_MEM\_QTY;                  \textcolor{comment}{/* Number of memory blocks,                            <16>/32 */}}
+\DoxyCodeLine{54 \textcolor{keyword}{typedef}   CPU\_INT16U      OS\_MEM\_SIZE;                 \textcolor{comment}{/* Size in bytes of a memory block,                    <16>/32 */}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{keyword}{typedef}   CPU\_INT16U      OS\_MSG\_QTY;                  \textcolor{comment}{/* Number of OS\_MSGs in the msg pool,                  <16>/32 */}}
+\DoxyCodeLine{57 \textcolor{keyword}{typedef}   CPU\_INT16U      OS\_MSG\_SIZE;                 \textcolor{comment}{/* Size of messages in number of bytes,                <16>/32 */}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{typedef}   CPU\_INT08U      OS\_NESTING\_CTR;              \textcolor{comment}{/* Interrupt and scheduler nesting,                  <8>/16/32 */}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{typedef}   CPU\_INT16U      OS\_OBJ\_QTY;                  \textcolor{comment}{/* Number of kernel objects counter,                   <16>/32 */}}
+\DoxyCodeLine{62 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_OBJ\_TYPE;                 \textcolor{comment}{/* Special flag to determine object type,                   32 */}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{typedef}   CPU\_INT16U      OS\_OPT;                      \textcolor{comment}{/* Holds function options,                             <16>/32 */}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{keyword}{typedef}   CPU\_INT08U      OS\_PRIO;                     \textcolor{comment}{/* Priority of a task,                               <8>/16/32 */}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{keyword}{typedef}   CPU\_INT16U      OS\_QTY;                      \textcolor{comment}{/* Quantity                                            <16>/32 */}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_RATE\_HZ;                  \textcolor{comment}{/* Rate in Hertz                                            32 */}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#if (CPU\_CFG\_ADDR\_SIZE == CPU\_WORD\_SIZE\_64)            }\textcolor{comment}{/* Task register                                  8/16/<32/64> */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{73 \textcolor{keyword}{typedef}   CPU\_INT64U      OS\_REG;}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{75 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_REG;}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{77 \textcolor{keyword}{typedef}   CPU\_INT08U      OS\_REG\_ID;                   \textcolor{comment}{/* Index to task register                            <8>/16/32 */}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_SEM\_CTR;                  \textcolor{comment}{/* Semaphore value                                     16/<32> */}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{keyword}{typedef}   CPU\_INT08U      OS\_STATE;                    \textcolor{comment}{/* State variable                                    <8>/16/32 */}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{keyword}{typedef}   CPU\_INT08U      OS\_STATUS;                   \textcolor{comment}{/* Status                                            <8>/16/32 */}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{keyword}{typedef}   CPU\_INT32U      OS\_TICK;                     \textcolor{comment}{/* Clock tick counter                                  <32>/64 */}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

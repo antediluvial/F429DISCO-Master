@@ -1,0 +1,54 @@
+\hypertarget{i3g4250d_8c}{}\doxysection{lib/\+Components/i3g4250d/i3g4250d.c File Reference}
+\label{i3g4250d_8c}\index{lib/Components/i3g4250d/i3g4250d.c@{lib/Components/i3g4250d/i3g4250d.c}}
+
+
+This file provides a set of functions needed to manage the I3\+G4250D, ST MEMS motion sensor, 3-\/axis digital output gyroscope.  
+
+
+{\ttfamily \#include \char`\"{}i3g4250d.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_gaa369c86dbbf837021bdea573288e9bbe}{I3\+G4250\+D\+\_\+\+Init}} (uint16\+\_\+t Init\+Struct)
+\begin{DoxyCompactList}\small\item\em Set I3\+G4250D Initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga229869cd9dfdca5a876b31728b468a64}{I3\+G4250\+D\+\_\+\+De\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em I3\+G4250D De-\/initialization. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga28c44df383a91226b29a22bb4b042f3c}{I3\+G4250\+D\+\_\+\+Read\+ID}} (void)
+\begin{DoxyCompactList}\small\item\em Read ID address of I3\+G4250D. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga2943b25fe1b615f5c91fffd69c790bee}{I3\+G4250\+D\+\_\+\+Reboot\+Cmd}} (void)
+\begin{DoxyCompactList}\small\item\em Reboot memory content of I3\+G4250D. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga02284c8819e85f0a50d1293bc9a05209}{I3\+G4250\+D\+\_\+\+Low\+Power}} (uint16\+\_\+t Init\+Struct)
+\begin{DoxyCompactList}\small\item\em Set I3\+G4250D in low-\/power mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga1fc45fa47e7b39e0f09172cd3cf5bf8b}{I3\+G4250\+D\+\_\+\+INT1\+Interrupt\+Config}} (uint16\+\_\+t Int1\+Config)
+\begin{DoxyCompactList}\small\item\em Set I3\+G4250D Interrupt INT1 configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_gaa97ed8e0dba44b5a30365b468f66fbe3}{I3\+G4250\+D\+\_\+\+Enable\+IT}} (uint8\+\_\+t Int\+Sel)
+\begin{DoxyCompactList}\small\item\em Enable INT1 or INT2 interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga6d02bae036ae775bdb944d052c961a45}{I3\+G4250\+D\+\_\+\+Disable\+IT}} (uint8\+\_\+t Int\+Sel)
+\begin{DoxyCompactList}\small\item\em Disable INT1 or INT2 interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga7b26d26630fd27475e863b1c09f1a364}{I3\+G4250\+D\+\_\+\+Filter\+Config}} (uint8\+\_\+t Filter\+Struct)
+\begin{DoxyCompactList}\small\item\em Set High Pass Filter Modality. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_gaaa595428040ab4ecfcdb4eeefef006f9}{I3\+G4250\+D\+\_\+\+Filter\+Cmd}} (uint8\+\_\+t High\+Pass\+Filter\+State)
+\begin{DoxyCompactList}\small\item\em Enable or Disable High Pass Filter. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga9658a78258a7f123f4f883e3193dac0a}{I3\+G4250\+D\+\_\+\+Get\+Data\+Status}} (void)
+\begin{DoxyCompactList}\small\item\em Get status for I3\+G4250D data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___i3_g4250_d___private___functions_ga72674bcb0c98c7b1cc37f24938d97c16}{I3\+G4250\+D\+\_\+\+Read\+XYZAng\+Rate}} (float $\ast$pf\+Data)
+\begin{DoxyCompactList}\small\item\em Calculate the I3\+G4250D angular data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_g_y_r_o___drv_type_def}{GYRO\+\_\+\+Drv\+Type\+Def}} \mbox{\hyperlink{group___i3_g4250_d___private___variables_ga07bc6569ed3301b01129c8f0201aee38}{I3g4250\+Drv}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides a set of functions needed to manage the I3\+G4250D, ST MEMS motion sensor, 3-\/axis digital output gyroscope. 
+
+\begin{DoxyAuthor}{Author}
+MCD Application Team
+\end{DoxyAuthor}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2020 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 

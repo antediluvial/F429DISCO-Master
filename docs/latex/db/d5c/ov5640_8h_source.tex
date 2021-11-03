@@ -1,0 +1,135 @@
+\hypertarget{ov5640_8h_source}{}\doxysection{ov5640.\+h}
+\label{ov5640_8h_source}\index{lib/Components/ov5640/ov5640.h@{lib/Components/ov5640/ov5640.h}}
+\mbox{\hyperlink{ov5640_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{21 \textcolor{comment}{/* Define to prevent recursive inclusion -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifndef \_\_OV5640\_H}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define \_\_OV5640\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{26  \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{/* Includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}../Common/camera.h"{}}}
+\DoxyCodeLine{31    }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define  OV5640\_ID    0x5640}}
+\DoxyCodeLine{68 \textcolor{comment}{/* Brightness */} }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL4P       0x00   }\textcolor{comment}{/* Brightness level +4         */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL3P       0x01   }\textcolor{comment}{/* Brightness level +3         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL2P       0x02   }\textcolor{comment}{/* Brightness level +2         */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL1P       0x04   }\textcolor{comment}{/* Brightness level +1         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL0        0x08   }\textcolor{comment}{/* Brightness level 0          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL1N       0x10   }\textcolor{comment}{/* Brightness level -\/1         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL2N       0x20   }\textcolor{comment}{/* Brightness level -\/2         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL3N       0x40   }\textcolor{comment}{/* Brightness level -\/3         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define OV5640\_BRIGHTNESS\_LEVEL4N       0x80   }\textcolor{comment}{/* Brightness level -\/4         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{comment}{/* Saturation */} }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL4P       0x00   }\textcolor{comment}{/* Saturation level +4         */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL3P       0x01   }\textcolor{comment}{/* Saturation level +3         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL2P       0x02   }\textcolor{comment}{/* Saturation level +2         */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL1P       0x04   }\textcolor{comment}{/* Saturation level +1         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL0        0x08   }\textcolor{comment}{/* Saturation level 0          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL1N       0x10   }\textcolor{comment}{/* Saturation level -\/1         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL2N       0x20   }\textcolor{comment}{/* Saturation level -\/2         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL3N       0x40   }\textcolor{comment}{/* Saturation level -\/3         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_LEVEL4N       0x80   }\textcolor{comment}{/* Saturation level -\/4         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{comment}{/* Contrast */} }
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL4P         0x00   }\textcolor{comment}{/* Contrast level +4           */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL3P         0x01   }\textcolor{comment}{/* Contrast level +3           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL2P         0x02   }\textcolor{comment}{/* Contrast level +2           */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL1P         0x04   }\textcolor{comment}{/* Contrast level +1           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL0          0x08   }\textcolor{comment}{/* Contrast level 0            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL1N         0x10   }\textcolor{comment}{/* Contrast level -\/1           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL2N         0x20   }\textcolor{comment}{/* Contrast level -\/2           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL3N         0x40   }\textcolor{comment}{/* Contrast level -\/3           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define OV5640\_CONTRAST\_LEVEL4N         0x80   }\textcolor{comment}{/* Contrast level -\/4           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{/* Hue Control */}   }
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#define OV5640\_HUE\_150P                 0x0001   }\textcolor{comment}{/* Hue 150+ degree           */}\textcolor{preprocessor}{ }}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#define OV5640\_HUE\_120P                 0x0002   }\textcolor{comment}{/* Hue 120+ degree           */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#define OV5640\_HUE\_90P                  0x0004   }\textcolor{comment}{/* Hue 90+ degree            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#define OV5640\_HUE\_60P                  0x0008   }\textcolor{comment}{/* Hue 60+ degree            */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define OV5640\_HUE\_30P                  0x0010   }\textcolor{comment}{/* Hue 30+ degree            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define OV5640\_HUE\_0                    0x0020   }\textcolor{comment}{/* Hue 0 degree              */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define OV5640\_HUE\_30N                  0x0040   }\textcolor{comment}{/* Hue 30-\/ degree            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define OV5640\_HUE\_60N                  0x0080   }\textcolor{comment}{/* Hue 60-\/ degree            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define OV5640\_HUE\_90N                  0x0100   }\textcolor{comment}{/* Hue 90-\/ degree            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define OV5640\_HUE\_120N                 0x0200   }\textcolor{comment}{/* Hue 120-\/ degree           */}\textcolor{preprocessor}{    }}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define OV5640\_HUE\_150N                 0x0400   }\textcolor{comment}{/* Hue 150-\/ degree           */}\textcolor{preprocessor}{   }}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define OV5640\_HUE\_180N                 0x0800   }\textcolor{comment}{/* Hue 180-\/ degree           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{comment}{/* Mirror/Flip */}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define OV5640\_MIRROR                   0x00   }\textcolor{comment}{/* Set camera mirror config    */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define OV5640\_FLIP                     0x01   }\textcolor{comment}{/* Set camera flip config      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define OV5640\_MIRROR\_FLIP              0x02   }\textcolor{comment}{/* Set camera mirror and flip  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#define OV5640\_MIRROR\_FLIP\_NORMAL       0x04   }\textcolor{comment}{/* Set camera normal mode      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{121    }
+\DoxyCodeLine{122 \textcolor{comment}{/* Zoom */}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define OV5640\_ZOOM\_x8                  0x00}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#define OV5640\_ZOOM\_x4                  0x11   }}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define OV5640\_ZOOM\_x2                  0x22   }}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define OV5640\_ZOOM\_x1                  0x44   }}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{/* Special Effect */}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_NONE              0x00 }\textcolor{comment}{/* No effect               */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_BLUE              0x01 }\textcolor{comment}{/* Blue effect             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_RED               0x02 }\textcolor{comment}{/* Red effect              */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_GREEN             0x04 }\textcolor{comment}{/* Green effect            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_BW                0x08 }\textcolor{comment}{/* Black and White effect  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_SEPIA             0x10 }\textcolor{comment}{/* Sepia effect            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_NEGATIVE          0x20 }\textcolor{comment}{/* Negative effect         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_BW\_NEGATIVE       0x40 }\textcolor{comment}{/* BW Negative effect      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_OVEREXPOSURE      0x80 }\textcolor{comment}{/* Over exposure effect    */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define OV5640\_COLOR\_EFFECT\_SOLARIZE          0x100 }\textcolor{comment}{/* Solarized effect       */}\textcolor{preprocessor}{ }}
+\DoxyCodeLine{139    }
+\DoxyCodeLine{140 \textcolor{comment}{/* Light Mode */}}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#define OV5640\_LIGHT\_AUTO               0x00   }\textcolor{comment}{/* Light Mode Auto             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define OV5640\_LIGHT\_SUNNY              0x01   }\textcolor{comment}{/* Light Mode Sunny            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define OV5640\_LIGHT\_OFFICE             0x02   }\textcolor{comment}{/* Light Mode Office           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#define OV5640\_LIGHT\_HOME               0x04   }\textcolor{comment}{/* Light Mode Home             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define OV5640\_LIGHT\_CLOUDY             0x08   }\textcolor{comment}{/* Light Mode Claudy           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{comment}{/* Saturation */} }
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_0             0x00   }\textcolor{comment}{/* Color saturation 0          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_1             0x01   }\textcolor{comment}{/* Color saturation 1          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_2             0x02   }\textcolor{comment}{/* Color saturation 2          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#define OV5640\_SATURATION\_3             0x04   }\textcolor{comment}{/* Color saturation 3          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{comment}{/* Exposure */} }
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define OV5640\_EXPOSURE\_LEVEL\_0         0x00   }\textcolor{comment}{/* Exposure Level 0            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#define OV5640\_EXPOSURE\_LEVEL\_1         0x01   }\textcolor{comment}{/* Exposure Level 1            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define OV5640\_EXPOSURE\_LEVEL\_2         0x02   }\textcolor{comment}{/* Exposure Level 2            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define OV5640\_EXPOSURE\_LEVEL\_3         0x04   }\textcolor{comment}{/* Exposure Level 3            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{166 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga636269583dbddaa607bfc6971db10325}{ov5640\_Init}}(uint16\_t DeviceAddr, uint32\_t resolution);}
+\DoxyCodeLine{167 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga6e65f234fcd4b604bdda851871e3e54c}{ov5640\_Config}}(uint16\_t DeviceAddr, uint32\_t feature, uint32\_t value, uint32\_t BR\_value);}
+\DoxyCodeLine{168 uint16\_t \mbox{\hyperlink{group___o_v5640___exported___functions_gae80a927198af9b4e8465f310b1ba4055}{ov5640\_ReadID}}(uint16\_t DeviceAddr);}
+\DoxyCodeLine{169 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga786b1de90982880c64eb842cb85aadcb}{OV5640\_SetLightMode}}(uint16\_t DeviceAddr, uint8\_t LightMode);}
+\DoxyCodeLine{170 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_gaed1c125986b5fcd8d0f3daa950015191}{OV5640\_SetEffect}}(uint16\_t DeviceAddr, uint32\_t Effect);}
+\DoxyCodeLine{171 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga98e6a8b7920cdbefddafb0c7ad9f941c}{OV5640\_SetBrightness}}(uint16\_t DeviceAddr, uint8\_t Level);}
+\DoxyCodeLine{172 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga93ba8424b5b9fa686ebd60c4659527d0}{OV5640\_SetSaturation}}(uint16\_t DeviceAddr, uint8\_t Level);}
+\DoxyCodeLine{173 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga161e0be2af568b9a4b5b33fad0feb62a}{OV5640\_SetContrast}}(uint16\_t DeviceAddr, uint8\_t Level);}
+\DoxyCodeLine{174 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga1069a28511c638f5b2cd37b9450565f4}{OV5640\_SetHueDegree}}(uint16\_t DeviceAddr, uint16\_t Degree);}
+\DoxyCodeLine{175 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga2f2d7cff86c0e46b52330c8d9f717699}{OV5640\_MirrorFlipConfig}}(uint16\_t DeviceAddr, uint8\_t Config);}
+\DoxyCodeLine{176 \textcolor{keywordtype}{void}     \mbox{\hyperlink{group___o_v5640___exported___functions_ga8d86da1d14b9820374d33965e3508b41}{OV5640\_ZoomConfig}}(uint16\_t DeviceAddr, uint8\_t Zoom);}
+\DoxyCodeLine{177 int32\_t  \mbox{\hyperlink{group___o_v5640___exported___functions_gab0f623916b30ea36387be37323bf4eac}{OV5640\_GetResolution}}(uint16\_t DeviceAddr);}
+\DoxyCodeLine{178 \textcolor{keywordtype}{void}     CAMERA\_IO\_Init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{179 \textcolor{keywordtype}{void}     CAMERA\_IO\_Write(uint8\_t addr, uint16\_t reg, uint16\_t value);}
+\DoxyCodeLine{180 uint16\_t CAMERA\_IO\_Read(uint8\_t Addr, uint16\_t Reg);}
+\DoxyCodeLine{181 \textcolor{keywordtype}{void}     CAMERA\_Delay(uint32\_t delay);}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 \textcolor{comment}{/* CAMERA driver structure */}}
+\DoxyCodeLine{184 \textcolor{keyword}{extern} \mbox{\hyperlink{struct_c_a_m_e_r_a___drv_type_def}{CAMERA\_DrvTypeDef}}   ov5640\_drv;}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{189 \}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_OV5640\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{205 \textcolor{comment}{/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/}}
+
+\end{DoxyCode}

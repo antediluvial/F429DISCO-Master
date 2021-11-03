@@ -1,0 +1,328 @@
+\hypertarget{group___o_v5640}{}\doxysection{OV5640}
+\label{group___o_v5640}\index{OV5640@{OV5640}}
+
+
+This file provides a set of functions needed to drive the OV5640 Camera module.  
+
+
+\doxysubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___o_v5640___private___types_definitions}{OV5640\+\_\+\+Private\+\_\+\+Types\+Definitions}}
+\item 
+\mbox{\hyperlink{group___o_v5640___private___defines}{OV5640\+\_\+\+Private\+\_\+\+Defines}}
+\item 
+\mbox{\hyperlink{group___o_v5640___private___macros}{OV5640\+\_\+\+Private\+\_\+\+Macros}}
+\item 
+\mbox{\hyperlink{group___o_v5640___private___function_prototypes}{OV5640\+\_\+\+Private\+\_\+\+Function\+Prototypes}}
+\item 
+\mbox{\hyperlink{group___o_v5640___private___variables}{OV5640\+\_\+\+Private\+\_\+\+Variables}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___o_v5640_ga636269583dbddaa607bfc6971db10325}{ov5640\+\_\+\+Init}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t resolution)
+\begin{DoxyCompactList}\small\item\em Initializes the OV5640 CAMERA component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga786b1de90982880c64eb842cb85aadcb}{OV5640\+\_\+\+Set\+Light\+Mode}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Light\+Mode)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Light Mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_gaed1c125986b5fcd8d0f3daa950015191}{OV5640\+\_\+\+Set\+Effect}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t Effect)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Special Effect. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga98e6a8b7920cdbefddafb0c7ad9f941c}{OV5640\+\_\+\+Set\+Brightness}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Brightness Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga93ba8424b5b9fa686ebd60c4659527d0}{OV5640\+\_\+\+Set\+Saturation}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Saturation Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga161e0be2af568b9a4b5b33fad0feb62a}{OV5640\+\_\+\+Set\+Contrast}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Contrast Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga1069a28511c638f5b2cd37b9450565f4}{OV5640\+\_\+\+Set\+Hue\+Degree}} (uint16\+\_\+t Device\+Addr, uint16\+\_\+t Degree)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Hue degree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga2f2d7cff86c0e46b52330c8d9f717699}{OV5640\+\_\+\+Mirror\+Flip\+Config}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Config)
+\begin{DoxyCompactList}\small\item\em Control OV5640 camera mirror/vflip. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_ga8d86da1d14b9820374d33965e3508b41}{OV5640\+\_\+\+Zoom\+Config}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Zoom)
+\begin{DoxyCompactList}\small\item\em Control OV5640 camera mirror/vflip. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group___o_v5640_gab0f623916b30ea36387be37323bf4eac}{OV5640\+\_\+\+Get\+Resolution}} (uint16\+\_\+t Device\+Addr)
+\begin{DoxyCompactList}\small\item\em Get OV5640 camera resolution. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640_gad4e274b0793270efce1aa43eeb7adde6}{ov5640\+\_\+\+Config}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t feature, uint32\+\_\+t value, uint32\+\_\+t brightness\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Configures the OV5640 camera feature. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group___o_v5640_gae80a927198af9b4e8465f310b1ba4055}{ov5640\+\_\+\+Read\+ID}} (uint16\+\_\+t Device\+Addr)
+\begin{DoxyCompactList}\small\item\em Read the OV5640 Camera identity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides a set of functions needed to drive the OV5640 Camera module. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___o_v5640_gad4e274b0793270efce1aa43eeb7adde6}\label{group___o_v5640_gad4e274b0793270efce1aa43eeb7adde6}} 
+\index{OV5640@{OV5640}!ov5640\_Config@{ov5640\_Config}}
+\index{ov5640\_Config@{ov5640\_Config}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{ov5640\_Config()}{ov5640\_Config()}}
+{\footnotesize\ttfamily void ov5640\+\_\+\+Config (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint32\+\_\+t}]{feature,  }\item[{uint32\+\_\+t}]{value,  }\item[{uint32\+\_\+t}]{brightness\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Configures the OV5640 camera feature. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em feature} & Camera feature to be configured \\
+\hline
+{\em value} & Value to be configured \\
+\hline
+{\em brightness\+\_\+value} & Brightness value to be configured \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_gab0f623916b30ea36387be37323bf4eac}\label{group___o_v5640_gab0f623916b30ea36387be37323bf4eac}} 
+\index{OV5640@{OV5640}!OV5640\_GetResolution@{OV5640\_GetResolution}}
+\index{OV5640\_GetResolution@{OV5640\_GetResolution}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_GetResolution()}{OV5640\_GetResolution()}}
+{\footnotesize\ttfamily int32\+\_\+t OV5640\+\_\+\+Get\+Resolution (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr }\end{DoxyParamCaption})}
+
+
+
+Get OV5640 camera resolution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Camera} & resolution else 0x\+FF \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_ga636269583dbddaa607bfc6971db10325}\label{group___o_v5640_ga636269583dbddaa607bfc6971db10325}} 
+\index{OV5640@{OV5640}!ov5640\_Init@{ov5640\_Init}}
+\index{ov5640\_Init@{ov5640\_Init}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{ov5640\_Init()}{ov5640\_Init()}}
+{\footnotesize\ttfamily void ov5640\+\_\+\+Init (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint32\+\_\+t}]{resolution }\end{DoxyParamCaption})}
+
+
+
+Initializes the OV5640 CAMERA component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em resolution} & Camera resolution \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_ga2f2d7cff86c0e46b52330c8d9f717699}\label{group___o_v5640_ga2f2d7cff86c0e46b52330c8d9f717699}} 
+\index{OV5640@{OV5640}!OV5640\_MirrorFlipConfig@{OV5640\_MirrorFlipConfig}}
+\index{OV5640\_MirrorFlipConfig@{OV5640\_MirrorFlipConfig}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_MirrorFlipConfig()}{OV5640\_MirrorFlipConfig()}}
+{\footnotesize\ttfamily void OV5640\+\_\+\+Mirror\+Flip\+Config (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint8\+\_\+t}]{Config }\end{DoxyParamCaption})}
+
+
+
+Control OV5640 camera mirror/vflip. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em Config} & To configure mirror, flip, both or nothing \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_gae80a927198af9b4e8465f310b1ba4055}\label{group___o_v5640_gae80a927198af9b4e8465f310b1ba4055}} 
+\index{OV5640@{OV5640}!ov5640\_ReadID@{ov5640\_ReadID}}
+\index{ov5640\_ReadID@{ov5640\_ReadID}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{ov5640\_ReadID()}{ov5640\_ReadID()}}
+{\footnotesize\ttfamily uint16\+\_\+t ov5640\+\_\+\+Read\+ID (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr }\end{DoxyParamCaption})}
+
+
+
+Read the OV5640 Camera identity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em the} & OV5640 ID \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_ga98e6a8b7920cdbefddafb0c7ad9f941c}\label{group___o_v5640_ga98e6a8b7920cdbefddafb0c7ad9f941c}} 
+\index{OV5640@{OV5640}!OV5640\_SetBrightness@{OV5640\_SetBrightness}}
+\index{OV5640\_SetBrightness@{OV5640\_SetBrightness}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_SetBrightness()}{OV5640\_SetBrightness()}}
+{\footnotesize\ttfamily void OV5640\+\_\+\+Set\+Brightness (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint8\+\_\+t}]{Level }\end{DoxyParamCaption})}
+
+
+
+Set the OV5640 camera Brightness Level. 
+
+\begin{DoxyNote}{Note}
+The brightness of OV5640 could be adjusted. Higher brightness will make the picture more bright. The side effect of higher brightness is the picture looks foggy. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em Level} & Value to be configured \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_ga161e0be2af568b9a4b5b33fad0feb62a}\label{group___o_v5640_ga161e0be2af568b9a4b5b33fad0feb62a}} 
+\index{OV5640@{OV5640}!OV5640\_SetContrast@{OV5640\_SetContrast}}
+\index{OV5640\_SetContrast@{OV5640\_SetContrast}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_SetContrast()}{OV5640\_SetContrast()}}
+{\footnotesize\ttfamily void OV5640\+\_\+\+Set\+Contrast (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint8\+\_\+t}]{Level }\end{DoxyParamCaption})}
+
+
+
+Set the OV5640 camera Contrast Level. 
+
+\begin{DoxyNote}{Note}
+The contrast of OV5640 could be adjusted. Higher contrast will make the picture sharp. But the side effect is loosing dynamic range. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em Level} & Value to be configured \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_gaed1c125986b5fcd8d0f3daa950015191}\label{group___o_v5640_gaed1c125986b5fcd8d0f3daa950015191}} 
+\index{OV5640@{OV5640}!OV5640\_SetEffect@{OV5640\_SetEffect}}
+\index{OV5640\_SetEffect@{OV5640\_SetEffect}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_SetEffect()}{OV5640\_SetEffect()}}
+{\footnotesize\ttfamily void OV5640\+\_\+\+Set\+Effect (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint32\+\_\+t}]{Effect }\end{DoxyParamCaption})}
+
+
+
+Set the OV5640 camera Special Effect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em Effect} & Effect to be configured \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_ga1069a28511c638f5b2cd37b9450565f4}\label{group___o_v5640_ga1069a28511c638f5b2cd37b9450565f4}} 
+\index{OV5640@{OV5640}!OV5640\_SetHueDegree@{OV5640\_SetHueDegree}}
+\index{OV5640\_SetHueDegree@{OV5640\_SetHueDegree}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_SetHueDegree()}{OV5640\_SetHueDegree()}}
+{\footnotesize\ttfamily void OV5640\+\_\+\+Set\+Hue\+Degree (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint16\+\_\+t}]{Degree }\end{DoxyParamCaption})}
+
+
+
+Set the OV5640 camera Hue degree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em Level} & Value to be configured \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_ga786b1de90982880c64eb842cb85aadcb}\label{group___o_v5640_ga786b1de90982880c64eb842cb85aadcb}} 
+\index{OV5640@{OV5640}!OV5640\_SetLightMode@{OV5640\_SetLightMode}}
+\index{OV5640\_SetLightMode@{OV5640\_SetLightMode}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_SetLightMode()}{OV5640\_SetLightMode()}}
+{\footnotesize\ttfamily void OV5640\+\_\+\+Set\+Light\+Mode (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint8\+\_\+t}]{Light\+Mode }\end{DoxyParamCaption})}
+
+
+
+Set the OV5640 camera Light Mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & \+: Device address on communication Bus. \\
+\hline
+{\em Effect} & \+: Effect to be configured \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_ga93ba8424b5b9fa686ebd60c4659527d0}\label{group___o_v5640_ga93ba8424b5b9fa686ebd60c4659527d0}} 
+\index{OV5640@{OV5640}!OV5640\_SetSaturation@{OV5640\_SetSaturation}}
+\index{OV5640\_SetSaturation@{OV5640\_SetSaturation}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_SetSaturation()}{OV5640\_SetSaturation()}}
+{\footnotesize\ttfamily void OV5640\+\_\+\+Set\+Saturation (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint8\+\_\+t}]{Level }\end{DoxyParamCaption})}
+
+
+
+Set the OV5640 camera Saturation Level. 
+
+\begin{DoxyNote}{Note}
+The color saturation of OV5640 could be adjusted. High color saturation would make the picture looks more vivid, but the side effect is the bigger noise and not accurate skin color. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em Level} & Value to be configured \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___o_v5640_ga8d86da1d14b9820374d33965e3508b41}\label{group___o_v5640_ga8d86da1d14b9820374d33965e3508b41}} 
+\index{OV5640@{OV5640}!OV5640\_ZoomConfig@{OV5640\_ZoomConfig}}
+\index{OV5640\_ZoomConfig@{OV5640\_ZoomConfig}!OV5640@{OV5640}}
+\doxysubsubsection{\texorpdfstring{OV5640\_ZoomConfig()}{OV5640\_ZoomConfig()}}
+{\footnotesize\ttfamily void OV5640\+\_\+\+Zoom\+Config (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Device\+Addr,  }\item[{uint8\+\_\+t}]{Zoom }\end{DoxyParamCaption})}
+
+
+
+Control OV5640 camera mirror/vflip. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Device\+Addr} & Device address on communication Bus. \\
+\hline
+{\em Zoom} & Zoom to be configured \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}

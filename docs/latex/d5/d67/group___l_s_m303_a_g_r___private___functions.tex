@@ -1,0 +1,441 @@
+\hypertarget{group___l_s_m303_a_g_r___private___functions}{}\doxysection{LSM303\+AGR\+\_\+\+Private\+\_\+\+Functions}
+\label{group___l_s_m303_a_g_r___private___functions}\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_gaff3007ee937e75b52ee4a701d8c9ceed}{LSM303\+AGR\+\_\+\+Acc\+Init}} (uint16\+\_\+t Init\+Struct)
+\begin{DoxyCompactList}\small\item\em Set LSM303\+AGR Initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga60fdf77dd197464db82e810544ebdb40}{LSM303\+AGR\+\_\+\+Acc\+De\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em LSM303\+AGR De-\/initialization. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga68de1aa013b2e43fcc4aca95b1f78dfa}{LSM303\+AGR\+\_\+\+Acc\+Read\+ID}} (void)
+\begin{DoxyCompactList}\small\item\em Read LSM303\+AGR ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga10d1921865c5a53fa6bd0d9b396c03e3}{LSM303\+AGR\+\_\+\+Acc\+Reboot\+Cmd}} (void)
+\begin{DoxyCompactList}\small\item\em Reboot memory content of LSM303\+AGR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_gac9d59f9ad7d5aed5e22e6990d6d11b83}{LSM303\+AGR\+\_\+\+Acc\+Filter\+Config}} (uint8\+\_\+t Filter\+Struct)
+\begin{DoxyCompactList}\small\item\em Set High Pass Filter Modality. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga107d3a2ba2625f007da6979a676c68fb}{LSM303\+AGR\+\_\+\+Acc\+Filter\+Cmd}} (uint8\+\_\+t High\+Pass\+Filter\+State)
+\begin{DoxyCompactList}\small\item\em Enable or Disable High Pass Filter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_gad78c0f243d78cf7a6b14d8d77ffea3c7}{LSM303\+AGR\+\_\+\+Acc\+Read\+XYZ}} (int16\+\_\+t $\ast$p\+Data)
+\begin{DoxyCompactList}\small\item\em Read X, Y \& Z Acceleration values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga3f9647db12e6804464eb2b1a44df6564}{LSM303\+AGR\+\_\+\+Acc\+Filter\+Click\+Cmd}} (uint8\+\_\+t High\+Pass\+Filter\+Click\+State)
+\begin{DoxyCompactList}\small\item\em Enable or Disable High Pass Filter on CLick. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga52962d54b89194362752cc76eebd0c70}{LSM303\+AGR\+\_\+\+Acc\+IT1\+Enable}} (uint8\+\_\+t LSM303\+AGR\+\_\+\+IT)
+\begin{DoxyCompactList}\small\item\em Enable LSM303\+AGR Interrupt1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga36212c70ef4a16524a2705af88781747}{LSM303\+AGR\+\_\+\+Acc\+IT1\+Disable}} (uint8\+\_\+t LSM303\+AGR\+\_\+\+IT)
+\begin{DoxyCompactList}\small\item\em Disable LSM303\+AGR Interrupt1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_gaa65af6b708b020b467ec808bdc891a8a}{LSM303\+AGR\+\_\+\+Acc\+IT2\+Enable}} (uint8\+\_\+t LSM303\+AGR\+\_\+\+IT)
+\begin{DoxyCompactList}\small\item\em Enable LSM303\+AGR Interrupt2. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga1afeff5c2432254fd5906bed90c123e9}{LSM303\+AGR\+\_\+\+Acc\+IT2\+Disable}} (uint8\+\_\+t LSM303\+AGR\+\_\+\+IT)
+\begin{DoxyCompactList}\small\item\em Disable LSM303\+AGR Interrupt2. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga96848f292406522bf4c973236900f3e8}{LSM303\+AGR\+\_\+\+Acc\+INT1\+Interrupt\+Enable}} (uint8\+\_\+t ITCombination, uint8\+\_\+t ITAxes)
+\begin{DoxyCompactList}\small\item\em INT1 interrupt enable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_gab388976575b551626e01e2754aa3a924}{LSM303\+AGR\+\_\+\+Acc\+INT1\+Interrupt\+Disable}} (uint8\+\_\+t ITCombination, uint8\+\_\+t ITAxes)
+\begin{DoxyCompactList}\small\item\em INT1 interrupt disable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga678f2efa2050f7d708947eebfc867394}{LSM303\+AGR\+\_\+\+Acc\+INT2\+Interrupt\+Enable}} (uint8\+\_\+t ITCombination, uint8\+\_\+t ITAxes)
+\begin{DoxyCompactList}\small\item\em INT2 interrupt enable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga28b9811a222f64a44b201d8147ff3942}{LSM303\+AGR\+\_\+\+Acc\+INT2\+Interrupt\+Disable}} (uint8\+\_\+t ITCombination, uint8\+\_\+t ITAxes)
+\begin{DoxyCompactList}\small\item\em INT2 interrupt config. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_gacd54e26e6fe3a09b76badd4fa4d666e3}{LSM303\+AGR\+\_\+\+Acc\+Click\+ITEnable}} (uint8\+\_\+t ITClick)
+\begin{DoxyCompactList}\small\item\em Click interrupt enable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_gad43d40e48e248984f743d128c1e5aaf6}{LSM303\+AGR\+\_\+\+Acc\+Click\+ITDisable}} (uint8\+\_\+t ITClick)
+\begin{DoxyCompactList}\small\item\em Click interrupt disable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___l_s_m303_a_g_r___private___functions_ga0f1721dad6fdec0d7121fbc7c1d2ce9f}{LSM303\+AGR\+\_\+\+Acc\+ZClick\+ITConfig}} (void)
+\begin{DoxyCompactList}\small\item\em Click on Z axis interrupt config. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_gad43d40e48e248984f743d128c1e5aaf6}\label{group___l_s_m303_a_g_r___private___functions_gad43d40e48e248984f743d128c1e5aaf6}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccClickITDisable@{LSM303AGR\_AccClickITDisable}}
+\index{LSM303AGR\_AccClickITDisable@{LSM303AGR\_AccClickITDisable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccClickITDisable()}{LSM303AGR\_AccClickITDisable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+Click\+ITDisable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ITClick }\end{DoxyParamCaption})}
+
+
+
+Click interrupt disable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ITClick} & the selected click interrupt to disable \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_gacd54e26e6fe3a09b76badd4fa4d666e3}\label{group___l_s_m303_a_g_r___private___functions_gacd54e26e6fe3a09b76badd4fa4d666e3}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccClickITEnable@{LSM303AGR\_AccClickITEnable}}
+\index{LSM303AGR\_AccClickITEnable@{LSM303AGR\_AccClickITEnable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccClickITEnable()}{LSM303AGR\_AccClickITEnable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+Click\+ITEnable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ITClick }\end{DoxyParamCaption})}
+
+
+
+Click interrupt enable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ITClick} & the selected interrupt to enable \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga60fdf77dd197464db82e810544ebdb40}\label{group___l_s_m303_a_g_r___private___functions_ga60fdf77dd197464db82e810544ebdb40}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccDeInit@{LSM303AGR\_AccDeInit}}
+\index{LSM303AGR\_AccDeInit@{LSM303AGR\_AccDeInit}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccDeInit()}{LSM303AGR\_AccDeInit()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+De\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+LSM303\+AGR De-\/initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga3f9647db12e6804464eb2b1a44df6564}\label{group___l_s_m303_a_g_r___private___functions_ga3f9647db12e6804464eb2b1a44df6564}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccFilterClickCmd@{LSM303AGR\_AccFilterClickCmd}}
+\index{LSM303AGR\_AccFilterClickCmd@{LSM303AGR\_AccFilterClickCmd}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccFilterClickCmd()}{LSM303AGR\_AccFilterClickCmd()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+Filter\+Click\+Cmd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{High\+Pass\+Filter\+Click\+State }\end{DoxyParamCaption})}
+
+
+
+Enable or Disable High Pass Filter on CLick. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em High\+Pass\+Filter\+State} & new state of the High Pass Filter feature. This parameter can be\+: \begin{DoxyItemize}
+\item \+: LSM303\+AGR\+\_\+\+HPF\+\_\+\+CLICK\+\_\+\+DISABLE \item \+: LSM303\+AGR\+\_\+\+HPF\+\_\+\+CLICK\+\_\+\+ENABLE \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga107d3a2ba2625f007da6979a676c68fb}\label{group___l_s_m303_a_g_r___private___functions_ga107d3a2ba2625f007da6979a676c68fb}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccFilterCmd@{LSM303AGR\_AccFilterCmd}}
+\index{LSM303AGR\_AccFilterCmd@{LSM303AGR\_AccFilterCmd}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccFilterCmd()}{LSM303AGR\_AccFilterCmd()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+Filter\+Cmd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{High\+Pass\+Filter\+State }\end{DoxyParamCaption})}
+
+
+
+Enable or Disable High Pass Filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em High\+Pass\+Filter\+State} & new state of the High Pass Filter feature. This parameter can be\+: \begin{DoxyItemize}
+\item \+: LSM303\+AGR\+\_\+\+HIGHPASSFILTER\+\_\+\+DISABLE \item \+: LSM303\+AGR\+\_\+\+HIGHPASSFILTER\+\_\+\+ENABLE \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_gac9d59f9ad7d5aed5e22e6990d6d11b83}\label{group___l_s_m303_a_g_r___private___functions_gac9d59f9ad7d5aed5e22e6990d6d11b83}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccFilterConfig@{LSM303AGR\_AccFilterConfig}}
+\index{LSM303AGR\_AccFilterConfig@{LSM303AGR\_AccFilterConfig}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccFilterConfig()}{LSM303AGR\_AccFilterConfig()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+Filter\+Config (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Filter\+Struct }\end{DoxyParamCaption})}
+
+
+
+Set High Pass Filter Modality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Filter\+Struct} & contains data for filter config \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_gaff3007ee937e75b52ee4a701d8c9ceed}\label{group___l_s_m303_a_g_r___private___functions_gaff3007ee937e75b52ee4a701d8c9ceed}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccInit@{LSM303AGR\_AccInit}}
+\index{LSM303AGR\_AccInit@{LSM303AGR\_AccInit}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccInit()}{LSM303AGR\_AccInit()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+Init (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Init\+Struct }\end{DoxyParamCaption})}
+
+
+
+Set LSM303\+AGR Initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Init\+Struct} & Init parameters \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_gab388976575b551626e01e2754aa3a924}\label{group___l_s_m303_a_g_r___private___functions_gab388976575b551626e01e2754aa3a924}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccINT1InterruptDisable@{LSM303AGR\_AccINT1InterruptDisable}}
+\index{LSM303AGR\_AccINT1InterruptDisable@{LSM303AGR\_AccINT1InterruptDisable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccINT1InterruptDisable()}{LSM303AGR\_AccINT1InterruptDisable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+INT1\+Interrupt\+Disable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ITCombination,  }\item[{uint8\+\_\+t}]{ITAxes }\end{DoxyParamCaption})}
+
+
+
+INT1 interrupt disable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ITCombination} & Or or And combination ITAxes\+: Axes to be enabled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga96848f292406522bf4c973236900f3e8}\label{group___l_s_m303_a_g_r___private___functions_ga96848f292406522bf4c973236900f3e8}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccINT1InterruptEnable@{LSM303AGR\_AccINT1InterruptEnable}}
+\index{LSM303AGR\_AccINT1InterruptEnable@{LSM303AGR\_AccINT1InterruptEnable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccINT1InterruptEnable()}{LSM303AGR\_AccINT1InterruptEnable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+INT1\+Interrupt\+Enable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ITCombination,  }\item[{uint8\+\_\+t}]{ITAxes }\end{DoxyParamCaption})}
+
+
+
+INT1 interrupt enable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ITCombination} & Or or And combination ITAxes\+: Axes to be enabled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga28b9811a222f64a44b201d8147ff3942}\label{group___l_s_m303_a_g_r___private___functions_ga28b9811a222f64a44b201d8147ff3942}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccINT2InterruptDisable@{LSM303AGR\_AccINT2InterruptDisable}}
+\index{LSM303AGR\_AccINT2InterruptDisable@{LSM303AGR\_AccINT2InterruptDisable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccINT2InterruptDisable()}{LSM303AGR\_AccINT2InterruptDisable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+INT2\+Interrupt\+Disable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ITCombination,  }\item[{uint8\+\_\+t}]{ITAxes }\end{DoxyParamCaption})}
+
+
+
+INT2 interrupt config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ITCombination} & Or or And combination ITAxes\+: axes to be enabled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga678f2efa2050f7d708947eebfc867394}\label{group___l_s_m303_a_g_r___private___functions_ga678f2efa2050f7d708947eebfc867394}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccINT2InterruptEnable@{LSM303AGR\_AccINT2InterruptEnable}}
+\index{LSM303AGR\_AccINT2InterruptEnable@{LSM303AGR\_AccINT2InterruptEnable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccINT2InterruptEnable()}{LSM303AGR\_AccINT2InterruptEnable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+INT2\+Interrupt\+Enable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ITCombination,  }\item[{uint8\+\_\+t}]{ITAxes }\end{DoxyParamCaption})}
+
+
+
+INT2 interrupt enable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ITCombination} & Or or And combination ITAxes\+: axes to be enabled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga36212c70ef4a16524a2705af88781747}\label{group___l_s_m303_a_g_r___private___functions_ga36212c70ef4a16524a2705af88781747}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccIT1Disable@{LSM303AGR\_AccIT1Disable}}
+\index{LSM303AGR\_AccIT1Disable@{LSM303AGR\_AccIT1Disable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccIT1Disable()}{LSM303AGR\_AccIT1Disable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+IT1\+Disable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{LSM303\+AGR\+\_\+\+IT }\end{DoxyParamCaption})}
+
+
+
+Disable LSM303\+AGR Interrupt1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em LSM303\+AGR\+\_\+\+IT} & specifies the LSM303\+AGR interrupt source to be disabled. This parameter can be any combination of the following values\+: \begin{DoxyItemize}
+\item LSM303\+AGR\+\_\+\+IT1\+\_\+\+CLICK \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+AOI1 \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+AOI2 \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+DRY1 \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+DRY2 \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+WTM \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+OVERRUN \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga52962d54b89194362752cc76eebd0c70}\label{group___l_s_m303_a_g_r___private___functions_ga52962d54b89194362752cc76eebd0c70}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccIT1Enable@{LSM303AGR\_AccIT1Enable}}
+\index{LSM303AGR\_AccIT1Enable@{LSM303AGR\_AccIT1Enable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccIT1Enable()}{LSM303AGR\_AccIT1Enable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+IT1\+Enable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{LSM303\+AGR\+\_\+\+IT }\end{DoxyParamCaption})}
+
+
+
+Enable LSM303\+AGR Interrupt1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em LSM303\+AGR\+\_\+\+IT} & specifies the LSM303\+AGR interrupt source to be enabled. This parameter can be any combination of the following values\+: \begin{DoxyItemize}
+\item LSM303\+AGR\+\_\+\+IT1\+\_\+\+CLICK \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+AOI1 \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+AOI2 \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+DRY1 \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+DRY2 \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+WTM \item LSM303\+AGR\+\_\+\+IT1\+\_\+\+OVERRUN \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga1afeff5c2432254fd5906bed90c123e9}\label{group___l_s_m303_a_g_r___private___functions_ga1afeff5c2432254fd5906bed90c123e9}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccIT2Disable@{LSM303AGR\_AccIT2Disable}}
+\index{LSM303AGR\_AccIT2Disable@{LSM303AGR\_AccIT2Disable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccIT2Disable()}{LSM303AGR\_AccIT2Disable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+IT2\+Disable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{LSM303\+AGR\+\_\+\+IT }\end{DoxyParamCaption})}
+
+
+
+Disable LSM303\+AGR Interrupt2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em LSM303\+AGR\+\_\+\+IT} & specifies the LSM303\+AGR interrupt source to be disabled. This parameter can be any combination of the following values\+: \begin{DoxyItemize}
+\item LSM303\+AGR\+\_\+\+IT2\+\_\+\+CLICK \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+INT1 \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+INT2 \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+BOOT \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+ACT \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+HLACTIVE \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_gaa65af6b708b020b467ec808bdc891a8a}\label{group___l_s_m303_a_g_r___private___functions_gaa65af6b708b020b467ec808bdc891a8a}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccIT2Enable@{LSM303AGR\_AccIT2Enable}}
+\index{LSM303AGR\_AccIT2Enable@{LSM303AGR\_AccIT2Enable}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccIT2Enable()}{LSM303AGR\_AccIT2Enable()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+IT2\+Enable (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{LSM303\+AGR\+\_\+\+IT }\end{DoxyParamCaption})}
+
+
+
+Enable LSM303\+AGR Interrupt2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em LSM303\+AGR\+\_\+\+IT} & specifies the LSM303\+AGR interrupt source to be enabled. This parameter can be any combination of the following values\+: \begin{DoxyItemize}
+\item LSM303\+AGR\+\_\+\+IT2\+\_\+\+CLICK \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+INT1 \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+INT2 \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+BOOT \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+ACT \item LSM303\+AGR\+\_\+\+IT2\+\_\+\+HLACTIVE \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga68de1aa013b2e43fcc4aca95b1f78dfa}\label{group___l_s_m303_a_g_r___private___functions_ga68de1aa013b2e43fcc4aca95b1f78dfa}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccReadID@{LSM303AGR\_AccReadID}}
+\index{LSM303AGR\_AccReadID@{LSM303AGR\_AccReadID}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccReadID()}{LSM303AGR\_AccReadID()}}
+{\footnotesize\ttfamily uint8\+\_\+t LSM303\+AGR\+\_\+\+Acc\+Read\+ID (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read LSM303\+AGR ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ID} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_gad78c0f243d78cf7a6b14d8d77ffea3c7}\label{group___l_s_m303_a_g_r___private___functions_gad78c0f243d78cf7a6b14d8d77ffea3c7}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccReadXYZ@{LSM303AGR\_AccReadXYZ}}
+\index{LSM303AGR\_AccReadXYZ@{LSM303AGR\_AccReadXYZ}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccReadXYZ()}{LSM303AGR\_AccReadXYZ()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+Read\+XYZ (\begin{DoxyParamCaption}\item[{int16\+\_\+t $\ast$}]{p\+Data }\end{DoxyParamCaption})}
+
+
+
+Read X, Y \& Z Acceleration values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Data} & Data out pointer \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga10d1921865c5a53fa6bd0d9b396c03e3}\label{group___l_s_m303_a_g_r___private___functions_ga10d1921865c5a53fa6bd0d9b396c03e3}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccRebootCmd@{LSM303AGR\_AccRebootCmd}}
+\index{LSM303AGR\_AccRebootCmd@{LSM303AGR\_AccRebootCmd}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccRebootCmd()}{LSM303AGR\_AccRebootCmd()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+Reboot\+Cmd (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Reboot memory content of LSM303\+AGR. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group___l_s_m303_a_g_r___private___functions_ga0f1721dad6fdec0d7121fbc7c1d2ce9f}\label{group___l_s_m303_a_g_r___private___functions_ga0f1721dad6fdec0d7121fbc7c1d2ce9f}} 
+\index{LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}!LSM303AGR\_AccZClickITConfig@{LSM303AGR\_AccZClickITConfig}}
+\index{LSM303AGR\_AccZClickITConfig@{LSM303AGR\_AccZClickITConfig}!LSM303AGR\_Private\_Functions@{LSM303AGR\_Private\_Functions}}
+\doxysubsubsection{\texorpdfstring{LSM303AGR\_AccZClickITConfig()}{LSM303AGR\_AccZClickITConfig()}}
+{\footnotesize\ttfamily void LSM303\+AGR\+\_\+\+Acc\+ZClick\+ITConfig (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Click on Z axis interrupt config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}

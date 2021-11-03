@@ -1,0 +1,59 @@
+\hypertarget{group___n_t35510___exported___functions}{}\doxysection{OTM8009A Exported Functions}
+\label{group___n_t35510___exported___functions}\index{OTM8009A Exported Functions@{OTM8009A Exported Functions}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___n_t35510___exported___functions_gaed54ae6690c96e906e15d6ff38347287}{NT35510\+\_\+\+Init}} (uint32\+\_\+t Color\+Coding, uint32\+\_\+t orientation)
+\begin{DoxyCompactList}\small\item\em Initializes the LCD Frida display part by communication in DSI mode in Video Mode with IC Display Driver NT35510 (see IC Driver specification for more information). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___n_t35510___exported___functions_gae663d792047526399ce1e4a8362f471e}{DSI\+\_\+\+IO\+\_\+\+Write\+Cmd}} (uint32\+\_\+t Nbr\+Params, uint8\+\_\+t $\ast$p\+Params)
+\begin{DoxyCompactList}\small\item\em DSI IO write short/long command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___n_t35510___exported___functions_ga53e5b8cac54c200b3b86d1f7dbe32bcc}\label{group___n_t35510___exported___functions_ga53e5b8cac54c200b3b86d1f7dbe32bcc}} 
+uint8\+\_\+t {\bfseries NT35510\+\_\+\+De\+Init} (void)
+\item 
+\mbox{\Hypertarget{group___n_t35510___exported___functions_gab6e3c5c0ffeb069b6a5ef11906c0cb5f}\label{group___n_t35510___exported___functions_gab6e3c5c0ffeb069b6a5ef11906c0cb5f}} 
+void {\bfseries NT35510\+\_\+\+IO\+\_\+\+Delay} (uint32\+\_\+t Delay)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___n_t35510___exported___functions_gae663d792047526399ce1e4a8362f471e}\label{group___n_t35510___exported___functions_gae663d792047526399ce1e4a8362f471e}} 
+\index{OTM8009A Exported Functions@{OTM8009A Exported Functions}!DSI\_IO\_WriteCmd@{DSI\_IO\_WriteCmd}}
+\index{DSI\_IO\_WriteCmd@{DSI\_IO\_WriteCmd}!OTM8009A Exported Functions@{OTM8009A Exported Functions}}
+\doxysubsubsection{\texorpdfstring{DSI\_IO\_WriteCmd()}{DSI\_IO\_WriteCmd()}}
+{\footnotesize\ttfamily void DSI\+\_\+\+IO\+\_\+\+Write\+Cmd (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Nbr\+Params,  }\item[{uint8\+\_\+t $\ast$}]{p\+Params }\end{DoxyParamCaption})}
+
+
+
+DSI IO write short/long command. 
+
+\begin{DoxyNote}{Note}
+\+: Can be surcharged by application code implementation of the function. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group___n_t35510___exported___functions_gaed54ae6690c96e906e15d6ff38347287}\label{group___n_t35510___exported___functions_gaed54ae6690c96e906e15d6ff38347287}} 
+\index{OTM8009A Exported Functions@{OTM8009A Exported Functions}!NT35510\_Init@{NT35510\_Init}}
+\index{NT35510\_Init@{NT35510\_Init}!OTM8009A Exported Functions@{OTM8009A Exported Functions}}
+\doxysubsubsection{\texorpdfstring{NT35510\_Init()}{NT35510\_Init()}}
+{\footnotesize\ttfamily uint8\+\_\+t NT35510\+\_\+\+Init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Color\+Coding,  }\item[{uint32\+\_\+t}]{orientation }\end{DoxyParamCaption})}
+
+
+
+Initializes the LCD Frida display part by communication in DSI mode in Video Mode with IC Display Driver NT35510 (see IC Driver specification for more information). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hdsi\+\_\+eval} & \+: pointer on DSI configuration structure \\
+\hline
+{\em hdsivideo\+\_\+handle} & \+: pointer on DSI video mode configuration structure \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Status} & \\
+\hline
+\end{DoxyRetVals}
+CABC \+: Content Adaptive Backlight Control section start \texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}
+
+CABC \+: Content Adaptive Backlight Control section end \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}

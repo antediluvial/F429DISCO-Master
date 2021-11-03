@@ -1,0 +1,1366 @@
+\hypertarget{lib__def_8h_source}{}\doxysection{lib\+\_\+def.\+h}
+\label{lib__def_8h_source}\index{lib/uCOS\_Src/lib\_def.h@{lib/uCOS\_Src/lib\_def.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                               uC/LIB}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                       Custom Library Modules}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2004-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{*}}
+\DoxyCodeLine{20 \textcolor{comment}{*                                     CORE CUSTOM LIBRARY MODULE}}
+\DoxyCodeLine{21 \textcolor{comment}{*}}
+\DoxyCodeLine{22 \textcolor{comment}{* Filename : lib\_def.h}}
+\DoxyCodeLine{23 \textcolor{comment}{* Version  : V1.39.00}}
+\DoxyCodeLine{24 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{25 \textcolor{comment}{* Note(s)  : (1) Assumes the following versions (or more recent) of software modules are included in}}
+\DoxyCodeLine{26 \textcolor{comment}{*                the project build :}}
+\DoxyCodeLine{27 \textcolor{comment}{*}}
+\DoxyCodeLine{28 \textcolor{comment}{*                (a) uC/CPU V1.29.00}}
+\DoxyCodeLine{29 \textcolor{comment}{*}}
+\DoxyCodeLine{30 \textcolor{comment}{*}}
+\DoxyCodeLine{31 \textcolor{comment}{*            (2) NO compiler-\/supplied standard library functions are used in library or product software.}}
+\DoxyCodeLine{32 \textcolor{comment}{*}}
+\DoxyCodeLine{33 \textcolor{comment}{*                (a) ALL standard library functions are implemented in the custom library modules :}}
+\DoxyCodeLine{34 \textcolor{comment}{*}}
+\DoxyCodeLine{35 \textcolor{comment}{*                    (1) \(\backslash\)<Custom Library Directory>\(\backslash\)lib\_*.*}}
+\DoxyCodeLine{36 \textcolor{comment}{*}}
+\DoxyCodeLine{37 \textcolor{comment}{*                    (2) \(\backslash\)<Custom Library Directory>\(\backslash\)Ports\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)lib*\_a.*}}
+\DoxyCodeLine{38 \textcolor{comment}{*}}
+\DoxyCodeLine{39 \textcolor{comment}{*                          where}}
+\DoxyCodeLine{40 \textcolor{comment}{*                                  <Custom Library Directory>      directory path for custom library software}}
+\DoxyCodeLine{41 \textcolor{comment}{*                                  <cpu>                           directory name for specific processor (CPU)}}
+\DoxyCodeLine{42 \textcolor{comment}{*                                  <compiler>                      directory name for specific compiler}}
+\DoxyCodeLine{43 \textcolor{comment}{*}}
+\DoxyCodeLine{44 \textcolor{comment}{*                (b) Product-\/specific library functions are implemented in individual products.}}
+\DoxyCodeLine{45 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{46 \textcolor{comment}{*/}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{/*}}
+\DoxyCodeLine{49 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{50 \textcolor{comment}{*                                               MODULE}}
+\DoxyCodeLine{51 \textcolor{comment}{*}}
+\DoxyCodeLine{52 \textcolor{comment}{* Note(s) : (1) This library definition header file is protected from multiple pre-\/processor inclusion}}
+\DoxyCodeLine{53 \textcolor{comment}{*               through use of the library definition module present pre-\/processor macro definition.}}
+\DoxyCodeLine{54 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{55 \textcolor{comment}{*/}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#ifndef  LIB\_DEF\_MODULE\_PRESENT}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define  LIB\_DEF\_MODULE\_PRESENT}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{comment}{/*}}
+\DoxyCodeLine{62 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{63 \textcolor{comment}{*                                CUSTOM LIBRARY MODULE VERSION NUMBER}}
+\DoxyCodeLine{64 \textcolor{comment}{*}}
+\DoxyCodeLine{65 \textcolor{comment}{* Note(s) : (1) (a) The custom library module software version is denoted as follows :}}
+\DoxyCodeLine{66 \textcolor{comment}{*}}
+\DoxyCodeLine{67 \textcolor{comment}{*                       Vx.yy.zz}}
+\DoxyCodeLine{68 \textcolor{comment}{*}}
+\DoxyCodeLine{69 \textcolor{comment}{*                           where}}
+\DoxyCodeLine{70 \textcolor{comment}{*                                   V               denotes 'Version' label}}
+\DoxyCodeLine{71 \textcolor{comment}{*                                   x               denotes     major software version revision number}}
+\DoxyCodeLine{72 \textcolor{comment}{*                                   yy              denotes     minor software version revision number}}
+\DoxyCodeLine{73 \textcolor{comment}{*                                   zz              denotes sub-\/minor software version revision number}}
+\DoxyCodeLine{74 \textcolor{comment}{*}}
+\DoxyCodeLine{75 \textcolor{comment}{*               (b) The software version label \#define is formatted as follows :}}
+\DoxyCodeLine{76 \textcolor{comment}{*}}
+\DoxyCodeLine{77 \textcolor{comment}{*                       ver = x.yyzz * 100 * 100}}
+\DoxyCodeLine{78 \textcolor{comment}{*}}
+\DoxyCodeLine{79 \textcolor{comment}{*                           where}}
+\DoxyCodeLine{80 \textcolor{comment}{*                                   ver             denotes software version number scaled as an integer value}}
+\DoxyCodeLine{81 \textcolor{comment}{*                                   x.yyzz          denotes software version number, where the unscaled integer}}
+\DoxyCodeLine{82 \textcolor{comment}{*                                                       portion denotes the major version number \& the unscaled}}
+\DoxyCodeLine{83 \textcolor{comment}{*                                                       fractional portion denotes the (concatenated) minor}}
+\DoxyCodeLine{84 \textcolor{comment}{*                                                       version numbers}}
+\DoxyCodeLine{85 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{86 \textcolor{comment}{*/}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define  LIB\_VERSION                                   13900u   }\textcolor{comment}{/* See Note \#1.                                         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{comment}{/*}}
+\DoxyCodeLine{92 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{93 \textcolor{comment}{*                                            INCLUDE FILES}}
+\DoxyCodeLine{94 \textcolor{comment}{*}}
+\DoxyCodeLine{95 \textcolor{comment}{* Note(s) : (1) The custom library software files are located in the following directories :}}
+\DoxyCodeLine{96 \textcolor{comment}{*}}
+\DoxyCodeLine{97 \textcolor{comment}{*               (a) \(\backslash\)<Custom Library Directory>\(\backslash\)lib\_*.*}}
+\DoxyCodeLine{98 \textcolor{comment}{*}}
+\DoxyCodeLine{99 \textcolor{comment}{*                       where}}
+\DoxyCodeLine{100 \textcolor{comment}{*                               <Custom Library Directory>      directory path for custom library software}}
+\DoxyCodeLine{101 \textcolor{comment}{*}}
+\DoxyCodeLine{102 \textcolor{comment}{*           (2) CPU-\/configuration  software files are located in the following directories :}}
+\DoxyCodeLine{103 \textcolor{comment}{*}}
+\DoxyCodeLine{104 \textcolor{comment}{*               (a) \(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)cpu\_*.*}}
+\DoxyCodeLine{105 \textcolor{comment}{*               (b) \(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)cpu*.*}}
+\DoxyCodeLine{106 \textcolor{comment}{*}}
+\DoxyCodeLine{107 \textcolor{comment}{*                       where}}
+\DoxyCodeLine{108 \textcolor{comment}{*                               <CPU-\/Compiler Directory>        directory path for common CPU-\/compiler software}}
+\DoxyCodeLine{109 \textcolor{comment}{*                               <cpu>                           directory name for specific processor (CPU)}}
+\DoxyCodeLine{110 \textcolor{comment}{*                               <compiler>                      directory name for specific compiler}}
+\DoxyCodeLine{111 \textcolor{comment}{*}}
+\DoxyCodeLine{112 \textcolor{comment}{*           (3) Compiler MUST be configured to include as additional include path directories :}}
+\DoxyCodeLine{113 \textcolor{comment}{*}}
+\DoxyCodeLine{114 \textcolor{comment}{*               (a) '\(\backslash\)<Custom Library Directory>\(\backslash\)' directory                            See Note \#1a}}
+\DoxyCodeLine{115 \textcolor{comment}{*}}
+\DoxyCodeLine{116 \textcolor{comment}{*               (b) (1) '\(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)'                  directory         See Note \#2a}}
+\DoxyCodeLine{117 \textcolor{comment}{*                   (2) '\(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)' directory         See Note \#2b}}
+\DoxyCodeLine{118 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{119 \textcolor{comment}{*/}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#include  <cpu\_def.h>}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#include  <cpu.h>}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{comment}{/*}}
+\DoxyCodeLine{126 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{127 \textcolor{comment}{*                                          STANDARD DEFINES}}
+\DoxyCodeLine{128 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{129 \textcolor{comment}{*/}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#define  DEF\_NULL                                          0}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ BOOLEAN DEFINES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define  DEF\_FALSE                                         0u}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#define  DEF\_TRUE                                          1u}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define  DEF\_NO                                            0u}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#define  DEF\_YES                                           1u}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#define  DEF\_DISABLED                                      0u}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define  DEF\_ENABLED                                       1u}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#define  DEF\_INACTIVE                                      0u}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define  DEF\_ACTIVE                                        1u}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#define  DEF\_INVALID                                       0u}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#define  DEF\_VALID                                         1u}}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#define  DEF\_OFF                                           0u}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#define  DEF\_ON                                            1u}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#define  DEF\_CLR                                           0u}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define  DEF\_SET                                           1u}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define  DEF\_FAIL                                          0u}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define  DEF\_OK                                            1u}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ BIT DEFINES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define  DEF\_BIT\_NONE                                   0x00u}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define  DEF\_BIT\_00                                     0x01u}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define  DEF\_BIT\_01                                     0x02u}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#define  DEF\_BIT\_02                                     0x04u}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define  DEF\_BIT\_03                                     0x08u}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define  DEF\_BIT\_04                                     0x10u}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define  DEF\_BIT\_05                                     0x20u}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define  DEF\_BIT\_06                                     0x40u}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define  DEF\_BIT\_07                                     0x80u}}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define  DEF\_BIT\_08                                   0x0100u}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define  DEF\_BIT\_09                                   0x0200u}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#define  DEF\_BIT\_10                                   0x0400u}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define  DEF\_BIT\_11                                   0x0800u}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#define  DEF\_BIT\_12                                   0x1000u}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define  DEF\_BIT\_13                                   0x2000u}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#define  DEF\_BIT\_14                                   0x4000u}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define  DEF\_BIT\_15                                   0x8000u}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define  DEF\_BIT\_16                               0x00010000u}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#define  DEF\_BIT\_17                               0x00020000u}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#define  DEF\_BIT\_18                               0x00040000u}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#define  DEF\_BIT\_19                               0x00080000u}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define  DEF\_BIT\_20                               0x00100000u}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#define  DEF\_BIT\_21                               0x00200000u}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define  DEF\_BIT\_22                               0x00400000u}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define  DEF\_BIT\_23                               0x00800000u}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define  DEF\_BIT\_24                               0x01000000u}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define  DEF\_BIT\_25                               0x02000000u}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#define  DEF\_BIT\_26                               0x04000000u}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define  DEF\_BIT\_27                               0x08000000u}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#define  DEF\_BIT\_28                               0x10000000u}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define  DEF\_BIT\_29                               0x20000000u}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#define  DEF\_BIT\_30                               0x40000000u}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#define  DEF\_BIT\_31                               0x80000000u}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define  DEF\_BIT\_32                       0x0000000100000000u}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define  DEF\_BIT\_33                       0x0000000200000000u}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#define  DEF\_BIT\_34                       0x0000000400000000u}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define  DEF\_BIT\_35                       0x0000000800000000u}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#define  DEF\_BIT\_36                       0x0000001000000000u}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define  DEF\_BIT\_37                       0x0000002000000000u}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#define  DEF\_BIT\_38                       0x0000004000000000u}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{\#define  DEF\_BIT\_39                       0x0000008000000000u}}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#define  DEF\_BIT\_40                       0x0000010000000000u}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#define  DEF\_BIT\_41                       0x0000020000000000u}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#define  DEF\_BIT\_42                       0x0000040000000000u}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{\#define  DEF\_BIT\_43                       0x0000080000000000u}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#define  DEF\_BIT\_44                       0x0000100000000000u}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#define  DEF\_BIT\_45                       0x0000200000000000u}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#define  DEF\_BIT\_46                       0x0000400000000000u}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{\#define  DEF\_BIT\_47                       0x0000800000000000u}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 \textcolor{preprocessor}{\#define  DEF\_BIT\_48                       0x0001000000000000u}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#define  DEF\_BIT\_49                       0x0002000000000000u}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#define  DEF\_BIT\_50                       0x0004000000000000u}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#define  DEF\_BIT\_51                       0x0008000000000000u}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#define  DEF\_BIT\_52                       0x0010000000000000u}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{\#define  DEF\_BIT\_53                       0x0020000000000000u}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{\#define  DEF\_BIT\_54                       0x0040000000000000u}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{\#define  DEF\_BIT\_55                       0x0080000000000000u}}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#define  DEF\_BIT\_56                       0x0100000000000000u}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{\#define  DEF\_BIT\_57                       0x0200000000000000u}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#define  DEF\_BIT\_58                       0x0400000000000000u}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{\#define  DEF\_BIT\_59                       0x0800000000000000u}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{\#define  DEF\_BIT\_60                       0x1000000000000000u}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{\#define  DEF\_BIT\_61                       0x2000000000000000u}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{\#define  DEF\_BIT\_62                       0x4000000000000000u}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{\#define  DEF\_BIT\_63                       0x8000000000000000u}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ ALIGN DEFINES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#define  DEF\_ALIGN\_MAX\_NBR\_OCTETS                       4096u}}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ OCTET DEFINES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define  DEF\_OCTET\_NBR\_BITS                                8u}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#define  DEF\_OCTET\_MASK                                 0xFFu}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#define  DEF\_OCTET\_TO\_BIT\_NBR\_BITS                         3u}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#define  DEF\_OCTET\_TO\_BIT\_SHIFT                          DEF\_OCTET\_TO\_BIT\_NBR\_BITS}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{\#define  DEF\_OCTET\_TO\_BIT\_MASK                          0x07u}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#define  DEF\_NIBBLE\_NBR\_BITS                               4u}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{\#define  DEF\_NIBBLE\_MASK                                0x0Fu}}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ NUMBER BASE DEFINES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#define  DEF\_NBR\_BASE\_BIN                                  2u}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{\#define  DEF\_NBR\_BASE\_OCT                                  8u}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#define  DEF\_NBR\_BASE\_DEC                                 10u}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#define  DEF\_NBR\_BASE\_HEX                                 16u}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ INTEGER DEFINES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#define  DEF\_INT\_08\_NBR\_BITS                               8u}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#define  DEF\_INT\_08\_MASK                                0xFFu}}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#define  DEF\_INT\_08U\_MIN\_VAL                               0u}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{\#define  DEF\_INT\_08U\_MAX\_VAL                             255u}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#define  DEF\_INT\_08S\_MIN\_VAL\_ONES\_CPL                  (-\/127)}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define  DEF\_INT\_08S\_MAX\_VAL\_ONES\_CPL                    127}}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 \textcolor{preprocessor}{\#define  DEF\_INT\_08S\_MIN\_VAL                            (DEF\_INT\_08S\_MIN\_VAL\_ONES\_CPL -\/ 1)}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#define  DEF\_INT\_08S\_MAX\_VAL                             DEF\_INT\_08S\_MAX\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272 \textcolor{preprocessor}{\#define  DEF\_INT\_08U\_NBR\_DIG\_MIN                           1u}}
+\DoxyCodeLine{273 \textcolor{preprocessor}{\#define  DEF\_INT\_08U\_NBR\_DIG\_MAX                           3u}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 \textcolor{preprocessor}{\#define  DEF\_INT\_08S\_NBR\_DIG\_MIN                           3u}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#define  DEF\_INT\_08S\_NBR\_DIG\_MAX                           3u}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 \textcolor{preprocessor}{\#define  DEF\_INT\_16\_NBR\_BITS                              16u}}
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#define  DEF\_INT\_16\_MASK                              0xFFFFu}}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \textcolor{preprocessor}{\#define  DEF\_INT\_16U\_MIN\_VAL                               0u}}
+\DoxyCodeLine{284 \textcolor{preprocessor}{\#define  DEF\_INT\_16U\_MAX\_VAL                           65535u}}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286 \textcolor{preprocessor}{\#define  DEF\_INT\_16S\_MIN\_VAL\_ONES\_CPL                (-\/32767)}}
+\DoxyCodeLine{287 \textcolor{preprocessor}{\#define  DEF\_INT\_16S\_MAX\_VAL\_ONES\_CPL                  32767}}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{preprocessor}{\#define  DEF\_INT\_16S\_MIN\_VAL                            (DEF\_INT\_16S\_MIN\_VAL\_ONES\_CPL -\/ 1)}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{\#define  DEF\_INT\_16S\_MAX\_VAL                             DEF\_INT\_16S\_MAX\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#define  DEF\_INT\_16U\_NBR\_DIG\_MIN                           1u}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define  DEF\_INT\_16U\_NBR\_DIG\_MAX                           5u}}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295 \textcolor{preprocessor}{\#define  DEF\_INT\_16S\_NBR\_DIG\_MIN                           5u}}
+\DoxyCodeLine{296 \textcolor{preprocessor}{\#define  DEF\_INT\_16S\_NBR\_DIG\_MAX                           5u}}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299 }
+\DoxyCodeLine{300 \textcolor{preprocessor}{\#define  DEF\_INT\_32\_NBR\_BITS                              32u}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#define  DEF\_INT\_32\_MASK                          0xFFFFFFFFu}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define  DEF\_INT\_32U\_MIN\_VAL                               0u}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#define  DEF\_INT\_32U\_MAX\_VAL                      4294967295u}}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#define  DEF\_INT\_32S\_MIN\_VAL\_ONES\_CPL           (-\/2147483647)}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{\#define  DEF\_INT\_32S\_MAX\_VAL\_ONES\_CPL             2147483647}}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#define  DEF\_INT\_32S\_MIN\_VAL                            (DEF\_INT\_32S\_MIN\_VAL\_ONES\_CPL -\/ 1)}}
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#define  DEF\_INT\_32S\_MAX\_VAL                             DEF\_INT\_32S\_MAX\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#define  DEF\_INT\_32U\_NBR\_DIG\_MIN                           1u}}
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#define  DEF\_INT\_32U\_NBR\_DIG\_MAX                          10u}}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315 \textcolor{preprocessor}{\#define  DEF\_INT\_32S\_NBR\_DIG\_MIN                          10u}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#define  DEF\_INT\_32S\_NBR\_DIG\_MAX                          10u}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320 \textcolor{preprocessor}{\#define  DEF\_INT\_64\_NBR\_BITS                              64u}}
+\DoxyCodeLine{321 \textcolor{preprocessor}{\#define  DEF\_INT\_64\_MASK                  0xFFFFFFFFFFFFFFFFu}}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323 \textcolor{preprocessor}{\#define  DEF\_INT\_64U\_MIN\_VAL                               0u}}
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#define  DEF\_INT\_64U\_MAX\_VAL            18446744073709551615u}}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#define  DEF\_INT\_64S\_MIN\_VAL\_ONES\_CPL  (-\/9223372036854775807)}}
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#define  DEF\_INT\_64S\_MAX\_VAL\_ONES\_CPL    9223372036854775807}}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 \textcolor{preprocessor}{\#define  DEF\_INT\_64S\_MIN\_VAL                            (DEF\_INT\_64S\_MIN\_VAL\_ONES\_CPL -\/ 1)}}
+\DoxyCodeLine{330 \textcolor{preprocessor}{\#define  DEF\_INT\_64S\_MAX\_VAL                             DEF\_INT\_64S\_MAX\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#define  DEF\_INT\_64U\_NBR\_DIG\_MIN                           1u}}
+\DoxyCodeLine{333 \textcolor{preprocessor}{\#define  DEF\_INT\_64U\_NBR\_DIG\_MAX                          20u}}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335 \textcolor{preprocessor}{\#define  DEF\_INT\_64S\_NBR\_DIG\_MIN                          19u}}
+\DoxyCodeLine{336 \textcolor{preprocessor}{\#define  DEF\_INT\_64S\_NBR\_DIG\_MAX                          19u}}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPU INTEGER DEFINES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{340 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_NBR\_BITS                           (CPU\_CFG\_DATA\_SIZE     * DEF\_OCTET\_NBR\_BITS)}}
+\DoxyCodeLine{341 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_NBR\_BITS\_MAX                       (CPU\_CFG\_DATA\_SIZE\_MAX * DEF\_OCTET\_NBR\_BITS)}}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#if     (DEF\_INT\_CPU\_NBR\_BITS == DEF\_INT\_08\_NBR\_BITS)}}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_MASK                                DEF\_INT\_08\_MASK}}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_U\_MIN\_VAL                           DEF\_INT\_08U\_MIN\_VAL}}
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_U\_MAX\_VAL                           DEF\_INT\_08U\_MAX\_VAL}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MIN\_VAL                           DEF\_INT\_08S\_MIN\_VAL}}
+\DoxyCodeLine{354 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MAX\_VAL                           DEF\_INT\_08S\_MAX\_VAL}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MIN\_VAL\_ONES\_CPL                  DEF\_INT\_08S\_MIN\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MAX\_VAL\_ONES\_CPL                  DEF\_INT\_08S\_MAX\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360 }
+\DoxyCodeLine{361 \textcolor{preprocessor}{\#elif   (DEF\_INT\_CPU\_NBR\_BITS == DEF\_INT\_16\_NBR\_BITS)}}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_MASK                                DEF\_INT\_16\_MASK}}
+\DoxyCodeLine{365 }
+\DoxyCodeLine{366 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_U\_MIN\_VAL                           DEF\_INT\_16U\_MIN\_VAL}}
+\DoxyCodeLine{367 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_U\_MAX\_VAL                           DEF\_INT\_16U\_MAX\_VAL}}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{369 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MIN\_VAL                           DEF\_INT\_16S\_MIN\_VAL}}
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MAX\_VAL                           DEF\_INT\_16S\_MAX\_VAL}}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MIN\_VAL\_ONES\_CPL                  DEF\_INT\_16S\_MIN\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MAX\_VAL\_ONES\_CPL                  DEF\_INT\_16S\_MAX\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376 }
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#elif   (DEF\_INT\_CPU\_NBR\_BITS == DEF\_INT\_32\_NBR\_BITS)}}
+\DoxyCodeLine{378 }
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_MASK                                DEF\_INT\_32\_MASK}}
+\DoxyCodeLine{381 }
+\DoxyCodeLine{382 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_U\_MIN\_VAL                           DEF\_INT\_32U\_MIN\_VAL}}
+\DoxyCodeLine{383 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_U\_MAX\_VAL                           DEF\_INT\_32U\_MAX\_VAL}}
+\DoxyCodeLine{384 }
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MIN\_VAL                           DEF\_INT\_32S\_MIN\_VAL}}
+\DoxyCodeLine{386 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MAX\_VAL                           DEF\_INT\_32S\_MAX\_VAL}}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MIN\_VAL\_ONES\_CPL                  DEF\_INT\_32S\_MIN\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MAX\_VAL\_ONES\_CPL                  DEF\_INT\_32S\_MAX\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393 \textcolor{preprocessor}{\#elif   (DEF\_INT\_CPU\_NBR\_BITS == DEF\_INT\_64\_NBR\_BITS)}}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_MASK                                DEF\_INT\_64\_MASK}}
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_U\_MIN\_VAL                           DEF\_INT\_64U\_MIN\_VAL}}
+\DoxyCodeLine{399 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_U\_MAX\_VAL                           DEF\_INT\_64U\_MAX\_VAL}}
+\DoxyCodeLine{400 }
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MIN\_VAL                           DEF\_INT\_64S\_MIN\_VAL}}
+\DoxyCodeLine{402 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MAX\_VAL                           DEF\_INT\_64S\_MAX\_VAL}}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MIN\_VAL\_ONES\_CPL                  DEF\_INT\_64S\_MIN\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{\#define  DEF\_INT\_CPU\_S\_MAX\_VAL\_ONES\_CPL                  DEF\_INT\_64S\_MAX\_VAL\_ONES\_CPL}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 }
+\DoxyCodeLine{408 }
+\DoxyCodeLine{409 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE  illegally \#defined in 'cpu.h'      "{}}}
+\DoxyCodeLine{412 \textcolor{preprocessor}{\#error  "{}                   [See 'cpu.h  CONFIGURATION ERRORS']"{}}}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ TIME DEFINES -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_DAY\_PER\_WK                           7u}}
+\DoxyCodeLine{419 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_DAY\_PER\_YR                         365u}}
+\DoxyCodeLine{420 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_DAY\_PER\_YR\_LEAP                    366u}}
+\DoxyCodeLine{421 }
+\DoxyCodeLine{422 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_HR\_PER\_DAY                          24u}}
+\DoxyCodeLine{423 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_HR\_PER\_WK                         (DEF\_TIME\_NBR\_HR\_PER\_DAY  * DEF\_TIME\_NBR\_DAY\_PER\_WK     )}}
+\DoxyCodeLine{424 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_HR\_PER\_YR                         (DEF\_TIME\_NBR\_HR\_PER\_DAY  * DEF\_TIME\_NBR\_DAY\_PER\_YR     )}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_HR\_PER\_YR\_LEAP                    (DEF\_TIME\_NBR\_HR\_PER\_DAY  * DEF\_TIME\_NBR\_DAY\_PER\_YR\_LEAP)}}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_MIN\_PER\_HR                          60u}}
+\DoxyCodeLine{428 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_MIN\_PER\_DAY                       (DEF\_TIME\_NBR\_MIN\_PER\_HR  * DEF\_TIME\_NBR\_HR\_PER\_DAY     )}}
+\DoxyCodeLine{429 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_MIN\_PER\_WK                        (DEF\_TIME\_NBR\_MIN\_PER\_DAY * DEF\_TIME\_NBR\_DAY\_PER\_WK     )}}
+\DoxyCodeLine{430 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_MIN\_PER\_YR                        (DEF\_TIME\_NBR\_MIN\_PER\_DAY * DEF\_TIME\_NBR\_DAY\_PER\_YR     )}}
+\DoxyCodeLine{431 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_MIN\_PER\_YR\_LEAP                   (DEF\_TIME\_NBR\_MIN\_PER\_DAY * DEF\_TIME\_NBR\_DAY\_PER\_YR\_LEAP)}}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_SEC\_PER\_MIN                         60u}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_SEC\_PER\_HR                        (DEF\_TIME\_NBR\_SEC\_PER\_MIN * DEF\_TIME\_NBR\_MIN\_PER\_HR     )}}
+\DoxyCodeLine{435 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_SEC\_PER\_DAY                       (DEF\_TIME\_NBR\_SEC\_PER\_HR  * DEF\_TIME\_NBR\_HR\_PER\_DAY     )}}
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_SEC\_PER\_WK                        (DEF\_TIME\_NBR\_SEC\_PER\_DAY * DEF\_TIME\_NBR\_DAY\_PER\_WK     )}}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_SEC\_PER\_YR                        (DEF\_TIME\_NBR\_SEC\_PER\_DAY * DEF\_TIME\_NBR\_DAY\_PER\_YR     )}}
+\DoxyCodeLine{438 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_SEC\_PER\_YR\_LEAP                   (DEF\_TIME\_NBR\_SEC\_PER\_DAY * DEF\_TIME\_NBR\_DAY\_PER\_YR\_LEAP)}}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_mS\_PER\_SEC                        1000u}}
+\DoxyCodeLine{441 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_uS\_PER\_SEC                     1000000u}}
+\DoxyCodeLine{442 \textcolor{preprocessor}{\#define  DEF\_TIME\_NBR\_nS\_PER\_SEC                  1000000000u}}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444 }
+\DoxyCodeLine{445 \textcolor{comment}{/*}}
+\DoxyCodeLine{446 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{447 \textcolor{comment}{*                                             ERROR CODES}}
+\DoxyCodeLine{448 \textcolor{comment}{*}}
+\DoxyCodeLine{449 \textcolor{comment}{* Note(s) : (1) All library error codes are \#define'd in 'lib\_def.h';}}
+\DoxyCodeLine{450 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{451 \textcolor{comment}{*/}}
+\DoxyCodeLine{452 }
+\DoxyCodeLine{453 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} lib\_err \{}
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455     LIB\_ERR\_NONE                            =         0u,}
+\DoxyCodeLine{456 }
+\DoxyCodeLine{457     LIB\_MEM\_ERR\_NONE                        =     10000u,}
+\DoxyCodeLine{458     LIB\_MEM\_ERR\_NULL\_PTR                    =     10001u,       \textcolor{comment}{/* Ptr arg(s) passed NULL ptr(s).                       */}}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{460     LIB\_MEM\_ERR\_INVALID\_MEM\_SIZE            =     10100u,       \textcolor{comment}{/* Invalid mem     size.                                */}}
+\DoxyCodeLine{461     LIB\_MEM\_ERR\_INVALID\_MEM\_ALIGN           =     10101u,       \textcolor{comment}{/* Invalid mem     align.                               */}}
+\DoxyCodeLine{462     LIB\_MEM\_ERR\_INVALID\_SEG\_SIZE            =     10110u,       \textcolor{comment}{/* Invalid mem seg size.                                */}}
+\DoxyCodeLine{463     LIB\_MEM\_ERR\_INVALID\_SEG\_OVERLAP         =     10111u,       \textcolor{comment}{/* Invalid mem seg overlaps other mem seg(s).           */}}
+\DoxyCodeLine{464     LIB\_MEM\_ERR\_INVALID\_SEG\_EXISTS          =     10112u,       \textcolor{comment}{/* Invalid mem seg already exists.                      */}}
+\DoxyCodeLine{465     LIB\_MEM\_ERR\_INVALID\_POOL                =     10120u,       \textcolor{comment}{/* Invalid mem pool.                                    */}}
+\DoxyCodeLine{466     LIB\_MEM\_ERR\_INVALID\_BLK\_NBR             =     10130u,       \textcolor{comment}{/* Invalid mem pool blk nbr.                            */}}
+\DoxyCodeLine{467     LIB\_MEM\_ERR\_INVALID\_BLK\_SIZE            =     10131u,       \textcolor{comment}{/* Invalid mem pool blk size.                           */}}
+\DoxyCodeLine{468     LIB\_MEM\_ERR\_INVALID\_BLK\_ALIGN           =     10132u,       \textcolor{comment}{/* Invalid mem pool blk align.                          */}}
+\DoxyCodeLine{469     LIB\_MEM\_ERR\_INVALID\_BLK\_IX              =     10133u,       \textcolor{comment}{/* Invalid mem pool ix.                                 */}}
+\DoxyCodeLine{470     LIB\_MEM\_ERR\_INVALID\_BLK\_ADDR            =     10135u,       \textcolor{comment}{/* Invalid mem pool blk addr.                           */}}
+\DoxyCodeLine{471     LIB\_MEM\_ERR\_INVALID\_BLK\_ADDR\_IN\_POOL    =     10136u,       \textcolor{comment}{/* Mem pool blk addr already in mem pool.               */}}
+\DoxyCodeLine{472 }
+\DoxyCodeLine{473     LIB\_MEM\_ERR\_SEG\_EMPTY                   =     10200u,       \textcolor{comment}{/* Mem seg  empty; i.e. NO avail mem in seg.            */}}
+\DoxyCodeLine{474     LIB\_MEM\_ERR\_SEG\_OVF                     =     10201u,       \textcolor{comment}{/* Mem seg  ovf;   i.e. req'd mem ovfs rem mem in seg.  */}}
+\DoxyCodeLine{475     LIB\_MEM\_ERR\_POOL\_FULL                   =     10205u,       \textcolor{comment}{/* Mem pool full;  i.e. all mem blks avail in mem pool. */}}
+\DoxyCodeLine{476     LIB\_MEM\_ERR\_POOL\_EMPTY                  =     10206u,       \textcolor{comment}{/* Mem pool empty; i.e. NO  mem blks avail in mem pool. */}}
+\DoxyCodeLine{477     LIB\_MEM\_ERR\_POOL\_UNLIMITED              =     10207u,       \textcolor{comment}{/* Mem pool is unlimited.                               */}}
+\DoxyCodeLine{478 }
+\DoxyCodeLine{479     LIB\_MEM\_ERR\_HEAP\_EMPTY                  =     10210u,       \textcolor{comment}{/* Heap seg empty; i.e. NO avail mem in heap.           */}}
+\DoxyCodeLine{480     LIB\_MEM\_ERR\_HEAP\_OVF                    =     10211u,       \textcolor{comment}{/* Heap seg ovf;   i.e. req'd mem ovfs rem mem in heap. */}}
+\DoxyCodeLine{481     LIB\_MEM\_ERR\_HEAP\_NOT\_FOUND              =     10215u        \textcolor{comment}{/* Heap seg NOT found.                                  */}}
+\DoxyCodeLine{482 }
+\DoxyCodeLine{483 \} LIB\_ERR;}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486 \textcolor{comment}{/*}}
+\DoxyCodeLine{487 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{488 \textcolor{comment}{*                                             DATA TYPES}}
+\DoxyCodeLine{489 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{490 \textcolor{comment}{*/}}
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492 }
+\DoxyCodeLine{493 \textcolor{comment}{/*}}
+\DoxyCodeLine{494 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{495 \textcolor{comment}{*                                          GLOBAL VARIABLES}}
+\DoxyCodeLine{496 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{497 \textcolor{comment}{*/}}
+\DoxyCodeLine{498 }
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500 \textcolor{comment}{/*}}
+\DoxyCodeLine{501 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{502 \textcolor{comment}{*                                               TRACING}}
+\DoxyCodeLine{503 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{504 \textcolor{comment}{*/}}
+\DoxyCodeLine{505 }
+\DoxyCodeLine{506                                                                 \textcolor{comment}{/* Trace level, default to TRACE\_LEVEL\_OFF.             */}}
+\DoxyCodeLine{507 \textcolor{preprocessor}{\#ifndef  TRACE\_LEVEL\_OFF}}
+\DoxyCodeLine{508 \textcolor{preprocessor}{\#define  TRACE\_LEVEL\_OFF                                   0u}}
+\DoxyCodeLine{509 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{510 }
+\DoxyCodeLine{511 \textcolor{preprocessor}{\#ifndef  TRACE\_LEVEL\_INFO}}
+\DoxyCodeLine{512 \textcolor{preprocessor}{\#define  TRACE\_LEVEL\_INFO                                  1u}}
+\DoxyCodeLine{513 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{514 }
+\DoxyCodeLine{515 \textcolor{preprocessor}{\#ifndef  TRACE\_LEVEL\_DBG}}
+\DoxyCodeLine{516 \textcolor{preprocessor}{\#define  TRACE\_LEVEL\_DBG                                   2u}}
+\DoxyCodeLine{517 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{518 }
+\DoxyCodeLine{519 \textcolor{preprocessor}{\#ifndef  TRACE\_LEVEL\_LOG}}
+\DoxyCodeLine{520 \textcolor{preprocessor}{\#define  TRACE\_LEVEL\_LOG                                   3u}}
+\DoxyCodeLine{521 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523 }
+\DoxyCodeLine{524 \textcolor{comment}{/*}}
+\DoxyCodeLine{525 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{526 \textcolor{comment}{*                                             BIT MACRO'S}}
+\DoxyCodeLine{527 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{528 \textcolor{comment}{*/}}
+\DoxyCodeLine{529 }
+\DoxyCodeLine{530 \textcolor{comment}{/*}}
+\DoxyCodeLine{531 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{532 \textcolor{comment}{*                                              DEF\_BIT()}}
+\DoxyCodeLine{533 \textcolor{comment}{*}}
+\DoxyCodeLine{534 \textcolor{comment}{* Description : Create bit mask with single, specified bit set.}}
+\DoxyCodeLine{535 \textcolor{comment}{*}}
+\DoxyCodeLine{536 \textcolor{comment}{* Argument(s) : bit         Bit number of bit to set.}}
+\DoxyCodeLine{537 \textcolor{comment}{*}}
+\DoxyCodeLine{538 \textcolor{comment}{* Return(s)   : Bit mask with single, specified bit set.}}
+\DoxyCodeLine{539 \textcolor{comment}{*}}
+\DoxyCodeLine{540 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{541 \textcolor{comment}{*}}
+\DoxyCodeLine{542 \textcolor{comment}{* Note(s)     : (1) 'bit' SHOULD be a non-\/negative integer.}}
+\DoxyCodeLine{543 \textcolor{comment}{*}}
+\DoxyCodeLine{544 \textcolor{comment}{*               (2) (a) 'bit' values that overflow the target CPU \&/or compiler environment (e.g. negative}}
+\DoxyCodeLine{545 \textcolor{comment}{*                       or greater-\/than-\/CPU-\/data-\/size values) MAY generate compiler warnings \&/or errors.}}
+\DoxyCodeLine{546 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{547 \textcolor{comment}{*/}}
+\DoxyCodeLine{548 }
+\DoxyCodeLine{549 \textcolor{preprocessor}{\#define  DEF\_BIT(bit)                                                   (1uL << (bit))}}
+\DoxyCodeLine{550 }
+\DoxyCodeLine{551 }
+\DoxyCodeLine{552 \textcolor{comment}{/*}}
+\DoxyCodeLine{553 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{554 \textcolor{comment}{*                                             DEF\_BITxx()}}
+\DoxyCodeLine{555 \textcolor{comment}{*}}
+\DoxyCodeLine{556 \textcolor{comment}{* Description : Create bit mask of specified bit size with single, specified bit set.}}
+\DoxyCodeLine{557 \textcolor{comment}{*}}
+\DoxyCodeLine{558 \textcolor{comment}{* Argument(s) : bit         Bit number of bit to set.}}
+\DoxyCodeLine{559 \textcolor{comment}{*}}
+\DoxyCodeLine{560 \textcolor{comment}{* Return(s)   : Bit mask with single, specified bit set.}}
+\DoxyCodeLine{561 \textcolor{comment}{*}}
+\DoxyCodeLine{562 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{563 \textcolor{comment}{*}}
+\DoxyCodeLine{564 \textcolor{comment}{* Note(s)     : (1) 'bit' SHOULD be a non-\/negative integer.}}
+\DoxyCodeLine{565 \textcolor{comment}{*}}
+\DoxyCodeLine{566 \textcolor{comment}{*               (2) (a) 'bit' values that overflow the target CPU \&/or compiler environment (e.g. negative}}
+\DoxyCodeLine{567 \textcolor{comment}{*                       or greater-\/than-\/CPU-\/data-\/size values) MAY generate compiler warnings \&/or errors.}}
+\DoxyCodeLine{568 \textcolor{comment}{*}}
+\DoxyCodeLine{569 \textcolor{comment}{*                   (b) To avoid overflowing any target CPU \&/or compiler's integer data type, unsigned}}
+\DoxyCodeLine{570 \textcolor{comment}{*                       bit constant '1' is cast to specified integer data type size.}}
+\DoxyCodeLine{571 \textcolor{comment}{*}}
+\DoxyCodeLine{572 \textcolor{comment}{*               (3) Ideally, DEF\_BITxx() macro's should be named DEF\_BIT\_xx(); however, these names already}}
+\DoxyCodeLine{573 \textcolor{comment}{*                   previously-\/released for bit constant \#define's (see 'STANDARD DEFINES  BIT DEFINES').}}
+\DoxyCodeLine{574 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{575 \textcolor{comment}{*/}}
+\DoxyCodeLine{576 }
+\DoxyCodeLine{577 \textcolor{preprocessor}{\#define  DEF\_BIT08(bit)                        ((CPU\_INT08U)((CPU\_INT08U)1u  << (bit)))}}
+\DoxyCodeLine{578 }
+\DoxyCodeLine{579 \textcolor{preprocessor}{\#define  DEF\_BIT16(bit)                        ((CPU\_INT16U)((CPU\_INT16U)1u  << (bit)))}}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581 \textcolor{preprocessor}{\#define  DEF\_BIT32(bit)                        ((CPU\_INT32U)((CPU\_INT32U)1u  << (bit)))}}
+\DoxyCodeLine{582 }
+\DoxyCodeLine{583 \textcolor{preprocessor}{\#define  DEF\_BIT64(bit)                        ((CPU\_INT64U)((CPU\_INT64U)1u  << (bit)))}}
+\DoxyCodeLine{584 }
+\DoxyCodeLine{585 }
+\DoxyCodeLine{586 \textcolor{comment}{/*}}
+\DoxyCodeLine{587 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{588 \textcolor{comment}{*                                           DEF\_BIT\_MASK()}}
+\DoxyCodeLine{589 \textcolor{comment}{*}}
+\DoxyCodeLine{590 \textcolor{comment}{* Description : Shift a bit mask.}}
+\DoxyCodeLine{591 \textcolor{comment}{*}}
+\DoxyCodeLine{592 \textcolor{comment}{* Argument(s) : bit\_mask    Bit mask to shift.}}
+\DoxyCodeLine{593 \textcolor{comment}{*}}
+\DoxyCodeLine{594 \textcolor{comment}{*               bit\_shift   Number of bit positions to left-\/shift bit mask.}}
+\DoxyCodeLine{595 \textcolor{comment}{*}}
+\DoxyCodeLine{596 \textcolor{comment}{* Return(s)   : Shifted bit mask.}}
+\DoxyCodeLine{597 \textcolor{comment}{*}}
+\DoxyCodeLine{598 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{599 \textcolor{comment}{*}}
+\DoxyCodeLine{600 \textcolor{comment}{* Note(s)     : (1) (a) 'bit\_mask'  SHOULD be an unsigned    integer.}}
+\DoxyCodeLine{601 \textcolor{comment}{*}}
+\DoxyCodeLine{602 \textcolor{comment}{*                   (b) 'bit\_shift' SHOULD be a non-\/negative integer.}}
+\DoxyCodeLine{603 \textcolor{comment}{*}}
+\DoxyCodeLine{604 \textcolor{comment}{*               (2) 'bit\_shift' values that overflow the target CPU \&/or compiler environment (e.g. negative}}
+\DoxyCodeLine{605 \textcolor{comment}{*                   or greater-\/than-\/CPU-\/data-\/size values) MAY generate compiler warnings \&/or errors.}}
+\DoxyCodeLine{606 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{607 \textcolor{comment}{*/}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{609 \textcolor{preprocessor}{\#define  DEF\_BIT\_MASK(bit\_mask, bit\_shift)                                     ((bit\_mask) << (bit\_shift))}}
+\DoxyCodeLine{610 }
+\DoxyCodeLine{611 }
+\DoxyCodeLine{612 \textcolor{comment}{/*}}
+\DoxyCodeLine{613 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{614 \textcolor{comment}{*                                          DEF\_BIT\_MASK\_xx()}}
+\DoxyCodeLine{615 \textcolor{comment}{*}}
+\DoxyCodeLine{616 \textcolor{comment}{* Description : Shift a bit mask of specified bit size.}}
+\DoxyCodeLine{617 \textcolor{comment}{*}}
+\DoxyCodeLine{618 \textcolor{comment}{* Argument(s) : bit\_mask    Bit mask to shift.}}
+\DoxyCodeLine{619 \textcolor{comment}{*}}
+\DoxyCodeLine{620 \textcolor{comment}{*               bit\_shift   Number of bit positions to left-\/shift bit mask.}}
+\DoxyCodeLine{621 \textcolor{comment}{*}}
+\DoxyCodeLine{622 \textcolor{comment}{* Return(s)   : Shifted bit mask.}}
+\DoxyCodeLine{623 \textcolor{comment}{*}}
+\DoxyCodeLine{624 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{625 \textcolor{comment}{*}}
+\DoxyCodeLine{626 \textcolor{comment}{* Note(s)     : (1) (a) 'bit\_mask'  SHOULD be an unsigned    integer.}}
+\DoxyCodeLine{627 \textcolor{comment}{*}}
+\DoxyCodeLine{628 \textcolor{comment}{*                   (b) 'bit\_shift' SHOULD be a non-\/negative integer.}}
+\DoxyCodeLine{629 \textcolor{comment}{*}}
+\DoxyCodeLine{630 \textcolor{comment}{*               (2) 'bit\_shift' values that overflow the target CPU \&/or compiler environment (e.g. negative}}
+\DoxyCodeLine{631 \textcolor{comment}{*                   or greater-\/than-\/CPU-\/data-\/size values) MAY generate compiler warnings \&/or errors.}}
+\DoxyCodeLine{632 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{633 \textcolor{comment}{*/}}
+\DoxyCodeLine{634 }
+\DoxyCodeLine{635 \textcolor{preprocessor}{\#define  DEF\_BIT\_MASK\_08(bit\_mask, bit\_shift)         ((CPU\_INT08U)((CPU\_INT08U)(bit\_mask) << (bit\_shift)))}}
+\DoxyCodeLine{636 }
+\DoxyCodeLine{637 \textcolor{preprocessor}{\#define  DEF\_BIT\_MASK\_16(bit\_mask, bit\_shift)         ((CPU\_INT16U)((CPU\_INT16U)(bit\_mask) << (bit\_shift)))}}
+\DoxyCodeLine{638 }
+\DoxyCodeLine{639 \textcolor{preprocessor}{\#define  DEF\_BIT\_MASK\_32(bit\_mask, bit\_shift)         ((CPU\_INT32U)((CPU\_INT32U)(bit\_mask) << (bit\_shift)))}}
+\DoxyCodeLine{640 }
+\DoxyCodeLine{641 \textcolor{preprocessor}{\#define  DEF\_BIT\_MASK\_64(bit\_mask, bit\_shift)         ((CPU\_INT64U)((CPU\_INT64U)(bit\_mask) << (bit\_shift)))}}
+\DoxyCodeLine{642 }
+\DoxyCodeLine{643 }
+\DoxyCodeLine{644 \textcolor{comment}{/*}}
+\DoxyCodeLine{645 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{646 \textcolor{comment}{*                                           DEF\_BIT\_FIELD()}}
+\DoxyCodeLine{647 \textcolor{comment}{*}}
+\DoxyCodeLine{648 \textcolor{comment}{* Description : Create \& shift a contiguous bit field.}}
+\DoxyCodeLine{649 \textcolor{comment}{*}}
+\DoxyCodeLine{650 \textcolor{comment}{* Argument(s) : bit\_field   Number of contiguous bits to set in the bit field.}}
+\DoxyCodeLine{651 \textcolor{comment}{*}}
+\DoxyCodeLine{652 \textcolor{comment}{*               bit\_shift   Number of bit positions   to left-\/shift bit field.}}
+\DoxyCodeLine{653 \textcolor{comment}{*}}
+\DoxyCodeLine{654 \textcolor{comment}{* Return(s)   : Shifted bit field.}}
+\DoxyCodeLine{655 \textcolor{comment}{*}}
+\DoxyCodeLine{656 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{657 \textcolor{comment}{*}}
+\DoxyCodeLine{658 \textcolor{comment}{* Note(s)     : (1) 'bit\_field' \& 'bit\_shift' SHOULD be non-\/negative integers.}}
+\DoxyCodeLine{659 \textcolor{comment}{*}}
+\DoxyCodeLine{660 \textcolor{comment}{*               (2) (a) 'bit\_field'/'bit\_shift' values that overflow the target CPU \&/or compiler}}
+\DoxyCodeLine{661 \textcolor{comment}{*                       environment (e.g. negative or greater-\/than-\/CPU-\/data-\/size values) MAY generate}}
+\DoxyCodeLine{662 \textcolor{comment}{*                       compiler warnings \&/or errors.}}
+\DoxyCodeLine{663 \textcolor{comment}{*}}
+\DoxyCodeLine{664 \textcolor{comment}{*                   (b) To avoid overflowing any target CPU \&/or compiler's integer data type, unsigned}}
+\DoxyCodeLine{665 \textcolor{comment}{*                       bit constant '1' is suffixed with 'L'ong integer modifier.}}
+\DoxyCodeLine{666 \textcolor{comment}{*}}
+\DoxyCodeLine{667 \textcolor{comment}{*                       This may still be insufficient for CPUs \&/or compilers that support 'long long'}}
+\DoxyCodeLine{668 \textcolor{comment}{*                       integer data types, in which case 'LL' integer modifier should be suffixed.}}
+\DoxyCodeLine{669 \textcolor{comment}{*                       However, since almost all 16-\/ \& 32-\/bit CPUs \& compilers support 'long' integer}}
+\DoxyCodeLine{670 \textcolor{comment}{*                       data types but many may NOT support 'long long' integer data types, only 'long'}}
+\DoxyCodeLine{671 \textcolor{comment}{*                       integer data types \& modifiers are supported.}}
+\DoxyCodeLine{672 \textcolor{comment}{*}}
+\DoxyCodeLine{673 \textcolor{comment}{*                       See also 'DEF\_BIT\_FIELD\_xx()  Note \#1b'.}}
+\DoxyCodeLine{674 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{675 \textcolor{comment}{*/}}
+\DoxyCodeLine{676 }
+\DoxyCodeLine{677 \textcolor{preprocessor}{\#define  DEF\_BIT\_FIELD(bit\_field, bit\_shift)                                 ((((bit\_field) >= DEF\_INT\_CPU\_NBR\_BITS) ? (DEF\_INT\_CPU\_U\_MAX\_VAL)     \(\backslash\)}}
+\DoxyCodeLine{678 \textcolor{preprocessor}{                                                                                                                     : (DEF\_BIT(bit\_field) -\/ 1uL)) \(\backslash\)}}
+\DoxyCodeLine{679 \textcolor{preprocessor}{                                                                                                                            << (bit\_shift))}}
+\DoxyCodeLine{680 }
+\DoxyCodeLine{681 \textcolor{comment}{/*}}
+\DoxyCodeLine{682 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{683 \textcolor{comment}{*                                         DEF\_BIT\_FIELD\_xx()}}
+\DoxyCodeLine{684 \textcolor{comment}{*}}
+\DoxyCodeLine{685 \textcolor{comment}{* Description : Create \& shift a contiguous bit field of specified bit size.}}
+\DoxyCodeLine{686 \textcolor{comment}{*}}
+\DoxyCodeLine{687 \textcolor{comment}{* Argument(s) : bit\_field   Number of contiguous bits to set in the bit field.}}
+\DoxyCodeLine{688 \textcolor{comment}{*}}
+\DoxyCodeLine{689 \textcolor{comment}{*               bit\_shift   Number of bit positions   to left-\/shift bit field.}}
+\DoxyCodeLine{690 \textcolor{comment}{*}}
+\DoxyCodeLine{691 \textcolor{comment}{* Return(s)   : Shifted bit field.}}
+\DoxyCodeLine{692 \textcolor{comment}{*}}
+\DoxyCodeLine{693 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{694 \textcolor{comment}{*}}
+\DoxyCodeLine{695 \textcolor{comment}{* Note(s)     : (1) 'bit\_field' \& 'bit\_shift' SHOULD be non-\/negative integers.}}
+\DoxyCodeLine{696 \textcolor{comment}{*}}
+\DoxyCodeLine{697 \textcolor{comment}{*               (2) (a) 'bit\_field'/'bit\_shift' values that overflow the target CPU \&/or compiler}}
+\DoxyCodeLine{698 \textcolor{comment}{*                       environment (e.g. negative or greater-\/than-\/CPU-\/data-\/size values) MAY generate}}
+\DoxyCodeLine{699 \textcolor{comment}{*                       compiler warnings \&/or errors.}}
+\DoxyCodeLine{700 \textcolor{comment}{*}}
+\DoxyCodeLine{701 \textcolor{comment}{*                   (b) To avoid overflowing any target CPU \&/or compiler's integer data type, unsigned}}
+\DoxyCodeLine{702 \textcolor{comment}{*                       bit constant '1' is cast to specified integer data type size.}}
+\DoxyCodeLine{703 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{704 \textcolor{comment}{*/}}
+\DoxyCodeLine{705 }
+\DoxyCodeLine{706 \textcolor{preprocessor}{\#define  DEF\_BIT\_FIELD\_08(bit\_field, bit\_shift)     ((CPU\_INT08U)((((CPU\_INT08U)(bit\_field) >= (CPU\_INT08U)DEF\_INT\_08\_NBR\_BITS) ? (CPU\_INT08U)(DEF\_INT\_08U\_MAX\_VAL)                    \(\backslash\)}}
+\DoxyCodeLine{707 \textcolor{preprocessor}{                                                                                                                                : (CPU\_INT08U)(DEF\_BIT08(bit\_field) -\/ (CPU\_INT08U)1u)) \(\backslash\)}}
+\DoxyCodeLine{708 \textcolor{preprocessor}{                                                                                                                                                     << (bit\_shift)))}}
+\DoxyCodeLine{709 }
+\DoxyCodeLine{710 \textcolor{preprocessor}{\#define  DEF\_BIT\_FIELD\_16(bit\_field, bit\_shift)     ((CPU\_INT16U)((((CPU\_INT16U)(bit\_field) >= (CPU\_INT16U)DEF\_INT\_16\_NBR\_BITS) ? (CPU\_INT16U)(DEF\_INT\_16U\_MAX\_VAL)                    \(\backslash\)}}
+\DoxyCodeLine{711 \textcolor{preprocessor}{                                                                                                                                : (CPU\_INT16U)(DEF\_BIT16(bit\_field) -\/ (CPU\_INT16U)1u)) \(\backslash\)}}
+\DoxyCodeLine{712 \textcolor{preprocessor}{                                                                                                                                                     << (bit\_shift)))}}
+\DoxyCodeLine{713 }
+\DoxyCodeLine{714 \textcolor{preprocessor}{\#define  DEF\_BIT\_FIELD\_32(bit\_field, bit\_shift)     ((CPU\_INT32U)((((CPU\_INT32U)(bit\_field) >= (CPU\_INT32U)DEF\_INT\_32\_NBR\_BITS) ? (CPU\_INT32U)(DEF\_INT\_32U\_MAX\_VAL)                    \(\backslash\)}}
+\DoxyCodeLine{715 \textcolor{preprocessor}{                                                                                                                                : (CPU\_INT32U)(DEF\_BIT32(bit\_field) -\/ (CPU\_INT32U)1u)) \(\backslash\)}}
+\DoxyCodeLine{716 \textcolor{preprocessor}{                                                                                                                                                     << (bit\_shift)))}}
+\DoxyCodeLine{717 }
+\DoxyCodeLine{718 \textcolor{preprocessor}{\#define  DEF\_BIT\_FIELD\_64(bit\_field, bit\_shift)     ((CPU\_INT64U)((((CPU\_INT64U)(bit\_field) >= (CPU\_INT64U)DEF\_INT\_64\_NBR\_BITS) ? (CPU\_INT64U)(DEF\_INT\_64U\_MAX\_VAL)                    \(\backslash\)}}
+\DoxyCodeLine{719 \textcolor{preprocessor}{                                                                                                                                : (CPU\_INT64U)(DEF\_BIT64(bit\_field) -\/ (CPU\_INT64U)1u)) \(\backslash\)}}
+\DoxyCodeLine{720 \textcolor{preprocessor}{                                                                                                                                                     << (bit\_shift)))}}
+\DoxyCodeLine{721 }
+\DoxyCodeLine{722 }
+\DoxyCodeLine{723 \textcolor{comment}{/*}}
+\DoxyCodeLine{724 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{725 \textcolor{comment}{*                                            DEF\_BIT\_SET()}}
+\DoxyCodeLine{726 \textcolor{comment}{*}}
+\DoxyCodeLine{727 \textcolor{comment}{* Description : Set specified bit(s) in a value.}}
+\DoxyCodeLine{728 \textcolor{comment}{*}}
+\DoxyCodeLine{729 \textcolor{comment}{* Argument(s) : val         Value to modify by setting specified bit(s).}}
+\DoxyCodeLine{730 \textcolor{comment}{*}}
+\DoxyCodeLine{731 \textcolor{comment}{*               mask        Mask of bits to set.}}
+\DoxyCodeLine{732 \textcolor{comment}{*}}
+\DoxyCodeLine{733 \textcolor{comment}{* Return(s)   : Modified value with specified bit(s) set.}}
+\DoxyCodeLine{734 \textcolor{comment}{*}}
+\DoxyCodeLine{735 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{736 \textcolor{comment}{*}}
+\DoxyCodeLine{737 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{738 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{739 \textcolor{comment}{*/}}
+\DoxyCodeLine{740 }
+\DoxyCodeLine{741 \textcolor{preprocessor}{\#define  DEF\_BIT\_SET(val, mask)                        ((val) = ((val) | (mask)))}}
+\DoxyCodeLine{742 }
+\DoxyCodeLine{743 }
+\DoxyCodeLine{744 \textcolor{comment}{/*}}
+\DoxyCodeLine{745 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{746 \textcolor{comment}{*                                          DEF\_BIT\_SET\_xx()}}
+\DoxyCodeLine{747 \textcolor{comment}{*}}
+\DoxyCodeLine{748 \textcolor{comment}{* Description : Set specified bit(s) in a value of specified bit size.}}
+\DoxyCodeLine{749 \textcolor{comment}{*}}
+\DoxyCodeLine{750 \textcolor{comment}{* Argument(s) : val         Value to modify by setting specified bit(s).}}
+\DoxyCodeLine{751 \textcolor{comment}{*}}
+\DoxyCodeLine{752 \textcolor{comment}{*               mask        Mask of bits to set.}}
+\DoxyCodeLine{753 \textcolor{comment}{*}}
+\DoxyCodeLine{754 \textcolor{comment}{* Return(s)   : Modified value with specified bit(s) set.}}
+\DoxyCodeLine{755 \textcolor{comment}{*}}
+\DoxyCodeLine{756 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{757 \textcolor{comment}{*}}
+\DoxyCodeLine{758 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{759 \textcolor{comment}{*}}
+\DoxyCodeLine{760 \textcolor{comment}{*               (2) These macros are deprecated and should be replaced by the DEF\_BIT\_SET macro.}}
+\DoxyCodeLine{761 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{762 \textcolor{comment}{*/}}
+\DoxyCodeLine{763 }
+\DoxyCodeLine{764 \textcolor{preprocessor}{\#define  DEF\_BIT\_SET\_08(val, mask)                     (CPU\_INT08U)DEF\_BIT\_SET((val), (CPU\_INT08U)(mask))}}
+\DoxyCodeLine{765 }
+\DoxyCodeLine{766 \textcolor{preprocessor}{\#define  DEF\_BIT\_SET\_16(val, mask)                     (CPU\_INT16U)DEF\_BIT\_SET((val), (CPU\_INT16U)(mask))}}
+\DoxyCodeLine{767 }
+\DoxyCodeLine{768 \textcolor{preprocessor}{\#define  DEF\_BIT\_SET\_32(val, mask)                     (CPU\_INT32U)DEF\_BIT\_SET((val), (CPU\_INT32U)(mask))}}
+\DoxyCodeLine{769 }
+\DoxyCodeLine{770 \textcolor{preprocessor}{\#define  DEF\_BIT\_SET\_64(val, mask)                     (CPU\_INT64U)DEF\_BIT\_SET((val), (CPU\_INT64U)(mask))}}
+\DoxyCodeLine{771 }
+\DoxyCodeLine{772 }
+\DoxyCodeLine{773 \textcolor{comment}{/*}}
+\DoxyCodeLine{774 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{775 \textcolor{comment}{*                                          DEF\_BIT\_CLR\_xx()}}
+\DoxyCodeLine{776 \textcolor{comment}{*}}
+\DoxyCodeLine{777 \textcolor{comment}{* Description : Clear specified bit(s) in a value of specified bit size.}}
+\DoxyCodeLine{778 \textcolor{comment}{*}}
+\DoxyCodeLine{779 \textcolor{comment}{* Argument(s) : val         Value to modify by clearing specified bit(s).}}
+\DoxyCodeLine{780 \textcolor{comment}{*}}
+\DoxyCodeLine{781 \textcolor{comment}{*               mask        Mask of bits to clear.}}
+\DoxyCodeLine{782 \textcolor{comment}{*}}
+\DoxyCodeLine{783 \textcolor{comment}{* Return(s)   : Modified value with specified bit(s) clear.}}
+\DoxyCodeLine{784 \textcolor{comment}{*}}
+\DoxyCodeLine{785 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{786 \textcolor{comment}{*}}
+\DoxyCodeLine{787 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{788 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{789 \textcolor{comment}{*/}}
+\DoxyCodeLine{790 }
+\DoxyCodeLine{791 \textcolor{preprocessor}{\#define  DEF\_BIT\_CLR\_08(val, mask)                     ((val) = (CPU\_INT08U)(((CPU\_INT08U)(val)) \& (CPU\_INT08U)(\string~((CPU\_INT08U)(mask)))))}}
+\DoxyCodeLine{792 }
+\DoxyCodeLine{793 \textcolor{preprocessor}{\#define  DEF\_BIT\_CLR\_16(val, mask)                     ((val) = (CPU\_INT16U)(((CPU\_INT16U)(val)) \& (CPU\_INT16U)(\string~((CPU\_INT16U)(mask)))))}}
+\DoxyCodeLine{794 }
+\DoxyCodeLine{795 \textcolor{preprocessor}{\#define  DEF\_BIT\_CLR\_32(val, mask)                     ((val) = (CPU\_INT32U)(((CPU\_INT32U)(val)) \& (CPU\_INT32U)(\string~((CPU\_INT32U)(mask)))))}}
+\DoxyCodeLine{796 }
+\DoxyCodeLine{797 \textcolor{preprocessor}{\#define  DEF\_BIT\_CLR\_64(val, mask)                     ((val) = (CPU\_INT64U)(((CPU\_INT64U)(val)) \& (CPU\_INT64U)(\string~((CPU\_INT64U)(mask)))))}}
+\DoxyCodeLine{798 }
+\DoxyCodeLine{799 }
+\DoxyCodeLine{800 \textcolor{comment}{/*}}
+\DoxyCodeLine{801 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{802 \textcolor{comment}{*                                            DEF\_BIT\_CLR()}}
+\DoxyCodeLine{803 \textcolor{comment}{*}}
+\DoxyCodeLine{804 \textcolor{comment}{* Description : Clear specified bit(s) in a value.}}
+\DoxyCodeLine{805 \textcolor{comment}{*}}
+\DoxyCodeLine{806 \textcolor{comment}{* Argument(s) : val         Value to modify by clearing specified bit(s).}}
+\DoxyCodeLine{807 \textcolor{comment}{*}}
+\DoxyCodeLine{808 \textcolor{comment}{*               mask        Mask of bits to clear.}}
+\DoxyCodeLine{809 \textcolor{comment}{*}}
+\DoxyCodeLine{810 \textcolor{comment}{* Return(s)   : Modified value with specified bit(s) clear.}}
+\DoxyCodeLine{811 \textcolor{comment}{*}}
+\DoxyCodeLine{812 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{813 \textcolor{comment}{*}}
+\DoxyCodeLine{814 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{815 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{816 \textcolor{comment}{*/}}
+\DoxyCodeLine{817 }
+\DoxyCodeLine{818 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX == CPU\_WORD\_SIZE\_08)}}
+\DoxyCodeLine{819 }
+\DoxyCodeLine{820 \textcolor{preprocessor}{\#define  DEF\_BIT\_CLR(val, mask)                 ((sizeof((val)) == CPU\_WORD\_SIZE\_08) ? DEF\_BIT\_CLR\_08((val), (mask)) : 0)}}
+\DoxyCodeLine{821 }
+\DoxyCodeLine{822 }
+\DoxyCodeLine{823 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_DATA\_SIZE\_MAX == CPU\_WORD\_SIZE\_16)}}
+\DoxyCodeLine{824 }
+\DoxyCodeLine{825 \textcolor{preprocessor}{\#define  DEF\_BIT\_CLR(val, mask)                 ((sizeof((val)) == CPU\_WORD\_SIZE\_08) ? DEF\_BIT\_CLR\_08((val), (mask)) :   \(\backslash\)}}
+\DoxyCodeLine{826 \textcolor{preprocessor}{                                                ((sizeof((val)) == CPU\_WORD\_SIZE\_16) ? DEF\_BIT\_CLR\_16((val), (mask)) : 0))}}
+\DoxyCodeLine{827 }
+\DoxyCodeLine{828 }
+\DoxyCodeLine{829 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_DATA\_SIZE\_MAX == CPU\_WORD\_SIZE\_32)}}
+\DoxyCodeLine{830 }
+\DoxyCodeLine{831 \textcolor{preprocessor}{\#define  DEF\_BIT\_CLR(val, mask)                 ((sizeof((val)) == CPU\_WORD\_SIZE\_08) ? DEF\_BIT\_CLR\_08((val), (mask)) :    \(\backslash\)}}
+\DoxyCodeLine{832 \textcolor{preprocessor}{                                                ((sizeof((val)) == CPU\_WORD\_SIZE\_16) ? DEF\_BIT\_CLR\_16((val), (mask)) :    \(\backslash\)}}
+\DoxyCodeLine{833 \textcolor{preprocessor}{                                                ((sizeof((val)) == CPU\_WORD\_SIZE\_32) ? DEF\_BIT\_CLR\_32((val), (mask)) : 0)))}}
+\DoxyCodeLine{834 }
+\DoxyCodeLine{835 }
+\DoxyCodeLine{836 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_DATA\_SIZE\_MAX == CPU\_WORD\_SIZE\_64)}}
+\DoxyCodeLine{837 }
+\DoxyCodeLine{838 \textcolor{preprocessor}{\#define  DEF\_BIT\_CLR(val, mask)                 ((sizeof((val)) == CPU\_WORD\_SIZE\_08) ? DEF\_BIT\_CLR\_08((val), (mask)) :     \(\backslash\)}}
+\DoxyCodeLine{839 \textcolor{preprocessor}{                                                ((sizeof((val)) == CPU\_WORD\_SIZE\_16) ? DEF\_BIT\_CLR\_16((val), (mask)) :     \(\backslash\)}}
+\DoxyCodeLine{840 \textcolor{preprocessor}{                                                ((sizeof((val)) == CPU\_WORD\_SIZE\_32) ? DEF\_BIT\_CLR\_32((val), (mask)) :     \(\backslash\)}}
+\DoxyCodeLine{841 \textcolor{preprocessor}{                                                ((sizeof((val)) == CPU\_WORD\_SIZE\_64) ? DEF\_BIT\_CLR\_64((val), (mask)) : 0))))}}
+\DoxyCodeLine{842 }
+\DoxyCodeLine{843 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{844 }
+\DoxyCodeLine{845 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE\_MAX  illegally \#defined in 'cpu.h'      "{}}}
+\DoxyCodeLine{846 \textcolor{preprocessor}{\#error  "{}                       [See 'cpu.h  CONFIGURATION ERRORS']"{}}}
+\DoxyCodeLine{847 }
+\DoxyCodeLine{848 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{849 }
+\DoxyCodeLine{850 }
+\DoxyCodeLine{851 \textcolor{comment}{/*}}
+\DoxyCodeLine{852 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{853 \textcolor{comment}{*                                            DEF\_BIT\_TOGGLE()}}
+\DoxyCodeLine{854 \textcolor{comment}{*}}
+\DoxyCodeLine{855 \textcolor{comment}{* Description : Toggles specified bit(s) in a value.}}
+\DoxyCodeLine{856 \textcolor{comment}{*}}
+\DoxyCodeLine{857 \textcolor{comment}{* Argument(s) : val         Value to modify by toggling specified bit(s).}}
+\DoxyCodeLine{858 \textcolor{comment}{*}}
+\DoxyCodeLine{859 \textcolor{comment}{*               mask        Mask of bits to toggle.}}
+\DoxyCodeLine{860 \textcolor{comment}{*}}
+\DoxyCodeLine{861 \textcolor{comment}{* Return(s)   : Modified value with specified bit(s) toggled.}}
+\DoxyCodeLine{862 \textcolor{comment}{*}}
+\DoxyCodeLine{863 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{864 \textcolor{comment}{*}}
+\DoxyCodeLine{865 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{866 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{867 \textcolor{comment}{*/}}
+\DoxyCodeLine{868 }
+\DoxyCodeLine{869 \textcolor{preprocessor}{\#define  DEF\_BIT\_TOGGLE(val, mask)                      ((val) \string^= (mask))}}
+\DoxyCodeLine{870 }
+\DoxyCodeLine{871 }
+\DoxyCodeLine{872 \textcolor{comment}{/*}}
+\DoxyCodeLine{873 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{874 \textcolor{comment}{*                                           DEF\_BIT\_FIELD\_RD()}}
+\DoxyCodeLine{875 \textcolor{comment}{*}}
+\DoxyCodeLine{876 \textcolor{comment}{* Description : Reads a 'val' field, masked and shifted, given by mask 'field\_mask'.}}
+\DoxyCodeLine{877 \textcolor{comment}{*}}
+\DoxyCodeLine{878 \textcolor{comment}{* Argument(s) : val         Value to read from.}}
+\DoxyCodeLine{879 \textcolor{comment}{*}}
+\DoxyCodeLine{880 \textcolor{comment}{*               field\_mask  Mask of field to read. See note \#1, \#2 and \#3.}}
+\DoxyCodeLine{881 \textcolor{comment}{*}}
+\DoxyCodeLine{882 \textcolor{comment}{* Return(s)   : Field value, masked and right-\/shifted to bit position 0.}}
+\DoxyCodeLine{883 \textcolor{comment}{*}}
+\DoxyCodeLine{884 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{885 \textcolor{comment}{*}}
+\DoxyCodeLine{886 \textcolor{comment}{* Note(s)     : (1) 'field\_mask' argument must NOT be 0.}}
+\DoxyCodeLine{887 \textcolor{comment}{*}}
+\DoxyCodeLine{888 \textcolor{comment}{*               (2) 'field\_mask' argument must contain a mask with contiguous set bits.}}
+\DoxyCodeLine{889 \textcolor{comment}{*}}
+\DoxyCodeLine{890 \textcolor{comment}{*               (3) 'val' \& 'field\_mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{891 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{892 \textcolor{comment}{*/}}
+\DoxyCodeLine{893 }
+\DoxyCodeLine{894 \textcolor{preprocessor}{\#define  DEF\_BIT\_FIELD\_RD(val, field\_mask)              (((val) \& (field\_mask)) / ((field\_mask) \& ((\string~(field\_mask)) + 1u)))}}
+\DoxyCodeLine{895 }
+\DoxyCodeLine{896 }
+\DoxyCodeLine{897 \textcolor{comment}{/*}}
+\DoxyCodeLine{898 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{899 \textcolor{comment}{*                                          DEF\_BIT\_FIELD\_ENC()}}
+\DoxyCodeLine{900 \textcolor{comment}{*}}
+\DoxyCodeLine{901 \textcolor{comment}{* Description : Encodes given 'field\_val' at position given by mask 'field\_mask'.}}
+\DoxyCodeLine{902 \textcolor{comment}{*}}
+\DoxyCodeLine{903 \textcolor{comment}{* Argument(s) : field\_val   Value to encode.}}
+\DoxyCodeLine{904 \textcolor{comment}{*}}
+\DoxyCodeLine{905 \textcolor{comment}{*               field\_mask  Mask of field to read. See note \#1 and \#2.}}
+\DoxyCodeLine{906 \textcolor{comment}{*}}
+\DoxyCodeLine{907 \textcolor{comment}{* Return(s)   : Field value, masked and left-\/shifted to field position.}}
+\DoxyCodeLine{908 \textcolor{comment}{*}}
+\DoxyCodeLine{909 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{910 \textcolor{comment}{*}}
+\DoxyCodeLine{911 \textcolor{comment}{* Note(s)     : (1) 'field\_mask' argument must contain a mask with contiguous set bits.}}
+\DoxyCodeLine{912 \textcolor{comment}{*}}
+\DoxyCodeLine{913 \textcolor{comment}{*               (2) 'field\_val' \& 'field\_mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{914 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{915 \textcolor{comment}{*/}}
+\DoxyCodeLine{916 }
+\DoxyCodeLine{917 \textcolor{preprocessor}{\#define  DEF\_BIT\_FIELD\_ENC(field\_val, field\_mask)       (((field\_val) * ((field\_mask) \& ((\string~(field\_mask)) + 1u))) \& (field\_mask))}}
+\DoxyCodeLine{918 }
+\DoxyCodeLine{919 }
+\DoxyCodeLine{920 \textcolor{comment}{/*}}
+\DoxyCodeLine{921 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{922 \textcolor{comment}{*                                           DEF\_BIT\_FIELD\_WR()}}
+\DoxyCodeLine{923 \textcolor{comment}{*}}
+\DoxyCodeLine{924 \textcolor{comment}{* Description : Writes 'field\_val' field at position given by mask 'field\_mask' in variable 'var'.}}
+\DoxyCodeLine{925 \textcolor{comment}{*}}
+\DoxyCodeLine{926 \textcolor{comment}{* Argument(s) : var         Variable to write field to. See note \#2.}}
+\DoxyCodeLine{927 \textcolor{comment}{*}}
+\DoxyCodeLine{928 \textcolor{comment}{*               field\_val   Desired value for field. See note \#2.}}
+\DoxyCodeLine{929 \textcolor{comment}{*}}
+\DoxyCodeLine{930 \textcolor{comment}{*               field\_mask  Mask of field to write to. See note \#1 and \#2.}}
+\DoxyCodeLine{931 \textcolor{comment}{*}}
+\DoxyCodeLine{932 \textcolor{comment}{* Return(s)   : None.}}
+\DoxyCodeLine{933 \textcolor{comment}{*}}
+\DoxyCodeLine{934 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{935 \textcolor{comment}{*}}
+\DoxyCodeLine{936 \textcolor{comment}{* Note(s)     : (1) 'field\_mask' argument must contain a mask with contiguous set bits.}}
+\DoxyCodeLine{937 \textcolor{comment}{*}}
+\DoxyCodeLine{938 \textcolor{comment}{*               (2) 'var', 'field\_val' \& 'field\_mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{939 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{940 \textcolor{comment}{*/}}
+\DoxyCodeLine{941 }
+\DoxyCodeLine{942 \textcolor{preprocessor}{\#define  DEF\_BIT\_FIELD\_WR(var, field\_val, field\_mask)   (var) = (((var) \& \string~(field\_mask)) | DEF\_BIT\_FIELD\_ENC((field\_val), (field\_mask)))}}
+\DoxyCodeLine{943 }
+\DoxyCodeLine{944 }
+\DoxyCodeLine{945 \textcolor{comment}{/*}}
+\DoxyCodeLine{946 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{947 \textcolor{comment}{*                                          DEF\_BIT\_IS\_SET()}}
+\DoxyCodeLine{948 \textcolor{comment}{*}}
+\DoxyCodeLine{949 \textcolor{comment}{* Description : Determine if specified bit(s) in a value are set.}}
+\DoxyCodeLine{950 \textcolor{comment}{*}}
+\DoxyCodeLine{951 \textcolor{comment}{* Argument(s) : val         Value to check for specified bit(s) set.}}
+\DoxyCodeLine{952 \textcolor{comment}{*}}
+\DoxyCodeLine{953 \textcolor{comment}{*               mask        Mask of bits to check if set (see Note \#2).}}
+\DoxyCodeLine{954 \textcolor{comment}{*}}
+\DoxyCodeLine{955 \textcolor{comment}{* Return(s)   : DEF\_YES, if ALL specified bit(s) are     set in value.}}
+\DoxyCodeLine{956 \textcolor{comment}{*}}
+\DoxyCodeLine{957 \textcolor{comment}{*               DEF\_NO,  if ALL specified bit(s) are NOT set in value.}}
+\DoxyCodeLine{958 \textcolor{comment}{*}}
+\DoxyCodeLine{959 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{960 \textcolor{comment}{*}}
+\DoxyCodeLine{961 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{962 \textcolor{comment}{*}}
+\DoxyCodeLine{963 \textcolor{comment}{*               (2) NULL 'mask' allowed; returns 'DEF\_NO' since NO mask bits specified.}}
+\DoxyCodeLine{964 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{965 \textcolor{comment}{*/}}
+\DoxyCodeLine{966 }
+\DoxyCodeLine{967 \textcolor{preprocessor}{\#define  DEF\_BIT\_IS\_SET(val, mask)                    (((((val) \& (mask)) == (mask)) \&\& \(\backslash\)}}
+\DoxyCodeLine{968 \textcolor{preprocessor}{                                                         ((mask)          !=  0u))    ? (DEF\_YES) : (DEF\_NO))}}
+\DoxyCodeLine{969 }
+\DoxyCodeLine{970 }
+\DoxyCodeLine{971 \textcolor{comment}{/*}}
+\DoxyCodeLine{972 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{973 \textcolor{comment}{*                                          DEF\_BIT\_IS\_CLR()}}
+\DoxyCodeLine{974 \textcolor{comment}{*}}
+\DoxyCodeLine{975 \textcolor{comment}{* Description : Determine if specified bit(s) in a value are clear.}}
+\DoxyCodeLine{976 \textcolor{comment}{*}}
+\DoxyCodeLine{977 \textcolor{comment}{* Argument(s) : val         Value to check for specified bit(s) clear.}}
+\DoxyCodeLine{978 \textcolor{comment}{*}}
+\DoxyCodeLine{979 \textcolor{comment}{*               mask        Mask of bits to check if clear (see Note \#2).}}
+\DoxyCodeLine{980 \textcolor{comment}{*}}
+\DoxyCodeLine{981 \textcolor{comment}{* Return(s)   : DEF\_YES, if ALL specified bit(s) are     clear in value.}}
+\DoxyCodeLine{982 \textcolor{comment}{*}}
+\DoxyCodeLine{983 \textcolor{comment}{*               DEF\_NO,  if ALL specified bit(s) are NOT clear in value.}}
+\DoxyCodeLine{984 \textcolor{comment}{*}}
+\DoxyCodeLine{985 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{986 \textcolor{comment}{*}}
+\DoxyCodeLine{987 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{988 \textcolor{comment}{*}}
+\DoxyCodeLine{989 \textcolor{comment}{*               (2) NULL 'mask' allowed; returns 'DEF\_NO' since NO mask bits specified.}}
+\DoxyCodeLine{990 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{991 \textcolor{comment}{*/}}
+\DoxyCodeLine{992 }
+\DoxyCodeLine{993 \textcolor{preprocessor}{\#define  DEF\_BIT\_IS\_CLR(val, mask)                    (((((val) \& (mask)) ==  0u)  \&\& \(\backslash\)}}
+\DoxyCodeLine{994 \textcolor{preprocessor}{                                                         ((mask)          !=  0u))  ? (DEF\_YES) : (DEF\_NO))}}
+\DoxyCodeLine{995 }
+\DoxyCodeLine{996 }
+\DoxyCodeLine{997 \textcolor{comment}{/*}}
+\DoxyCodeLine{998 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{999 \textcolor{comment}{*                                        DEF\_BIT\_IS\_SET\_ANY()}}
+\DoxyCodeLine{1000 \textcolor{comment}{*}}
+\DoxyCodeLine{1001 \textcolor{comment}{* Description : Determine if any specified bit(s) in a value are set.}}
+\DoxyCodeLine{1002 \textcolor{comment}{*}}
+\DoxyCodeLine{1003 \textcolor{comment}{* Argument(s) : val         Value to check for specified bit(s) set.}}
+\DoxyCodeLine{1004 \textcolor{comment}{*}}
+\DoxyCodeLine{1005 \textcolor{comment}{*               mask        Mask of bits to check if set (see Note \#2).}}
+\DoxyCodeLine{1006 \textcolor{comment}{*}}
+\DoxyCodeLine{1007 \textcolor{comment}{* Return(s)   : DEF\_YES, if ANY specified bit(s) are     set in value.}}
+\DoxyCodeLine{1008 \textcolor{comment}{*}}
+\DoxyCodeLine{1009 \textcolor{comment}{*               DEF\_NO,  if ALL specified bit(s) are NOT set in value.}}
+\DoxyCodeLine{1010 \textcolor{comment}{*}}
+\DoxyCodeLine{1011 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{1012 \textcolor{comment}{*}}
+\DoxyCodeLine{1013 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{1014 \textcolor{comment}{*}}
+\DoxyCodeLine{1015 \textcolor{comment}{*               (2) NULL 'mask' allowed; returns 'DEF\_NO' since NO mask bits specified.}}
+\DoxyCodeLine{1016 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1017 \textcolor{comment}{*/}}
+\DoxyCodeLine{1018 }
+\DoxyCodeLine{1019 \textcolor{preprocessor}{\#define  DEF\_BIT\_IS\_SET\_ANY(val, mask)               ((((val) \& (mask)) ==  0u)     ? (DEF\_NO ) : (DEF\_YES))}}
+\DoxyCodeLine{1020 }
+\DoxyCodeLine{1021 }
+\DoxyCodeLine{1022 \textcolor{comment}{/*}}
+\DoxyCodeLine{1023 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1024 \textcolor{comment}{*                                        DEF\_BIT\_IS\_CLR\_ANY()}}
+\DoxyCodeLine{1025 \textcolor{comment}{*}}
+\DoxyCodeLine{1026 \textcolor{comment}{* Description : Determine if any specified bit(s) in a value are clear.}}
+\DoxyCodeLine{1027 \textcolor{comment}{*}}
+\DoxyCodeLine{1028 \textcolor{comment}{* Argument(s) : val         Value to check for specified bit(s) clear.}}
+\DoxyCodeLine{1029 \textcolor{comment}{*}}
+\DoxyCodeLine{1030 \textcolor{comment}{*               mask        Mask of bits to check if clear (see Note \#2).}}
+\DoxyCodeLine{1031 \textcolor{comment}{*}}
+\DoxyCodeLine{1032 \textcolor{comment}{* Return(s)   : DEF\_YES, if ANY specified bit(s) are     clear in value.}}
+\DoxyCodeLine{1033 \textcolor{comment}{*}}
+\DoxyCodeLine{1034 \textcolor{comment}{*               DEF\_NO,  if ALL specified bit(s) are NOT clear in value.}}
+\DoxyCodeLine{1035 \textcolor{comment}{*}}
+\DoxyCodeLine{1036 \textcolor{comment}{* Note(s)     : (1) 'val' \& 'mask' SHOULD be unsigned integers.}}
+\DoxyCodeLine{1037 \textcolor{comment}{*}}
+\DoxyCodeLine{1038 \textcolor{comment}{*               (2) NULL 'mask' allowed; returns 'DEF\_NO' since NO mask bits specified.}}
+\DoxyCodeLine{1039 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1040 \textcolor{comment}{*/}}
+\DoxyCodeLine{1041 }
+\DoxyCodeLine{1042 \textcolor{preprocessor}{\#define  DEF\_BIT\_IS\_CLR\_ANY(val, mask)               ((((val) \& (mask)) == (mask))  ? (DEF\_NO ) : (DEF\_YES))}}
+\DoxyCodeLine{1043 }
+\DoxyCodeLine{1044 }
+\DoxyCodeLine{1045 \textcolor{comment}{/*}}
+\DoxyCodeLine{1046 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1047 \textcolor{comment}{*                                            VALUE MACRO'S}}
+\DoxyCodeLine{1048 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1049 \textcolor{comment}{*/}}
+\DoxyCodeLine{1050 }
+\DoxyCodeLine{1051 \textcolor{comment}{/*}}
+\DoxyCodeLine{1052 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1053 \textcolor{comment}{*                                          DEF\_CHK\_VAL\_MIN()}}
+\DoxyCodeLine{1054 \textcolor{comment}{*}}
+\DoxyCodeLine{1055 \textcolor{comment}{* Description : Validate a value as greater than or equal to a specified minimum value.}}
+\DoxyCodeLine{1056 \textcolor{comment}{*}}
+\DoxyCodeLine{1057 \textcolor{comment}{* Argument(s) : val        Value to validate.}}
+\DoxyCodeLine{1058 \textcolor{comment}{*}}
+\DoxyCodeLine{1059 \textcolor{comment}{*               val\_min    Minimum value to test.}}
+\DoxyCodeLine{1060 \textcolor{comment}{*}}
+\DoxyCodeLine{1061 \textcolor{comment}{* Return(s)   : DEF\_OK,    Value is greater than or equal to minimum value.}}
+\DoxyCodeLine{1062 \textcolor{comment}{*}}
+\DoxyCodeLine{1063 \textcolor{comment}{*               DEF\_FAIL,  otherwise.}}
+\DoxyCodeLine{1064 \textcolor{comment}{*}}
+\DoxyCodeLine{1065 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{1066 \textcolor{comment}{*}}
+\DoxyCodeLine{1067 \textcolor{comment}{* Note(s)     : (1) DEF\_CHK\_VAL\_MIN() avoids directly comparing any two values if only one of the values}}
+\DoxyCodeLine{1068 \textcolor{comment}{*                   is negative since the negative value might be incorrectly promoted to an arbitrary}}
+\DoxyCodeLine{1069 \textcolor{comment}{*                   unsigned value if the other value to compare is unsigned.}}
+\DoxyCodeLine{1070 \textcolor{comment}{*}}
+\DoxyCodeLine{1071 \textcolor{comment}{*               (2) Validation of values is limited to the range supported by the compiler \&/or target}}
+\DoxyCodeLine{1072 \textcolor{comment}{*                   environment.  All other values that underflow/overflow the supported range will}}
+\DoxyCodeLine{1073 \textcolor{comment}{*                   modulo/wrap into the supported range as arbitrary signed or unsigned values.}}
+\DoxyCodeLine{1074 \textcolor{comment}{*}}
+\DoxyCodeLine{1075 \textcolor{comment}{*                   Therefore, any values that underflow the most negative signed value or overflow}}
+\DoxyCodeLine{1076 \textcolor{comment}{*                   the most positive unsigned value supported by the compiler \&/or target environment}}
+\DoxyCodeLine{1077 \textcolor{comment}{*                   cannot be validated :}}
+\DoxyCodeLine{1078 \textcolor{comment}{*}}
+\DoxyCodeLine{1079 \textcolor{comment}{*                           (    N-\/1       N     ]}}
+\DoxyCodeLine{1080 \textcolor{comment}{*                           ( -\/(2   )  ,  2  -\/ 1 ]}}
+\DoxyCodeLine{1081 \textcolor{comment}{*                           (                    ]}}
+\DoxyCodeLine{1082 \textcolor{comment}{*}}
+\DoxyCodeLine{1083 \textcolor{comment}{*                               where}}
+\DoxyCodeLine{1084 \textcolor{comment}{*                                       N       Number of data word bits supported by the compiler}}
+\DoxyCodeLine{1085 \textcolor{comment}{*                                                   \&/or target environment}}
+\DoxyCodeLine{1086 \textcolor{comment}{*}}
+\DoxyCodeLine{1087 \textcolor{comment}{*                   (a) Note that the most negative value, -\/2\string^(N-\/1), is NOT included in the supported}}
+\DoxyCodeLine{1088 \textcolor{comment}{*                       range since many compilers do NOT always correctly handle this value.}}
+\DoxyCodeLine{1089 \textcolor{comment}{*}}
+\DoxyCodeLine{1090 \textcolor{comment}{*               (3) 'val' and 'val\_min' are compared to 1 instead of 0 to avoid warning generated for}}
+\DoxyCodeLine{1091 \textcolor{comment}{*                   unsigned numbers.}}
+\DoxyCodeLine{1092 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1093 \textcolor{comment}{*/}}
+\DoxyCodeLine{1094 }
+\DoxyCodeLine{1095 \textcolor{preprocessor}{\#define  DEF\_CHK\_VAL\_MIN(val, val\_min)            (((!(((val)     >= 1) \&\& ((val\_min) < 1))) \&\& \(\backslash\)}}
+\DoxyCodeLine{1096 \textcolor{preprocessor}{                                                     ((((val\_min) >= 1) \&\& ((val)     < 1))  || \(\backslash\)}}
+\DoxyCodeLine{1097 \textcolor{preprocessor}{                                                       ((val) < (val\_min)))) ? DEF\_FAIL : DEF\_OK)}}
+\DoxyCodeLine{1098 }
+\DoxyCodeLine{1099 }
+\DoxyCodeLine{1100 \textcolor{comment}{/*}}
+\DoxyCodeLine{1101 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1102 \textcolor{comment}{*                                          DEF\_CHK\_VAL\_MAX()}}
+\DoxyCodeLine{1103 \textcolor{comment}{*}}
+\DoxyCodeLine{1104 \textcolor{comment}{* Description : Validate a value as less than or equal to a specified maximum value.}}
+\DoxyCodeLine{1105 \textcolor{comment}{*}}
+\DoxyCodeLine{1106 \textcolor{comment}{* Argument(s) : val        Value to validate.}}
+\DoxyCodeLine{1107 \textcolor{comment}{*}}
+\DoxyCodeLine{1108 \textcolor{comment}{*               val\_max    Maximum value to test.}}
+\DoxyCodeLine{1109 \textcolor{comment}{*}}
+\DoxyCodeLine{1110 \textcolor{comment}{* Return(s)   : DEF\_OK,    Value is less than or equal to maximum value.}}
+\DoxyCodeLine{1111 \textcolor{comment}{*}}
+\DoxyCodeLine{1112 \textcolor{comment}{*               DEF\_FAIL,  otherwise.}}
+\DoxyCodeLine{1113 \textcolor{comment}{*}}
+\DoxyCodeLine{1114 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{1115 \textcolor{comment}{*}}
+\DoxyCodeLine{1116 \textcolor{comment}{* Note(s)     : (1) DEF\_CHK\_VAL\_MAX() avoids directly comparing any two values if only one of the values}}
+\DoxyCodeLine{1117 \textcolor{comment}{*                   is negative since the negative value might be incorrectly promoted to an arbitrary}}
+\DoxyCodeLine{1118 \textcolor{comment}{*                   unsigned value if the other value to compare is unsigned.}}
+\DoxyCodeLine{1119 \textcolor{comment}{*}}
+\DoxyCodeLine{1120 \textcolor{comment}{*               (2) Validation of values is limited to the range supported by the compiler \&/or target}}
+\DoxyCodeLine{1121 \textcolor{comment}{*                   environment.  All other values that underflow/overflow the supported range will}}
+\DoxyCodeLine{1122 \textcolor{comment}{*                   modulo/wrap into the supported range as arbitrary signed or unsigned values.}}
+\DoxyCodeLine{1123 \textcolor{comment}{*}}
+\DoxyCodeLine{1124 \textcolor{comment}{*                   Therefore, any values that underflow the most negative signed value or overflow}}
+\DoxyCodeLine{1125 \textcolor{comment}{*                   the most positive unsigned value supported by the compiler \&/or target environment}}
+\DoxyCodeLine{1126 \textcolor{comment}{*                   cannot be validated :}}
+\DoxyCodeLine{1127 \textcolor{comment}{*}}
+\DoxyCodeLine{1128 \textcolor{comment}{*                           (    N-\/1       N     ]}}
+\DoxyCodeLine{1129 \textcolor{comment}{*                           ( -\/(2   )  ,  2  -\/ 1 ]}}
+\DoxyCodeLine{1130 \textcolor{comment}{*                           (                    ]}}
+\DoxyCodeLine{1131 \textcolor{comment}{*}}
+\DoxyCodeLine{1132 \textcolor{comment}{*                               where}}
+\DoxyCodeLine{1133 \textcolor{comment}{*                                       N       Number of data word bits supported by the compiler}}
+\DoxyCodeLine{1134 \textcolor{comment}{*                                                   \&/or target environment}}
+\DoxyCodeLine{1135 \textcolor{comment}{*}}
+\DoxyCodeLine{1136 \textcolor{comment}{*                   (a) Note that the most negative value, -\/2\string^(N-\/1), is NOT included in the supported}}
+\DoxyCodeLine{1137 \textcolor{comment}{*                       range since many compilers do NOT always correctly handle this value.}}
+\DoxyCodeLine{1138 \textcolor{comment}{*}}
+\DoxyCodeLine{1139 \textcolor{comment}{*               (3) 'val' and 'val\_max' are compared to 1 instead of 0 to avoid warning generated for}}
+\DoxyCodeLine{1140 \textcolor{comment}{*                   unsigned numbers.}}
+\DoxyCodeLine{1141 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1142 \textcolor{comment}{*/}}
+\DoxyCodeLine{1143 }
+\DoxyCodeLine{1144 \textcolor{preprocessor}{\#define  DEF\_CHK\_VAL\_MAX(val, val\_max)            (((!(((val\_max) >= 1) \&\& ((val)     < 1))) \&\& \(\backslash\)}}
+\DoxyCodeLine{1145 \textcolor{preprocessor}{                                                     ((((val)     >= 1) \&\& ((val\_max) < 1))  || \(\backslash\)}}
+\DoxyCodeLine{1146 \textcolor{preprocessor}{                                                       ((val) > (val\_max)))) ? DEF\_FAIL : DEF\_OK)}}
+\DoxyCodeLine{1147 }
+\DoxyCodeLine{1148 }
+\DoxyCodeLine{1149 \textcolor{comment}{/*}}
+\DoxyCodeLine{1150 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1151 \textcolor{comment}{*                                            DEF\_CHK\_VAL()}}
+\DoxyCodeLine{1152 \textcolor{comment}{*}}
+\DoxyCodeLine{1153 \textcolor{comment}{* Description : Validate a value as greater than or equal to a specified minimum value \& less than or}}
+\DoxyCodeLine{1154 \textcolor{comment}{*                   equal to a specified maximum value.}}
+\DoxyCodeLine{1155 \textcolor{comment}{*}}
+\DoxyCodeLine{1156 \textcolor{comment}{* Argument(s) : val        Value to validate.}}
+\DoxyCodeLine{1157 \textcolor{comment}{*}}
+\DoxyCodeLine{1158 \textcolor{comment}{*               val\_min    Minimum value to test.}}
+\DoxyCodeLine{1159 \textcolor{comment}{*}}
+\DoxyCodeLine{1160 \textcolor{comment}{*               val\_max    Maximum value to test.}}
+\DoxyCodeLine{1161 \textcolor{comment}{*}}
+\DoxyCodeLine{1162 \textcolor{comment}{* Return(s)   : DEF\_OK,    Value is greater than or equal to minimum value AND}}
+\DoxyCodeLine{1163 \textcolor{comment}{*                                   less    than or equal to maximum value.}}
+\DoxyCodeLine{1164 \textcolor{comment}{*}}
+\DoxyCodeLine{1165 \textcolor{comment}{*               DEF\_FAIL,  otherwise.}}
+\DoxyCodeLine{1166 \textcolor{comment}{*}}
+\DoxyCodeLine{1167 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{1168 \textcolor{comment}{*}}
+\DoxyCodeLine{1169 \textcolor{comment}{* Note(s)     : (1) DEF\_CHK\_VAL() avoids directly comparing any two values if only one of the values}}
+\DoxyCodeLine{1170 \textcolor{comment}{*                   is negative since the negative value might be incorrectly promoted to an arbitrary}}
+\DoxyCodeLine{1171 \textcolor{comment}{*                   unsigned value if the other value to compare is unsigned.}}
+\DoxyCodeLine{1172 \textcolor{comment}{*}}
+\DoxyCodeLine{1173 \textcolor{comment}{*               (2) Validation of values is limited to the range supported by the compiler \&/or target}}
+\DoxyCodeLine{1174 \textcolor{comment}{*                   environment.  All other values that underflow/overflow the supported range will}}
+\DoxyCodeLine{1175 \textcolor{comment}{*                   modulo/wrap into the supported range as arbitrary signed or unsigned values.}}
+\DoxyCodeLine{1176 \textcolor{comment}{*}}
+\DoxyCodeLine{1177 \textcolor{comment}{*                   Therefore, any values that underflow the most negative signed value or overflow}}
+\DoxyCodeLine{1178 \textcolor{comment}{*                   the most positive unsigned value supported by the compiler \&/or target environment}}
+\DoxyCodeLine{1179 \textcolor{comment}{*                   cannot be validated :}}
+\DoxyCodeLine{1180 \textcolor{comment}{*}}
+\DoxyCodeLine{1181 \textcolor{comment}{*                           (    N-\/1       N     ]}}
+\DoxyCodeLine{1182 \textcolor{comment}{*                           ( -\/(2   )  ,  2  -\/ 1 ]}}
+\DoxyCodeLine{1183 \textcolor{comment}{*                           (                    ]}}
+\DoxyCodeLine{1184 \textcolor{comment}{*}}
+\DoxyCodeLine{1185 \textcolor{comment}{*                               where}}
+\DoxyCodeLine{1186 \textcolor{comment}{*                                       N       Number of data word bits supported by the compiler}}
+\DoxyCodeLine{1187 \textcolor{comment}{*                                                   \&/or target environment}}
+\DoxyCodeLine{1188 \textcolor{comment}{*}}
+\DoxyCodeLine{1189 \textcolor{comment}{*                   (a) Note that the most negative value, -\/2\string^(N-\/1), is NOT included in the supported}}
+\DoxyCodeLine{1190 \textcolor{comment}{*                       range since many compilers do NOT always correctly handle this value.}}
+\DoxyCodeLine{1191 \textcolor{comment}{*}}
+\DoxyCodeLine{1192 \textcolor{comment}{*               (3) DEF\_CHK\_VAL() does NOT validate that the maximum value ('val\_max') is greater than}}
+\DoxyCodeLine{1193 \textcolor{comment}{*                   or equal to the minimum value ('val\_min').}}
+\DoxyCodeLine{1194 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1195 \textcolor{comment}{*/}}
+\DoxyCodeLine{1196 }
+\DoxyCodeLine{1197 \textcolor{preprocessor}{\#define  DEF\_CHK\_VAL(val, val\_min, val\_max)          (((DEF\_CHK\_VAL\_MIN((val), (val\_min)) == DEF\_FAIL) ||                  \(\backslash\)}}
+\DoxyCodeLine{1198 \textcolor{preprocessor}{                                                       (DEF\_CHK\_VAL\_MAX((val), (val\_max)) == DEF\_FAIL)) ? DEF\_FAIL : DEF\_OK)}}
+\DoxyCodeLine{1199 }
+\DoxyCodeLine{1200 }
+\DoxyCodeLine{1201 \textcolor{comment}{/*}}
+\DoxyCodeLine{1202 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1203 \textcolor{comment}{*                                         DEF\_GET\_U\_MAX\_VAL()}}
+\DoxyCodeLine{1204 \textcolor{comment}{*}}
+\DoxyCodeLine{1205 \textcolor{comment}{* Description : Get the maximum unsigned value that can be represented in an unsigned integer variable}}
+\DoxyCodeLine{1206 \textcolor{comment}{*                   of the same data type size as an object.}}
+\DoxyCodeLine{1207 \textcolor{comment}{*}}
+\DoxyCodeLine{1208 \textcolor{comment}{* Argument(s) : obj         Object or data type to return maximum unsigned value (see Note \#1).}}
+\DoxyCodeLine{1209 \textcolor{comment}{*}}
+\DoxyCodeLine{1210 \textcolor{comment}{* Return(s)   : Maximum unsigned integer value that can be represented by the object, if NO error(s).}}
+\DoxyCodeLine{1211 \textcolor{comment}{*}}
+\DoxyCodeLine{1212 \textcolor{comment}{*               0,                                                                    otherwise.}}
+\DoxyCodeLine{1213 \textcolor{comment}{*}}
+\DoxyCodeLine{1214 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{1215 \textcolor{comment}{*}}
+\DoxyCodeLine{1216 \textcolor{comment}{* Note(s)     : (1) 'obj' SHOULD be an integer object or data type but COULD also be a character or}}
+\DoxyCodeLine{1217 \textcolor{comment}{*                   pointer object or data type.}}
+\DoxyCodeLine{1218 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1219 \textcolor{comment}{*/}}
+\DoxyCodeLine{1220 }
+\DoxyCodeLine{1221 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX == CPU\_WORD\_SIZE\_08)}}
+\DoxyCodeLine{1222 }
+\DoxyCodeLine{1223 \textcolor{preprocessor}{\#define  DEF\_GET\_U\_MAX\_VAL(obj)                 ((sizeof(obj) == CPU\_WORD\_SIZE\_08) ? DEF\_INT\_08U\_MAX\_VAL : 0)}}
+\DoxyCodeLine{1224 }
+\DoxyCodeLine{1225 }
+\DoxyCodeLine{1226 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_DATA\_SIZE\_MAX == CPU\_WORD\_SIZE\_16)}}
+\DoxyCodeLine{1227 }
+\DoxyCodeLine{1228 \textcolor{preprocessor}{\#define  DEF\_GET\_U\_MAX\_VAL(obj)                 ((sizeof(obj) == CPU\_WORD\_SIZE\_08) ? DEF\_INT\_08U\_MAX\_VAL :   \(\backslash\)}}
+\DoxyCodeLine{1229 \textcolor{preprocessor}{                                                ((sizeof(obj) == CPU\_WORD\_SIZE\_16) ? DEF\_INT\_16U\_MAX\_VAL : 0))}}
+\DoxyCodeLine{1230 }
+\DoxyCodeLine{1231 }
+\DoxyCodeLine{1232 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_DATA\_SIZE\_MAX == CPU\_WORD\_SIZE\_32)}}
+\DoxyCodeLine{1233 }
+\DoxyCodeLine{1234 \textcolor{preprocessor}{\#define  DEF\_GET\_U\_MAX\_VAL(obj)                 ((sizeof(obj) == CPU\_WORD\_SIZE\_08) ? DEF\_INT\_08U\_MAX\_VAL :    \(\backslash\)}}
+\DoxyCodeLine{1235 \textcolor{preprocessor}{                                                ((sizeof(obj) == CPU\_WORD\_SIZE\_16) ? DEF\_INT\_16U\_MAX\_VAL :    \(\backslash\)}}
+\DoxyCodeLine{1236 \textcolor{preprocessor}{                                                ((sizeof(obj) == CPU\_WORD\_SIZE\_32) ? DEF\_INT\_32U\_MAX\_VAL : 0)))}}
+\DoxyCodeLine{1237 }
+\DoxyCodeLine{1238 }
+\DoxyCodeLine{1239 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_DATA\_SIZE\_MAX == CPU\_WORD\_SIZE\_64)}}
+\DoxyCodeLine{1240 }
+\DoxyCodeLine{1241 \textcolor{preprocessor}{\#define  DEF\_GET\_U\_MAX\_VAL(obj)                 ((sizeof(obj) == CPU\_WORD\_SIZE\_08) ? DEF\_INT\_08U\_MAX\_VAL :     \(\backslash\)}}
+\DoxyCodeLine{1242 \textcolor{preprocessor}{                                                ((sizeof(obj) == CPU\_WORD\_SIZE\_16) ? DEF\_INT\_16U\_MAX\_VAL :     \(\backslash\)}}
+\DoxyCodeLine{1243 \textcolor{preprocessor}{                                                ((sizeof(obj) == CPU\_WORD\_SIZE\_32) ? DEF\_INT\_32U\_MAX\_VAL :     \(\backslash\)}}
+\DoxyCodeLine{1244 \textcolor{preprocessor}{                                                ((sizeof(obj) == CPU\_WORD\_SIZE\_64) ? DEF\_INT\_64U\_MAX\_VAL : 0))))}}
+\DoxyCodeLine{1245 }
+\DoxyCodeLine{1246 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{1247 }
+\DoxyCodeLine{1248 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE\_MAX  illegally \#defined in 'cpu.h'      "{}}}
+\DoxyCodeLine{1249 \textcolor{preprocessor}{\#error  "{}                       [See 'cpu.h  CONFIGURATION ERRORS']"{}}}
+\DoxyCodeLine{1250 }
+\DoxyCodeLine{1251 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1252 }
+\DoxyCodeLine{1253 }
+\DoxyCodeLine{1254 \textcolor{comment}{/*}}
+\DoxyCodeLine{1255 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1256 \textcolor{comment}{*                                            MATH MACRO'S}}
+\DoxyCodeLine{1257 \textcolor{comment}{*}}
+\DoxyCodeLine{1258 \textcolor{comment}{* Note(s) : (1) Ideally, ALL mathematical macro's \& functions SHOULD be defined in the custom mathematics}}
+\DoxyCodeLine{1259 \textcolor{comment}{*               library ('lib\_math.*').  \#\#\#\# However, to maintain backwards compatibility with previously-\/}}
+\DoxyCodeLine{1260 \textcolor{comment}{*               released modules, mathematical macro \& function definitions should only be moved to the}}
+\DoxyCodeLine{1261 \textcolor{comment}{*               custom mathematics library once all previously-\/released modules are updated to include the}}
+\DoxyCodeLine{1262 \textcolor{comment}{*               custom mathematics library.}}
+\DoxyCodeLine{1263 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1264 \textcolor{comment}{*/}}
+\DoxyCodeLine{1265 }
+\DoxyCodeLine{1266 \textcolor{comment}{/*}}
+\DoxyCodeLine{1267 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1268 \textcolor{comment}{*                                              DEF\_MIN()}}
+\DoxyCodeLine{1269 \textcolor{comment}{*}}
+\DoxyCodeLine{1270 \textcolor{comment}{* Description : Determine the minimum of two values.}}
+\DoxyCodeLine{1271 \textcolor{comment}{*}}
+\DoxyCodeLine{1272 \textcolor{comment}{* Argument(s) : a           First  value.}}
+\DoxyCodeLine{1273 \textcolor{comment}{*}}
+\DoxyCodeLine{1274 \textcolor{comment}{*               b           Second value.}}
+\DoxyCodeLine{1275 \textcolor{comment}{*}}
+\DoxyCodeLine{1276 \textcolor{comment}{* Return(s)   : Minimum of the two values.}}
+\DoxyCodeLine{1277 \textcolor{comment}{*}}
+\DoxyCodeLine{1278 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{1279 \textcolor{comment}{*}}
+\DoxyCodeLine{1280 \textcolor{comment}{* Note(s)     : none.}}
+\DoxyCodeLine{1281 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1282 \textcolor{comment}{*/}}
+\DoxyCodeLine{1283 }
+\DoxyCodeLine{1284 \textcolor{preprocessor}{\#define  DEF\_MIN(a, b)                                  (((a) < (b)) ? (a) : (b))}}
+\DoxyCodeLine{1285 }
+\DoxyCodeLine{1286 }
+\DoxyCodeLine{1287 \textcolor{comment}{/*}}
+\DoxyCodeLine{1288 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1289 \textcolor{comment}{*                                              DEF\_MAX()}}
+\DoxyCodeLine{1290 \textcolor{comment}{*}}
+\DoxyCodeLine{1291 \textcolor{comment}{* Description : Determine the maximum of two values.}}
+\DoxyCodeLine{1292 \textcolor{comment}{*}}
+\DoxyCodeLine{1293 \textcolor{comment}{* Argument(s) : a           First  value.}}
+\DoxyCodeLine{1294 \textcolor{comment}{*}}
+\DoxyCodeLine{1295 \textcolor{comment}{*               b           Second value.}}
+\DoxyCodeLine{1296 \textcolor{comment}{*}}
+\DoxyCodeLine{1297 \textcolor{comment}{* Return(s)   : Maximum of the two values.}}
+\DoxyCodeLine{1298 \textcolor{comment}{*}}
+\DoxyCodeLine{1299 \textcolor{comment}{* Note(s)     : none.}}
+\DoxyCodeLine{1300 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1301 \textcolor{comment}{*/}}
+\DoxyCodeLine{1302 }
+\DoxyCodeLine{1303 \textcolor{preprocessor}{\#define  DEF\_MAX(a, b)                                  (((a) > (b)) ? (a) : (b))}}
+\DoxyCodeLine{1304 }
+\DoxyCodeLine{1305 }
+\DoxyCodeLine{1306 \textcolor{comment}{/*}}
+\DoxyCodeLine{1307 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1308 \textcolor{comment}{*                                              DEF\_ABS()}}
+\DoxyCodeLine{1309 \textcolor{comment}{*}}
+\DoxyCodeLine{1310 \textcolor{comment}{* Description : Determine the absolute value of a value.}}
+\DoxyCodeLine{1311 \textcolor{comment}{*}}
+\DoxyCodeLine{1312 \textcolor{comment}{* Argument(s) : a           Value to calculate absolute value.}}
+\DoxyCodeLine{1313 \textcolor{comment}{*}}
+\DoxyCodeLine{1314 \textcolor{comment}{* Return(s)   : Absolute value of the value.}}
+\DoxyCodeLine{1315 \textcolor{comment}{*}}
+\DoxyCodeLine{1316 \textcolor{comment}{* Caller(s)   : Application.}}
+\DoxyCodeLine{1317 \textcolor{comment}{*}}
+\DoxyCodeLine{1318 \textcolor{comment}{* Note(s)     : none.}}
+\DoxyCodeLine{1319 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1320 \textcolor{comment}{*/}}
+\DoxyCodeLine{1321 }
+\DoxyCodeLine{1322 \textcolor{preprocessor}{\#define  DEF\_ABS(a)                                     (((a) < 0) ? (-\/(a)) : (a))}}
+\DoxyCodeLine{1323 }
+\DoxyCodeLine{1324 }
+\DoxyCodeLine{1325 \textcolor{comment}{/*}}
+\DoxyCodeLine{1326 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1327 \textcolor{comment}{*                                         FUNCTION PROTOTYPES}}
+\DoxyCodeLine{1328 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1329 \textcolor{comment}{*/}}
+\DoxyCodeLine{1330 }
+\DoxyCodeLine{1331 }
+\DoxyCodeLine{1332 \textcolor{comment}{/*}}
+\DoxyCodeLine{1333 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1334 \textcolor{comment}{*                                        CONFIGURATION ERRORS}}
+\DoxyCodeLine{1335 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1336 \textcolor{comment}{*/}}
+\DoxyCodeLine{1337 }
+\DoxyCodeLine{1338 }
+\DoxyCodeLine{1339 \textcolor{comment}{/*}}
+\DoxyCodeLine{1340 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1341 \textcolor{comment}{*                                    LIBRARY CONFIGURATION ERRORS}}
+\DoxyCodeLine{1342 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1343 \textcolor{comment}{*/}}
+\DoxyCodeLine{1344 }
+\DoxyCodeLine{1345                                                                 \textcolor{comment}{/* See 'lib\_def.h  Note \#1a'.                           */}}
+\DoxyCodeLine{1346 \textcolor{preprocessor}{\#if     (CPU\_CORE\_VERSION < 12900u)}}
+\DoxyCodeLine{1347 \textcolor{preprocessor}{\#error  "{}CPU\_CORE\_VERSION  [SHOULD be >= V1.29.00]"{}}}
+\DoxyCodeLine{1348 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1349 }
+\DoxyCodeLine{1350 }
+\DoxyCodeLine{1351 \textcolor{comment}{/*}}
+\DoxyCodeLine{1352 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1353 \textcolor{comment}{*                                             MODULE END}}
+\DoxyCodeLine{1354 \textcolor{comment}{*}}
+\DoxyCodeLine{1355 \textcolor{comment}{* Note(s) : (1) See 'lib\_def.h  MODULE'.}}
+\DoxyCodeLine{1356 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{1357 \textcolor{comment}{*/}}
+\DoxyCodeLine{1358 }
+\DoxyCodeLine{1359 \textcolor{preprocessor}{\#endif                                                          }\textcolor{comment}{/* End of lib def module include.                       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1360 }
+
+\end{DoxyCode}

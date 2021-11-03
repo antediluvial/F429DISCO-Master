@@ -1,0 +1,124 @@
+\hypertarget{otm8009a_8h_source}{}\doxysection{otm8009a.\+h}
+\label{otm8009a_8h_source}\index{lib/Components/otm8009a/otm8009a.h@{lib/Components/otm8009a/otm8009a.h}}
+\mbox{\hyperlink{otm8009a_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{38 \textcolor{comment}{/* Define to prevent recursive inclusion -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifndef \_\_OTM8009A\_H}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define \_\_OTM8009A\_H}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{43  \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{/* Includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#if defined ( \_\_GNUC\_\_ ) || (defined (\_\_ARMCC\_VERSION) \&\& (\_\_ARMCC\_VERSION >= 6010050)) }\textcolor{comment}{/* GNU and ARM Compiler 6 compilers */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#ifndef \_\_weak}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define \_\_weak \_\_attribute\_\_((weak))}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_weak */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_GNUC\_\_ || (\_\_ARMCC\_VERSION \&\& (\_\_ARMCC\_VERSION >= 6010050)) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define OTM8009A\_ORIENTATION\_PORTRAIT    ((uint32\_t)0x00) }\textcolor{comment}{/* Portrait orientation choice of LCD screen  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define OTM8009A\_ORIENTATION\_LANDSCAPE   ((uint32\_t)0x01) }\textcolor{comment}{/* Landscape orientation choice of LCD screen */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define OTM8009A\_FORMAT\_RGB888    ((uint32\_t)0x00) }\textcolor{comment}{/* Pixel format chosen is RGB888 : 24 bpp */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define OTM8009A\_FORMAT\_RBG565    ((uint32\_t)0x02) }\textcolor{comment}{/* Pixel format chosen is RGB565 : 16 bpp */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{88 \textcolor{comment}{/* Width and Height in Portrait mode */}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define  OTM8009A\_480X800\_WIDTH             ((uint16\_t)480)     }\textcolor{comment}{/* LCD PIXEL WIDTH   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define  OTM8009A\_480X800\_HEIGHT            ((uint16\_t)800)     }\textcolor{comment}{/* LCD PIXEL HEIGHT  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{comment}{/* Width and Height in Landscape mode */}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define  OTM8009A\_800X480\_WIDTH             ((uint16\_t)800)     }\textcolor{comment}{/* LCD PIXEL WIDTH   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define  OTM8009A\_800X480\_HEIGHT            ((uint16\_t)480)     }\textcolor{comment}{/* LCD PIXEL HEIGHT  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define  OTM8009A\_480X800\_HSYNC             ((uint16\_t)2)      }\textcolor{comment}{/* Horizontal synchronization */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define  OTM8009A\_480X800\_HBP               ((uint16\_t)34)     }\textcolor{comment}{/* Horizontal back porch      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define  OTM8009A\_480X800\_HFP               ((uint16\_t)34)     }\textcolor{comment}{/* Horizontal front porch     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#define  OTM8009A\_480X800\_VSYNC             ((uint16\_t)1)      }\textcolor{comment}{/* Vertical synchronization   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#define  OTM8009A\_480X800\_VBP               ((uint16\_t)15)      }\textcolor{comment}{/* Vertical back porch        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#define  OTM8009A\_480X800\_VFP               ((uint16\_t)16)      }\textcolor{comment}{/* Vertical front porch       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define  OTM8009A\_800X480\_HSYNC             OTM8009A\_480X800\_VSYNC  }\textcolor{comment}{/* Horizontal synchronization */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define  OTM8009A\_800X480\_HBP               OTM8009A\_480X800\_VBP    }\textcolor{comment}{/* Horizontal back porch      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define  OTM8009A\_800X480\_HFP               OTM8009A\_480X800\_VFP    }\textcolor{comment}{/* Horizontal front porch     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define  OTM8009A\_800X480\_VSYNC             OTM8009A\_480X800\_HSYNC  }\textcolor{comment}{/* Vertical synchronization   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define  OTM8009A\_800X480\_VBP               OTM8009A\_480X800\_HBP    }\textcolor{comment}{/* Vertical back porch        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define  OTM8009A\_800X480\_VFP               OTM8009A\_480X800\_HFP    }\textcolor{comment}{/* Vertical front porch       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{/* List of OTM8009A used commands                                  */}}
+\DoxyCodeLine{119 \textcolor{comment}{/* Detailed in OTM8009A Data Sheet 'DATA\_SHEET\_OTM8009A\_V0 92.pdf' */}}
+\DoxyCodeLine{120 \textcolor{comment}{/* Version of 14 June 2012                                         */}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_NOP                   0x00  }\textcolor{comment}{/* NOP command      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_SWRESET               0x01  }\textcolor{comment}{/* Sw reset command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_RDDMADCTL             0x0B  }\textcolor{comment}{/* Read Display MADCTR command : read memory display access ctrl */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_RDDCOLMOD             0x0C  }\textcolor{comment}{/* Read Display pixel format */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_SLPIN                 0x10  }\textcolor{comment}{/* Sleep In command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_SLPOUT                0x11  }\textcolor{comment}{/* Sleep Out command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_PTLON                 0x12  }\textcolor{comment}{/* Partial mode On command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_DISPOFF               0x28  }\textcolor{comment}{/* Display Off command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_DISPON                0x29  }\textcolor{comment}{/* Display On command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_CASET                 0x2A  }\textcolor{comment}{/* Column address set command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_PASET                 0x2B  }\textcolor{comment}{/* Page address set command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_RAMWR                 0x2C  }\textcolor{comment}{/* Memory (GRAM) write command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_RAMRD                 0x2E  }\textcolor{comment}{/* Memory (GRAM) read command  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_PLTAR                 0x30  }\textcolor{comment}{/* Partial area command (4 parameters) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_TEOFF                 0x34  }\textcolor{comment}{/* Tearing Effect Line Off command : command with no parameter */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_TEEON                 0x35  }\textcolor{comment}{/* Tearing Effect Line On command : command with 1 parameter 'TELOM' */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \textcolor{comment}{/* Parameter TELOM : Tearing Effect Line Output Mode : possible values */}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define OTM8009A\_TEEON\_TELOM\_VBLANKING\_INFO\_ONLY            0x00}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#define OTM8009A\_TEEON\_TELOM\_VBLANKING\_AND\_HBLANKING\_INFO   0x01}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_MADCTR                0x36  }\textcolor{comment}{/* Memory Access write control command  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 \textcolor{comment}{/* Possible used values of MADCTR */}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#define OTM8009A\_MADCTR\_MODE\_PORTRAIT       0x00}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#define OTM8009A\_MADCTR\_MODE\_LANDSCAPE      0x60  }\textcolor{comment}{/* MY = 0, MX = 1, MV = 1, ML = 0, RGB = 0 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_IDMOFF                0x38  }\textcolor{comment}{/* Idle mode Off command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_IDMON                 0x39  }\textcolor{comment}{/* Idle mode On command  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_COLMOD                0x3A  }\textcolor{comment}{/* Interface Pixel format command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{comment}{/* Possible values of COLMOD parameter corresponding to used pixel formats */}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#define  OTM8009A\_COLMOD\_RGB565             0x55}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define  OTM8009A\_COLMOD\_RGB888             0x77}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_RAMWRC                0x3C  }\textcolor{comment}{/* Memory write continue command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_RAMRDC                0x3E  }\textcolor{comment}{/* Memory read continue command  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_WRTESCN               0x44  }\textcolor{comment}{/* Write Tearing Effect Scan line command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_RDSCNL                0x45  }\textcolor{comment}{/* Read  Tearing Effect Scan line command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{comment}{/* CABC Management : ie : Content Adaptive Back light Control in IC OTM8009a */}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_WRDISBV               0x51  }\textcolor{comment}{/* Write Display Brightness command          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_WRCTRLD               0x53  }\textcolor{comment}{/* Write CTRL Display command                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_WRCABC                0x55  }\textcolor{comment}{/* Write Content Adaptive Brightness command */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define  OTM8009A\_CMD\_WRCABCMB              0x5E  }\textcolor{comment}{/* Write CABC Minimum Brightness command     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#define OTM8009A\_480X800\_FREQUENCY\_DIVIDER  2   }\textcolor{comment}{/* LCD Frequency divider      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{184 \textcolor{comment}{/* Exported macro -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{185    }
+\DoxyCodeLine{194 \textcolor{comment}{/* Exported functions -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{195   }
+\DoxyCodeLine{199 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___n_t35510___exported___functions_gae663d792047526399ce1e4a8362f471e}{DSI\_IO\_WriteCmd}}(uint32\_t NbrParams, uint8\_t *pParams);}
+\DoxyCodeLine{200 uint8\_t \mbox{\hyperlink{group___o_t_m8009_a___exported___functions_gac8d6505d6bf82df6d41a091c074c5b53}{OTM8009A\_Init}}(uint32\_t ColorCoding, uint32\_t orientation);}
+\DoxyCodeLine{201 \textcolor{keywordtype}{void} OTM8009A\_IO\_Delay(uint32\_t Delay);}
+\DoxyCodeLine{205 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{206 \}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_OTM8009A\_480X800\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{222 \textcolor{comment}{/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/}}
+
+\end{DoxyCode}
