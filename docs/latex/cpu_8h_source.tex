@@ -1,0 +1,768 @@
+\hypertarget{cpu_8h_source}{}\doxysection{cpu.\+h}
+\label{cpu_8h_source}\index{lib/uCOS\_CPU/cpu.h@{lib/uCOS\_CPU/cpu.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                               uC/CPU}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                    CPU CONFIGURATION \& PORT LAYER}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2004-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{*}}
+\DoxyCodeLine{20 \textcolor{comment}{*                                            CPU PORT FILE}}
+\DoxyCodeLine{21 \textcolor{comment}{*}}
+\DoxyCodeLine{22 \textcolor{comment}{*                                               ARMv7-\/M}}
+\DoxyCodeLine{23 \textcolor{comment}{*                                            GNU C Compiler}}
+\DoxyCodeLine{24 \textcolor{comment}{*}}
+\DoxyCodeLine{25 \textcolor{comment}{* Filename : cpu.h}}
+\DoxyCodeLine{26 \textcolor{comment}{* Version  : v1.32.00}}
+\DoxyCodeLine{27 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{28 \textcolor{comment}{* Note(s)  : This port supports the ARM Cortex-\/M3, Cortex-\/M4 and Cortex-\/M7 architectures.}}
+\DoxyCodeLine{29 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{30 \textcolor{comment}{*/}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{/*}}
+\DoxyCodeLine{34 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{35 \textcolor{comment}{*                                               MODULE}}
+\DoxyCodeLine{36 \textcolor{comment}{*}}
+\DoxyCodeLine{37 \textcolor{comment}{* Note(s) : (1) This CPU header file is protected from multiple pre-\/processor inclusion through use of}}
+\DoxyCodeLine{38 \textcolor{comment}{*               the  CPU module present pre-\/processor macro definition.}}
+\DoxyCodeLine{39 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{40 \textcolor{comment}{*/}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#ifndef  CPU\_MODULE\_PRESENT                                     }\textcolor{comment}{/* See Note \#1.                                         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define  CPU\_MODULE\_PRESENT}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{/*}}
+\DoxyCodeLine{47 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{48 \textcolor{comment}{*                                          CPU INCLUDE FILES}}
+\DoxyCodeLine{49 \textcolor{comment}{*}}
+\DoxyCodeLine{50 \textcolor{comment}{* Note(s) : (1) The following CPU files are located in the following directories :}}
+\DoxyCodeLine{51 \textcolor{comment}{*}}
+\DoxyCodeLine{52 \textcolor{comment}{*               (a) \(\backslash\)<Your Product Application>\(\backslash\)cpu\_cfg.h}}
+\DoxyCodeLine{53 \textcolor{comment}{*}}
+\DoxyCodeLine{54 \textcolor{comment}{*               (b) (1) \(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)cpu\_def.h}}
+\DoxyCodeLine{55 \textcolor{comment}{*                   (2) \(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)cpu*.*}}
+\DoxyCodeLine{56 \textcolor{comment}{*}}
+\DoxyCodeLine{57 \textcolor{comment}{*                       where}}
+\DoxyCodeLine{58 \textcolor{comment}{*                               <Your Product Application>      directory path for Your Product's Application}}
+\DoxyCodeLine{59 \textcolor{comment}{*                               <CPU-\/Compiler Directory>        directory path for common   CPU-\/compiler software}}
+\DoxyCodeLine{60 \textcolor{comment}{*                               <cpu>                           directory name for specific CPU}}
+\DoxyCodeLine{61 \textcolor{comment}{*                               <compiler>                      directory name for specific compiler}}
+\DoxyCodeLine{62 \textcolor{comment}{*}}
+\DoxyCodeLine{63 \textcolor{comment}{*           (2) Compiler MUST be configured to include as additional include path directories :}}
+\DoxyCodeLine{64 \textcolor{comment}{*}}
+\DoxyCodeLine{65 \textcolor{comment}{*               (a) '\(\backslash\)<Your Product Application>\(\backslash\)' directory                            See Note \#1a}}
+\DoxyCodeLine{66 \textcolor{comment}{*}}
+\DoxyCodeLine{67 \textcolor{comment}{*               (b) (1) '\(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)'                  directory         See Note \#1b1}}
+\DoxyCodeLine{68 \textcolor{comment}{*                   (2) '\(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)' directory         See Note \#1b2}}
+\DoxyCodeLine{69 \textcolor{comment}{*}}
+\DoxyCodeLine{70 \textcolor{comment}{*           (3) Since NO custom library modules are included, 'cpu.h' may ONLY use configurations from}}
+\DoxyCodeLine{71 \textcolor{comment}{*               CPU configuration file 'cpu\_cfg.h' that do NOT reference any custom library definitions.}}
+\DoxyCodeLine{72 \textcolor{comment}{*}}
+\DoxyCodeLine{73 \textcolor{comment}{*               In other words, 'cpu.h' may use 'cpu\_cfg.h' configurations that are \#define'd to numeric}}
+\DoxyCodeLine{74 \textcolor{comment}{*               constants or to NULL (i.e. NULL-\/valued \#define's); but may NOT use configurations to}}
+\DoxyCodeLine{75 \textcolor{comment}{*               custom library \#define's (e.g. DEF\_DISABLED or DEF\_ENABLED).}}
+\DoxyCodeLine{76 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{77 \textcolor{comment}{*/}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#include  <cpu\_def.h>}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#include  <cpu\_cfg.h>}                                           \textcolor{comment}{/* See Note \#3.                                         */}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{83 \textcolor{keyword}{extern}  \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{comment}{/*}}
+\DoxyCodeLine{88 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{89 \textcolor{comment}{*                                    CONFIGURE STANDARD DATA TYPES}}
+\DoxyCodeLine{90 \textcolor{comment}{*}}
+\DoxyCodeLine{91 \textcolor{comment}{* Note(s) : (1) Configure standard data types according to CPU-\//compiler-\/specifications.}}
+\DoxyCodeLine{92 \textcolor{comment}{*}}
+\DoxyCodeLine{93 \textcolor{comment}{*           (2) (a) (1) 'CPU\_FNCT\_VOID' data type defined to replace the commonly-\/used function pointer}}
+\DoxyCodeLine{94 \textcolor{comment}{*                       data type of a pointer to a function which returns void \& has no arguments.}}
+\DoxyCodeLine{95 \textcolor{comment}{*}}
+\DoxyCodeLine{96 \textcolor{comment}{*                   (2) Example function pointer usage :}}
+\DoxyCodeLine{97 \textcolor{comment}{*}}
+\DoxyCodeLine{98 \textcolor{comment}{*                           CPU\_FNCT\_VOID  FnctName;}}
+\DoxyCodeLine{99 \textcolor{comment}{*}}
+\DoxyCodeLine{100 \textcolor{comment}{*                           FnctName();}}
+\DoxyCodeLine{101 \textcolor{comment}{*}}
+\DoxyCodeLine{102 \textcolor{comment}{*               (b) (1) 'CPU\_FNCT\_PTR'  data type defined to replace the commonly-\/used function pointer}}
+\DoxyCodeLine{103 \textcolor{comment}{*                       data type of a pointer to a function which returns void \& has a single void}}
+\DoxyCodeLine{104 \textcolor{comment}{*                       pointer argument.}}
+\DoxyCodeLine{105 \textcolor{comment}{*}}
+\DoxyCodeLine{106 \textcolor{comment}{*                   (2) Example function pointer usage :}}
+\DoxyCodeLine{107 \textcolor{comment}{*}}
+\DoxyCodeLine{108 \textcolor{comment}{*                           CPU\_FNCT\_PTR   FnctName;}}
+\DoxyCodeLine{109 \textcolor{comment}{*                           void          *p\_obj}}
+\DoxyCodeLine{110 \textcolor{comment}{*}}
+\DoxyCodeLine{111 \textcolor{comment}{*                           FnctName(p\_obj);}}
+\DoxyCodeLine{112 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{113 \textcolor{comment}{*/}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{keyword}{typedef}            \textcolor{keywordtype}{void}        CPU\_VOID;}
+\DoxyCodeLine{116 \textcolor{keyword}{typedef}            \textcolor{keywordtype}{char}        CPU\_CHAR;                        \textcolor{comment}{/*  8-\/bit character                                     */}}
+\DoxyCodeLine{117 \textcolor{keyword}{typedef}  \textcolor{keywordtype}{unsigned}  \textcolor{keywordtype}{char}        CPU\_BOOLEAN;                     \textcolor{comment}{/*  8-\/bit boolean or logical                            */}}
+\DoxyCodeLine{118 \textcolor{keyword}{typedef}  \textcolor{keywordtype}{unsigned}  \textcolor{keywordtype}{char}        CPU\_INT08U;                      \textcolor{comment}{/*  8-\/bit unsigned integer                              */}}
+\DoxyCodeLine{119 \textcolor{keyword}{typedef}    \textcolor{keywordtype}{signed}  \textcolor{keywordtype}{char}        CPU\_INT08S;                      \textcolor{comment}{/*  8-\/bit   signed integer                              */}}
+\DoxyCodeLine{120 \textcolor{keyword}{typedef}  \textcolor{keywordtype}{unsigned}  \textcolor{keywordtype}{short}       CPU\_INT16U;                      \textcolor{comment}{/* 16-\/bit unsigned integer                              */}}
+\DoxyCodeLine{121 \textcolor{keyword}{typedef}    \textcolor{keywordtype}{signed}  \textcolor{keywordtype}{short}       CPU\_INT16S;                      \textcolor{comment}{/* 16-\/bit   signed integer                              */}}
+\DoxyCodeLine{122 \textcolor{keyword}{typedef}  \textcolor{keywordtype}{unsigned}  \textcolor{keywordtype}{int}         CPU\_INT32U;                      \textcolor{comment}{/* 32-\/bit unsigned integer                              */}}
+\DoxyCodeLine{123 \textcolor{keyword}{typedef}    \textcolor{keywordtype}{signed}  \textcolor{keywordtype}{int}         CPU\_INT32S;                      \textcolor{comment}{/* 32-\/bit   signed integer                              */}}
+\DoxyCodeLine{124 \textcolor{keyword}{typedef}  \textcolor{keywordtype}{unsigned}  \textcolor{keywordtype}{long}  \textcolor{keywordtype}{long}  CPU\_INT64U;                      \textcolor{comment}{/* 64-\/bit unsigned integer                              */}}
+\DoxyCodeLine{125 \textcolor{keyword}{typedef}    \textcolor{keywordtype}{signed}  \textcolor{keywordtype}{long}  \textcolor{keywordtype}{long}  CPU\_INT64S;                      \textcolor{comment}{/* 64-\/bit   signed integer                              */}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{keyword}{typedef}            \textcolor{keywordtype}{float}       CPU\_FP32;                        \textcolor{comment}{/* 32-\/bit floating point                                */}}
+\DoxyCodeLine{128 \textcolor{keyword}{typedef}            \textcolor{keywordtype}{double}      CPU\_FP64;                        \textcolor{comment}{/* 64-\/bit floating point                                */}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131 \textcolor{keyword}{typedef}  \textcolor{keyword}{volatile}  CPU\_INT08U  CPU\_REG08;                       \textcolor{comment}{/*  8-\/bit register                                      */}}
+\DoxyCodeLine{132 \textcolor{keyword}{typedef}  \textcolor{keyword}{volatile}  CPU\_INT16U  CPU\_REG16;                       \textcolor{comment}{/* 16-\/bit register                                      */}}
+\DoxyCodeLine{133 \textcolor{keyword}{typedef}  \textcolor{keyword}{volatile}  CPU\_INT32U  CPU\_REG32;                       \textcolor{comment}{/* 32-\/bit register                                      */}}
+\DoxyCodeLine{134 \textcolor{keyword}{typedef}  \textcolor{keyword}{volatile}  CPU\_INT64U  CPU\_REG64;                       \textcolor{comment}{/* 64-\/bit register                                      */}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{keyword}{typedef}            void      (*CPU\_FNCT\_VOID)(void);            \textcolor{comment}{/* See Note \#2a.                                        */}}
+\DoxyCodeLine{138 \textcolor{keyword}{typedef}            void      (*CPU\_FNCT\_PTR )(\textcolor{keywordtype}{void} *p\_obj);     \textcolor{comment}{/* See Note \#2b.                                        */}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{comment}{/*}}
+\DoxyCodeLine{142 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{143 \textcolor{comment}{*                                       CPU WORD CONFIGURATION}}
+\DoxyCodeLine{144 \textcolor{comment}{*}}
+\DoxyCodeLine{145 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_ADDR\_SIZE, CPU\_CFG\_DATA\_SIZE, \& CPU\_CFG\_DATA\_SIZE\_MAX with CPU's \&/or}}
+\DoxyCodeLine{146 \textcolor{comment}{*               compiler's word sizes :}}
+\DoxyCodeLine{147 \textcolor{comment}{*}}
+\DoxyCodeLine{148 \textcolor{comment}{*                   CPU\_WORD\_SIZE\_08             8-\/bit word size}}
+\DoxyCodeLine{149 \textcolor{comment}{*                   CPU\_WORD\_SIZE\_16            16-\/bit word size}}
+\DoxyCodeLine{150 \textcolor{comment}{*                   CPU\_WORD\_SIZE\_32            32-\/bit word size}}
+\DoxyCodeLine{151 \textcolor{comment}{*                   CPU\_WORD\_SIZE\_64            64-\/bit word size}}
+\DoxyCodeLine{152 \textcolor{comment}{*}}
+\DoxyCodeLine{153 \textcolor{comment}{*           (2) Configure CPU\_CFG\_ENDIAN\_TYPE with CPU's data-\/word-\/memory order :}}
+\DoxyCodeLine{154 \textcolor{comment}{*}}
+\DoxyCodeLine{155 \textcolor{comment}{*               (a) CPU\_ENDIAN\_TYPE\_BIG         Big-\/   endian word order (CPU words' most  significant}}
+\DoxyCodeLine{156 \textcolor{comment}{*                                                                         octet @ lowest memory address)}}
+\DoxyCodeLine{157 \textcolor{comment}{*               (b) CPU\_ENDIAN\_TYPE\_LITTLE      Little-\/endian word order (CPU words' least significant}}
+\DoxyCodeLine{158 \textcolor{comment}{*                                                                         octet @ lowest memory address)}}
+\DoxyCodeLine{159 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{160 \textcolor{comment}{*/}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162                                                                 \textcolor{comment}{/* Define  CPU         word sizes (see Note \#1) :       */}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define  CPU\_CFG\_ADDR\_SIZE              CPU\_WORD\_SIZE\_32        }\textcolor{comment}{/* Defines CPU address word size  (in octets).          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define  CPU\_CFG\_DATA\_SIZE              CPU\_WORD\_SIZE\_32        }\textcolor{comment}{/* Defines CPU data    word size  (in octets).          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#define  CPU\_CFG\_DATA\_SIZE\_MAX          CPU\_WORD\_SIZE\_64        }\textcolor{comment}{/* Defines CPU maximum word size  (in octets).          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define  CPU\_CFG\_ENDIAN\_TYPE            CPU\_ENDIAN\_TYPE\_LITTLE  }\textcolor{comment}{/* Defines CPU data    word-\/memory order (see Note \#2). */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{comment}{/*}}
+\DoxyCodeLine{171 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{172 \textcolor{comment}{*                                 CONFIGURE CPU ADDRESS \& DATA TYPES}}
+\DoxyCodeLine{173 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{174 \textcolor{comment}{*/}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176                                                                 \textcolor{comment}{/* CPU address type based on address bus size.          */}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#if     (CPU\_CFG\_ADDR\_SIZE == CPU\_WORD\_SIZE\_32)}}
+\DoxyCodeLine{178 \textcolor{keyword}{typedef}  CPU\_INT32U  CPU\_ADDR;}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_ADDR\_SIZE == CPU\_WORD\_SIZE\_16)}}
+\DoxyCodeLine{180 \textcolor{keyword}{typedef}  CPU\_INT16U  CPU\_ADDR;}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{182 \textcolor{keyword}{typedef}  CPU\_INT08U  CPU\_ADDR;}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185                                                                 \textcolor{comment}{/* CPU data    type based on data    bus size.          */}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE == CPU\_WORD\_SIZE\_32)}}
+\DoxyCodeLine{187 \textcolor{keyword}{typedef}  CPU\_INT32U  CPU\_DATA;}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#elif   (CPU\_CFG\_DATA\_SIZE == CPU\_WORD\_SIZE\_16)}}
+\DoxyCodeLine{189 \textcolor{keyword}{typedef}  CPU\_INT16U  CPU\_DATA;}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{191 \textcolor{keyword}{typedef}  CPU\_INT08U  CPU\_DATA;}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{keyword}{typedef}  CPU\_DATA    CPU\_ALIGN;                                 \textcolor{comment}{/* Defines CPU data-\/word-\/alignment size.                */}}
+\DoxyCodeLine{196 \textcolor{keyword}{typedef}  CPU\_ADDR    CPU\_SIZE\_T;                                \textcolor{comment}{/* Defines CPU standard 'size\_t'   size.                */}}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 \textcolor{comment}{/*}}
+\DoxyCodeLine{200 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{201 \textcolor{comment}{*                                       CPU STACK CONFIGURATION}}
+\DoxyCodeLine{202 \textcolor{comment}{*}}
+\DoxyCodeLine{203 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_STK\_GROWTH in 'cpu.h' with CPU's stack growth order :}}
+\DoxyCodeLine{204 \textcolor{comment}{*}}
+\DoxyCodeLine{205 \textcolor{comment}{*               (a) CPU\_STK\_GROWTH\_LO\_TO\_HI     CPU stack pointer increments to the next higher  stack}}
+\DoxyCodeLine{206 \textcolor{comment}{*                                                   memory address after data is pushed onto the stack}}
+\DoxyCodeLine{207 \textcolor{comment}{*               (b) CPU\_STK\_GROWTH\_HI\_TO\_LO     CPU stack pointer decrements to the next lower   stack}}
+\DoxyCodeLine{208 \textcolor{comment}{*                                                   memory address after data is pushed onto the stack}}
+\DoxyCodeLine{209 \textcolor{comment}{*}}
+\DoxyCodeLine{210 \textcolor{comment}{*           (2) Configure CPU\_CFG\_STK\_ALIGN\_BYTES with the highest minimum alignement required for}}
+\DoxyCodeLine{211 \textcolor{comment}{*               cpu stacks.}}
+\DoxyCodeLine{212 \textcolor{comment}{*}}
+\DoxyCodeLine{213 \textcolor{comment}{*               (a) ARM Procedure Calls Standard requires an 8 bytes stack alignment.}}
+\DoxyCodeLine{214 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{215 \textcolor{comment}{*/}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#define  CPU\_CFG\_STK\_GROWTH       CPU\_STK\_GROWTH\_HI\_TO\_LO       }\textcolor{comment}{/* Defines CPU stack growth order (see Note \#1).        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#define  CPU\_CFG\_STK\_ALIGN\_BYTES  (8u)                          }\textcolor{comment}{/* Defines CPU stack alignment in bytes. (see Note \#2). */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221 \textcolor{keyword}{typedef}  CPU\_INT32U               CPU\_STK;                      \textcolor{comment}{/* Defines CPU stack data type.                         */}}
+\DoxyCodeLine{222 \textcolor{keyword}{typedef}  CPU\_ADDR                 CPU\_STK\_SIZE;                 \textcolor{comment}{/* Defines CPU stack size data type.                    */}}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 \textcolor{comment}{/*}}
+\DoxyCodeLine{226 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{227 \textcolor{comment}{*                                   CRITICAL SECTION CONFIGURATION}}
+\DoxyCodeLine{228 \textcolor{comment}{*}}
+\DoxyCodeLine{229 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_CRITICAL\_METHOD with CPU's/compiler's critical section method :}}
+\DoxyCodeLine{230 \textcolor{comment}{*}}
+\DoxyCodeLine{231 \textcolor{comment}{*                                                       Enter/Exit critical sections by ...}}
+\DoxyCodeLine{232 \textcolor{comment}{*}}
+\DoxyCodeLine{233 \textcolor{comment}{*                   CPU\_CRITICAL\_METHOD\_INT\_DIS\_EN      Disable/Enable interrupts}}
+\DoxyCodeLine{234 \textcolor{comment}{*                   CPU\_CRITICAL\_METHOD\_STATUS\_STK      Push/Pop       interrupt status onto stack}}
+\DoxyCodeLine{235 \textcolor{comment}{*                   CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL    Save/Restore   interrupt status to local variable}}
+\DoxyCodeLine{236 \textcolor{comment}{*}}
+\DoxyCodeLine{237 \textcolor{comment}{*               (a) CPU\_CRITICAL\_METHOD\_INT\_DIS\_EN  is NOT a preferred method since it does NOT support}}
+\DoxyCodeLine{238 \textcolor{comment}{*                   multiple levels of interrupts.  However, with some CPUs/compilers, this is the only}}
+\DoxyCodeLine{239 \textcolor{comment}{*                   available method.}}
+\DoxyCodeLine{240 \textcolor{comment}{*}}
+\DoxyCodeLine{241 \textcolor{comment}{*               (b) CPU\_CRITICAL\_METHOD\_STATUS\_STK    is one preferred method since it supports multiple}}
+\DoxyCodeLine{242 \textcolor{comment}{*                   levels of interrupts.  However, this method assumes that the compiler provides C-\/level}}
+\DoxyCodeLine{243 \textcolor{comment}{*                   \&/or assembly-\/level functionality for the following :}}
+\DoxyCodeLine{244 \textcolor{comment}{*}}
+\DoxyCodeLine{245 \textcolor{comment}{*                     ENTER CRITICAL SECTION :}}
+\DoxyCodeLine{246 \textcolor{comment}{*                       (1) Push/save   interrupt status onto a local stack}}
+\DoxyCodeLine{247 \textcolor{comment}{*                       (2) Disable     interrupts}}
+\DoxyCodeLine{248 \textcolor{comment}{*}}
+\DoxyCodeLine{249 \textcolor{comment}{*                     EXIT  CRITICAL SECTION :}}
+\DoxyCodeLine{250 \textcolor{comment}{*                       (3) Pop/restore interrupt status from a local stack}}
+\DoxyCodeLine{251 \textcolor{comment}{*}}
+\DoxyCodeLine{252 \textcolor{comment}{*               (c) CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL  is one preferred method since it supports multiple}}
+\DoxyCodeLine{253 \textcolor{comment}{*                   levels of interrupts.  However, this method assumes that the compiler provides C-\/level}}
+\DoxyCodeLine{254 \textcolor{comment}{*                   \&/or assembly-\/level functionality for the following :}}
+\DoxyCodeLine{255 \textcolor{comment}{*}}
+\DoxyCodeLine{256 \textcolor{comment}{*                     ENTER CRITICAL SECTION :}}
+\DoxyCodeLine{257 \textcolor{comment}{*                       (1) Save    interrupt status into a local variable}}
+\DoxyCodeLine{258 \textcolor{comment}{*                       (2) Disable interrupts}}
+\DoxyCodeLine{259 \textcolor{comment}{*}}
+\DoxyCodeLine{260 \textcolor{comment}{*                     EXIT  CRITICAL SECTION :}}
+\DoxyCodeLine{261 \textcolor{comment}{*                       (3) Restore interrupt status from a local variable}}
+\DoxyCodeLine{262 \textcolor{comment}{*}}
+\DoxyCodeLine{263 \textcolor{comment}{*           (2) Critical section macro's most likely require inline assembly.  If the compiler does NOT}}
+\DoxyCodeLine{264 \textcolor{comment}{*               allow inline assembly in C source files, critical section macro's MUST call an assembly}}
+\DoxyCodeLine{265 \textcolor{comment}{*               subroutine defined in a 'cpu\_a.asm' file located in the following software directory :}}
+\DoxyCodeLine{266 \textcolor{comment}{*}}
+\DoxyCodeLine{267 \textcolor{comment}{*                   \(\backslash\)<CPU-\/Compiler Directory>\(\backslash\)<cpu>\(\backslash\)<compiler>\(\backslash\)}}
+\DoxyCodeLine{268 \textcolor{comment}{*}}
+\DoxyCodeLine{269 \textcolor{comment}{*                       where}}
+\DoxyCodeLine{270 \textcolor{comment}{*                               <CPU-\/Compiler Directory>    directory path for common   CPU-\/compiler software}}
+\DoxyCodeLine{271 \textcolor{comment}{*                               <cpu>                       directory name for specific CPU}}
+\DoxyCodeLine{272 \textcolor{comment}{*                               <compiler>                  directory name for specific compiler}}
+\DoxyCodeLine{273 \textcolor{comment}{*}}
+\DoxyCodeLine{274 \textcolor{comment}{*           (3) (a) To save/restore interrupt status, a local variable 'cpu\_sr' of type 'CPU\_SR' MAY need}}
+\DoxyCodeLine{275 \textcolor{comment}{*                   to be declared (e.g. if 'CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL' method is configured).}}
+\DoxyCodeLine{276 \textcolor{comment}{*}}
+\DoxyCodeLine{277 \textcolor{comment}{*                   (1) 'cpu\_sr' local variable should be declared via the CPU\_SR\_ALLOC() macro which, if}}
+\DoxyCodeLine{278 \textcolor{comment}{*                        used, MUST be declared following ALL other local variables.}}
+\DoxyCodeLine{279 \textcolor{comment}{*}}
+\DoxyCodeLine{280 \textcolor{comment}{*                        Example :}}
+\DoxyCodeLine{281 \textcolor{comment}{*}}
+\DoxyCodeLine{282 \textcolor{comment}{*                           void  Fnct (void)}}
+\DoxyCodeLine{283 \textcolor{comment}{*                           \{}}
+\DoxyCodeLine{284 \textcolor{comment}{*                               CPU\_INT08U  val\_08;}}
+\DoxyCodeLine{285 \textcolor{comment}{*                               CPU\_INT16U  val\_16;}}
+\DoxyCodeLine{286 \textcolor{comment}{*                               CPU\_INT32U  val\_32;}}
+\DoxyCodeLine{287 \textcolor{comment}{*                               CPU\_SR\_ALLOC();         MUST be declared after ALL other local variables}}
+\DoxyCodeLine{288 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{289 \textcolor{comment}{*                                   :}}
+\DoxyCodeLine{290 \textcolor{comment}{*                           \}}}
+\DoxyCodeLine{291 \textcolor{comment}{*}}
+\DoxyCodeLine{292 \textcolor{comment}{*               (b) Configure 'CPU\_SR' data type with the appropriate-\/sized CPU data type large enough to}}
+\DoxyCodeLine{293 \textcolor{comment}{*                   completely store the CPU's/compiler's status word.}}
+\DoxyCodeLine{294 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{295 \textcolor{comment}{*/}}
+\DoxyCodeLine{296                                                                 \textcolor{comment}{/* Configure CPU critical method      (see Note \#1) :   */}}
+\DoxyCodeLine{297 \textcolor{preprocessor}{\#define  CPU\_CFG\_CRITICAL\_METHOD    CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL}}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299 \textcolor{keyword}{typedef}  CPU\_INT32U                 CPU\_SR;                     \textcolor{comment}{/* Defines   CPU status register size (see Note \#3b).   */}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301                                                                 \textcolor{comment}{/* Allocates CPU status register word (see Note \#3a).   */}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#if     (CPU\_CFG\_CRITICAL\_METHOD == CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL)}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define  CPU\_SR\_ALLOC()             CPU\_SR  cpu\_sr = (CPU\_SR)0}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{\#define  CPU\_SR\_ALLOC()}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{307                                                                 \textcolor{comment}{/* Save CPU current BASEPRI priority lvl for exception. */}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define  CPU\_INT\_DIS()         do \{ cpu\_sr = CPU\_SR\_Save(CPU\_CFG\_KA\_IPL\_BOUNDARY << (8u -\/ CPU\_CFG\_NVIC\_PRIO\_BITS));\} while (0)}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#define  CPU\_INT\_EN()          do \{ CPU\_SR\_Restore(cpu\_sr); \} while (0) }\textcolor{comment}{/* Restore CPU BASEPRI priority level.          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#ifdef   CPU\_CFG\_INT\_DIS\_MEAS\_EN}}
+\DoxyCodeLine{313                                                                         \textcolor{comment}{/* Disable interrupts, ...                      */}}
+\DoxyCodeLine{314                                                                         \textcolor{comment}{/* \& start interrupts disabled time measurement.*/}}
+\DoxyCodeLine{315 \textcolor{preprocessor}{\#define  CPU\_CRITICAL\_ENTER()  do \{ CPU\_INT\_DIS();         \(\backslash\)}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{                                    CPU\_IntDisMeasStart(); \}  while (0)}}
+\DoxyCodeLine{317                                                                         \textcolor{comment}{/* Stop \& measure   interrupts disabled time,   */}}
+\DoxyCodeLine{318                                                                         \textcolor{comment}{/* ...  \& re-\/enable interrupts.                 */}}
+\DoxyCodeLine{319 \textcolor{preprocessor}{\#define  CPU\_CRITICAL\_EXIT()   do \{ CPU\_IntDisMeasStop();  \(\backslash\)}}
+\DoxyCodeLine{320 \textcolor{preprocessor}{                                    CPU\_INT\_EN();          \}  while (0)}}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#define  CPU\_CRITICAL\_ENTER()  do \{ CPU\_INT\_DIS(); \} while (0)          }\textcolor{comment}{/* Disable   interrupts.                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{325 \textcolor{preprocessor}{\#define  CPU\_CRITICAL\_EXIT()   do \{ CPU\_INT\_EN();  \} while (0)          }\textcolor{comment}{/* Re-\/enable interrupts.                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330 \textcolor{comment}{/*}}
+\DoxyCodeLine{331 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{332 \textcolor{comment}{*                                    MEMORY BARRIERS CONFIGURATION}}
+\DoxyCodeLine{333 \textcolor{comment}{*}}
+\DoxyCodeLine{334 \textcolor{comment}{* Note(s) : (1) (a) Configure memory barriers if required by the architecture.}}
+\DoxyCodeLine{335 \textcolor{comment}{*}}
+\DoxyCodeLine{336 \textcolor{comment}{*                   CPU\_MB      Full memory barrier.}}
+\DoxyCodeLine{337 \textcolor{comment}{*                   CPU\_RMB     Read (Loads) memory barrier.}}
+\DoxyCodeLine{338 \textcolor{comment}{*                   CPU\_WMB     Write (Stores) memory barrier.}}
+\DoxyCodeLine{339 \textcolor{comment}{*}}
+\DoxyCodeLine{340 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{341 \textcolor{comment}{*/}}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#define  CPU\_MB()       \_\_asm\_\_ \_\_volatile\_\_ ("{}dsb"{}} : : : "{}memory"{})}
+\DoxyCodeLine{344 \textcolor{preprocessor}{\#define  CPU\_RMB()      \_\_asm\_\_ \_\_volatile\_\_ ("{}dsb"{}} : : : "{}memory"{})}
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#define  CPU\_WMB()      \_\_asm\_\_ \_\_volatile\_\_ ("{}dsb"{}} : : : "{}memory"{})}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348 \textcolor{comment}{/*}}
+\DoxyCodeLine{349 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{350 \textcolor{comment}{*                                    CPU COUNT ZEROS CONFIGURATION}}
+\DoxyCodeLine{351 \textcolor{comment}{*}}
+\DoxyCodeLine{352 \textcolor{comment}{* Note(s) : (1) (a) Configure CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT  to define count leading  zeros bits}}
+\DoxyCodeLine{353 \textcolor{comment}{*                   function(s) in :}}
+\DoxyCodeLine{354 \textcolor{comment}{*}}
+\DoxyCodeLine{355 \textcolor{comment}{*                   (1) 'cpu\_a.asm',  if CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT       \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{356 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable assembly-\/optimized function(s)}}
+\DoxyCodeLine{357 \textcolor{comment}{*}}
+\DoxyCodeLine{358 \textcolor{comment}{*                   (2) 'cpu\_core.c', if CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT   NOT \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{359 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable C-\/source-\/optimized function(s) otherwise}}
+\DoxyCodeLine{360 \textcolor{comment}{*}}
+\DoxyCodeLine{361 \textcolor{comment}{*               (b) Configure CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT to define count trailing zeros bits}}
+\DoxyCodeLine{362 \textcolor{comment}{*                   function(s) in :}}
+\DoxyCodeLine{363 \textcolor{comment}{*}}
+\DoxyCodeLine{364 \textcolor{comment}{*                   (1) 'cpu\_a.asm',  if CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT      \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{365 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable assembly-\/optimized function(s)}}
+\DoxyCodeLine{366 \textcolor{comment}{*}}
+\DoxyCodeLine{367 \textcolor{comment}{*                   (2) 'cpu\_core.c', if CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT  NOT \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{368 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable C-\/source-\/optimized function(s) otherwise}}
+\DoxyCodeLine{369 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{370 \textcolor{comment}{*/}}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372                                                                 \textcolor{comment}{/* Configure CPU count leading  zeros bits ...          */}}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define  CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT                         }\textcolor{comment}{/* ... assembly-\/version (see Note \#1a).                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375                                                                 \textcolor{comment}{/* Configure CPU count trailing zeros bits ...          */}}
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#define  CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT                        }\textcolor{comment}{/* ... assembly-\/version (see Note \#1b).                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{378 }
+\DoxyCodeLine{379 \textcolor{comment}{/*}}
+\DoxyCodeLine{380 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{381 \textcolor{comment}{*                                         FUNCTION PROTOTYPES}}
+\DoxyCodeLine{382 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{383 \textcolor{comment}{*/}}
+\DoxyCodeLine{384 }
+\DoxyCodeLine{385 \textcolor{keywordtype}{void}        CPU\_IntDis       (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{386 \textcolor{keywordtype}{void}        CPU\_IntEn        (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388 \textcolor{keywordtype}{void}        CPU\_IntSrcDis    (CPU\_INT08U  pos);}
+\DoxyCodeLine{389 \textcolor{keywordtype}{void}        CPU\_IntSrcEn     (CPU\_INT08U  pos);}
+\DoxyCodeLine{390 \textcolor{keywordtype}{void}        CPU\_IntSrcPendClr(CPU\_INT08U  pos);}
+\DoxyCodeLine{391 CPU\_INT16S  CPU\_IntSrcPrioGet(CPU\_INT08U  pos);}
+\DoxyCodeLine{392 \textcolor{keywordtype}{void}        CPU\_IntSrcPrioSet(CPU\_INT08U  pos,}
+\DoxyCodeLine{393                               CPU\_INT08U  prio,}
+\DoxyCodeLine{394                               CPU\_INT08U  type);}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397 CPU\_SR      CPU\_SR\_Save      (CPU\_SR      new\_basepri);}
+\DoxyCodeLine{398 \textcolor{keywordtype}{void}        CPU\_SR\_Restore   (CPU\_SR      cpu\_sr);}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400 }
+\DoxyCodeLine{401 \textcolor{keywordtype}{void}        CPU\_WaitForInt   (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{402 \textcolor{keywordtype}{void}        CPU\_WaitForExcept(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405 CPU\_DATA    CPU\_RevBits      (CPU\_DATA    val);}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 \textcolor{keywordtype}{void}        CPU\_BitBandClr   (CPU\_ADDR    addr,}
+\DoxyCodeLine{408                               CPU\_INT08U  bit\_nbr);}
+\DoxyCodeLine{409 \textcolor{keywordtype}{void}        CPU\_BitBandSet   (CPU\_ADDR    addr,}
+\DoxyCodeLine{410                               CPU\_INT08U  bit\_nbr);}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{412 }
+\DoxyCodeLine{413 \textcolor{comment}{/*}}
+\DoxyCodeLine{414 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{415 \textcolor{comment}{*                                          INTERRUPT SOURCES}}
+\DoxyCodeLine{416 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{417 \textcolor{comment}{*/}}
+\DoxyCodeLine{418 }
+\DoxyCodeLine{419 \textcolor{preprocessor}{\#define  CPU\_INT\_STK\_PTR                                   0u}}
+\DoxyCodeLine{420 \textcolor{preprocessor}{\#define  CPU\_INT\_RESET                                     1u}}
+\DoxyCodeLine{421 \textcolor{preprocessor}{\#define  CPU\_INT\_NMI                                       2u}}
+\DoxyCodeLine{422 \textcolor{preprocessor}{\#define  CPU\_INT\_HFAULT                                    3u}}
+\DoxyCodeLine{423 \textcolor{preprocessor}{\#define  CPU\_INT\_MEM                                       4u}}
+\DoxyCodeLine{424 \textcolor{preprocessor}{\#define  CPU\_INT\_BUSFAULT                                  5u}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{\#define  CPU\_INT\_USAGEFAULT                                6u}}
+\DoxyCodeLine{426 \textcolor{preprocessor}{\#define  CPU\_INT\_RSVD\_07                                   7u}}
+\DoxyCodeLine{427 \textcolor{preprocessor}{\#define  CPU\_INT\_RSVD\_08                                   8u}}
+\DoxyCodeLine{428 \textcolor{preprocessor}{\#define  CPU\_INT\_RSVD\_09                                   9u}}
+\DoxyCodeLine{429 \textcolor{preprocessor}{\#define  CPU\_INT\_RSVD\_10                                  10u}}
+\DoxyCodeLine{430 \textcolor{preprocessor}{\#define  CPU\_INT\_SVCALL                                   11u}}
+\DoxyCodeLine{431 \textcolor{preprocessor}{\#define  CPU\_INT\_DBGMON                                   12u}}
+\DoxyCodeLine{432 \textcolor{preprocessor}{\#define  CPU\_INT\_RSVD\_13                                  13u}}
+\DoxyCodeLine{433 \textcolor{preprocessor}{\#define  CPU\_INT\_PENDSV                                   14u}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#define  CPU\_INT\_SYSTICK                                  15u}}
+\DoxyCodeLine{435 \textcolor{preprocessor}{\#define  CPU\_INT\_EXT0                                     16u}}
+\DoxyCodeLine{436 }
+\DoxyCodeLine{437 }
+\DoxyCodeLine{438 \textcolor{comment}{/*}}
+\DoxyCodeLine{439 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{440 \textcolor{comment}{*                                            INTERRUPT TYPE}}
+\DoxyCodeLine{441 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{442 \textcolor{comment}{*/}}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444 \textcolor{preprocessor}{\#define  CPU\_INT\_KA                                        0u   }\textcolor{comment}{/* Kernel Aware     interrupt request.                  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{445 \textcolor{preprocessor}{\#define  CPU\_INT\_NKA                                       1u   }\textcolor{comment}{/* Non-\/Kernel Aware interrupt request.                  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{446 }
+\DoxyCodeLine{447 }
+\DoxyCodeLine{448 \textcolor{comment}{/*}}
+\DoxyCodeLine{449 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{450 \textcolor{comment}{*                                            CPU REGISTERS}}
+\DoxyCodeLine{451 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{452 \textcolor{comment}{*/}}
+\DoxyCodeLine{453                                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/ SYSTICK REGISTERS -\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{454 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CSR            (*((CPU\_REG32 *)(0xE000E010)))             }\textcolor{comment}{/* SysTick Ctrl \& Status Reg.           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{455 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_RVR            (*((CPU\_REG32 *)(0xE000E014)))             }\textcolor{comment}{/* SysTick Reload      Value Reg.       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{456 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CVR            (*((CPU\_REG32 *)(0xE000E018)))             }\textcolor{comment}{/* SysTick Current     Value Reg.       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{457 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CALIB          (*((CPU\_REG32 *)(0xE000E01C)))             }\textcolor{comment}{/* SysTick Calibration Value Reg.       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{458 }
+\DoxyCodeLine{459                                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ NVIC REGISTERS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{460 \textcolor{preprocessor}{\#define  CPU\_REG\_NVIC\_ISER(n)        (*((CPU\_REG32 *)(0xE000E100 + (n) * 4u)))  }\textcolor{comment}{/* IRQ Set En Reg.                      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{461 \textcolor{preprocessor}{\#define  CPU\_REG\_NVIC\_ICER(n)        (*((CPU\_REG32 *)(0xE000E180 + (n) * 4u)))  }\textcolor{comment}{/* IRQ Clr En Reg.                      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{462 \textcolor{preprocessor}{\#define  CPU\_REG\_NVIC\_ISPR(n)        (*((CPU\_REG32 *)(0xE000E200 + (n) * 4u)))  }\textcolor{comment}{/* IRQ Set Pending Reg.                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{463 \textcolor{preprocessor}{\#define  CPU\_REG\_NVIC\_ICPR(n)        (*((CPU\_REG32 *)(0xE000E280 + (n) * 4u)))  }\textcolor{comment}{/* IRQ Clr Pending Reg.                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{464 \textcolor{preprocessor}{\#define  CPU\_REG\_NVIC\_IABR(n)        (*((CPU\_REG32 *)(0xE000E300 + (n) * 4u)))  }\textcolor{comment}{/* IRQ Active Reg.                      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#define  CPU\_REG\_NVIC\_IPR(n)         (*((CPU\_REG32 *)(0xE000E400 + (n) * 4u)))  }\textcolor{comment}{/* IRQ Prio Reg.                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{466 }
+\DoxyCodeLine{467                                                                                 \textcolor{comment}{/* -\/-\/ SYSTEM CONTROL BLOCK(SCB) REG  -\/-\/ */}}
+\DoxyCodeLine{468 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CPUID           (*((CPU\_REG32 *)(0xE000ED00)))             }\textcolor{comment}{/* CPUID Base Reg.                      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{469 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR            (*((CPU\_REG32 *)(0xE000ED04)))             }\textcolor{comment}{/* Int Ctrl State  Reg.                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{470 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_VTOR            (*((CPU\_REG32 *)(0xE000ED08)))             }\textcolor{comment}{/* Vect Tbl Offset Reg.                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_AIRCR           (*((CPU\_REG32 *)(0xE000ED0C)))             }\textcolor{comment}{/* App Int/Reset Ctrl Reg.              */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{472 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SCR             (*((CPU\_REG32 *)(0xE000ED10)))             }\textcolor{comment}{/* System Ctrl Reg.                     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{473 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CCR             (*((CPU\_REG32 *)(0xE000ED14)))             }\textcolor{comment}{/* Cfg    Ctrl Reg.                     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{474 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHPRI1          (*((CPU\_REG32 *)(0xE000ED18)))             }\textcolor{comment}{/* System Handlers  4 to  7 Prio.       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{475 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHPRI2          (*((CPU\_REG32 *)(0xE000ED1C)))             }\textcolor{comment}{/* System Handlers  8 to 11 Prio.       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{476 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHPRI3          (*((CPU\_REG32 *)(0xE000ED20)))             }\textcolor{comment}{/* System Handlers 12 to 15 Prio.       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{477 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR           (*((CPU\_REG32 *)(0xE000ED24)))             }\textcolor{comment}{/* System Handler Ctrl \& State Reg.     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{478 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR            (*((CPU\_REG32 *)(0xE000ED28)))             }\textcolor{comment}{/* Configurable Fault Status Reg.       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{479 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_HFSR            (*((CPU\_REG32 *)(0xE000ED2C)))             }\textcolor{comment}{/* Hard  Fault Status Reg.              */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{480 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_DFSR            (*((CPU\_REG32 *)(0xE000ED30)))             }\textcolor{comment}{/* Debug Fault Status Reg.              */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_MMFAR           (*((CPU\_REG32 *)(0xE000ED34)))             }\textcolor{comment}{/* Mem Manage Addr Reg.                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_BFAR            (*((CPU\_REG32 *)(0xE000ED38)))             }\textcolor{comment}{/* Bus Fault  Addr Reg.                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{483 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_AFSR            (*((CPU\_REG32 *)(0xE000ED3C)))             }\textcolor{comment}{/* Aux Fault Status Reg.                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{484 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CPACR           (*((CPU\_REG32 *)(0xE000ED88)))             }\textcolor{comment}{/* Coprocessor Access Control Reg.      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486                                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/ SCB REG FOR FP EXTENSION -\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{487 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_FPCCR           (*((CPU\_REG32 *)(0xE000EF34)))             }\textcolor{comment}{/* Floating-\/Point Context Control Reg.  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{488 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_FPCAR           (*((CPU\_REG32 *)(0xE000EF38)))             }\textcolor{comment}{/* Floating-\/Point Context Address Reg.  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{489 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_FPDSCR          (*((CPU\_REG32 *)(0xE000EF3C)))             }\textcolor{comment}{/* FP Default Status Control Reg.       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491                                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CPUID REGISTERS -\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{492 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_PFR0          (*((CPU\_REG32 *)(0xE000ED40)))             }\textcolor{comment}{/* Processor Feature Reg 0.             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{493 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_PFR1          (*((CPU\_REG32 *)(0xE000ED44)))             }\textcolor{comment}{/* Processor Feature Reg 1.             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{494 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_DFR0          (*((CPU\_REG32 *)(0xE000ED48)))             }\textcolor{comment}{/* Debug     Feature Reg 0.             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{495 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_AFR0          (*((CPU\_REG32 *)(0xE000ED4C)))             }\textcolor{comment}{/* Aux       Feature Reg 0.             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{496 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_MMFR0         (*((CPU\_REG32 *)(0xE000ED50)))             }\textcolor{comment}{/* Memory Model Feature Reg 0.          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{497 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_MMFR1         (*((CPU\_REG32 *)(0xE000ED54)))             }\textcolor{comment}{/* Memory Model Feature Reg 1.          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{498 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_MMFR2         (*((CPU\_REG32 *)(0xE000ED58)))             }\textcolor{comment}{/* Memory Model Feature Reg 2.          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{499 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_MMFR3         (*((CPU\_REG32 *)(0xE000ED5C)))             }\textcolor{comment}{/* Memory Model Feature Reg 3.          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{500 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_ISAFR0        (*((CPU\_REG32 *)(0xE000ED60)))             }\textcolor{comment}{/* ISA Feature Reg 0.                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{501 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_ISAFR1        (*((CPU\_REG32 *)(0xE000ED64)))             }\textcolor{comment}{/* ISA Feature Reg 1.                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{502 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_ISAFR2        (*((CPU\_REG32 *)(0xE000ED68)))             }\textcolor{comment}{/* ISA Feature Reg 2.                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{503 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_ISAFR3        (*((CPU\_REG32 *)(0xE000ED6C)))             }\textcolor{comment}{/* ISA Feature Reg 3.                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{504 \textcolor{preprocessor}{\#define  CPU\_REG\_CPUID\_ISAFR4        (*((CPU\_REG32 *)(0xE000ED70)))             }\textcolor{comment}{/* ISA Feature Reg 4.                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{505 }
+\DoxyCodeLine{506                                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MPU REGISTERS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{507 \textcolor{preprocessor}{\#define  CPU\_REG\_MPU\_TYPE            (*((CPU\_REG32 *)(0xE000ED90)))             }\textcolor{comment}{/* MPU Type Reg.                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{508 \textcolor{preprocessor}{\#define  CPU\_REG\_MPU\_CTRL            (*((CPU\_REG32 *)(0xE000ED94)))             }\textcolor{comment}{/* MPU Ctrl Reg.                        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{509 \textcolor{preprocessor}{\#define  CPU\_REG\_MPU\_RNR             (*((CPU\_REG32 *)(0xE000ED98)))             }\textcolor{comment}{/* MPU Region Nbr Reg.                  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{510 \textcolor{preprocessor}{\#define  CPU\_REG\_MPU\_RBAR            (*((CPU\_REG32 *)(0xE000ED9C)))             }\textcolor{comment}{/* MPU Region Base Addr Reg.            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{511 \textcolor{preprocessor}{\#define  CPU\_REG\_MPU\_RASR            (*((CPU\_REG32 *)(0xE000EDA0)))             }\textcolor{comment}{/* MPU Region Attrib \& Size Reg.        */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{513                                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/ REGISTERS NOT IN THE SCB -\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{514 \textcolor{preprocessor}{\#define  CPU\_REG\_ICTR                (*((CPU\_REG32 *)(0xE000E004)))             }\textcolor{comment}{/* Int Ctrl'er Type Reg.                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{515 \textcolor{preprocessor}{\#define  CPU\_REG\_DHCSR               (*((CPU\_REG32 *)(0xE000EDF0)))             }\textcolor{comment}{/* Debug Halting Ctrl \& Status Reg.     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{516 \textcolor{preprocessor}{\#define  CPU\_REG\_DCRSR               (*((CPU\_REG32 *)(0xE000EDF4)))             }\textcolor{comment}{/* Debug Core Reg Selector Reg.         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{517 \textcolor{preprocessor}{\#define  CPU\_REG\_DCRDR               (*((CPU\_REG32 *)(0xE000EDF8)))             }\textcolor{comment}{/* Debug Core Reg Data     Reg.         */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{518 \textcolor{preprocessor}{\#define  CPU\_REG\_DEMCR               (*((CPU\_REG32 *)(0xE000EDFC)))             }\textcolor{comment}{/* Debug Except \& Monitor Ctrl Reg.     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{519 \textcolor{preprocessor}{\#define  CPU\_REG\_STIR                (*((CPU\_REG32 *)(0xE000EF00)))             }\textcolor{comment}{/* Software Trigger Int Reg.            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522 \textcolor{comment}{/*}}
+\DoxyCodeLine{523 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{524 \textcolor{comment}{*                                          CPU REGISTER BITS}}
+\DoxyCodeLine{525 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{526 \textcolor{comment}{*/}}
+\DoxyCodeLine{527 }
+\DoxyCodeLine{528                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ SYSTICK CTRL \& STATUS REG BITS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{529 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CSR\_COUNTFLAG               0x00010000}}
+\DoxyCodeLine{530 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CSR\_CLKSOURCE               0x00000004}}
+\DoxyCodeLine{531 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CSR\_TICKINT                 0x00000002}}
+\DoxyCodeLine{532 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CSR\_ENABLE                  0x00000001}}
+\DoxyCodeLine{533 }
+\DoxyCodeLine{534                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/ SYSTICK CALIBRATION VALUE REG BITS -\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{535 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CALIB\_NOREF                 0x80000000}}
+\DoxyCodeLine{536 \textcolor{preprocessor}{\#define  CPU\_REG\_SYST\_CALIB\_SKEW                  0x40000000}}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ INT CTRL STATE REG BITS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{539 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR\_NMIPENDSET              0x80000000}}
+\DoxyCodeLine{540 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR\_PENDSVSET               0x10000000}}
+\DoxyCodeLine{541 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR\_PENDSVCLR               0x08000000}}
+\DoxyCodeLine{542 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR\_PENDSTSET               0x04000000}}
+\DoxyCodeLine{543 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR\_PENDSTCLR               0x02000000}}
+\DoxyCodeLine{544 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR\_ISRPREEMPT              0x00800000}}
+\DoxyCodeLine{545 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR\_ISRPENDING              0x00400000}}
+\DoxyCodeLine{546 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_ICSR\_RETTOBASE               0x00000800}}
+\DoxyCodeLine{547 }
+\DoxyCodeLine{548                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ VECT TBL OFFSET REG BITS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{549 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_VTOR\_TBLBASE                 0x20000000}}
+\DoxyCodeLine{550 }
+\DoxyCodeLine{551                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ APP INT/RESET CTRL REG BITS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{552 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_AIRCR\_ENDIANNESS             0x00008000}}
+\DoxyCodeLine{553 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_AIRCR\_SYSRESETREQ            0x00000004}}
+\DoxyCodeLine{554 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_AIRCR\_VECTCLRACTIVE          0x00000002}}
+\DoxyCodeLine{555 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_AIRCR\_VECTRESET              0x00000001}}
+\DoxyCodeLine{556 }
+\DoxyCodeLine{557                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ SYSTEM CTRL REG BITS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{558 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SCR\_SEVONPEND                0x00000010}}
+\DoxyCodeLine{559 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SCR\_SLEEPDEEP                0x00000004}}
+\DoxyCodeLine{560 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SCR\_SLEEPONEXIT              0x00000002}}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ CFG CTRL REG BITS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{563 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CCR\_STKALIGN                 0x00000200}}
+\DoxyCodeLine{564 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CCR\_BFHFNMIGN                0x00000100}}
+\DoxyCodeLine{565 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CCR\_DIV\_0\_TRP                0x00000010}}
+\DoxyCodeLine{566 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CCR\_UNALIGN\_TRP              0x00000008}}
+\DoxyCodeLine{567 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CCR\_USERSETMPEND             0x00000002}}
+\DoxyCodeLine{568 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CCR\_NONBASETHRDENA           0x00000001}}
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/ SYSTEM HANDLER CTRL \& STATE REG BITS -\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{571 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_USGFAULTENA            0x00040000}}
+\DoxyCodeLine{572 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_BUSFAULTENA            0x00020000}}
+\DoxyCodeLine{573 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_MEMFAULTENA            0x00010000}}
+\DoxyCodeLine{574 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_SVCALLPENDED           0x00008000}}
+\DoxyCodeLine{575 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_BUSFAULTPENDED         0x00004000}}
+\DoxyCodeLine{576 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_MEMFAULTPENDED         0x00002000}}
+\DoxyCodeLine{577 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_USGFAULTPENDED         0x00001000}}
+\DoxyCodeLine{578 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_SYSTICKACT             0x00000800}}
+\DoxyCodeLine{579 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_PENDSVACT              0x00000400}}
+\DoxyCodeLine{580 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_MONITORACT             0x00000100}}
+\DoxyCodeLine{581 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_SVCALLACT              0x00000080}}
+\DoxyCodeLine{582 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_USGFAULTACT            0x00000008}}
+\DoxyCodeLine{583 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_BUSFAULTACT            0x00000002}}
+\DoxyCodeLine{584 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_SHCSR\_MEMFAULTACT            0x00000001}}
+\DoxyCodeLine{585 }
+\DoxyCodeLine{586                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/ CONFIGURABLE FAULT STATUS REG BITS -\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{587 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_DIVBYZERO               0x02000000}}
+\DoxyCodeLine{588 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_UNALIGNED               0x01000000}}
+\DoxyCodeLine{589 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_NOCP                    0x00080000}}
+\DoxyCodeLine{590 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_INVPC                   0x00040000}}
+\DoxyCodeLine{591 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_INVSTATE                0x00020000}}
+\DoxyCodeLine{592 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_UNDEFINSTR              0x00010000}}
+\DoxyCodeLine{593 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_BFARVALID               0x00008000}}
+\DoxyCodeLine{594 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_STKERR                  0x00001000}}
+\DoxyCodeLine{595 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_UNSTKERR                0x00000800}}
+\DoxyCodeLine{596 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_IMPRECISERR             0x00000400}}
+\DoxyCodeLine{597 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_PRECISERR               0x00000200}}
+\DoxyCodeLine{598 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_IBUSERR                 0x00000100}}
+\DoxyCodeLine{599 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_MMARVALID               0x00000080}}
+\DoxyCodeLine{600 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_MSTKERR                 0x00000010}}
+\DoxyCodeLine{601 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_MUNSTKERR               0x00000008}}
+\DoxyCodeLine{602 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_DACCVIOL                0x00000002}}
+\DoxyCodeLine{603 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CFSR\_IACCVIOL                0x00000001}}
+\DoxyCodeLine{604 }
+\DoxyCodeLine{605                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ HARD FAULT STATUS REG BITS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{606 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_HFSR\_DEBUGEVT                0x80000000}}
+\DoxyCodeLine{607 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_HFSR\_FORCED                  0x40000000}}
+\DoxyCodeLine{608 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_HFSR\_VECTTBL                 0x00000002}}
+\DoxyCodeLine{609 }
+\DoxyCodeLine{610                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ DEBUG FAULT STATUS REG BITS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{611 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_DFSR\_EXTERNAL                0x00000010}}
+\DoxyCodeLine{612 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_DFSR\_VCATCH                  0x00000008}}
+\DoxyCodeLine{613 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_DFSR\_DWTTRAP                 0x00000004}}
+\DoxyCodeLine{614 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_DFSR\_BKPT                    0x00000002}}
+\DoxyCodeLine{615 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_DFSR\_HALTED                  0x00000001}}
+\DoxyCodeLine{616 }
+\DoxyCodeLine{617                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/ COPROCESSOR ACCESS CONTROL REG BITS -\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{618 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CPACR\_CP10\_FULL\_ACCESS       0x00300000}}
+\DoxyCodeLine{619 \textcolor{preprocessor}{\#define  CPU\_REG\_SCB\_CPACR\_CP11\_FULL\_ACCESS       0x00C00000}}
+\DoxyCodeLine{620 }
+\DoxyCodeLine{621 }
+\DoxyCodeLine{622 \textcolor{comment}{/*}}
+\DoxyCodeLine{623 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{624 \textcolor{comment}{*                                          CPU REGISTER MASK}}
+\DoxyCodeLine{625 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{626 \textcolor{comment}{*/}}
+\DoxyCodeLine{627 }
+\DoxyCodeLine{628 \textcolor{preprocessor}{\#define  CPU\_MSK\_SCB\_ICSR\_VECT\_ACTIVE             0x000001FF}}
+\DoxyCodeLine{629 }
+\DoxyCodeLine{630 }
+\DoxyCodeLine{631 \textcolor{comment}{/*}}
+\DoxyCodeLine{632 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{633 \textcolor{comment}{*                                        CONFIGURATION ERRORS}}
+\DoxyCodeLine{634 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{635 \textcolor{comment}{*/}}
+\DoxyCodeLine{636 }
+\DoxyCodeLine{637 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_ADDR\_SIZE}}
+\DoxyCodeLine{638 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_ADDR\_SIZE              not \#define'd in 'cpu.h'               "{}}}
+\DoxyCodeLine{639 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_WORD\_SIZE\_08   8-\/bit alignment]"{}}}
+\DoxyCodeLine{640 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_16  16-\/bit alignment]"{}}}
+\DoxyCodeLine{641 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_32  32-\/bit alignment]"{}}}
+\DoxyCodeLine{642 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_64  64-\/bit alignment]"{}}}
+\DoxyCodeLine{643 }
+\DoxyCodeLine{644 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_ADDR\_SIZE != CPU\_WORD\_SIZE\_08) \&\& \(\backslash\)}}
+\DoxyCodeLine{645 \textcolor{preprocessor}{        (CPU\_CFG\_ADDR\_SIZE != CPU\_WORD\_SIZE\_16) \&\& \(\backslash\)}}
+\DoxyCodeLine{646 \textcolor{preprocessor}{        (CPU\_CFG\_ADDR\_SIZE != CPU\_WORD\_SIZE\_32) \&\& \(\backslash\)}}
+\DoxyCodeLine{647 \textcolor{preprocessor}{        (CPU\_CFG\_ADDR\_SIZE != CPU\_WORD\_SIZE\_64))}}
+\DoxyCodeLine{648 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_ADDR\_SIZE        illegally \#define'd in 'cpu.h'               "{}}}
+\DoxyCodeLine{649 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_WORD\_SIZE\_08   8-\/bit alignment]"{}}}
+\DoxyCodeLine{650 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_16  16-\/bit alignment]"{}}}
+\DoxyCodeLine{651 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_32  32-\/bit alignment]"{}}}
+\DoxyCodeLine{652 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_64  64-\/bit alignment]"{}}}
+\DoxyCodeLine{653 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{654 }
+\DoxyCodeLine{655 }
+\DoxyCodeLine{656 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_DATA\_SIZE}}
+\DoxyCodeLine{657 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE              not \#define'd in 'cpu.h'               "{}}}
+\DoxyCodeLine{658 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_WORD\_SIZE\_08   8-\/bit alignment]"{}}}
+\DoxyCodeLine{659 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_16  16-\/bit alignment]"{}}}
+\DoxyCodeLine{660 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_32  32-\/bit alignment]"{}}}
+\DoxyCodeLine{661 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_64  64-\/bit alignment]"{}}}
+\DoxyCodeLine{662 }
+\DoxyCodeLine{663 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_DATA\_SIZE != CPU\_WORD\_SIZE\_08) \&\& \(\backslash\)}}
+\DoxyCodeLine{664 \textcolor{preprocessor}{        (CPU\_CFG\_DATA\_SIZE != CPU\_WORD\_SIZE\_16) \&\& \(\backslash\)}}
+\DoxyCodeLine{665 \textcolor{preprocessor}{        (CPU\_CFG\_DATA\_SIZE != CPU\_WORD\_SIZE\_32) \&\& \(\backslash\)}}
+\DoxyCodeLine{666 \textcolor{preprocessor}{        (CPU\_CFG\_DATA\_SIZE != CPU\_WORD\_SIZE\_64))}}
+\DoxyCodeLine{667 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE        illegally \#define'd in 'cpu.h'               "{}}}
+\DoxyCodeLine{668 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_WORD\_SIZE\_08   8-\/bit alignment]"{}}}
+\DoxyCodeLine{669 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_16  16-\/bit alignment]"{}}}
+\DoxyCodeLine{670 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_32  32-\/bit alignment]"{}}}
+\DoxyCodeLine{671 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_64  64-\/bit alignment]"{}}}
+\DoxyCodeLine{672 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{673 }
+\DoxyCodeLine{674 }
+\DoxyCodeLine{675 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_DATA\_SIZE\_MAX}}
+\DoxyCodeLine{676 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE\_MAX          not \#define'd in 'cpu.h'               "{}}}
+\DoxyCodeLine{677 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_WORD\_SIZE\_08   8-\/bit alignment]"{}}}
+\DoxyCodeLine{678 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_16  16-\/bit alignment]"{}}}
+\DoxyCodeLine{679 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_32  32-\/bit alignment]"{}}}
+\DoxyCodeLine{680 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_64  64-\/bit alignment]"{}}}
+\DoxyCodeLine{681 }
+\DoxyCodeLine{682 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_DATA\_SIZE\_MAX != CPU\_WORD\_SIZE\_08) \&\& \(\backslash\)}}
+\DoxyCodeLine{683 \textcolor{preprocessor}{        (CPU\_CFG\_DATA\_SIZE\_MAX != CPU\_WORD\_SIZE\_16) \&\& \(\backslash\)}}
+\DoxyCodeLine{684 \textcolor{preprocessor}{        (CPU\_CFG\_DATA\_SIZE\_MAX != CPU\_WORD\_SIZE\_32) \&\& \(\backslash\)}}
+\DoxyCodeLine{685 \textcolor{preprocessor}{        (CPU\_CFG\_DATA\_SIZE\_MAX != CPU\_WORD\_SIZE\_64))}}
+\DoxyCodeLine{686 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE\_MAX    illegally \#define'd in 'cpu.h'               "{}}}
+\DoxyCodeLine{687 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_WORD\_SIZE\_08   8-\/bit alignment]"{}}}
+\DoxyCodeLine{688 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_16  16-\/bit alignment]"{}}}
+\DoxyCodeLine{689 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_32  32-\/bit alignment]"{}}}
+\DoxyCodeLine{690 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_WORD\_SIZE\_64  64-\/bit alignment]"{}}}
+\DoxyCodeLine{691 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{692 }
+\DoxyCodeLine{693 }
+\DoxyCodeLine{694 }
+\DoxyCodeLine{695 \textcolor{preprocessor}{\#if     (CPU\_CFG\_DATA\_SIZE\_MAX < CPU\_CFG\_DATA\_SIZE)}}
+\DoxyCodeLine{696 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_DATA\_SIZE\_MAX    illegally \#define'd in 'cpu.h' "{}}}
+\DoxyCodeLine{697 \textcolor{preprocessor}{\#error  "{}                         [MUST be  >= CPU\_CFG\_DATA\_SIZE]"{}}}
+\DoxyCodeLine{698 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{699 }
+\DoxyCodeLine{700 }
+\DoxyCodeLine{701 }
+\DoxyCodeLine{702 }
+\DoxyCodeLine{703 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_ENDIAN\_TYPE}}
+\DoxyCodeLine{704 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_ENDIAN\_TYPE            not \#define'd in 'cpu.h'   "{}}}
+\DoxyCodeLine{705 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_ENDIAN\_TYPE\_BIG   ]"{}}}
+\DoxyCodeLine{706 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_ENDIAN\_TYPE\_LITTLE]"{}}}
+\DoxyCodeLine{707 }
+\DoxyCodeLine{708 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_ENDIAN\_TYPE != CPU\_ENDIAN\_TYPE\_BIG   ) \&\& \(\backslash\)}}
+\DoxyCodeLine{709 \textcolor{preprocessor}{        (CPU\_CFG\_ENDIAN\_TYPE != CPU\_ENDIAN\_TYPE\_LITTLE))}}
+\DoxyCodeLine{710 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_ENDIAN\_TYPE      illegally \#define'd in 'cpu.h'   "{}}}
+\DoxyCodeLine{711 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_ENDIAN\_TYPE\_BIG   ]"{}}}
+\DoxyCodeLine{712 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_ENDIAN\_TYPE\_LITTLE]"{}}}
+\DoxyCodeLine{713 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{714 }
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716 }
+\DoxyCodeLine{717 }
+\DoxyCodeLine{718 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_STK\_GROWTH}}
+\DoxyCodeLine{719 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_STK\_GROWTH             not \#define'd in 'cpu.h'    "{}}}
+\DoxyCodeLine{720 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_STK\_GROWTH\_LO\_TO\_HI]"{}}}
+\DoxyCodeLine{721 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_STK\_GROWTH\_HI\_TO\_LO]"{}}}
+\DoxyCodeLine{722 }
+\DoxyCodeLine{723 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_STK\_GROWTH != CPU\_STK\_GROWTH\_LO\_TO\_HI) \&\& \(\backslash\)}}
+\DoxyCodeLine{724 \textcolor{preprocessor}{        (CPU\_CFG\_STK\_GROWTH != CPU\_STK\_GROWTH\_HI\_TO\_LO))}}
+\DoxyCodeLine{725 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_STK\_GROWTH       illegally \#define'd in 'cpu.h'    "{}}}
+\DoxyCodeLine{726 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_STK\_GROWTH\_LO\_TO\_HI]"{}}}
+\DoxyCodeLine{727 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_STK\_GROWTH\_HI\_TO\_LO]"{}}}
+\DoxyCodeLine{728 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{729 }
+\DoxyCodeLine{730 }
+\DoxyCodeLine{731 }
+\DoxyCodeLine{732 }
+\DoxyCodeLine{733 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_CRITICAL\_METHOD}}
+\DoxyCodeLine{734 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_CRITICAL\_METHOD        not \#define'd in 'cpu.h'             "{}}}
+\DoxyCodeLine{735 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_CRITICAL\_METHOD\_INT\_DIS\_EN  ]"{}}}
+\DoxyCodeLine{736 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_CRITICAL\_METHOD\_STATUS\_STK  ]"{}}}
+\DoxyCodeLine{737 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL]"{}}}
+\DoxyCodeLine{738 }
+\DoxyCodeLine{739 \textcolor{preprocessor}{\#elif  ((CPU\_CFG\_CRITICAL\_METHOD != CPU\_CRITICAL\_METHOD\_INT\_DIS\_EN  ) \&\& \(\backslash\)}}
+\DoxyCodeLine{740 \textcolor{preprocessor}{        (CPU\_CFG\_CRITICAL\_METHOD != CPU\_CRITICAL\_METHOD\_STATUS\_STK  ) \&\& \(\backslash\)}}
+\DoxyCodeLine{741 \textcolor{preprocessor}{        (CPU\_CFG\_CRITICAL\_METHOD != CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL))}}
+\DoxyCodeLine{742 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_CRITICAL\_METHOD  illegally \#define'd in 'cpu.h'             "{}}}
+\DoxyCodeLine{743 \textcolor{preprocessor}{\#error  "{}                         [MUST be  CPU\_CRITICAL\_METHOD\_INT\_DIS\_EN  ]"{}}}
+\DoxyCodeLine{744 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_CRITICAL\_METHOD\_STATUS\_STK  ]"{}}}
+\DoxyCodeLine{745 \textcolor{preprocessor}{\#error  "{}                         [     ||  CPU\_CRITICAL\_METHOD\_STATUS\_LOCAL]"{}}}
+\DoxyCodeLine{746 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{747 }
+\DoxyCodeLine{748 }
+\DoxyCodeLine{749 \textcolor{comment}{/*}}
+\DoxyCodeLine{750 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{751 \textcolor{comment}{*                                             MODULE END}}
+\DoxyCodeLine{752 \textcolor{comment}{*}}
+\DoxyCodeLine{753 \textcolor{comment}{* Note(s) : (1) See 'cpu.h  MODULE'.}}
+\DoxyCodeLine{754 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{755 \textcolor{comment}{*/}}
+\DoxyCodeLine{756 }
+\DoxyCodeLine{757 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{758 \}}
+\DoxyCodeLine{759 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{760 }
+\DoxyCodeLine{761 \textcolor{preprocessor}{\#endif                                                          }\textcolor{comment}{/* End of CPU module include.                           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{762 }
+
+\end{DoxyCode}

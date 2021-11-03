@@ -1,0 +1,93 @@
+\hypertarget{main_8h_source}{}\doxysection{main.\+h}
+\label{main_8h_source}\index{include/main.h@{include/main.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{36 \textcolor{comment}{/* Define to prevent recursive inclusion -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#ifndef \_\_MAIN\_H}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define \_\_MAIN\_H}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{comment}{/* Includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#include "{}stdio.h"{}}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#include "{}stdlib.h"{}}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#include "{}string.h"{}}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f429i__discovery_8h}{stm32f429i\_discovery.h}}"{}}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f429i__discovery__ts_8h}{stm32f429i\_discovery\_ts.h}}"{}}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f429i__discovery__io_8h}{stm32f429i\_discovery\_io.h}}"{}}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f429i__discovery__lcd_8h}{stm32f429i\_discovery\_lcd.h}}"{}}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f429i__discovery__gyroscope_8h}{stm32f429i\_discovery\_gyroscope.h}}"{}}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#include "{}os.h"{}}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_MAIN\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{comment}{/*}}
+\DoxyCodeLine{55 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{56 \textcolor{comment}{*                                            LOCAL DEFINES}}
+\DoxyCodeLine{57 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{58 \textcolor{comment}{*/}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{comment}{/* Task Stack Size */}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define TASK\_STK\_SIZE 256u}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{/* Task Priority */}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define APP\_TASK\_START\_PRIO 1u}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define UPDATE\_LCD\_TASK\_PRIO 2u}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define READ\_USART\_TASK\_PRIO 2u}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{comment}{/*}}
+\DoxyCodeLine{69 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{70 \textcolor{comment}{*                                           GLOBAL VARIABLES}}
+\DoxyCodeLine{71 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{72 \textcolor{comment}{*/}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{comment}{/* Task Control Block */}}
+\DoxyCodeLine{75 \textcolor{keyword}{static} \mbox{\hyperlink{structos__tcb}{OS\_TCB}} AppTaskStartTCB;}
+\DoxyCodeLine{76 \textcolor{keyword}{static} \mbox{\hyperlink{structos__tcb}{OS\_TCB}} UpdateLCDTaskTCB;}
+\DoxyCodeLine{77 \textcolor{keyword}{static} \mbox{\hyperlink{structos__tcb}{OS\_TCB}} ReadUsartTaskTCB;}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{comment}{/* Mutex object address */}}
+\DoxyCodeLine{80 \textcolor{keyword}{static} \mbox{\hyperlink{structos__mutex}{OS\_MUTEX}} AppMutex;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{comment}{/* Task Stack */}}
+\DoxyCodeLine{84 \textcolor{keyword}{static} CPU\_STK AppTaskStartStk[TASK\_STK\_SIZE];}
+\DoxyCodeLine{85 \textcolor{keyword}{static} CPU\_STK UpdateLCDTaskStk[TASK\_STK\_SIZE];}
+\DoxyCodeLine{86 \textcolor{keyword}{static} CPU\_STK ReadUsartTaskStk[TASK\_STK\_SIZE];}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{comment}{/*Shared system resources*/}}
+\DoxyCodeLine{89 UART\_HandleTypeDef h\_UARTHandle;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 uint32\_t Adc\_value=1234;}
+\DoxyCodeLine{92 \textcolor{keywordtype}{char} temp=\textcolor{charliteral}{'S'};}
+\DoxyCodeLine{93 \textcolor{keywordtype}{char} test[5];}
+\DoxyCodeLine{94 \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{comment}{/*}}
+\DoxyCodeLine{97 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{98 \textcolor{comment}{*                                         FUNCTION PROTOTYPES}}
+\DoxyCodeLine{99 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{100 \textcolor{comment}{*/}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{/* Task Prototypes */}}
+\DoxyCodeLine{103 \textcolor{keyword}{static} \textcolor{keywordtype}{void} AppTaskStart(\textcolor{keywordtype}{void} *p\_arg);}
+\DoxyCodeLine{104 \textcolor{keyword}{static} \textcolor{keywordtype}{void} UpdateLCDTask(\textcolor{keywordtype}{void} *p\_arg);}
+\DoxyCodeLine{105 \textcolor{keyword}{static} \textcolor{keywordtype}{void} ReadUsartTask(\textcolor{keywordtype}{void} *p\_arg);}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{comment}{/* System Initilization Prototypes */}}
+\DoxyCodeLine{109 \textcolor{keyword}{static} \textcolor{keywordtype}{void} SystemClock\_Config(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{110 \textcolor{keyword}{static} \textcolor{keywordtype}{void} LCD\_Init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{111 \textcolor{keyword}{static} \textcolor{keywordtype}{void} GPIO\_Init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{112 \textcolor{keyword}{static} \textcolor{keywordtype}{void} USART\_Init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{/*  Standard function protypes*/}}
+\DoxyCodeLine{115 \textcolor{keyword}{static} \textcolor{keywordtype}{void} LCDProgressBar(uint32\_t Adc);}
+\DoxyCodeLine{116 \textcolor{keyword}{static} \textcolor{keywordtype}{void} LCD\_ADC(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{comment}{/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 }
+
+\end{DoxyCode}

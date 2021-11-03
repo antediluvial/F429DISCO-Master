@@ -1,0 +1,189 @@
+\hypertarget{os__cpu_8h_source}{}\doxysection{os\+\_\+cpu.\+h}
+\label{os__cpu_8h_source}\index{lib/uCOS\_Ports/os\_cpu.h@{lib/uCOS\_Ports/os\_cpu.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                              uC/OS-\/III}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                        The Real-\/Time Kernel}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2009-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{*}}
+\DoxyCodeLine{20 \textcolor{comment}{*                                             ARMv7-\/M Port}}
+\DoxyCodeLine{21 \textcolor{comment}{*}}
+\DoxyCodeLine{22 \textcolor{comment}{* File      : os\_cpu.h}}
+\DoxyCodeLine{23 \textcolor{comment}{* Version   : V3.08.00}}
+\DoxyCodeLine{24 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{25 \textcolor{comment}{* For       : ARMv7-\/M Cortex-\/M}}
+\DoxyCodeLine{26 \textcolor{comment}{* Mode      : Thumb-\/2 ISA}}
+\DoxyCodeLine{27 \textcolor{comment}{* Toolchain : GNU C Compiler}}
+\DoxyCodeLine{28 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{29 \textcolor{comment}{* Note(s)   : (1) This port supports the ARM Cortex-\/M3, Cortex-\/M4 and Cortex-\/M7 architectures.}}
+\DoxyCodeLine{30 \textcolor{comment}{*             (2) It has been tested with the following Hardware Floating Point Unit.}}
+\DoxyCodeLine{31 \textcolor{comment}{*                 (a) Single-\/precision: FPv4-\/SP-\/D16-\/M and FPv5-\/SP-\/D16-\/M}}
+\DoxyCodeLine{32 \textcolor{comment}{*                 (b) Double-\/precision: FPv5-\/D16-\/M}}
+\DoxyCodeLine{33 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{34 \textcolor{comment}{*/}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifndef  OS\_CPU\_H}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define  OS\_CPU\_H}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef   OS\_CPU\_GLOBALS}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define  OS\_CPU\_EXT}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define  OS\_CPU\_EXT  extern}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{/*}}
+\DoxyCodeLine{47 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{48 \textcolor{comment}{*                                     EXTERNAL C LANGUAGE LINKAGE}}
+\DoxyCodeLine{49 \textcolor{comment}{*}}
+\DoxyCodeLine{50 \textcolor{comment}{* Note(s) : (1) C++ compilers MUST 'extern'ally declare ALL C function prototypes \& variable/object}}
+\DoxyCodeLine{51 \textcolor{comment}{*               declarations for correct C language linkage.}}
+\DoxyCodeLine{52 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{53 \textcolor{comment}{*/}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{56 \textcolor{keyword}{extern}  \textcolor{stringliteral}{"{}C"{}} \{                                    \textcolor{comment}{/* See Note \#1.                                       */}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{comment}{/*}}
+\DoxyCodeLine{61 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{62 \textcolor{comment}{*                                               DEFINES}}
+\DoxyCodeLine{63 \textcolor{comment}{* Note(s) : (1) Determines the interrupt programmable priority levels. This is normally specified in the}}
+\DoxyCodeLine{64 \textcolor{comment}{*               Microcontroller reference manual. 4-\/bits gives us 16 programmable priority levels.}}
+\DoxyCodeLine{65 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{66 \textcolor{comment}{*/}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#if (defined(\_\_VFP\_FP\_\_) \&\& !defined(\_\_SOFTFP\_\_))}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define  OS\_CPU\_ARM\_FP\_EN              1u}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define  OS\_CPU\_ARM\_FP\_EN              0u}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#ifndef CPU\_CFG\_KA\_IPL\_BOUNDARY}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_KA\_IPL\_BOUNDARY         not \#define'd in 'cpu\_cfg.h'    "{}}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#if (CPU\_CFG\_KA\_IPL\_BOUNDARY == 0u)}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_KA\_IPL\_BOUNDARY        should be > 0 "{}}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#ifndef CPU\_CFG\_NVIC\_PRIO\_BITS}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_NVIC\_PRIO\_BITS         not \#define'd in 'cpu\_cfg.h'    "{}}   \textcolor{comment}{/* See Note \# 1            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#if (CPU\_CFG\_KA\_IPL\_BOUNDARY >= (1u << CPU\_CFG\_NVIC\_PRIO\_BITS))}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#error  "{}CPU\_CFG\_KA\_IPL\_BOUNDARY        should not be set to higher than max programable priority level "{}}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{comment}{/*}}
+\DoxyCodeLine{92 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{93 \textcolor{comment}{*                                               MACROS}}
+\DoxyCodeLine{94 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{95 \textcolor{comment}{*/}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define  OS\_TASK\_SW()               OSCtxSw()}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define  OS\_TASK\_SW\_SYNC()          \_\_asm\_\_ \_\_volatile\_\_ ("{}isb"{}} : : : "{}memory"{})}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{/*}}
+\DoxyCodeLine{103 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{104 \textcolor{comment}{*                                       TIMESTAMP CONFIGURATION}}
+\DoxyCodeLine{105 \textcolor{comment}{*}}
+\DoxyCodeLine{106 \textcolor{comment}{* Note(s) : (1) OS\_TS\_GET() is generally defined as CPU\_TS\_Get32() to allow CPU timestamp timer to be of}}
+\DoxyCodeLine{107 \textcolor{comment}{*               any data type size.}}
+\DoxyCodeLine{108 \textcolor{comment}{*}}
+\DoxyCodeLine{109 \textcolor{comment}{*           (2) For architectures that provide 32-\/bit or higher precision free running counters}}
+\DoxyCodeLine{110 \textcolor{comment}{*               (i.e. cycle count registers):}}
+\DoxyCodeLine{111 \textcolor{comment}{*}}
+\DoxyCodeLine{112 \textcolor{comment}{*               (a) OS\_TS\_GET() may be defined as CPU\_TS\_TmrRd() to improve performance when retrieving}}
+\DoxyCodeLine{113 \textcolor{comment}{*                   the timestamp.}}
+\DoxyCodeLine{114 \textcolor{comment}{*}}
+\DoxyCodeLine{115 \textcolor{comment}{*               (b) CPU\_TS\_TmrRd() MUST be configured to be greater or equal to 32-\/bits to avoid}}
+\DoxyCodeLine{116 \textcolor{comment}{*                   truncation of TS.}}
+\DoxyCodeLine{117 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{118 \textcolor{comment}{*/}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#if      OS\_CFG\_TS\_EN == 1u}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define  OS\_TS\_GET()               (CPU\_TS)CPU\_TS\_TmrRd()   }\textcolor{comment}{/* See Note \#2a.                                          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define  OS\_TS\_GET()               (CPU\_TS)0u}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#if (CPU\_CFG\_TS\_32\_EN    > 0u) \&\& \(\backslash\)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{    (CPU\_CFG\_TS\_TMR\_SIZE < CPU\_WORD\_SIZE\_32)}}
+\DoxyCodeLine{128                                                             \textcolor{comment}{/* CPU\_CFG\_TS\_TMR\_SIZE MUST be >= 32-\/bit (see Note \#2b).  */}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#error  "{}cpu\_cfg.h, CPU\_CFG\_TS\_TMR\_SIZE MUST be >= CPU\_WORD\_SIZE\_32"{}}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{comment}{/*}}
+\DoxyCodeLine{134 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{135 \textcolor{comment}{*                                          GLOBAL VARIABLES}}
+\DoxyCodeLine{136 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{137 \textcolor{comment}{*/}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 OS\_CPU\_EXT  CPU\_STK  *OS\_CPU\_ExceptStkBase;}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{comment}{/*}}
+\DoxyCodeLine{143 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{144 \textcolor{comment}{*                                         FUNCTION PROTOTYPES}}
+\DoxyCodeLine{145 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{146 \textcolor{comment}{*/}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148                                                   \textcolor{comment}{/* See OS\_CPU\_A.ASM                                  */}}
+\DoxyCodeLine{149 \textcolor{keywordtype}{void}  OSCtxSw               (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{150 \textcolor{keywordtype}{void}  OSIntCtxSw            (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{151 \textcolor{keywordtype}{void}  OSStartHighRdy        (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153                                                   \textcolor{comment}{/* See OS\_CPU\_C.C                                    */}}
+\DoxyCodeLine{154 \textcolor{keywordtype}{void}  OS\_CPU\_SysTickInit    (CPU\_INT32U   cnts);}
+\DoxyCodeLine{155 \textcolor{keywordtype}{void}  OS\_CPU\_SysTickInitFreq(CPU\_INT32U   cpu\_freq);}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{keywordtype}{void}  OS\_CPU\_SysTickHandler (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{158 \textcolor{keywordtype}{void}  OS\_CPU\_PendSVHandler  (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#if (OS\_CPU\_ARM\_FP\_EN > 0u)}}
+\DoxyCodeLine{161 \textcolor{keywordtype}{void}  OS\_CPU\_FP\_Reg\_Push    (CPU\_STK     *stkPtr);}
+\DoxyCodeLine{162 \textcolor{keywordtype}{void}  OS\_CPU\_FP\_Reg\_Pop     (CPU\_STK     *stkPtr);}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{comment}{/*}}
+\DoxyCodeLine{167 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{168 \textcolor{comment}{*                                   EXTERNAL C LANGUAGE LINKAGE END}}
+\DoxyCodeLine{169 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{170 \textcolor{comment}{*/}}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{173 \}                                                 \textcolor{comment}{/* End of 'extern'al C lang linkage.                 */}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 \textcolor{comment}{/*}}
+\DoxyCodeLine{178 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{179 \textcolor{comment}{*                                             MODULE END}}
+\DoxyCodeLine{180 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{181 \textcolor{comment}{*/}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,260 @@
+\hypertarget{cpu__cfg_8h_source}{}\doxysection{cpu\+\_\+cfg.\+h}
+\label{cpu__cfg_8h_source}\index{lib/uCOS\_CPU/cpu\_cfg.h@{lib/uCOS\_CPU/cpu\_cfg.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                               uC/CPU}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                    CPU CONFIGURATION \& PORT LAYER}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2004-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{*}}
+\DoxyCodeLine{20 \textcolor{comment}{*                                       CPU CONFIGURATION FILE}}
+\DoxyCodeLine{21 \textcolor{comment}{*}}
+\DoxyCodeLine{22 \textcolor{comment}{*                                              TEMPLATE}}
+\DoxyCodeLine{23 \textcolor{comment}{*}}
+\DoxyCodeLine{24 \textcolor{comment}{* Filename : cpu\_cfg.h}}
+\DoxyCodeLine{25 \textcolor{comment}{* Version  : v1.32.00}}
+\DoxyCodeLine{26 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{27 \textcolor{comment}{*/}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{/*}}
+\DoxyCodeLine{31 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{32 \textcolor{comment}{*                                               MODULE}}
+\DoxyCodeLine{33 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{34 \textcolor{comment}{*/}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifndef  CPU\_CFG\_MODULE\_PRESENT}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define  CPU\_CFG\_MODULE\_PRESENT}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{comment}{/*}}
+\DoxyCodeLine{41 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{42 \textcolor{comment}{*                                       CPU NAME CONFIGURATION}}
+\DoxyCodeLine{43 \textcolor{comment}{*}}
+\DoxyCodeLine{44 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_NAME\_EN to enable/disable CPU host name feature :}}
+\DoxyCodeLine{45 \textcolor{comment}{*}}
+\DoxyCodeLine{46 \textcolor{comment}{*               (a) CPU host name storage}}
+\DoxyCodeLine{47 \textcolor{comment}{*               (b) CPU host name API functions}}
+\DoxyCodeLine{48 \textcolor{comment}{*}}
+\DoxyCodeLine{49 \textcolor{comment}{*           (2) Configure CPU\_CFG\_NAME\_SIZE with the desired ASCII string size of the CPU host name,}}
+\DoxyCodeLine{50 \textcolor{comment}{*               including the terminating NULL character.}}
+\DoxyCodeLine{51 \textcolor{comment}{*}}
+\DoxyCodeLine{52 \textcolor{comment}{*               See also 'cpu\_core.h  GLOBAL VARIABLES  Note \#1'.}}
+\DoxyCodeLine{53 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{54 \textcolor{comment}{*/}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56                                                                 \textcolor{comment}{/* Configure CPU host name feature (see Note \#1) :      */}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define  CPU\_CFG\_NAME\_EN                        DEF\_DISABLED}}
+\DoxyCodeLine{58                                                                 \textcolor{comment}{/*   DEF\_DISABLED  CPU host name DISABLED               */}}
+\DoxyCodeLine{59                                                                 \textcolor{comment}{/*   DEF\_ENABLED   CPU host name ENABLED                */}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61                                                                 \textcolor{comment}{/* Configure CPU host name ASCII string size ...        */}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define  CPU\_CFG\_NAME\_SIZE                                16    }\textcolor{comment}{/* ... (see Note \#2).                                   */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{comment}{/*}}
+\DoxyCodeLine{66 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{67 \textcolor{comment}{*                                     CPU TIMESTAMP CONFIGURATION}}
+\DoxyCodeLine{68 \textcolor{comment}{*}}
+\DoxyCodeLine{69 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_TS\_xx\_EN to enable/disable CPU timestamp features :}}
+\DoxyCodeLine{70 \textcolor{comment}{*}}
+\DoxyCodeLine{71 \textcolor{comment}{*               (a) CPU\_CFG\_TS\_32\_EN   enable/disable 32-\/bit CPU timestamp feature}}
+\DoxyCodeLine{72 \textcolor{comment}{*               (b) CPU\_CFG\_TS\_64\_EN   enable/disable 64-\/bit CPU timestamp feature}}
+\DoxyCodeLine{73 \textcolor{comment}{*}}
+\DoxyCodeLine{74 \textcolor{comment}{*           (2) (a) Configure CPU\_CFG\_TS\_TMR\_SIZE with the CPU timestamp timer's word size :}}
+\DoxyCodeLine{75 \textcolor{comment}{*}}
+\DoxyCodeLine{76 \textcolor{comment}{*                       CPU\_WORD\_SIZE\_08         8-\/bit word size}}
+\DoxyCodeLine{77 \textcolor{comment}{*                       CPU\_WORD\_SIZE\_16        16-\/bit word size}}
+\DoxyCodeLine{78 \textcolor{comment}{*                       CPU\_WORD\_SIZE\_32        32-\/bit word size}}
+\DoxyCodeLine{79 \textcolor{comment}{*                       CPU\_WORD\_SIZE\_64        64-\/bit word size}}
+\DoxyCodeLine{80 \textcolor{comment}{*}}
+\DoxyCodeLine{81 \textcolor{comment}{*               (b) If the size of the CPU timestamp timer is not a binary multiple of 8-\/bit octets}}
+\DoxyCodeLine{82 \textcolor{comment}{*                   (e.g. 20-\/bits or even 24-\/bits), then the next lower, binary-\/multiple octet word}}
+\DoxyCodeLine{83 \textcolor{comment}{*                   size SHOULD be configured (e.g. to 16-\/bits).  However, the minimum supported word}}
+\DoxyCodeLine{84 \textcolor{comment}{*                   size for CPU timestamp timers is 8-\/bits.}}
+\DoxyCodeLine{85 \textcolor{comment}{*}}
+\DoxyCodeLine{86 \textcolor{comment}{*                   See also 'cpu\_core.h  FUNCTION PROTOTYPES  CPU\_TS\_TmrRd()  Note \#2a'.}}
+\DoxyCodeLine{87 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{88 \textcolor{comment}{*/}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90                                                                 \textcolor{comment}{/* Configure CPU timestamp features (see Note \#1) :     */}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define  CPU\_CFG\_TS\_32\_EN                       DEF\_DISABLED}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define  CPU\_CFG\_TS\_64\_EN                       DEF\_DISABLED}}
+\DoxyCodeLine{93                                                                 \textcolor{comment}{/*   DEF\_DISABLED  CPU timestamps DISABLED              */}}
+\DoxyCodeLine{94                                                                 \textcolor{comment}{/*   DEF\_ENABLED   CPU timestamps ENABLED               */}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96                                                                 \textcolor{comment}{/* Configure CPU timestamp timer word size ...          */}}
+\DoxyCodeLine{97                                                                 \textcolor{comment}{/* ... (see Note \#2) :                                  */}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define  CPU\_CFG\_TS\_TMR\_SIZE                    CPU\_WORD\_SIZE\_32}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{comment}{/*}}
+\DoxyCodeLine{102 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{103 \textcolor{comment}{*                        CPU INTERRUPTS DISABLED TIME MEASUREMENT CONFIGURATION}}
+\DoxyCodeLine{104 \textcolor{comment}{*}}
+\DoxyCodeLine{105 \textcolor{comment}{* Note(s) : (1) (a) Configure CPU\_CFG\_INT\_DIS\_MEAS\_EN to enable/disable measuring CPU's interrupts}}
+\DoxyCodeLine{106 \textcolor{comment}{*                   disabled time :}}
+\DoxyCodeLine{107 \textcolor{comment}{*}}
+\DoxyCodeLine{108 \textcolor{comment}{*                   (a)  Enabled,       if CPU\_CFG\_INT\_DIS\_MEAS\_EN      \#define'd in 'cpu\_cfg.h'}}
+\DoxyCodeLine{109 \textcolor{comment}{*}}
+\DoxyCodeLine{110 \textcolor{comment}{*                   (b) Disabled,       if CPU\_CFG\_INT\_DIS\_MEAS\_EN  NOT \#define'd in 'cpu\_cfg.h'}}
+\DoxyCodeLine{111 \textcolor{comment}{*}}
+\DoxyCodeLine{112 \textcolor{comment}{*                   See also 'cpu\_core.h  FUNCTION PROTOTYPES  Note \#1'.}}
+\DoxyCodeLine{113 \textcolor{comment}{*}}
+\DoxyCodeLine{114 \textcolor{comment}{*               (b) Configure CPU\_CFG\_INT\_DIS\_MEAS\_OVRHD\_NBR with the number of times to measure \&}}
+\DoxyCodeLine{115 \textcolor{comment}{*                   average the interrupts disabled time measurements overhead.}}
+\DoxyCodeLine{116 \textcolor{comment}{*}}
+\DoxyCodeLine{117 \textcolor{comment}{*                   See also 'cpu\_core.c  CPU\_IntDisMeasInit()  Note \#3a'.}}
+\DoxyCodeLine{118 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{119 \textcolor{comment}{*/}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#if 0                                                           }\textcolor{comment}{/* Configure CPU interrupts disabled time ...           */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#define  CPU\_CFG\_INT\_DIS\_MEAS\_EN                                }\textcolor{comment}{/* ... measurements feature (see Note \#1a).             */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125                                                                 \textcolor{comment}{/* Configure number of interrupts disabled overhead ... */}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define  CPU\_CFG\_INT\_DIS\_MEAS\_OVRHD\_NBR                    1u   }\textcolor{comment}{/* ... time measurements (see Note \#1b).                */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{comment}{/*}}
+\DoxyCodeLine{130 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{131 \textcolor{comment}{*                                    CPU COUNT ZEROS CONFIGURATION}}
+\DoxyCodeLine{132 \textcolor{comment}{*}}
+\DoxyCodeLine{133 \textcolor{comment}{* Note(s) : (1) (a) Configure CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT  to define count leading  zeros bits}}
+\DoxyCodeLine{134 \textcolor{comment}{*                   function(s) in :}}
+\DoxyCodeLine{135 \textcolor{comment}{*}}
+\DoxyCodeLine{136 \textcolor{comment}{*                   (1) 'cpu\_a.asm',  if CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT       \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{137 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable assembly-\/optimized function(s)}}
+\DoxyCodeLine{138 \textcolor{comment}{*}}
+\DoxyCodeLine{139 \textcolor{comment}{*                   (2) 'cpu\_core.c', if CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT   NOT \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{140 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable C-\/source-\/optimized function(s) otherwise}}
+\DoxyCodeLine{141 \textcolor{comment}{*}}
+\DoxyCodeLine{142 \textcolor{comment}{*               (b) Configure CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT to define count trailing zeros bits}}
+\DoxyCodeLine{143 \textcolor{comment}{*                   function(s) in :}}
+\DoxyCodeLine{144 \textcolor{comment}{*}}
+\DoxyCodeLine{145 \textcolor{comment}{*                   (1) 'cpu\_a.asm',  if CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT      \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{146 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable assembly-\/optimized function(s)}}
+\DoxyCodeLine{147 \textcolor{comment}{*}}
+\DoxyCodeLine{148 \textcolor{comment}{*                   (2) 'cpu\_core.c', if CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT  NOT \#define'd in 'cpu.h'/}}
+\DoxyCodeLine{149 \textcolor{comment}{*                                         'cpu\_cfg.h' to enable C-\/source-\/optimized function(s) otherwise}}
+\DoxyCodeLine{150 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{151 \textcolor{comment}{*/}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#if 0                                                           }\textcolor{comment}{/* Configure CPU count leading  zeros bits ...          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define  CPU\_CFG\_LEAD\_ZEROS\_ASM\_PRESENT                         }\textcolor{comment}{/* ... assembly-\/version (see Note \#1a).                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#if 0                                                           }\textcolor{comment}{/* Configure CPU count trailing zeros bits ...          */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#define  CPU\_CFG\_TRAIL\_ZEROS\_ASM\_PRESENT                        }\textcolor{comment}{/* ... assembly-\/version (see Note \#1b).                 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{comment}{/*}}
+\DoxyCodeLine{163 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{164 \textcolor{comment}{*                                      CPU ENDIAN TYPE OVERRIDE}}
+\DoxyCodeLine{165 \textcolor{comment}{*}}
+\DoxyCodeLine{166 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_ENDIAN\_TYPE to override the default CPU endian type defined in cpu.h.}}
+\DoxyCodeLine{167 \textcolor{comment}{*}}
+\DoxyCodeLine{168 \textcolor{comment}{*               (a) CPU\_ENDIAN\_TYPE\_BIG         Big-\/   endian word order (CPU words' most  significant}}
+\DoxyCodeLine{169 \textcolor{comment}{*                                                                         octet @ lowest memory address)}}
+\DoxyCodeLine{170 \textcolor{comment}{*               (b) CPU\_ENDIAN\_TYPE\_LITTLE      Little-\/endian word order (CPU words' least significant}}
+\DoxyCodeLine{171 \textcolor{comment}{*                                                                         octet @ lowest memory address)}}
+\DoxyCodeLine{172 \textcolor{comment}{*}}
+\DoxyCodeLine{173 \textcolor{comment}{*           (2) Defining CPU\_CFG\_ENDIAN\_TYPE here is only valid for supported bi-\/endian architectures.}}
+\DoxyCodeLine{174 \textcolor{comment}{*               See  'cpu.h  CPU WORD CONFIGURATION  Note \#3' for details}}
+\DoxyCodeLine{175 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{176 \textcolor{comment}{*/}}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#if 0}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define  CPU\_CFG\_ENDIAN\_TYPE            CPU\_ENDIAN\_TYPE\_BIG     }\textcolor{comment}{/* Defines CPU data    word-\/memory order (see Note \#2). */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 \textcolor{comment}{/*}}
+\DoxyCodeLine{184 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{185 \textcolor{comment}{*                                          CACHE MANAGEMENT}}
+\DoxyCodeLine{186 \textcolor{comment}{*}}
+\DoxyCodeLine{187 \textcolor{comment}{* Note(s) : (1) Configure CPU\_CFG\_CACHE\_MGMT\_EN to enable the cache management API.}}
+\DoxyCodeLine{188 \textcolor{comment}{*}}
+\DoxyCodeLine{189 \textcolor{comment}{*           (2) This option only enables the cache management functions.}}
+\DoxyCodeLine{190 \textcolor{comment}{*               It does not enable any hardware caches, which should be configured in startup code.}}
+\DoxyCodeLine{191 \textcolor{comment}{*               Caches must be configured and enabled by the time CPU\_Init() is called.}}
+\DoxyCodeLine{192 \textcolor{comment}{*}}
+\DoxyCodeLine{193 \textcolor{comment}{*           (3) This option is usually required for device drivers which use a DMA engine to transmit}}
+\DoxyCodeLine{194 \textcolor{comment}{*               buffers that are located in cached memory.}}
+\DoxyCodeLine{195 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{196 \textcolor{comment}{*/}}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define  CPU\_CFG\_CACHE\_MGMT\_EN            DEF\_DISABLED          }\textcolor{comment}{/* Defines CPU data    word-\/memory order (see Note \#1). */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 \textcolor{comment}{/*}}
+\DoxyCodeLine{202 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{203 \textcolor{comment}{*                                      KERNEL AWARE IPL BOUNDARY}}
+\DoxyCodeLine{204 \textcolor{comment}{*}}
+\DoxyCodeLine{205 \textcolor{comment}{* Note(s) : (1) Determines the IPL level that establishes the boundary for ISRs that are kernel-\/aware and}}
+\DoxyCodeLine{206 \textcolor{comment}{*               those that are not.  All ISRs at this level or lower are kernel-\/aware.}}
+\DoxyCodeLine{207 \textcolor{comment}{*}}
+\DoxyCodeLine{208 \textcolor{comment}{*           (2) ARMv7-\/M: Since the port is using BASEPRI to separate kernel vs non-\/kernel aware ISR, please}}
+\DoxyCodeLine{209 \textcolor{comment}{*               make sure your external interrupt priorities are set accordingly. For example, if}}
+\DoxyCodeLine{210 \textcolor{comment}{*               CPU\_CFG\_KA\_IPL\_BOUNDARY is set to 4 then external interrupt priorities 4-\/15 will be kernel}}
+\DoxyCodeLine{211 \textcolor{comment}{*               aware while priorities 0-\/3 will be use as non-\/kernel aware.}}
+\DoxyCodeLine{212 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{213 \textcolor{comment}{*/}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 \textcolor{preprocessor}{\#define  CPU\_CFG\_KA\_IPL\_BOUNDARY                           4u}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 \textcolor{comment}{/*}}
+\DoxyCodeLine{219 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{220 \textcolor{comment}{*                                            ARM CORTEX-\/M}}
+\DoxyCodeLine{221 \textcolor{comment}{*}}
+\DoxyCodeLine{222 \textcolor{comment}{* Note(s) : (1) Determines the interrupt programmable priority levels. This is normally specified in the}}
+\DoxyCodeLine{223 \textcolor{comment}{*               Microcontroller reference manual. 4-\/bits gives us 16 programmable priority levels.}}
+\DoxyCodeLine{224 \textcolor{comment}{*}}
+\DoxyCodeLine{225 \textcolor{comment}{*                     Example 1                                       Example 2}}
+\DoxyCodeLine{226 \textcolor{comment}{*                     NVIC\_IPRx                                       NVIC\_IPRx}}
+\DoxyCodeLine{227 \textcolor{comment}{*                 7                0                              7                0}}
+\DoxyCodeLine{228 \textcolor{comment}{*                +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+                            +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{229 \textcolor{comment}{*                |       PRIO       |                            |       PRIO       |}}
+\DoxyCodeLine{230 \textcolor{comment}{*                +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+                            +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{231 \textcolor{comment}{*}}
+\DoxyCodeLine{232 \textcolor{comment}{*                Bits[7:4] Priority mask bits                    Bits[7:6] Priority mask bits}}
+\DoxyCodeLine{233 \textcolor{comment}{*                Bits[3:0] Reserved                              Bits[5:0] Reserved}}
+\DoxyCodeLine{234 \textcolor{comment}{*}}
+\DoxyCodeLine{235 \textcolor{comment}{*                Example 1: CPU\_CFG\_NVIC\_PRIO\_BITS should be set to 4 due to the processor}}
+\DoxyCodeLine{236 \textcolor{comment}{*                           implementing only bits[7:4].}}
+\DoxyCodeLine{237 \textcolor{comment}{*}}
+\DoxyCodeLine{238 \textcolor{comment}{*                Example 2: CPU\_CFG\_NVIC\_PRIO\_BITS should be set to 2 due to the processor}}
+\DoxyCodeLine{239 \textcolor{comment}{*                           implementing only bits[7:6].}}
+\DoxyCodeLine{240 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{241 \textcolor{comment}{*/}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{\#if 1}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#define  CPU\_CFG\_NVIC\_PRIO\_BITS                            4u}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{comment}{/*}}
+\DoxyCodeLine{248 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{249 \textcolor{comment}{*                                             MODULE END}}
+\DoxyCodeLine{250 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{251 \textcolor{comment}{*/}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#endif                                                          }\textcolor{comment}{/* End of CPU cfg module include.                       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{254 }
+
+\end{DoxyCode}

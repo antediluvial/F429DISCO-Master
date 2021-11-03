@@ -1,0 +1,86 @@
+\hypertarget{os__cfg__app_8h_source}{}\doxysection{os\+\_\+cfg\+\_\+app.\+h}
+\label{os__cfg__app_8h_source}\index{lib/uCOS\_Src/os\_cfg\_app.h@{lib/uCOS\_Src/os\_cfg\_app.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{*                                              uC/OS-\/III}}
+\DoxyCodeLine{4 \textcolor{comment}{*                                        The Real-\/Time Kernel}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{*                    Copyright 2009-\/2020 Silicon Laboratories Inc. www.silabs.com}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*                                 SPDX-\/License-\/Identifier: APACHE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{*               This software is subject to an open source license and is distributed by}}
+\DoxyCodeLine{11 \textcolor{comment}{*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,}}
+\DoxyCodeLine{12 \textcolor{comment}{*                    Version 2.0 available at www.apache.org/licenses/LICENSE-\/2.0.}}
+\DoxyCodeLine{13 \textcolor{comment}{*}}
+\DoxyCodeLine{14 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{*}}
+\DoxyCodeLine{20 \textcolor{comment}{*                               OS CONFIGURATION (APPLICATION SPECIFICS)}}
+\DoxyCodeLine{21 \textcolor{comment}{*}}
+\DoxyCodeLine{22 \textcolor{comment}{* Filename : os\_cfg\_app.h}}
+\DoxyCodeLine{23 \textcolor{comment}{* Version  : V3.08.00}}
+\DoxyCodeLine{24 \textcolor{comment}{*********************************************************************************************************}}
+\DoxyCodeLine{25 \textcolor{comment}{*/}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifndef OS\_CFG\_APP\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define OS\_CFG\_APP\_H}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{/*}}
+\DoxyCodeLine{31 \textcolor{comment}{**************************************************************************************************************************}}
+\DoxyCodeLine{32 \textcolor{comment}{*                                                      CONSTANTS}}
+\DoxyCodeLine{33 \textcolor{comment}{**************************************************************************************************************************}}
+\DoxyCodeLine{34 \textcolor{comment}{*/}}
+\DoxyCodeLine{35                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MISCELLANEOUS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{36                                                                 \textcolor{comment}{/* Stack size of ISR stack (number of CPU\_STK elements) */}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define  OS\_CFG\_ISR\_STK\_SIZE                             128u}}
+\DoxyCodeLine{38                                                                 \textcolor{comment}{/* Maximum number of messages                           */}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define  OS\_CFG\_MSG\_POOL\_SIZE                             32u}}
+\DoxyCodeLine{40                                                                 \textcolor{comment}{/* Stack limit position in percentage to empty          */}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define  OS\_CFG\_TASK\_STK\_LIMIT\_PCT\_EMPTY                  10u}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ IDLE TASK -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{45                                                                 \textcolor{comment}{/* Stack size (number of CPU\_STK elements)              */}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define  OS\_CFG\_IDLE\_TASK\_STK\_SIZE                        64u}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ STATISTIC TASK -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{50                                                                 \textcolor{comment}{/* Priority                                             */}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define  OS\_CFG\_STAT\_TASK\_PRIO  ((OS\_PRIO)(OS\_CFG\_PRIO\_MAX-\/2u))}}
+\DoxyCodeLine{52                                                                 \textcolor{comment}{/* Rate of execution (1 to 10 Hz)                       */}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define  OS\_CFG\_STAT\_TASK\_RATE\_HZ                         10u}}
+\DoxyCodeLine{54                                                                 \textcolor{comment}{/* Stack size (number of CPU\_STK elements)              */}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define  OS\_CFG\_STAT\_TASK\_STK\_SIZE                       100u}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ TICKS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{59                                                                 \textcolor{comment}{/* Tick rate in Hertz (10 to 1000 Hz)                   */}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define  OS\_CFG\_TICK\_RATE\_HZ                            1000u}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63                                                                 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ TIMERS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{64                                                                 \textcolor{comment}{/* Priority of 'Timer Task'                             */}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define  OS\_CFG\_TMR\_TASK\_PRIO   ((OS\_PRIO)(OS\_CFG\_PRIO\_MAX-\/3u))}}
+\DoxyCodeLine{66                                                                 \textcolor{comment}{/* Stack size (number of CPU\_STK elements)              */}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define  OS\_CFG\_TMR\_TASK\_STK\_SIZE                        128u}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69                                                                 \textcolor{comment}{/* DEPRECATED -\/ Rate for timers (10 Hz Typ.)            */}}
+\DoxyCodeLine{70                                                                 \textcolor{comment}{/* The timer task now calculates its timeouts based     */}}
+\DoxyCodeLine{71                                                                 \textcolor{comment}{/* on the timers in the list. It no longer runs at a    */}}
+\DoxyCodeLine{72                                                                 \textcolor{comment}{/* static frequency.                                    */}}
+\DoxyCodeLine{73                                                                 \textcolor{comment}{/* This define is included for compatibility reasons.   */}}
+\DoxyCodeLine{74                                                                 \textcolor{comment}{/* It will determine the period of a timer tick.        */}}
+\DoxyCodeLine{75                                                                 \textcolor{comment}{/* We recommend setting it to OS\_CFG\_TICK\_RATE\_HZ       */}}
+\DoxyCodeLine{76                                                                 \textcolor{comment}{/* for new projects.                                    */}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define  OS\_CFG\_TMR\_TASK\_RATE\_HZ                          10u}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,209 @@
+\hypertarget{ov5640_8h}{}\doxysection{lib/\+Components/ov5640/ov5640.h File Reference}
+\label{ov5640_8h}\index{lib/Components/ov5640/ov5640.h@{lib/Components/ov5640/ov5640.h}}
+
+
+This file contains all the functions prototypes for the \mbox{\hyperlink{ov5640_8c}{ov5640.\+c}} driver.  
+
+
+{\ttfamily \#include \char`\"{}../\+Common/camera.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries OV5640\+\_\+\+ID}~0x5640
+\begin{DoxyCompactList}\small\item\em OV5640 ID ~\newline
+ \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___o_v5640___exported___constants_ga02cf3a7929a2bfbcc57699f35a5d796c}{OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL4P}}~0x00   /$\ast$ Brightness level +4         $\ast$/
+\begin{DoxyCompactList}\small\item\em OV5640 Registers ~\newline
+ \end{DoxyCompactList}\item 
+\#define {\bfseries OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL3P}~0x01   /$\ast$ Brightness level +3         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL2P}~0x02   /$\ast$ Brightness level +2         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL1P}~0x04   /$\ast$ Brightness level +1         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL0}~0x08   /$\ast$ Brightness level 0          $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL1N}~0x10   /$\ast$ Brightness level -\/1         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL2N}~0x20   /$\ast$ Brightness level -\/2         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL3N}~0x40   /$\ast$ Brightness level -\/3         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+BRIGHTNESS\+\_\+\+LEVEL4N}~0x80   /$\ast$ Brightness level -\/4         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL4P}~0x00   /$\ast$ Saturation level +4         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL3P}~0x01   /$\ast$ Saturation level +3         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL2P}~0x02   /$\ast$ Saturation level +2         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL1P}~0x04   /$\ast$ Saturation level +1         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL0}~0x08   /$\ast$ Saturation level 0          $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL1N}~0x10   /$\ast$ Saturation level -\/1         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL2N}~0x20   /$\ast$ Saturation level -\/2         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL3N}~0x40   /$\ast$ Saturation level -\/3         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+\+LEVEL4N}~0x80   /$\ast$ Saturation level -\/4         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL4P}~0x00   /$\ast$ Contrast level +4           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL3P}~0x01   /$\ast$ Contrast level +3           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL2P}~0x02   /$\ast$ Contrast level +2           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL1P}~0x04   /$\ast$ Contrast level +1           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL0}~0x08   /$\ast$ Contrast level 0            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL1N}~0x10   /$\ast$ Contrast level -\/1           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL2N}~0x20   /$\ast$ Contrast level -\/2           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL3N}~0x40   /$\ast$ Contrast level -\/3           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+CONTRAST\+\_\+\+LEVEL4N}~0x80   /$\ast$ Contrast level -\/4           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+150P}~0x0001   /$\ast$ Hue 150+ degree           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+120P}~0x0002   /$\ast$ Hue 120+ degree           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+90P}~0x0004   /$\ast$ Hue 90+ degree            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+60P}~0x0008   /$\ast$ Hue 60+ degree            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+30P}~0x0010   /$\ast$ Hue 30+ degree            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+0}~0x0020   /$\ast$ Hue 0 degree              $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+30N}~0x0040   /$\ast$ Hue 30-\/ degree            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+60N}~0x0080   /$\ast$ Hue 60-\/ degree            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+90N}~0x0100   /$\ast$ Hue 90-\/ degree            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+120N}~0x0200   /$\ast$ Hue 120-\/ degree           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+150N}~0x0400   /$\ast$ Hue 150-\/ degree           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+HUE\+\_\+180N}~0x0800   /$\ast$ Hue 180-\/ degree           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+MIRROR}~0x00   /$\ast$ Set camera mirror config    $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+FLIP}~0x01   /$\ast$ Set camera flip config      $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+MIRROR\+\_\+\+FLIP}~0x02   /$\ast$ Set camera mirror and flip  $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+MIRROR\+\_\+\+FLIP\+\_\+\+NORMAL}~0x04   /$\ast$ Set camera normal mode      $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+ZOOM\+\_\+x8}~0x00
+\item 
+\#define {\bfseries OV5640\+\_\+\+ZOOM\+\_\+x4}~0x11
+\item 
+\#define {\bfseries OV5640\+\_\+\+ZOOM\+\_\+x2}~0x22
+\item 
+\#define {\bfseries OV5640\+\_\+\+ZOOM\+\_\+x1}~0x44
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+NONE}~0x00 /$\ast$ No effect               $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+BLUE}~0x01 /$\ast$ Blue effect             $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+RED}~0x02 /$\ast$ Red effect              $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+GREEN}~0x04 /$\ast$ Green effect            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+BW}~0x08 /$\ast$ Black and White effect  $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+SEPIA}~0x10 /$\ast$ Sepia effect            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+NEGATIVE}~0x20 /$\ast$ Negative effect         $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+BW\+\_\+\+NEGATIVE}~0x40 /$\ast$ BW Negative effect      $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+OVEREXPOSURE}~0x80 /$\ast$ Over exposure effect    $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+COLOR\+\_\+\+EFFECT\+\_\+\+SOLARIZE}~0x100 /$\ast$ Solarized effect       $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+LIGHT\+\_\+\+AUTO}~0x00   /$\ast$ Light Mode Auto             $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+LIGHT\+\_\+\+SUNNY}~0x01   /$\ast$ Light Mode Sunny            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+LIGHT\+\_\+\+OFFICE}~0x02   /$\ast$ Light Mode Office           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+LIGHT\+\_\+\+HOME}~0x04   /$\ast$ Light Mode Home             $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+LIGHT\+\_\+\+CLOUDY}~0x08   /$\ast$ Light Mode Claudy           $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+0}~0x00   /$\ast$ Color saturation 0          $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+1}~0x01   /$\ast$ Color saturation 1          $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+2}~0x02   /$\ast$ Color saturation 2          $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+SATURATION\+\_\+3}~0x04   /$\ast$ Color saturation 3          $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+EXPOSURE\+\_\+\+LEVEL\+\_\+0}~0x00   /$\ast$ Exposure Level 0            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+EXPOSURE\+\_\+\+LEVEL\+\_\+1}~0x01   /$\ast$ Exposure Level 1            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+EXPOSURE\+\_\+\+LEVEL\+\_\+2}~0x02   /$\ast$ Exposure Level 2            $\ast$/
+\item 
+\#define {\bfseries OV5640\+\_\+\+EXPOSURE\+\_\+\+LEVEL\+\_\+3}~0x04   /$\ast$ Exposure Level 3            $\ast$/
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga636269583dbddaa607bfc6971db10325}{ov5640\+\_\+\+Init}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t resolution)
+\begin{DoxyCompactList}\small\item\em Initializes the OV5640 CAMERA component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga6e65f234fcd4b604bdda851871e3e54c}{ov5640\+\_\+\+Config}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t feature, uint32\+\_\+t value, uint32\+\_\+t BR\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Configures the OV5640 camera feature. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group___o_v5640___exported___functions_gae80a927198af9b4e8465f310b1ba4055}{ov5640\+\_\+\+Read\+ID}} (uint16\+\_\+t Device\+Addr)
+\begin{DoxyCompactList}\small\item\em Read the OV5640 Camera identity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga786b1de90982880c64eb842cb85aadcb}{OV5640\+\_\+\+Set\+Light\+Mode}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Light\+Mode)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Light Mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_gaed1c125986b5fcd8d0f3daa950015191}{OV5640\+\_\+\+Set\+Effect}} (uint16\+\_\+t Device\+Addr, uint32\+\_\+t Effect)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Special Effect. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga98e6a8b7920cdbefddafb0c7ad9f941c}{OV5640\+\_\+\+Set\+Brightness}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Brightness Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga93ba8424b5b9fa686ebd60c4659527d0}{OV5640\+\_\+\+Set\+Saturation}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Saturation Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga161e0be2af568b9a4b5b33fad0feb62a}{OV5640\+\_\+\+Set\+Contrast}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Contrast Level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga1069a28511c638f5b2cd37b9450565f4}{OV5640\+\_\+\+Set\+Hue\+Degree}} (uint16\+\_\+t Device\+Addr, uint16\+\_\+t Degree)
+\begin{DoxyCompactList}\small\item\em Set the OV5640 camera Hue degree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga2f2d7cff86c0e46b52330c8d9f717699}{OV5640\+\_\+\+Mirror\+Flip\+Config}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Config)
+\begin{DoxyCompactList}\small\item\em Control OV5640 camera mirror/vflip. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___o_v5640___exported___functions_ga8d86da1d14b9820374d33965e3508b41}{OV5640\+\_\+\+Zoom\+Config}} (uint16\+\_\+t Device\+Addr, uint8\+\_\+t Zoom)
+\begin{DoxyCompactList}\small\item\em Control OV5640 camera mirror/vflip. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group___o_v5640___exported___functions_gab0f623916b30ea36387be37323bf4eac}{OV5640\+\_\+\+Get\+Resolution}} (uint16\+\_\+t Device\+Addr)
+\begin{DoxyCompactList}\small\item\em Get OV5640 camera resolution. \end{DoxyCompactList}\item 
+void {\bfseries CAMERA\+\_\+\+IO\+\_\+\+Init} (void)
+\item 
+void {\bfseries CAMERA\+\_\+\+IO\+\_\+\+Write} (uint8\+\_\+t addr, uint16\+\_\+t reg, uint16\+\_\+t value)
+\item 
+uint16\+\_\+t {\bfseries CAMERA\+\_\+\+IO\+\_\+\+Read} (uint8\+\_\+t Addr, uint16\+\_\+t Reg)
+\item 
+void {\bfseries CAMERA\+\_\+\+Delay} (uint32\+\_\+t delay)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_c_a_m_e_r_a___drv_type_def}{CAMERA\+\_\+\+Drv\+Type\+Def}} {\bfseries ov5640\+\_\+drv}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains all the functions prototypes for the \mbox{\hyperlink{ov5640_8c}{ov5640.\+c}} driver. 
+
+\begin{DoxyAuthor}{Author}
+MCD Application Team
+\end{DoxyAuthor}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2019 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 

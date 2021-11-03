@@ -1,0 +1,141 @@
+\hypertarget{i3g4250d_8h_source}{}\doxysection{i3g4250d.\+h}
+\label{i3g4250d_8h_source}\index{lib/Components/i3g4250d/i3g4250d.h@{lib/Components/i3g4250d/i3g4250d.h}}
+\mbox{\hyperlink{i3g4250d_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{21 \textcolor{comment}{/* Define to prevent recursive inclusion -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifndef \_\_I3G4250D\_H}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define \_\_I3G4250D\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{26 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{/* Includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}../Common/gyro.h"{}}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{48 \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{49 \textcolor{comment}{/*************************** START REGISTER MAPPING  **************************/}}
+\DoxyCodeLine{50 \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define I3G4250D\_WHO\_AM\_I\_ADDR          0x0F  }\textcolor{comment}{/* device identification register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define I3G4250D\_CTRL\_REG1\_ADDR         0x20  }\textcolor{comment}{/* Control register 1 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define I3G4250D\_CTRL\_REG2\_ADDR         0x21  }\textcolor{comment}{/* Control register 2 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define I3G4250D\_CTRL\_REG3\_ADDR         0x22  }\textcolor{comment}{/* Control register 3 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define I3G4250D\_CTRL\_REG4\_ADDR         0x23  }\textcolor{comment}{/* Control register 4 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define I3G4250D\_CTRL\_REG5\_ADDR         0x24  }\textcolor{comment}{/* Control register 5 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define I3G4250D\_REFERENCE\_REG\_ADDR     0x25  }\textcolor{comment}{/* Reference register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define I3G4250D\_OUT\_TEMP\_ADDR          0x26  }\textcolor{comment}{/* Out temp register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define I3G4250D\_STATUS\_REG\_ADDR        0x27  }\textcolor{comment}{/* Status register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define I3G4250D\_OUT\_X\_L\_ADDR           0x28  }\textcolor{comment}{/* Output Register X */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define I3G4250D\_OUT\_X\_H\_ADDR           0x29  }\textcolor{comment}{/* Output Register X */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define I3G4250D\_OUT\_Y\_L\_ADDR           0x2A  }\textcolor{comment}{/* Output Register Y */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define I3G4250D\_OUT\_Y\_H\_ADDR           0x2B  }\textcolor{comment}{/* Output Register Y */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define I3G4250D\_OUT\_Z\_L\_ADDR           0x2C  }\textcolor{comment}{/* Output Register Z */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define I3G4250D\_OUT\_Z\_H\_ADDR           0x2D  }\textcolor{comment}{/* Output Register Z */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define I3G4250D\_FIFO\_CTRL\_REG\_ADDR     0x2E  }\textcolor{comment}{/* Fifo control Register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define I3G4250D\_FIFO\_SRC\_REG\_ADDR      0x2F  }\textcolor{comment}{/* Fifo src Register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_CFG\_ADDR          0x30  }\textcolor{comment}{/* Interrupt 1 configuration Register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_SRC\_ADDR          0x31  }\textcolor{comment}{/* Interrupt 1 source Register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_TSH\_XH\_ADDR       0x32  }\textcolor{comment}{/* Interrupt 1 Threshold X register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_TSH\_XL\_ADDR       0x33  }\textcolor{comment}{/* Interrupt 1 Threshold X register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_TSH\_YH\_ADDR       0x34  }\textcolor{comment}{/* Interrupt 1 Threshold Y register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_TSH\_YL\_ADDR       0x35  }\textcolor{comment}{/* Interrupt 1 Threshold Y register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_TSH\_ZH\_ADDR       0x36  }\textcolor{comment}{/* Interrupt 1 Threshold Z register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_TSH\_ZL\_ADDR       0x37  }\textcolor{comment}{/* Interrupt 1 Threshold Z register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define I3G4250D\_INT1\_DURATION\_ADDR     0x38  }\textcolor{comment}{/* Interrupt 1 DURATION register */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{80 \textcolor{comment}{/**************************** END REGISTER MAPPING  ***************************/}}
+\DoxyCodeLine{81 \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define I\_AM\_I3G4250D                 ((uint8\_t)0xD3)}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define I3G4250D\_MODE\_POWERDOWN       ((uint8\_t)0x00)}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define I3G4250D\_MODE\_ACTIVE          ((uint8\_t)0x08)}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define I3G4250D\_OUTPUT\_DATARATE\_1    ((uint8\_t)0x00)}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define I3G4250D\_OUTPUT\_DATARATE\_2    ((uint8\_t)0x40)}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define I3G4250D\_OUTPUT\_DATARATE\_3    ((uint8\_t)0x80)}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define I3G4250D\_OUTPUT\_DATARATE\_4    ((uint8\_t)0xC0)}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define I3G4250D\_X\_ENABLE            ((uint8\_t)0x02)}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define I3G4250D\_Y\_ENABLE            ((uint8\_t)0x01)}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define I3G4250D\_Z\_ENABLE            ((uint8\_t)0x04)}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define I3G4250D\_AXES\_ENABLE         ((uint8\_t)0x07)}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define I3G4250D\_AXES\_DISABLE        ((uint8\_t)0x00)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#define I3G4250D\_BANDWIDTH\_1         ((uint8\_t)0x00)}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define I3G4250D\_BANDWIDTH\_2         ((uint8\_t)0x10)}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#define I3G4250D\_BANDWIDTH\_3         ((uint8\_t)0x20)}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define I3G4250D\_BANDWIDTH\_4         ((uint8\_t)0x30)}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#define I3G4250D\_FULLSCALE\_245       ((uint8\_t)0x00)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#define I3G4250D\_FULLSCALE\_500       ((uint8\_t)0x10)}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#define I3G4250D\_FULLSCALE\_2000      ((uint8\_t)0x20)}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#define I3G4250D\_FULLSCALE\_SELECTION ((uint8\_t)0x30)}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define I3G4250D\_SENSITIVITY\_245DPS  ((float)8.75f)         }}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define I3G4250D\_SENSITIVITY\_500DPS  ((float)17.50f)        }}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#define I3G4250D\_SENSITIVITY\_2000DPS ((float)70.00f)        }}
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#define I3G4250D\_BlockDataUpdate\_Continous   ((uint8\_t)0x00)}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define I3G4250D\_BlockDataUpdate\_Single      ((uint8\_t)0x80)}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define I3G4250D\_BLE\_LSB                     ((uint8\_t)0x00)}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define I3G4250D\_BLE\_MSB                     ((uint8\_t)0x40)}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define I3G4250D\_HIGHPASSFILTER\_DISABLE      ((uint8\_t)0x00)}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define I3G4250D\_HIGHPASSFILTER\_ENABLE       ((uint8\_t)0x10)}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#define I3G4250D\_INT1                        ((uint8\_t)0x00)}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define I3G4250D\_INT2                        ((uint8\_t)0x01)}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define I3G4250D\_INT1INTERRUPT\_DISABLE       ((uint8\_t)0x00)}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define I3G4250D\_INT1INTERRUPT\_ENABLE        ((uint8\_t)0x80)}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define I3G4250D\_INT2INTERRUPT\_DISABLE       ((uint8\_t)0x00)}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define I3G4250D\_INT2INTERRUPT\_ENABLE        ((uint8\_t)0x08)}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#define I3G4250D\_INT1INTERRUPT\_LOW\_EDGE      ((uint8\_t)0x20)}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#define I3G4250D\_INT1INTERRUPT\_HIGH\_EDGE     ((uint8\_t)0x00)}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{\#define I3G4250D\_BOOT\_NORMALMODE             ((uint8\_t)0x00)}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#define I3G4250D\_BOOT\_REBOOTMEMORY           ((uint8\_t)0x80)}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#define I3G4250D\_HPM\_NORMAL\_MODE\_RES         ((uint8\_t)0x00)}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{\#define I3G4250D\_HPM\_REF\_SIGNAL              ((uint8\_t)0x10)}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#define I3G4250D\_HPM\_NORMAL\_MODE             ((uint8\_t)0x20)}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{\#define I3G4250D\_HPM\_AUTORESET\_INT           ((uint8\_t)0x30)}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_0              0x00}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_1              0x01}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_2              0x02}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_3              0x03}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_4              0x04}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_5              0x05}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_6              0x06}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_7              0x07}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_8              0x08}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{\#define I3G4250D\_HPFCF\_9              0x09}}
+\DoxyCodeLine{256 \textcolor{comment}{/* Sensor Configuration Functions */}}
+\DoxyCodeLine{257 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_gaa369c86dbbf837021bdea573288e9bbe}{I3G4250D\_Init}}(uint16\_t InitStruct);}
+\DoxyCodeLine{258 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga229869cd9dfdca5a876b31728b468a64}{I3G4250D\_DeInit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{259 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga02284c8819e85f0a50d1293bc9a05209}{I3G4250D\_LowPower}}(uint16\_t InitStruct);}
+\DoxyCodeLine{260 uint8\_t \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga28c44df383a91226b29a22bb4b042f3c}{I3G4250D\_ReadID}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{261 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga2943b25fe1b615f5c91fffd69c790bee}{I3G4250D\_RebootCmd}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 \textcolor{comment}{/* Interrupt Configuration Functions */}}
+\DoxyCodeLine{264 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga1fc45fa47e7b39e0f09172cd3cf5bf8b}{I3G4250D\_INT1InterruptConfig}}(uint16\_t Int1Config);}
+\DoxyCodeLine{265 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_gaa97ed8e0dba44b5a30365b468f66fbe3}{I3G4250D\_EnableIT}}(uint8\_t IntSel);}
+\DoxyCodeLine{266 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga6d02bae036ae775bdb944d052c961a45}{I3G4250D\_DisableIT}}(uint8\_t IntSel);}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268 \textcolor{comment}{/* High Pass Filter Configuration Functions */}}
+\DoxyCodeLine{269 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga7b26d26630fd27475e863b1c09f1a364}{I3G4250D\_FilterConfig}}(uint8\_t FilterStruct);}
+\DoxyCodeLine{270 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_gaaa595428040ab4ecfcdb4eeefef006f9}{I3G4250D\_FilterCmd}}(uint8\_t HighPassFilterState);}
+\DoxyCodeLine{271 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga72674bcb0c98c7b1cc37f24938d97c16}{I3G4250D\_ReadXYZAngRate}}(\textcolor{keywordtype}{float} *pfData);}
+\DoxyCodeLine{272 uint8\_t \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga9658a78258a7f123f4f883e3193dac0a}{I3G4250D\_GetDataStatus}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 \textcolor{comment}{/* Gyroscope IO functions */}}
+\DoxyCodeLine{275 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___i3_g4250_d___exported___functions_ga3bd44afb6dbbc38ef41b38387f291613}{GYRO\_IO\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{276 \textcolor{keywordtype}{void}    GYRO\_IO\_DeInit(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{277 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___s_t_m32_f429_i___d_i_s_c_o_v_e_r_y___l_o_w___l_e_v_e_l___private___functions_ga91f7211b833b9428166a7b4389fdba2e}{GYRO\_IO\_Write}}(uint8\_t *pBuffer, uint8\_t WriteAddr, uint16\_t NumByteToWrite);}
+\DoxyCodeLine{278 \textcolor{keywordtype}{void}    \mbox{\hyperlink{group___s_t_m32_f429_i___d_i_s_c_o_v_e_r_y___l_o_w___l_e_v_e_l___private___functions_gae80f89593d6107eaf24fd82e38d75f85}{GYRO\_IO\_Read}}(uint8\_t *pBuffer, uint8\_t ReadAddr, uint16\_t NumByteToRead);}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 \textcolor{comment}{/* Gyroscope driver structure */}}
+\DoxyCodeLine{281 \textcolor{keyword}{extern} \mbox{\hyperlink{struct_g_y_r_o___drv_type_def}{GYRO\_DrvTypeDef}} I3g4250Drv;}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{300 \}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_I3G4250D\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305 \textcolor{comment}{/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/}}
+
+\end{DoxyCode}
