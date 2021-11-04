@@ -90,7 +90,7 @@ UART_HandleTypeDef h_UARTHandle;
 
 uint32_t Adc_value=1234;
 char temp='S';
-char test[5];
+char test[4];
 int x, y;
 
 /*

@@ -119,8 +119,9 @@ static void ReadUsartTask(void *p_arg)
 
        //REIVE ADC DATA
 
-        HAL_UART_Receive(&h_UARTHandle,&test,5,200);      
-        Adc_value = (atoi(test) / 10);
+        HAL_UART_Receive(&h_UARTHandle,&test,4,200);      
+        Adc_value = atoi(test);
+
         OSTimeDlyHMSM(0, 0, 0, 50,OS_OPT_TIME_HMSM_STRICT, &err);
     }
 
@@ -163,27 +164,27 @@ static void LCDProgressBar(uint32_t Adc)
 {
         for (int i = 0; i < 2; i++)
         {
-            BSP_LCD_DrawLine(108+i,320,108+i,(320+((Adc_value*0.07324)*-1)));
-            BSP_LCD_DrawLine(131+i,320,131+i,(320+((Adc_value*0.07324)*-1)));
+            BSP_LCD_DrawLine(108+i,320,108+i,(320+((Adc_value*0.04638)*-1)));
+            BSP_LCD_DrawLine(131+i,320,131+i,(320+((Adc_value*0.04638)*-1)));
         }
 
         BSP_LCD_SetTextColor(LCD_COLOR_RED);
         for (int i = 0; i < 21; i++)
         {
-            BSP_LCD_DrawLine(110+i,320,110+i,(320+((Adc_value*0.07324)*-1)));
+            BSP_LCD_DrawLine(110+i,320,110+i,(320+((Adc_value*0.04638)*-1)));
         }
         BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 }
 
 static void LCD_ADC(void)
 {
-        char ADCStr[15]="ADC Value ";
-        sprintf(ADCStr+strlen(ADCStr),"%d",(int)Adc_value);
+        char ADCStr[16]="ADC Value ";
+        sprintf(ADCStr+strlen(ADCStr),"%s",test);
         BSP_LCD_DisplayStringAtLine(1,(uint8_t*)ADCStr);
 
         char VOLStr[15]="Voltage ";
-        int tens = (Adc_value*122) / 100000;
-        int decimals = (Adc_value*122) % 10000;
+        int tens = (Adc_value*80) / 1000000;
+        int decimals = (Adc_value*80) % 100000;
 
         sprintf(VOLStr+strlen(VOLStr),"%d",tens);
         sprintf(VOLStr+strlen(VOLStr),".%d",decimals);
