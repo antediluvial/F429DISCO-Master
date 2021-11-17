@@ -69,6 +69,8 @@ static void AppTaskStart(void *p_arg)
     LCD_Init();
     //test
 
+    HAL_GPIO_WritePin(GPIOB, 4, GPIO_PIN_SET);
+
     OSTaskCreate(
         (OS_TCB *)&UpdateLCDTaskTCB,
         (CPU_CHAR *)"Update LCD Task",
@@ -121,6 +123,11 @@ static void ReadUsartTask(void *p_arg)
 
         HAL_UART_Receive(&h_UARTHandle,&test,4,200);      
         Adc_value = atoi(test);
+
+        if (Adc_value < 0 || Adc_value > 4096)
+        {
+            Adc_value = 0;
+        }
 
         OSTimeDlyHMSM(0, 0, 0, 50,OS_OPT_TIME_HMSM_STRICT, &err);
     }
@@ -252,6 +259,12 @@ static void GPIO_Init(void)
     GPIO_InitStruct.Pin = GPIO_PIN_7;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    GPIO_InitTypeDef GPIOPin;
+    GPIOPin.Pin = GPIO_PIN_4; // Select pin PA3/A2
+    GPIOPin.Mode = GPIO_MODE_OUTPUT_PP; // Select Digital output
+    GPIOPin.Pull = GPIO_NOPULL; // Disable internal pull-up or pull-down resistor
+    HAL_GPIO_Init(GPIOB, &GPIOPin); // initialize PA3 as analog input pin
 
 }
 
