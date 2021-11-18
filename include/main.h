@@ -88,10 +88,8 @@ static CPU_STK ReadUsartTaskStk[TASK_STK_SIZE];
 /*Shared system resources*/
 UART_HandleTypeDef h_UARTHandle;
 
-uint32_t Adc_value=1234;
-char temp='S';
-char test[4];
-int x, y;
+uint32_t Adc_value=0;
+char ADCBUFFER[5];
 
 /*
 *********************************************************************************************************

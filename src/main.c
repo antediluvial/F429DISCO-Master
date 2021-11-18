@@ -121,8 +121,8 @@ static void ReadUsartTask(void *p_arg)
 
        //REIVE ADC DATA
 
-        HAL_UART_Receive(&h_UARTHandle,&test,4,200);      
-        Adc_value = atoi(test);
+        HAL_UART_Receive(&h_UARTHandle,&ADCBUFFER,4,200);      
+        Adc_value = atoi(ADCBUFFER);
 
         if (Adc_value < 0 || Adc_value > 4096)
         {
@@ -186,7 +186,7 @@ static void LCDProgressBar(uint32_t Adc)
 static void LCD_ADC(void)
 {
         char ADCStr[16]="ADC Value ";
-        sprintf(ADCStr+strlen(ADCStr),"%s",test);
+        sprintf(ADCStr+strlen(ADCStr),"%s",ADCBUFFER);
         BSP_LCD_DisplayStringAtLine(1,(uint8_t*)ADCStr);
 
         char VOLStr[15]="Voltage ";
@@ -237,8 +237,6 @@ static void LCD_Init(void)
     BSP_LCD_Clear(LCD_COLOR_WHITE);
     BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 
-    x = BSP_LCD_GetXSize();
-    y = BSP_LCD_GetYSize();
 }
 
 
