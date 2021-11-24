@@ -90,6 +90,8 @@ UART_HandleTypeDef h_UARTHandle;
 
 uint32_t Adc_value=0;
 char ADCBUFFER[5];
+int testcount=0;
+uint8_t Rx_data[10];
 
 /*
 *********************************************************************************************************
@@ -110,7 +112,7 @@ static void GPIO_Init(void);
 static void USART_Init(void);
 
 /*  Standard function protypes*/
-static void LCDProgressBar(uint32_t Adc);
+static void LCDProgressBar();
 static void LCD_ADC(void);
 
 

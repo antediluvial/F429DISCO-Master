@@ -22,16 +22,15 @@
 *********************************************************************************************************
 */
 
-
 int main(void)
 {
     OS_ERR err;
 
     OSInit(&err);
 
-    OSMutexCreate((OS_MUTEX *)&AppMutex,    
-                    (CPU_CHAR *)"My application Mutex",
-                    (OS_ERR *)err);
+    OSMutexCreate((OS_MUTEX *)&AppMutex,
+                  (CPU_CHAR *)"My application Mutex",
+                  (OS_ERR *)err);
 
     OSTaskCreate((OS_TCB *)&AppTaskStartTCB,
                  (CPU_CHAR *)"App Task Start",
@@ -67,9 +66,9 @@ static void AppTaskStart(void *p_arg)
     GPIO_Init();
     USART_Init();
     LCD_Init();
-    //test
 
     HAL_GPIO_WritePin(GPIOB, 4, GPIO_PIN_SET);
+    //HAL_UART_Receive_IT(&h_UARTHandle, &ADCBUFFER, sizeof(ADCBUFFER)); 
 
     OSTaskCreate(
         (OS_TCB *)&UpdateLCDTaskTCB,
@@ -100,8 +99,6 @@ static void AppTaskStart(void *p_arg)
         (void *)0,
         (OS_OPT)(OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
         (OS_ERR *)&err);
-
-    
 }
 
 /*!
@@ -115,23 +112,26 @@ static void ReadUsartTask(void *p_arg)
     while (DEF_TRUE)
     {
         OS_ERR err;
-        CPU_TS ts;  //CPU Timestamp
+        CPU_TS ts; //CPU Timestamp
 
-       //SEND INTERRUPT
+        OSMutexPend((OS_MUTEX *)&AppMutex,
+        (OS_TICK)0,
+        (OS_OPT)OS_OPT_PEND_BLOCKING,
+        (CPU_TS *)&ts,
+        (OS_ERR *)&err);
 
-       //REIVE ADC DATA
+        //SEND INTERRUPT
 
-        HAL_UART_Receive(&h_UARTHandle,&ADCBUFFER,4,200);      
-        Adc_value = atoi(ADCBUFFER);
+        //REIVE ADC DATA
+        HAL_UART_Transmit(&h_UARTHandle, (uint8_t *)"T", sizeof("T"), HAL_MAX_DELAY);
+        HAL_UART_Receive(&h_UARTHandle, (uint8_t *)"T", sizeof("T"), 100);
 
-        if (Adc_value < 0 || Adc_value > 4096)
-        {
-            Adc_value = 0;
-        }
+        OSMutexPost((OS_MUTEX *)&AppMutex,
+        (OS_OPT)OS_OPT_POST_NONE,
+        (OS_ERR *)&err);
 
-        OSTimeDlyHMSM(0, 0, 0, 50,OS_OPT_TIME_HMSM_STRICT, &err);
+        OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_HMSM_STRICT, &err);
     }
-
 }
 
 static void UpdateLCDTask(void *p_arg)
@@ -140,26 +140,25 @@ static void UpdateLCDTask(void *p_arg)
     while (DEF_TRUE)
     {
         OS_ERR err;
-        CPU_TS ts;  //CPU Timestamp
+        CPU_TS ts; //CPU Timestamp
 
         OSMutexPend((OS_MUTEX *)&AppMutex,
-                    (OS_TICK )0,
-                    (OS_OPT )OS_OPT_PEND_BLOCKING,
+                    (OS_TICK)0,
+                    (OS_OPT)OS_OPT_PEND_BLOCKING,
                     (CPU_TS *)&ts,
                     (OS_ERR *)&err);
         BSP_LCD_Clear(LCD_COLOR_WHITE);
-        LCD_ADC();
 
-        LCDProgressBar(Adc_value);
+        LCD_ADC();
+        LCDProgressBar();
 
         OSMutexPost((OS_MUTEX *)&AppMutex,
-                    (OS_OPT )OS_OPT_POST_NONE,
+                    (OS_OPT)OS_OPT_POST_NONE,
                     (OS_ERR *)&err);
 
-        OSTimeDlyHMSM(0, 0, 0, 500,OS_OPT_TIME_HMSM_STRICT, &err);
+        OSTimeDlyHMSM(0, 0, 0, 500, OS_OPT_TIME_HMSM_STRICT, &err);
     }
 }
-
 
 /*!
 *********************************************************************************************************
@@ -167,43 +166,80 @@ static void UpdateLCDTask(void *p_arg)
 *********************************************************************************************************
 */
 
-static void LCDProgressBar(uint32_t Adc)
+void USART1_IRQHandler(void)
 {
-        for (int i = 0; i < 2; i++)
-        {
-            BSP_LCD_DrawLine(108+i,320,108+i,(320+((Adc_value*0.04638)*-1)));
-            BSP_LCD_DrawLine(131+i,320,131+i,(320+((Adc_value*0.04638)*-1)));
-        }
+    HAL_UART_IRQHandler(&h_UARTHandle);
+}
 
-        BSP_LCD_SetTextColor(LCD_COLOR_RED);
-        for (int i = 0; i < 21; i++)
-        {
-            BSP_LCD_DrawLine(110+i,320,110+i,(320+((Adc_value*0.04638)*-1)));
-        }
-        BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) 
+{
+     Adc_value = atoi(ADCBUFFER);
+
+     if (Adc_value < 0 || Adc_value > 4096)
+     {
+     Adc_value = 0;
+     }
+
+     HAL_UART_Receive_IT(&h_UARTHandle,&ADCBUFFER, sizeof(ADCBUFFER)); 
+}
+
+static void LCDProgressBar(void)
+{
+    for (int i = 0; i < 2; i++)
+    {
+        BSP_LCD_DrawLine(108 + i, 320, 108 + i, (320 + ((Adc_value * 0.04638) * -1)));
+        BSP_LCD_DrawLine(131 + i, 320, 131 + i, (320 + ((Adc_value * 0.04638) * -1)));
+    }
+
+    BSP_LCD_SetTextColor(LCD_COLOR_RED);
+    for (int i = 0; i < 21; i++)
+    {
+        BSP_LCD_DrawLine(110 + i, 320, 110 + i, (320 + ((Adc_value * 0.04638) * -1)));
+    }
+    BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 }
 
 static void LCD_ADC(void)
 {
-        char ADCStr[16]="ADC Value ";
-        sprintf(ADCStr+strlen(ADCStr),"%s",ADCBUFFER);
-        BSP_LCD_DisplayStringAtLine(1,(uint8_t*)ADCStr);
+    char ADCStr[16] = "ADC Value ";
+    sprintf(ADCStr + strlen(ADCStr), "%s", ADCBUFFER);
+    BSP_LCD_DisplayStringAtLine(1, (uint8_t *)ADCStr);
 
-        char VOLStr[15]="Voltage ";
-        int tens = (Adc_value*80) / 1000000;
-        int decimals = (Adc_value*80) % 100000;
+    char VOLStr[15] = "Voltage ";
+    int tens = (Adc_value * 80) / 1000000;
+    int decimals = (Adc_value * 80) % 100000;
 
-        sprintf(VOLStr+strlen(VOLStr),"%d",tens);
-        sprintf(VOLStr+strlen(VOLStr),".%d",decimals);
-        BSP_LCD_DisplayStringAtLine(2,(uint8_t*)VOLStr);
+    sprintf(VOLStr + strlen(VOLStr), "%d", tens);
+    sprintf(VOLStr + strlen(VOLStr), ".%d", decimals);
+    BSP_LCD_DisplayStringAtLine(2, (uint8_t *)VOLStr);
+    char test2[10] = "";
+    sprintf(test2, "%d", testcount);
+    BSP_LCD_DisplayStringAtLine(3, (uint8_t *)test2);
+    testcount++;
 }
 
-void HAL_Delay(uint32_t Delay)
-{
-    OS_ERR err;
-    OSTimeDly((OS_TICK)Delay,
-              (OS_OPT)OS_OPT_TIME_DLY,
-              (OS_ERR *)&err);
+// void HAL_Delay(uint32_t Delay)
+// {
+//     OS_ERR err;
+//     OSTimeDly((OS_TICK)Delay,
+//               (OS_OPT)OS_OPT_TIME_DLY,
+//               (OS_ERR *)&err);
+// }
+
+void HAL_Delay(uint32_t milliseconds) {
+
+   /* Initially clear flag */
+
+   (void) SysTick->CTRL;
+
+   while (milliseconds != 0) {
+
+      /* COUNTFLAG returns 1 if timer counted to 0 since the last flag read */
+
+      milliseconds -= (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) >> SysTick_CTRL_COUNTFLAG_Pos;
+
+   }
+
 }
 
 /*!
@@ -216,15 +252,18 @@ static void USART_Init(void)
 {
     __HAL_RCC_USART1_CLK_ENABLE();
     __HAL_RCC_USART2_CLK_ENABLE();
-    h_UARTHandle.Instance        = USART1;
-    h_UARTHandle.Init.BaudRate   = 9600;
+    h_UARTHandle.Instance = USART1;
+    h_UARTHandle.Init.BaudRate = 9600;
     h_UARTHandle.Init.WordLength = UART_WORDLENGTH_8B;
-    h_UARTHandle.Init.StopBits   = UART_STOPBITS_1;
-    h_UARTHandle.Init.Parity     = UART_PARITY_NONE;
-    h_UARTHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
-    h_UARTHandle.Init.Mode       = UART_MODE_TX_RX;
+    h_UARTHandle.Init.StopBits = UART_STOPBITS_1;
+    h_UARTHandle.Init.Parity = UART_PARITY_NONE;
+    h_UARTHandle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    h_UARTHandle.Init.Mode = UART_MODE_TX_RX;
 
     HAL_UART_Init(&h_UARTHandle);
+
+    NVIC_EnableIRQ(USART1_IRQn); 
+
 }
 
 static void LCD_Init(void)
@@ -236,9 +275,7 @@ static void LCD_Init(void)
     BSP_LCD_DisplayOn();
     BSP_LCD_Clear(LCD_COLOR_WHITE);
     BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-
 }
-
 
 static void GPIO_Init(void)
 {
@@ -251,21 +288,19 @@ static void GPIO_Init(void)
     GPIO_InitStruct.Alternate = GPIO_AF7_USART1; //Alternate mode 7 is USART_RX/TX
     GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
     GPIO_InitStruct.Pull = GPIO_NOPULL; //CHANGED FROM NOPULL DUE TO PINOUT FILE
-    HAL_GPIO_Init(GPIOB,&GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
     GPIO_InitStruct.Alternate = GPIO_AF7_USART1; //SERIAL1 RX
     GPIO_InitStruct.Pin = GPIO_PIN_7;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
     GPIO_InitTypeDef GPIOPin;
-    GPIOPin.Pin = GPIO_PIN_4; // Select pin PA3/A2
+    GPIOPin.Pin = GPIO_PIN_4;           // Select pin PA3/A2
     GPIOPin.Mode = GPIO_MODE_OUTPUT_PP; // Select Digital output
-    GPIOPin.Pull = GPIO_NOPULL; // Disable internal pull-up or pull-down resistor
-    HAL_GPIO_Init(GPIOB, &GPIOPin); // initialize PA3 as analog input pin
-
+    GPIOPin.Pull = GPIO_NOPULL;         // Disable internal pull-up or pull-down resistor
+    HAL_GPIO_Init(GPIOB, &GPIOPin);     // initialize PA3 as analog input pin
 }
-
 
 static void SystemClock_Config(void)
 {
@@ -309,4 +344,5 @@ static void SystemClock_Config(void)
     PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
     PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
     HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct);
+
 }
