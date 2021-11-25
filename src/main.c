@@ -123,8 +123,9 @@ static void ReadUsartTask(void *p_arg)
         //SEND INTERRUPT
 
         //REIVE ADC DATA
-        HAL_UART_Transmit(&h_UARTHandle, (uint8_t *)"T", sizeof("T"), HAL_MAX_DELAY);
-        HAL_UART_Receive(&h_UARTHandle, (uint8_t *)"T", sizeof("T"), 100);
+        HAL_UART_Transmit(&h_UARTHandle, (uint8_t *)"1", sizeof(char), HAL_MAX_DELAY);
+        HAL_Delay(10);
+        HAL_UART_Receive(&h_UARTHandle, (uint8_t *)ADCBUFFER, 5, 1000);
 
         OSMutexPost((OS_MUTEX *)&AppMutex,
         (OS_OPT)OS_OPT_POST_NONE,
