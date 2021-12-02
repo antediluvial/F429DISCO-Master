@@ -65,10 +65,10 @@ static void AppTaskStart(void *p_arg)
 
     GPIO_Init();
     USART_Init();
+    USART3_Init();
     LCD_Init();
 
     HAL_GPIO_WritePin(GPIOB, 4, GPIO_PIN_SET);
-    //HAL_UART_Receive_IT(&h_UARTHandle, &ADCBUFFER, sizeof(ADCBUFFER)); 
 
     OSTaskCreate(
         (OS_TCB *)&UpdateLCDTaskTCB,
@@ -120,12 +120,42 @@ static void ReadUsartTask(void *p_arg)
         (CPU_TS *)&ts,
         (OS_ERR *)&err);
 
-        //SEND INTERRUPT
 
+        strcpy(DATABUFFER,"");
         //REIVE ADC DATA
-        HAL_UART_Transmit(&h_UARTHandle, (uint8_t *)"1", sizeof(char), HAL_MAX_DELAY);
-        HAL_Delay(10);
-        HAL_UART_Receive(&h_UARTHandle, (uint8_t *)ADCBUFFER, 5, 1000);
+        //Get a huge buffer and parse it for the correct values
+        //Possibly the worst way to do this, but it almost works so ¯\_(ツ)_/¯
+        HAL_UART_Receive(&h_UARTHandle, (uint8_t *)DATABUFFER, 20, HAL_MAX_DELAY);
+        HAL_UART_Transmit(&h_UARTHandle3, (uint8_t *)DATABUFFER, 20, HAL_MAX_DELAY);
+
+        int parseflag=0;
+        for (int i = 0; i < strlen(DATABUFFER); i++)
+        {
+            if(DATABUFFER[i] == 'T')
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    ADCBUFFER[j]=DATABUFFER[i+1+j];
+                }
+            parseflag++;
+            }
+            if(DATABUFFER[i] == 'P')
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    RPMBUFFER[j]=DATABUFFER[i+1+j];
+                }
+            parseflag++;        
+            }
+            if (parseflag==2)
+            {
+                i=strlen(DATABUFFER);
+            }
+            
+        }
+
+        Adc_value = atoi(ADCBUFFER);
+        
 
         OSMutexPost((OS_MUTEX *)&AppMutex,
         (OS_OPT)OS_OPT_POST_NONE,
@@ -167,41 +197,26 @@ static void UpdateLCDTask(void *p_arg)
 *********************************************************************************************************
 */
 
-void USART1_IRQHandler(void)
-{
-    HAL_UART_IRQHandler(&h_UARTHandle);
-}
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) 
-{
-     Adc_value = atoi(ADCBUFFER);
-
-     if (Adc_value < 0 || Adc_value > 4096)
-     {
-     Adc_value = 0;
-     }
-
-     HAL_UART_Receive_IT(&h_UARTHandle,&ADCBUFFER, sizeof(ADCBUFFER)); 
-}
 
 static void LCDProgressBar(void)
 {
     for (int i = 0; i < 2; i++)
     {
-        BSP_LCD_DrawLine(108 + i, 320, 108 + i, (320 + ((Adc_value * 0.04638) * -1)));
-        BSP_LCD_DrawLine(131 + i, 320, 131 + i, (320 + ((Adc_value * 0.04638) * -1)));
+        BSP_LCD_DrawLine(108 + i, 320, 108 + i, (320 + ((Adc_value * BARADJUST) * -1)));
+        BSP_LCD_DrawLine(131 + i, 320, 131 + i, (320 + ((Adc_value * BARADJUST) * -1)));
     }
 
     BSP_LCD_SetTextColor(LCD_COLOR_RED);
     for (int i = 0; i < 21; i++)
     {
-        BSP_LCD_DrawLine(110 + i, 320, 110 + i, (320 + ((Adc_value * 0.04638) * -1)));
+        BSP_LCD_DrawLine(110 + i, 320, 110 + i, (320 + ((Adc_value * BARADJUST) * -1)));
     }
     BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 }
 
 static void LCD_ADC(void)
 {
+
     char ADCStr[16] = "ADC Value ";
     sprintf(ADCStr + strlen(ADCStr), "%s", ADCBUFFER);
     BSP_LCD_DisplayStringAtLine(1, (uint8_t *)ADCStr);
@@ -217,6 +232,10 @@ static void LCD_ADC(void)
     sprintf(test2, "%d", testcount);
     BSP_LCD_DisplayStringAtLine(3, (uint8_t *)test2);
     testcount++;
+
+    char RPMStr[16] = "RPM: ";
+    sprintf(RPMStr + strlen(RPMStr), "%s", RPMBUFFER);
+    BSP_LCD_DisplayStringAtLine(4, (uint8_t *)RPMStr);
 }
 
 // void HAL_Delay(uint32_t Delay)
@@ -263,7 +282,38 @@ static void USART_Init(void)
 
     HAL_UART_Init(&h_UARTHandle);
 
-    NVIC_EnableIRQ(USART1_IRQn); 
+    //NVIC_EnableIRQ(USART1_IRQn); 
+
+}
+
+static void USART3_Init(void)
+{
+    __HAL_RCC_USART3_CLK_ENABLE();
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+
+    GPIO_InitTypeDef GPIO_InitStruct;
+    GPIO_InitStruct.Pin = GPIO_PIN_8; //SERIAL3 TX
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Alternate = GPIO_AF7_USART3; //Alternate mode 7 is USART_RX/TX
+    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+    GPIO_InitStruct.Pull = GPIO_NOPULL; //CHANGED FROM NOPULL DUE TO PINOUT FILE
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Alternate = GPIO_AF7_USART3; //SERIAL1 RX
+    GPIO_InitStruct.Pin = GPIO_PIN_9;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+    h_UARTHandle3.Instance = USART3;
+    h_UARTHandle3.Init.BaudRate = 9600;
+    h_UARTHandle3.Init.WordLength = UART_WORDLENGTH_8B;
+    h_UARTHandle3.Init.StopBits = UART_STOPBITS_1;
+    h_UARTHandle3.Init.Parity = UART_PARITY_NONE;
+    h_UARTHandle3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    h_UARTHandle3.Init.Mode = UART_MODE_TX_RX;
+
+    HAL_UART_Init(&h_UARTHandle3); 
+
 
 }
 

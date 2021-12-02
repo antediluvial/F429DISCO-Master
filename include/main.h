@@ -65,6 +65,9 @@
 #define UPDATE_LCD_TASK_PRIO 2u
 #define READ_USART_TASK_PRIO 2u
 
+/*Magic numbers */
+#define BARADJUST (0.04638*8) //Sets the scaling for the progressbar
+
 /*
 *********************************************************************************************************
 *                                           GLOBAL VARIABLES
@@ -87,11 +90,13 @@ static CPU_STK ReadUsartTaskStk[TASK_STK_SIZE];
 
 /*Shared system resources*/
 UART_HandleTypeDef h_UARTHandle;
+UART_HandleTypeDef h_UARTHandle3;
 
 uint32_t Adc_value=0;
-char ADCBUFFER[5];
+char DATABUFFER[20] = "";
 int testcount=0;
-uint8_t Rx_data[10];
+char ADCBUFFER[5]="";
+char RPMBUFFER[5]="";
 
 /*
 *********************************************************************************************************
@@ -110,6 +115,7 @@ static void SystemClock_Config(void);
 static void LCD_Init(void);
 static void GPIO_Init(void);
 static void USART_Init(void);
+static void USART3_Init(void);
 
 /*  Standard function protypes*/
 static void LCDProgressBar();
